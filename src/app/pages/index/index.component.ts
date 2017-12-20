@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {WxService} from './../../services/wx.service';
 
 @Component({
   selector: 'app-index',
@@ -7,7 +8,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class IndexComponent implements OnInit {
 
-  constructor() { }
+  constructor(private wxService: WxService) {
+  }
 
   ngOnInit() {
   }
