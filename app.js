@@ -4,16 +4,19 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-/*var config = require('./config/config.json');
-var utils = require('./utils/utils');*/
+var mongoose = require('mongoose');
+
 var index = require('./routes/index');
 var lists = require('./routes/lists');
 var qLocation = require('./routes/location');
 var wxApi = require('./routes/wxApi');
 
-var getUserInfo = require('./routes/OAuth/getUserInfo');
+var auth = require('./routes/wx/auth');
+var getUsers = require('./routes/wx/getUsers');
 
 var app = express();
+
+mongoose.connect('mongodb://duty:Pengcl19821025@localhost:27017/duty', {useMongoClient: true});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -37,7 +40,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', index);
 app.use('/lists', lists);
 app.use('/wxApi', wxApi);
-app.use('/getUserInfo', getUserInfo);
+app.use('/wx/auth', auth);
+app.use('/wx/getUsers', getUsers);
 app.use('/location', qLocation);
 
 // catch 404 and forward to error handler

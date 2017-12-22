@@ -6,3 +6,4 @@ db.createUser(
       { role: "read", db: "reporting" } ]
   }
 )
+//https://www.cnblogs.com/xmyun/p/6401297.html

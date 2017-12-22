@@ -62,7 +62,7 @@ WxSvc.OAuth.getAccessToken = function (code) {
 
 WxSvc.getUserInfo = function (access_token, openid) {
   var deferred = Q.defer();
-  request('https://api.weixin.qq.com/sns/userinfo?access_token=' + access_token + '&openid=' + openid + '&lang=zh_CN', function (error, response, body) {
+  request('https://api.weixin.qq.com/cgi-bin/user/info?access_token=' + access_token + '&openid=' + openid + '&lang=zh_CN', function (error, response, body) {
     if (!error && response.statusCode == 200) {//请求成功
       body = JSON.parse(body);
       deferred.resolve(body);

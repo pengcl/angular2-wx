@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {WxService} from './../../services/wx.service';
+import 'rxjs/add/operator/switchMap';
+import {UserService} from '../../services/user.service';
 
 @Component({
   selector: 'app-index',
@@ -7,11 +8,14 @@ import {WxService} from './../../services/wx.service';
   styleUrls: ['./index.component.scss']
 })
 export class IndexComponent implements OnInit {
+  openid;
 
-  constructor(private wxService: WxService) {
+  constructor(private userService: UserService) {
   }
 
   ngOnInit() {
+    this.openid = this.userService.getOpenid();
+    console.log(this.openid);
   }
 
 }
