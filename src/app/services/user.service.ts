@@ -1,8 +1,9 @@
 import {Injectable} from '@angular/core';
 import {Headers, Http} from '@angular/http';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Params} from '@angular/router';
 import 'rxjs/add/operator/toPromise';
 
+import {Config} from '../config';
 import {WxService} from './wx.service';
 import {StorageService} from './storage.service';
 
@@ -10,6 +11,7 @@ import {StorageService} from './storage.service';
 export class UserService {
   private headers = new Headers({'Content-Type': 'application/json'});
   private openid;
+  private mobile;
 
   constructor(private storageService: StorageService,
               private activatedRoute: ActivatedRoute,
@@ -25,30 +27,92 @@ export class UserService {
         this.openid = this.storageService.get('openid');
         return this.openid;
       } else {
-        this.activatedRoute.queryParams.subscribe(
-          (queryParams: any) => {
-            if (queryParams.openid) {
-              this.openid = queryParams.openid;
-              this.storageService.set('openid', this.openid);
-              console.log(queryParams.openid);
-              return this.openid;
-            } else {
-              window.location.href = 'http://wx.dutyhb.com/api/wx/auth?callbackUrl=' + encodeURI(window.location.href);
-            }
-          });
+        if (this.activatedRoute.snapshot.queryParams['openid']) {
+          this.openid = this.activatedRoute.snapshot.queryParams['openid'];
+          this.storageService.set('openid', this.openid);
+          return this.openid;
+        } else {
+          window.location.href = Config.prefix.api + '/wx/auth?callbackUrl=' + encodeURI(window.location.href);
+        }
+      }
+    }
+  } // stub
+
+  getMobile() {
+    if (this.mobile) {
+      return this.mobile;
+    } else {
+      if (this.storageService.get('mobile')) {
+        this.mobile = this.storageService.get('mobile');
+        return this.mobile;
+      } else {
+        window.location.href = Config.prefix.admin + '/login';
       }
     }
   } // stub
 
   getUsers(): Promise<any[]> {
-    return this.http.get('http://wx.dutyhb.com/api/wx/getUsers')
+    return this.http.get(Config.prefix.api + '/wx/getUsers')
       .toPromise()
       .then(response => response.json().data)
       .catch(this.handleError);
   }
 
   getUser(openid): Promise<any> {
-    return this.http.get('http://wx.dutyhb.com/api/wx/getUsers?openid=' + openid).toPromise().then(response => response.json().data);
+    return this.http.get(Config.prefix.api + '/wx/getUsers?openid=' + openid)
+      .toPromise()
+      .then(response => {
+        return response.json();
+      })
+      .catch(this.handleError);
+  }
+
+  getUserByOpenid(openid): Promise<any> {
+    return this.http.get(Config.prefix.api + '/wx/getUsers?openid=' + openid)
+      .toPromise()
+      .then(response => {
+        return response.json();
+      })
+      .catch(this.handleError);
+  }
+
+  getUserByMobile(mobile): Promise<any> {
+    return this.http.get(Config.prefix.api + '/wx/getUsers?mobile=' + mobile)
+      .toPromise()
+      .then(response => {
+        return response.json();
+      })
+      .catch(this.handleError);
+  }
+
+  isLogin(): Promise<any> {
+    if (this.wxService.isWx()) {
+      if (!this.openid) {
+        this.openid = this.getOpenid();
+      }
+      return this.http.get(Config.prefix.api + '/wx/getUsers?openid=' + this.openid)
+        .toPromise()
+        .then(response => {
+          const user = response.json();
+          if (user.mobile) {
+            return user;
+          } else {
+            window.location.href = Config.prefix.admin + '/login';
+          }
+        })
+        .catch(this.handleError);
+    } else {
+      if (!this.mobile) {
+        this.mobile = this.getMobile();
+      }
+      return this.http.get(Config.prefix.api + '/wx/getUsers?mobile=' + this.mobile)
+        .toPromise()
+        .then(response => {
+          const user = response.json();
+          return user;
+        })
+        .catch(this.handleError);
+    }
   }
 
   setUser(user): Promise<any> {

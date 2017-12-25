@@ -9,12 +9,18 @@ import {UserService} from './services/user.service';
 
 import {AppComponent} from './app.component';
 import {AppRoutingModule} from './app-routing.module';
-import {IndexComponent} from './pages/index/index.component';
+import {COMPONENTS_DECLARATIONS} from './components';
+import {FRONT_PAGES_DECLARATIONS} from './pages/front';
+import {ADMIN_PAGES_DECLARATIONS} from './pages/admin';
+import { GalleryComponent } from './components/gallery/gallery.component';
+import { OwlCarouselComponent } from './components/owl-carousel/owl-carousel.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    IndexComponent
+    ...COMPONENTS_DECLARATIONS,
+    ...FRONT_PAGES_DECLARATIONS,
+    ...ADMIN_PAGES_DECLARATIONS
   ],
   imports: [
     BrowserModule,

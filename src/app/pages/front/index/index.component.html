@@ -1,0 +1,10 @@
+<app-navbar [navBar]="navBarConfig"></app-navbar>
+<p>
+  index works!
+</p>
+<app-owl-carousel [options]="{navigation: true, pagination: false, rewindNav : false}">
+  <div *ngFor="#item of items">
+    <p>{{ item }}</p>
+  </div>
+</app-owl-carousel>
+<app-tabbar [tabBar]="tabBarConfig"></app-tabbar>
