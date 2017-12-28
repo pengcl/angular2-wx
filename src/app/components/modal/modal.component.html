@@ -1,0 +1,12 @@
+<div *ngIf="dialog" class="js_dialog" style="opacity: 1;">
+  <div class="weui-mask"></div>
+  <div class="weui-dialog">
+    <div class="weui-dialog__hd"><strong class="weui-dialog__title">{{dialog.title}}</strong></div>
+    <div class="weui-dialog__bd">{{dialog.content}}</div>
+    <div class="weui-dialog__ft">
+      <a href="javascript:;" (click)="dialog.cancel();hide()" class="weui-dialog__btn weui-dialog__btn_default">取消</a>
+      <a href="javascript:;" (click)="dialog.confirm();hide()"
+         class="weui-dialog__btn weui-dialog__btn_primary">确定</a>
+    </div>
+  </div>
+</div>

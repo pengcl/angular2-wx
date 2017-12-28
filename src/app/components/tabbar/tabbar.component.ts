@@ -12,7 +12,6 @@ export class TabbarComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.tabBar);
   }
 
 }

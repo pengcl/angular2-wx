@@ -1,19 +1,32 @@
+// modules
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {HttpModule} from '@angular/http';
 
-import {StorageService} from './services/storage.service';
-import {WxService} from './services/wx.service';
-import {UserService} from './services/user.service';
+// services
+import {SERVICES_DECLARATIONS} from './services';
 
+// components
 import {AppComponent} from './app.component';
 import {AppRoutingModule} from './app-routing.module';
 import {COMPONENTS_DECLARATIONS} from './components';
 import {FRONT_PAGES_DECLARATIONS} from './pages/front';
 import {ADMIN_PAGES_DECLARATIONS} from './pages/admin';
-import { GalleryComponent } from './components/gallery/gallery.component';
-import { OwlCarouselComponent } from './components/owl-carousel/owl-carousel.component';
+
+import {SwiperModule, SWIPER_CONFIG, SwiperConfigInterface} from 'ngx-swiper-wrapper';
+
+const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
+  direction: 'horizontal',
+  slidesPerView: 1,
+  centeredSlides: true,
+  keyboard: true,
+  observer: true,
+  mousewheel: true,
+  scrollbar: false,
+  navigation: true,
+  pagination: true
+};
 
 @NgModule({
   declarations: [
@@ -26,10 +39,18 @@ import { OwlCarouselComponent } from './components/owl-carousel/owl-carousel.com
     BrowserModule,
     FormsModule,
     AppRoutingModule,
-    HttpModule
+    HttpModule,
+    SwiperModule
   ],
-  providers: [StorageService, WxService, UserService],
-  bootstrap: [AppComponent]
+  providers: [
+    ...SERVICES_DECLARATIONS,
+    {
+      provide: SWIPER_CONFIG,
+      useValue: DEFAULT_SWIPER_CONFIG
+    }
+  ],
+  bootstrap: [AppComponent],
+  entryComponents: [...COMPONENTS_DECLARATIONS]
 })
 export class AppModule {
 }

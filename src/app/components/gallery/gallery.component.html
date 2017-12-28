@@ -1,5 +1,10 @@
 <div class="weui-gallery" style="display: block">
-  <span class="weui-gallery__img" style="background-image: url(./images/pic_article.png);"></span>
+  <swiper *ngIf="type == 'component' && show" class="swiper-container" [config]="config"
+          (indexChange)="onIndexChange($event)" fxFlex="auto">
+
+        <span *ngFor="let slide of slides" class="weui-gallery__img"
+              [ngStyle]="{'background-image':'url(' +slide +')'}"></span>
+  </swiper>
   <div class="weui-gallery__opr">
     <a href="javascript:" class="weui-gallery__del">
       <i class="weui-icon-delete weui-icon_gallery-delete"></i>

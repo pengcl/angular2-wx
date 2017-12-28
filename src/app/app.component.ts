@@ -1,5 +1,9 @@
 import {Component} from '@angular/core';
-import {UserService} from './services/user.service';
+
+import {ToastService} from './services/toast.service';
+
+import {ToastComponent} from './components/toast/toast.component';
+import {ModalComponent} from './components/modal/modal.component';
 
 @Component({
   selector: 'app-root',
@@ -9,6 +13,6 @@ import {UserService} from './services/user.service';
 export class AppComponent {
   title = 'app';
 
-  constructor(private userService: UserService) {
+  constructor(private toast: ToastService) {
   }
 }

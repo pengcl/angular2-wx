@@ -1,10 +1,23 @@
 <app-navbar [navBar]="navBarConfig"></app-navbar>
-<p>
-  index works!
-</p>
-<app-owl-carousel [options]="{navigation: true, pagination: false, rewindNav : false}">
-  <div *ngFor="#item of items">
-    <p>{{ item }}</p>
-  </div>
-</app-owl-carousel>
+
+<!--<app-gallery *ngIf="gallery" [slides]="slides"></app-gallery>-->
+<!--<div (click)="onShowModal($event)">onShowModal</div>
+<div (click)="onShowToast($event)">onShowToast</div>-->
+
+<app-infinite-loader (loadmore)="onLoadMore($event)" #comp>
+  <Page [ngClass]="'infiniteloader'" [title]="'Infinite Loader'" [subTitle]="'滚动加载'" [spacing]="false"
+        [noBottom]="true">
+
+    <div class="weui-cells__title">List with 50 Max</div>
+    <div class="weui-cells">
+      <a *ngFor="let i of items" class="weui-cell weui-cell_access" href="javascript:;">
+        <div class="weui-cell__bd">{{i}}</div>
+        <div class="weui-cell__ft"></div>
+      </a>
+    </div>
+
+    <weui-button *ngIf="restartBtn" (click)="restart()">重新开始</weui-button>
+  </Page>
+</app-infinite-loader>
+
 <app-tabbar [tabBar]="tabBarConfig"></app-tabbar>

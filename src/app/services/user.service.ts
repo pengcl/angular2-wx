@@ -71,7 +71,12 @@ export class UserService {
     return this.http.get(Config.prefix.api + '/wx/getUsers?openid=' + openid)
       .toPromise()
       .then(response => {
-        return response.json();
+        const user = response.json();
+        if (user.mobile) {
+          return user;
+        } else {
+          window.location.href = Config.prefix.admin + '/login';
+        }
       })
       .catch(this.handleError);
   }
@@ -86,22 +91,15 @@ export class UserService {
   }
 
   isLogin(): Promise<any> {
-    if (this.wxService.isWx()) {
-      if (!this.openid) {
-        this.openid = this.getOpenid();
+    if (this.wxService.isWx()) {// 微信环境
+      if (!this.openid) {// openid不存在
+        this.openid = this.getOpenid(); // 获取openid
       }
-      return this.http.get(Config.prefix.api + '/wx/getUsers?openid=' + this.openid)
-        .toPromise()
-        .then(response => {
-          const user = response.json();
-          if (user.mobile) {
-            return user;
-          } else {
-            window.location.href = Config.prefix.admin + '/login';
-          }
-        })
-        .catch(this.handleError);
-    } else {
+      // 通过getUsers接口获取 userInfo
+      this.getUserByOpenid(this.openid).then(user => {
+        return user;
+      });
+    } else {// 非微信环境
       if (!this.mobile) {
         this.mobile = this.getMobile();
       }

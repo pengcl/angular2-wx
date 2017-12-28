@@ -25,7 +25,7 @@
     "interface-over-type-literal": true,
     "label-position": true,
     "max-line-length": [
-      true,
+      false,
       140
     ],
     "member-access": false,
@@ -40,7 +40,7 @@
         ]
       }
     ],
-    "no-arg": true,
+    "no-arg": false,
     "no-bitwise": true,
     "no-console": [
       true,
@@ -57,7 +57,7 @@
     "no-empty-interface": true,
     "no-eval": true,
     "no-inferrable-types": [
-      true,
+      false,
       "ignore-params"
     ],
     "no-misused-new": true,
@@ -115,13 +115,13 @@
       "check-type"
     ],
     "directive-selector": [
-      true,
+      false,
       "attribute",
       "app",
       "camelCase"
     ],
     "component-selector": [
-      true,
+      false,
       "element",
       "app",
       "kebab-case"

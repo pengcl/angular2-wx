@@ -13,8 +13,7 @@ export class NavbarComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.navBar);
-    // this.titleService.setTitle(this.navBar);
+    this.titleService.setTitle(this.navBar.navigationBarTitleText);
   }
 
 }

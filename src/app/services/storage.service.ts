@@ -1,4 +1,3 @@
-import {Provider} from '@angular/core';
 
 export class StorageService {
 
