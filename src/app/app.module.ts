@@ -15,6 +15,7 @@ import {FRONT_PAGES_DECLARATIONS} from './pages/front';
 import {ADMIN_PAGES_DECLARATIONS} from './pages/admin';
 
 import {SwiperModule, SWIPER_CONFIG, SwiperConfigInterface} from 'ngx-swiper-wrapper';
+import {InfiniteLoaderConfig} from './components/infinite-loader/infinite-loader.config';
 
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
   direction: 'horizontal',
@@ -44,6 +45,7 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
   ],
   providers: [
     ...SERVICES_DECLARATIONS,
+    InfiniteLoaderConfig,
     {
       provide: SWIPER_CONFIG,
       useValue: DEFAULT_SWIPER_CONFIG
