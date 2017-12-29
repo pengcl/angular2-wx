@@ -1,9 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var config = require('../../config/config');
-let {WxSvc} = require('../../utils/service/wx.js');
 
-var mongoose = require('mongoose');
 var Users = require('../../utils/db/modules/users');//导入模型数据模块
 
 

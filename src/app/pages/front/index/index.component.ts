@@ -2,6 +2,7 @@ import {Component, OnInit, ViewEncapsulation, ViewChild} from '@angular/core';
 import {PageConfig} from './page.config';
 import {ModalService} from '../../../services/modal.service';
 import {ToastService} from '../../../services/toast.service';
+import {WXService} from '../../../services/wx.service';
 
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/timer';
@@ -18,6 +19,8 @@ import {Modal} from '../../../models/modal.model';
 export class FrontIndexComponent implements OnInit {
   tabBarConfig = PageConfig.tabBar;
   navBarConfig = PageConfig.navBar;
+  jsApiList: string[] = ['onMenuShareTimeline', 'onMenuShareAppMessage', 'onMenuShareQQ', 'onMenuShareWeibo', 'onMenuShareQZone'];
+  status: string;
 
   restartBtn = false;
 
@@ -25,11 +28,19 @@ export class FrontIndexComponent implements OnInit {
 
   @ViewChild(InfiniteLoaderComponent) il;
 
-  constructor(private modal: ModalService, private toast: ToastService) {
+  constructor(private modal: ModalService, private toast: ToastService, private wxService: WXService) {
   }
 
 
   ngOnInit() {
+    this.wxService.config({
+      title: '新标题'
+    }, this.jsApiList).then(() => {
+      // 其它操作，可以确保注册成功以后才有效
+      this.status = '注册成功';
+    }).catch((err: string) => {
+      this.status = `注册失败，原因：${err}`;
+    });
   }
 
   onShowModal(e) {

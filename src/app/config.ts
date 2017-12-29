@@ -1,8 +1,8 @@
 export const Config = {
-  'webHost': 'http://127.0.0.1:4200',
+  'webHost': 'http://wx.dutyhb.com',
   'prefix': {
-    'front': 'http://127.0.0.1:4200/front',
-    'admin': 'http://127.0.0.1:4200/admin',
-    'api': 'http://127.0.0.1:4200/api'
+    'front': 'http://wx.dutyhb.com/front',
+    'admin': 'http://wx.dutyhb.com/admin',
+    'api': 'http://wx.dutyhb.com/api'
   }
 };

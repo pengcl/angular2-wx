@@ -3,6 +3,7 @@ var mongoose = require('mongoose');
 var UsersSchema = new mongoose.Schema({
   mobile: String,
   wx: Object,
+  access_token: Object,
   meta: {
     createAt: {
       type: Date,
@@ -38,7 +39,11 @@ UsersSchema.statics = {
     return this.findOne({_id: id}).exec(cb)
   },
   findByOpenid: function (openid, cb) { //根据id查询单条数据
-    return this.findOne({'wx.openid': {$eq: openid}}).exec(cb)
+    var promise = this.findOne({'wx.openid': {$eq: openid}}).exec(cb);
+    // return this.findOne({'wx.openid': {$eq: openid}}).exec(cb);
+    promise.then(function (doc) {
+      return doc;
+    });
   }
 };
 //暴露出去的方法

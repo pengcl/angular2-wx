@@ -13,6 +13,7 @@ var wxApi = require('./routes/wxApi');
 
 var auth = require('./routes/wx/auth');
 var getUsers = require('./routes/wx/getUsers');
+var wxConfig = require('./routes/wx/config');
 
 var app = express();
 
@@ -40,6 +41,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', index);
 app.use('/lists', lists);
 app.use('/wxApi', wxApi);
+app.use('/wx/config', wxConfig);
 app.use('/wx/auth', auth);
 app.use('/wx/getUsers', getUsers);
 app.use('/location', qLocation);

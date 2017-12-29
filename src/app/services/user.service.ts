@@ -4,19 +4,19 @@ import {ActivatedRoute, Params} from '@angular/router';
 import 'rxjs/add/operator/toPromise';
 
 import {Config} from '../config';
-import {WxService} from './wx.service';
+import {WXService} from './wx.service';
 import {StorageService} from './storage.service';
 
 @Injectable()
 export class UserService {
-  private headers = new Headers({'Content-Type': 'application/json'});
+  /*private headers = new Headers({'Content-Type': 'application/json'});*/
   private openid;
   private mobile;
 
   constructor(private storageService: StorageService,
               private activatedRoute: ActivatedRoute,
               private http: Http,
-              private wxService: WxService) {
+              private wxService: WXService) {
   }
 
   getOpenid() {
