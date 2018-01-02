@@ -4,3 +4,27 @@ body{
     border-radius: 4px;
   }
 }
+
+.content-scrollable {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: auto;
+  height: auto;
+  background: #fff;
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  &.has-nav {
+    padding-top: 0.6rem;
+  }
+  &.has-footer {
+    &:after {
+      content: "";
+      display: block;
+      height: 63px;
+    }
+  }
+}

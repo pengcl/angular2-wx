@@ -2,7 +2,7 @@ import {StorageService} from './storage.service';
 import {WXService} from './wx.service';
 import {UserService} from './user.service';
 import {ToastService} from './toast.service';
-import {ModalService} from './modal.service';
+import {DialogService} from './dialog.service';
 import {LoaderService} from './loader.service';
 import {JWeiXinService} from './jweixin.service';
 
@@ -11,7 +11,7 @@ export const SERVICES_DECLARATIONS = [
   WXService,
   UserService,
   ToastService,
-  ModalService,
+  DialogService,
   LoaderService,
   JWeiXinService
 ];

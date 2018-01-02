@@ -1,7 +1,4 @@
 import {Component, OnInit, Input} from '@angular/core';
-import {ToastService} from '../../services/toast.service';
-
-import {Toast} from '../../models/toast.model';
 
 @Component({
   selector: 'app-toast',
@@ -9,15 +6,14 @@ import {Toast} from '../../models/toast.model';
   styleUrls: ['./toast.component.scss']
 })
 export class ToastComponent implements OnInit {
-  @Input() state: Toast;
+  @Input() type: 'success' | 'loading';
+  @Input() time: number;
 
-  constructor(private toast: ToastService) {
+  constructor() {
+    this.type = 'success';
+    this.time = 0;
   }
 
   ngOnInit() {
-    this.toast.getter().subscribe((result) => {
-      this.state = result;
-    });
   }
-
 }

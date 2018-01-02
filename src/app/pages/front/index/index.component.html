@@ -4,7 +4,7 @@
 <!--<div (click)="onShowModal($event)">onShowModal</div>
 <div (click)="onShowToast($event)">onShowToast</div>-->
 
-<app-infinite-loader (loadmore)="onLoadMore($event)" #comp>
+<!--<app-infinite-loader (loadmore)="onLoadMore($event)" #comp>
 
 
     <div class="weui-cells__title">List with 50 Max</div>
@@ -15,8 +15,10 @@
       </a>
     </div>
 
-    <!--<weui-button *ngIf="restartBtn" (click)="restart()">重新开始</weui-button>-->
+    &lt;!&ndash;<weui-button *ngIf="restartBtn" (click)="restart()">重新开始</weui-button>&ndash;&gt;
 
-</app-infinite-loader>
+</app-infinite-loader>-->
+
+<button (click)="onShowBySrv()">Loading Toast</button>
 
 <app-tabbar [tabBar]="tabBarConfig"></app-tabbar>

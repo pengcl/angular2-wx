@@ -1,15 +1,14 @@
 import {Component, OnInit, ViewEncapsulation, ViewChild} from '@angular/core';
 import {PageConfig} from './page.config';
-import {ModalService} from '../../../services/modal.service';
 import {ToastService} from '../../../services/toast.service';
+import {DialogService} from '../../../services/dialog.service';
 import {WXService} from '../../../services/wx.service';
 
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/timer';
 
 import {InfiniteLoaderComponent} from '../../../components/infinite-loader/infinite-loader.component';
-
-import {Modal} from '../../../models/modal.model';
+import {Dialog} from '../../../models/dialog.model';
 
 @Component({
   selector: 'app-front-index',
@@ -28,7 +27,7 @@ export class FrontIndexComponent implements OnInit {
 
   @ViewChild(InfiniteLoaderComponent) il;
 
-  constructor(private modal: ModalService, private toast: ToastService, private wxService: WXService) {
+  constructor(private dialog: DialogService, private toast: ToastService, private wxService: WXService) {
   }
 
 
@@ -43,21 +42,18 @@ export class FrontIndexComponent implements OnInit {
     });
   }
 
-  onShowModal(e) {
-    this.modal.setter({
-      title: 'title',
-      content: 'content',
-      confirm: function () {
-        console.log('confirm');
-      },
-      cancel: function () {
-        console.log('cancel');
-      }
-    });
+  onShowToast(type: 'success' | 'loading', time?: number) {
+    this.toast.show(type, time);
   }
 
-  onShowToast(e) {
-    this.toast.show();
+  onShowBySrv() {
+    this.dialog.show({
+      title: '系统提示',
+      content: 'haha',
+    }).subscribe((res: any) => {
+      console.log(res);
+    });
+    return false;
   }
 
   onLoadMore(comp: InfiniteLoaderComponent) {
