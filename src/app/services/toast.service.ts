@@ -1,31 +1,64 @@
-import {Injectable} from '@angular/core';
-import {Subject} from 'rxjs/Subject';
-import {Observable} from 'rxjs/Observable';
+import {Injectable, ComponentFactoryResolver, ApplicationRef, Injector, OnDestroy} from '@angular/core';
+
+import {BaseService} from './base.service';
+import {ToastComponent} from '../components/toast/toast.component';
 
 @Injectable()
-export class ToastService {
-  private subject = new Subject<any>();
-  private state = {type: 'loading', auto: false};
+export class ToastService extends BaseService implements OnDestroy {
 
-  constructor() {
+  constructor(resolver: ComponentFactoryResolver, applicationRef: ApplicationRef, injector: Injector) {
+    super(resolver, applicationRef, injector);
   }
 
-  show(type?) {
+  private timer: any;
+
+  /**
+   * 构建toast并显示
+   *
+   * @param {number} [time] 显示时长后自动关闭（单位：ms），0 表示永久（可选）
+   * @param {('success' | 'loading')} [type] 类型（可选）
+   */
+  show(type?: 'success' | 'loading', time?: number) {
+    const componentRef = this.build(ToastComponent);
     if (type) {
-      this.state.type = type;
+      componentRef.instance.type = type;
     }
-    this.setter(this.state);
+    if (time > 0) {
+      this.timer = setTimeout(() => {
+        this.destroy();
+      }, time);
+    }
   }
 
+  /**
+   * 关闭最新toast
+   */
   hide() {
-    this.setter('');
+    this.destroy();
   }
 
-  setter(state) {
-    this.subject.next(state);
+  /**
+   * 构建成功toast并显示
+   *
+   * @param {number} [time] 显示时长后自动关闭（单位：ms），0 表示永久（可选）
+   */
+  success(time?: number) {
+    this.show('success', time);
   }
 
-  getter(): Observable<any> {
-    return this.subject.asObservable();
+  /**
+   * 构建加载中toast并显示
+   *
+   * @param {number} [time] 显示时长后自动关闭（单位：ms），0 表示永久（可选）
+   */
+  loading(time?: number) {
+    this.show('loading', time);
+  }
+
+  ngOnDestroy(): void {
+    if (this.timer) {
+      clearTimeout(this.timer);
+      this.timer = null;
+    }
   }
 }

@@ -1,4 +1,4 @@
-export interface Modal {
+export interface Dialog {
   title: string;
   content: string;
   confirm: any; // 函数类型
