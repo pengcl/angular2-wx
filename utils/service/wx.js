@@ -100,7 +100,7 @@ WxSvc.OAuth.getAccessToken = function (code) { //通过code换取网页授权acc
   return deferred.promise;
 };
 
-WxSvc.getUserInfo = function (access_token, openid) { //通过access_token和openid拉取用户信息了。
+WxSvc.getUserInfo = function (access_token, openid) { //通过基础access_token和openid拉取用户信息了。
   var deferred = Q.defer();
   request('https://api.weixin.qq.com/cgi-bin/user/info?access_token=' + access_token + '&openid=' + openid + '&lang=zh_CN', function (error, response, body) {
     if (!error && response.statusCode == 200) {//请求成功

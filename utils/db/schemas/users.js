@@ -32,18 +32,14 @@ UsersSchema.pre('save', function (next) {
 
 //查询的静态方法
 UsersSchema.statics = {
-  fetch: function (cb) { //查询所有数据
+  findAll: function (cb) { //查询所有数据
     return this.find().sort('meta.updateAt').exec(cb) //回调
   },
   findById: function (id, cb) { //根据id查询单条数据
     return this.findOne({_id: id}).exec(cb)
   },
   findByOpenid: function (openid, cb) { //根据id查询单条数据
-    var promise = this.findOne({'wx.openid': {$eq: openid}}).exec(cb);
-    // return this.findOne({'wx.openid': {$eq: openid}}).exec(cb);
-    promise.then(function (doc) {
-      return doc;
-    });
+    return this.findOne({'wx.openid': {$eq: openid}}).exec(cb);
   }
 };
 //暴露出去的方法

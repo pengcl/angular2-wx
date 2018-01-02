@@ -5,5 +5,6 @@ db.createUser(
     roles: [ { role: "readWrite", db: "duty" },
       { role: "read", db: "reporting" } ]
   }
-)
+);
 //https://www.cnblogs.com/xmyun/p/6401297.html
+//http://wjl.pr365.com.cn/

@@ -8,14 +8,21 @@ import {UserService} from '../../../services/user.service';
   styleUrls: ['./index.component.scss']
 })
 export class AdminIndexComponent implements OnInit {
-  userInfo;
+  userId;
 
   constructor(private userService: UserService) {
   }
 
   ngOnInit() {
-    this.userInfo = this.userService.isLogin();
-    console.log(this.userInfo);
+
+    this.userId = this.userService.isLogin();
+    console.log(this.userId);
+
+    /*this.userService.getUser('5a461ef28b24c6546b2679d6').then(function (data) {
+      console.log(data);
+    });*/
+    /*this.userInfo = this.userService.isLogin();
+    console.log(this.userInfo);*/
     /*this.userService.login().then(isLogin => {
     });*/
     /*this.openid = this.userService.getOpenid();

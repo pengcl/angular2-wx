@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "sudo ng serve --proxy-config proxy.conf.json --port 80",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
@@ -34,6 +34,7 @@
     "imagemin-pngquant": "^5.0.1",
     "jssha": "^1.6.2",
     "mongodb": "^2.2.33",
+    "mongoose": "^4.13.7",
     "morgan": "~1.8.1",
     "ngx-swiper-wrapper": "^5.2.0",
     "node-sass-middleware": "^0.9.8",

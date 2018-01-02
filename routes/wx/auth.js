@@ -16,77 +16,52 @@ router.get('/', function (req, res, next) {
   }
 
   if (req.query.code) {//如果有code参数
+    console.log('code:' + req.query.code);
     WxSvc.OAuth.getAccessToken(req.query.code).then(function (data) {//获取网页授权access_token;
       if (data.access_token) {//获取网页授权access_token成功,目的是获取openid;
         var openid = data.openid;
+        console.log(openid);
         WxSvc.getAccessToken().then(function (data) { //获取基础access_token
+          console.log('data:' + data)
           var access_token = data;
-          WxSvc.getUserInfo(access_token.access_token, openid).then(function (data) {//获取用户信息
-
-            Users.findByOpenid(openid, function (err, user) {
+          WxSvc.getUserInfo(access_token.access_token, openid).then(function (data) {//获取微信用户信息
+            console.log(data);
+            Users.findByOpenid(openid, function (err, user) {//通过openid获取数据库用户信息
               if (err) {
                 console.log(err);
               } else {
-                if (!user) {
+                if (!user) {//如果数据库不存在此openid的用户
                   var user = new Users({
                     mobile: '',
                     wx: data,
                     access_token: access_token
                   });
 
-                  user.save(function (err, user) { //保存用户信息
+                  user.save(function (err, user) { //保存用户信息到数据库
+                    console.log(user);
                     if (err) {
                       return;
                     } else {//微信信息插入成功
                       if (req.query.callbackUrl.indexOf('?') !== -1) {
-                        res.location(req.query.callbackUrl + '&openid=' + data.openid);
+                        res.location(req.query.callbackUrl + '&userId=' + user._id);
                       } else {
-                        res.location(req.query.callbackUrl + '?openid=' + data.openid);
+                        res.location(req.query.callbackUrl + '?userId=' + user._id);
                       }
                       res.statusCode = 301;
                       res.end('');
                     }
                   });
-                } else {
+                } else {//如果数据库存在此openid的用户
                   if (req.query.callbackUrl.indexOf('?') !== -1) {
-                    res.location(req.query.callbackUrl + '&openid=' + user.wx.openid);
+                    res.location(req.query.callbackUrl + '&userId=' + user._id);
                   } else {
-                    res.location(req.query.callbackUrl + '?openid=' + user.wx.openid);
+                    res.location(req.query.callbackUrl + '?userId=' + user._id);
                   }
                   res.statusCode = 301;
                   res.end('');
                 }
               }
             });
-
-            /*MongoClient.connect(DB_CONN_STR, function (err, db) {
-              var collection = db.collection('users');
-              if (err) {//数据库连接失败
-                console.log(err);
-              } else {//数据库连接成功
-                try {
-                  collection.update(//如果openid存在则更新，否则插入
-                    {"wx.openid": {$eq: data.openid}},
-                    {$set: {wx: data}},
-                    {upsert: true}, function (err, result) {
-                      if (err) {
-                        return;
-                      } else {//微信信息插入成功
-                        if (req.query.callbackUrl.indexOf('?') !== -1) {
-                          res.location(req.query.callbackUrl + '&openid=' + data.openid);
-                        } else {
-                          res.location(req.query.callbackUrl + '?openid=' + data.openid);
-                        }
-                        res.statusCode = 301;
-                        res.end('');
-                      }
-                    }
-                  )
-                } catch (e) {
-                  console.log(e);
-                }
-              }
-            });*/
           });
         });
 

@@ -14,10 +14,11 @@ var wxApi = require('./routes/wxApi');
 var auth = require('./routes/wx/auth');
 var getUsers = require('./routes/wx/getUsers');
 var wxConfig = require('./routes/wx/config');
+var users = require('./routes/users');
 
 var app = express();
 
-mongoose.connect('mongodb://duty:Pengcl19821025@localhost:27017/duty', {useMongoClient: true});
+mongoose.connect('mongodb://duty:Pengcl19821025@101.200.72.54:27017/duty', {useMongoClient: true});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -45,6 +46,7 @@ app.use('/wx/config', wxConfig);
 app.use('/wx/auth', auth);
 app.use('/wx/getUsers', getUsers);
 app.use('/location', qLocation);
+app.use('/users', users);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
@@ -65,3 +67,6 @@ app.use(function (err, req, res, next) {
 });
 
 module.exports = app;
+
+
+//sudo ng serve --proxy api.json --port 80
