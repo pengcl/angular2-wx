@@ -5,6 +5,8 @@ import {ToastService} from './toast.service';
 import {DialogService} from './dialog.service';
 import {LoaderService} from './loader.service';
 import {JWeiXinService} from './jweixin.service';
+import {ProductsService} from './products.service';
+import {ButtonConfig} from '../components/button/button.config';
 
 export const SERVICES_DECLARATIONS = [
   StorageService,
@@ -13,5 +15,7 @@ export const SERVICES_DECLARATIONS = [
   ToastService,
   DialogService,
   LoaderService,
-  JWeiXinService
+  JWeiXinService,
+  ProductsService,
+  ButtonConfig
 ];

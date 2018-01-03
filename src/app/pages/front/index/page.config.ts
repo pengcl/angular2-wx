@@ -3,7 +3,7 @@ export const PageConfig = {
     'backgroundColor': '#fff',
     'list': [
       {
-        'pagePath': 'pages/index/index',
+        'pagePath': '/front/index',
         'iconPath': '/assets/images/tabBar/homepage.png',
         'selectedIconPath': '/assets/images/tabBar/homepage_fill.png',
         'text': '首页',
@@ -23,7 +23,7 @@ export const PageConfig = {
         }
       },
       {
-        'pagePath': 'pages/index/index',
+        'pagePath': '/front/cases',
         'iconPath': '/assets/images/tabBar/financial.png',
         'selectedIconPath': '/assets/images/tabBar/financial_fill.png',
         'text': '案例',
@@ -33,7 +33,7 @@ export const PageConfig = {
         }
       },
       {
-        'pagePath': 'pages/index/index',
+        'pagePath': '/front/shoppingCart',
         'iconPath': '/assets/images/tabBar/shoppingcart.png',
         'selectedIconPath': '/assets/images/tabBar/shoppingcart_fill.png',
         'text': '购物车',
@@ -43,7 +43,7 @@ export const PageConfig = {
         }
       },
       {
-        'pagePath': 'pages/member/home/home',
+        'pagePath': '/admin/index',
         'iconPath': '/assets/images/tabBar/mine.png',
         'selectedIconPath': '/assets/images/tabBar/mine_fill.png',
         'text': '我',

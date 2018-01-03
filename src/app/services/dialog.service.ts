@@ -16,10 +16,6 @@ export class DialogService extends BaseService {
     const componentRef = this.build(DialogComponent);
 
     componentRef.instance.state = data;
-    componentRef.instance.open.subscribe(() => {
-      // this.destroy(componentRef);
-      console.log('haha');
-    });
     componentRef.instance.close.subscribe(() => {
       // this.destroy(componentRef);
       setTimeout(() => {

@@ -5,7 +5,7 @@ import {Subscription} from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-dialog',
-  template: './dialog.component.html',
+  templateUrl: './dialog.component.html',
   styleUrls: ['./dialog.component.scss']
 })
 export class DialogComponent implements OnDestroy {

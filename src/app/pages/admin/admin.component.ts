@@ -1,5 +1,4 @@
-import {Component, OnInit} from '@angular/core';
-import {UserService} from '../../services/user.service';
+import {Component} from '@angular/core';
 
 @Component({
 
@@ -9,14 +8,8 @@ import {UserService} from '../../services/user.service';
 
 })
 
-export class AdminComponent implements OnInit {
-  userInfo;
+export class AdminComponent {
 
-  constructor(private userService: UserService) {
-  }
-
-  ngOnInit() {
-    /*this.userInfo = this.userService.isLogin();
-    console.log(this.userInfo);*/
+  constructor() {
   }
 }

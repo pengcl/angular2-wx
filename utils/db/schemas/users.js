@@ -38,6 +38,9 @@ UsersSchema.statics = {
   findById: function (id, cb) { //根据id查询单条数据
     return this.findOne({_id: id}).exec(cb)
   },
+  findByMobile: function (mobile, cb) { //根据id查询单条数据
+    return this.findOne({'mobile': {$eq: mobile}}).exec(cb);
+  },
   findByOpenid: function (openid, cb) { //根据id查询单条数据
     return this.findOne({'wx.openid': {$eq: openid}}).exec(cb);
   }

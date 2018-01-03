@@ -60,6 +60,15 @@ export class UserService {
     return this.getUserId();
   }
 
+  login(mobile) {
+    return this.http.get(Config.prefix.api + '/users/login?mobile=' + mobile)
+      .toPromise()
+      .then(response => {
+        return response;
+      })
+      .catch(this.handleError);
+  }
+
   private handleError(error: any): Promise<any> {
     console.error('An error occurred', error); // for demo purposes only
     return Promise.reject(error.message || error);

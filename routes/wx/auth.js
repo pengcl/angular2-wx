@@ -16,16 +16,12 @@ router.get('/', function (req, res, next) {
   }
 
   if (req.query.code) {//如果有code参数
-    console.log('code:' + req.query.code);
     WxSvc.OAuth.getAccessToken(req.query.code).then(function (data) {//获取网页授权access_token;
       if (data.access_token) {//获取网页授权access_token成功,目的是获取openid;
         var openid = data.openid;
-        console.log(openid);
         WxSvc.getAccessToken().then(function (data) { //获取基础access_token
-          console.log('data:' + data)
           var access_token = data;
           WxSvc.getUserInfo(access_token.access_token, openid).then(function (data) {//获取微信用户信息
-            console.log(data);
             Users.findByOpenid(openid, function (err, user) {//通过openid获取数据库用户信息
               if (err) {
                 console.log(err);

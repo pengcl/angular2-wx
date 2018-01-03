@@ -3,22 +3,31 @@
 <!--<app-gallery *ngIf="gallery" [slides]="slides"></app-gallery>-->
 <!--<div (click)="onShowModal($event)">onShowModal</div>
 <div (click)="onShowToast($event)">onShowToast</div>-->
+<div class="content-scrollable has-footer">
+  <app-infinite-loader (loadmore)="onLoadMore($event)" #comp>
 
-<!--<app-infinite-loader (loadmore)="onLoadMore($event)" #comp>
-
-
-    <div class="weui-cells__title">List with 50 Max</div>
-    <div class="weui-cells">
-      <a *ngFor="let i of items" class="weui-cell weui-cell_access" href="javascript:;">
+    <div class="item-list weui-grids">
+      <a *ngFor="let item of currLists" [routerLink]="['/detail', item.activityproductId]" class="list-item weui-grid" href="javascript:;">
+        <div class="item-box">
+          <img class="img" src="http://www.yfq.cn:8899/fileserver/medias/{{item.mainImageUrl}}">
+          <div class="txt">
+            <div class="weui-grid__label">{{item.productName}}</div>
+            <div class="weui-flex">
+              <div class="price weui-flex__item">
+                <span class='symbol'>￥</span><span>{{item.salePrice}}</span><span class='mantissa'>.00</span>
+              </div>
+              <div class="sold weui-flex__item">
+                <span>月销{{item.sortOrder}}笔</span>
+              </div>
+            </div>
+          </div>
+        </div>
         <div class="weui-cell__bd">{{i}}</div>
         <div class="weui-cell__ft"></div>
       </a>
     </div>
 
-    &lt;!&ndash;<weui-button *ngIf="restartBtn" (click)="restart()">重新开始</weui-button>&ndash;&gt;
-
-</app-infinite-loader>-->
-
-<button (click)="onShowBySrv()">Loading Toast</button>
+  </app-infinite-loader>
+</div>
 
 <app-tabbar [tabBar]="tabBarConfig"></app-tabbar>

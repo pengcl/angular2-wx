@@ -3,6 +3,7 @@ import {PageConfig} from './page.config';
 import {ToastService} from '../../../services/toast.service';
 import {DialogService} from '../../../services/dialog.service';
 import {WXService} from '../../../services/wx.service';
+import {ProductsService} from '../../../services/products.service';
 
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/timer';
@@ -21,13 +22,15 @@ export class FrontIndexComponent implements OnInit {
   jsApiList: string[] = ['onMenuShareTimeline', 'onMenuShareAppMessage', 'onMenuShareQQ', 'onMenuShareWeibo', 'onMenuShareQZone'];
   status: string;
 
-  restartBtn = false;
-
-  items: any[] = Array(20).fill(0).map((v: any, i: number) => i);
+  pageSize: number = 12;
+  currPage: number = 1;
+  totalPage: number = 1;
+  currLists: any[];
+  lists: any[];
 
   @ViewChild(InfiniteLoaderComponent) il;
 
-  constructor(private dialog: DialogService, private toast: ToastService, private wxService: WXService) {
+  constructor(private dialog: DialogService, private toast: ToastService, private wxService: WXService, private productSvc: ProductsService) {
   }
 
 
@@ -39,6 +42,11 @@ export class FrontIndexComponent implements OnInit {
       this.status = '注册成功';
     }).catch((err: string) => {
       this.status = `注册失败，原因：${err}`;
+    });
+
+    this.productSvc.getProducts().then(products => {
+      this.lists = products;
+      this.currLists = products.slice(0, this.pageSize);
     });
   }
 
@@ -57,23 +65,18 @@ export class FrontIndexComponent implements OnInit {
   }
 
   onLoadMore(comp: InfiniteLoaderComponent) {
-    this.restartBtn = false;
-    Observable.timer(1500).subscribe(() => {
+    Observable.timer(500).subscribe(() => {
 
-      this.items.push(...Array(10).fill(this.items.length).map((v, i) => v + i));
+      this.currPage = this.currPage + 1;
+      this.currLists = this.lists.slice(0, this.pageSize * this.currPage); // 获取当前页数据
 
-      if (this.items.length >= 50) {
-        this.restartBtn = true;
+      if (this.currLists.length >= this.lists.length) {
         comp.setFinished();
         return;
       }
+
       comp.resolveLoading();
     });
-  }
-
-  restart() {
-    this.items.length = 0;
-    this.il.restart();
   }
 
 }

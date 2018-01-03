@@ -4,7 +4,7 @@ import {GalleryComponent} from './gallery/gallery.component';
 import {DialogComponent} from './dialog/dialog.component';
 import {ToastComponent} from './toast/toast.component';
 import {InfiniteLoaderComponent} from './infinite-loader/infinite-loader.component';
-// import {InfiniteLoaderConfig} from './infinite-loader/infinite-loader.config';
+import {ButtonComponent} from './button/button.component';
 
 export const COMPONENTS_DECLARATIONS = [
   NavbarComponent,
@@ -12,5 +12,6 @@ export const COMPONENTS_DECLARATIONS = [
   GalleryComponent,
   DialogComponent,
   ToastComponent,
-  InfiniteLoaderComponent
+  InfiniteLoaderComponent,
+  ButtonComponent
 ];

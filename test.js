@@ -1,10 +1,4 @@
-db.createUser(
-  {
-    user: "duty",
-    pwd: "Pengcl19821025",
-    roles: [ { role: "readWrite", db: "duty" },
-      { role: "read", db: "reporting" } ]
-  }
-);
-//https://www.cnblogs.com/xmyun/p/6401297.html
-//http://wjl.pr365.com.cn/
+[1,2,3,4,5,6,7,8,9,10,11,12,13,14].map(function (v, i) {
+  console.log(v,i);
+  return i;
+});
