@@ -1,0 +1,65 @@
+.userinfo {
+  .weui-media-box__hd {
+    width: 0.96rem;
+    height: 0.96rem;
+    img {
+      border-radius: 0.06rem;
+    }
+  }
+}
+
+.weui-media-box__info {
+  font-size: 0.12rem;
+}
+
+.photos {
+  padding: 10px;
+  .weui-grids {
+    &:before, &:after {
+      display: none;
+    }
+    .weui-grid {
+      &:before, &:after {
+        display: none;
+      }
+      padding: 5px;
+      img {
+        width: 100%;
+        border-radius: 0.06rem;
+        display: block;
+      }
+    }
+  }
+}
+
+/*.userinfo-avatar {
+  width: 0.64rem;
+  height: 0.64rem;
+  margin: 0.1rem;
+  position: relative;
+  img {
+    width: 100%;
+    display: block;
+    border-radius: 50%;
+  }
+}
+
+.userinfo-nickname {
+  color: #000;
+  font-size: 0.16rem;
+  span {
+    color: #999;
+    font-size: 0.12rem;
+  }
+}
+
+.userinfo-service {
+  color: #999;
+  width: 100%;
+  margin-top: 0.05rem;
+  text-align: center;
+  .dot {
+    margin-left: 0.1rem;
+    margin-right: 0.1rem;
+  }
+}*/

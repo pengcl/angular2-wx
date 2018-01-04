@@ -5,18 +5,30 @@ import {UserService} from '../../../services/user.service';
 
 
 @Component({
-  selector: 'app-admin-index',
-  templateUrl: './index.component.html',
-  styleUrls: ['./index.component.scss']
+  selector: 'app-admin-profile',
+  templateUrl: './profile.component.html',
+  styleUrls: ['./profile.component.scss']
 })
-export class AdminIndexComponent implements OnInit {
+export class AdminProfileComponent implements OnInit {
   tabBarConfig = PageConfig.tabBar;
   navBarConfig = PageConfig.navBar;
 
   userId: string;
   user: any;
 
+  gallery;
+  slides: string[] = [
+    '/assets/1.jpg',
+    '/assets/2.jpg',
+    '/assets/3.jpg',
+    '/assets/4.jpg'
+  ];
+
   constructor(private wx: WXService, private userSvc: UserService) {
+  }
+
+  showGallery(show: boolean) {
+    this.gallery = show;
   }
 
   ngOnInit() {

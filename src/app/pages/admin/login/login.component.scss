@@ -3,13 +3,13 @@
   flex-direction: column;
   align-items: center;
   background: #fff;
-  padding-bottom: 15px;
+  padding: 0.4rem 0 0.3rem;
 }
 
 .userinfo-avatar {
-  width: 64px;
-  height: 64px;
-  margin: 10px;
+  width: 0.96rem;
+  height: 0.96rem;
+  margin: 0.1rem;
   border-radius: 50%;
 }
 
@@ -19,4 +19,24 @@
 
 .usermotto {
   margin-top: 200px;
+}
+
+.weui-cells {
+  &:before, &:after {
+    display: none;
+  }
+  margin-left: 0.5rem;
+  .weui-cell {
+    box-sizing: border-box;
+    padding: 0.2rem 0.1rem;
+    &:before {
+      left: 0;
+    }
+  }
+}
+
+#login {
+  box-sizing: border-box;
+  margin: 0.3rem 0.5rem;
+  width: auto;
 }
