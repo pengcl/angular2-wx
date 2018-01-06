@@ -17,6 +17,7 @@ export class AdminProfileComponent implements OnInit {
   user: any;
 
   gallery;
+
   slides: string[] = [
     '/assets/1.jpg',
     '/assets/2.jpg',
