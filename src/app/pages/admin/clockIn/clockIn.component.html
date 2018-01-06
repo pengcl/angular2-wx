@@ -1,17 +1,29 @@
 <app-navbar [navBar]="navBarConfig"></app-navbar>
 
 <div class="content-scrollable">
-  <!--<div id="clockIn">
+  <div id="clockIn">
     <div id="location" class="location" (click)="clockIn($event)">
       <div class="circle-big pulse animated"></div>
-      <div class="circle-min">
-        <img id="locationIcon" class="animated" [ngClass]="{'bounce':clocking}"
-             src="/assets/images/icons/location_fill.png">
+      <div id="locationIcon" class="circle-min">
+        <p class="clock-in-label">打卡上班</p>
+        <p class="clock-in-time">{{dateNow | date: 'hh:mm:ss'}}</p>
       </div>
-      &lt;!&ndash;<p>打卡上班</p>&ndash;&gt;
     </div>
     <p class="clock-in-title">打卡上班</p>
     <p class="clock-in-address" *ngIf="location.address">{{location.address}}</p>
-  </div>-->
-  <iframe id="markPage" width="100%" height="70%" frameborder=0 scrolling="no" src=""></iframe>
+  </div>
+  <div id="checkIns" class="date-panel">
+    <div class="weui-grids">
+      <a href="javascript:;" class="weui-grid">
+        <p class="weui-grid__label">Grid</p>
+      </a>
+      <a *ngFor="let item of currDateItems" href="javascript:;" class="weui-grid">
+        <p class="weui-grid__label">{{item.day}}</p>
+      </a>
+      <a href="javascript:;" class="weui-grid">
+        <p class="weui-grid__label">Grid</p>
+      </a>
+    </div>
+  </div>
+  <!--<iframe id="markPage" width="100%" height="70%" frameborder=0 scrolling="no" src=""></iframe>-->
 </div>

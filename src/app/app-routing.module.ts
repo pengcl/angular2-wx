@@ -11,6 +11,7 @@ import {AdminLoginComponent} from './pages/admin/login/login.component';
 import {AdminIndexComponent} from './pages/admin/index/index.component';
 import {AdminProfileComponent} from './pages/admin/profile/profile.component';
 import {AdminClockInComponent} from './pages/admin/clockIn/clockIn.component';
+import {AdminListsComponent} from './pages/admin/lists/lists.component';
 
 const appFrontRedRoutes: Routes = [
   {path: 'get', component: FrontRedGetComponent},
@@ -24,6 +25,7 @@ const appAdminRoutes: Routes = [
   {path: 'login', component: AdminLoginComponent},
   {path: 'profile', component: AdminProfileComponent},
   {path: 'clockIn', component: AdminClockInComponent},
+  {path: 'lists', component: AdminListsComponent},
   {
     path: '**', redirectTo: 'index'
   }

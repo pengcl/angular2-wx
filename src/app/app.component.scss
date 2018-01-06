@@ -23,7 +23,7 @@ body {
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
   &.has-nav {
-    padding-top: 0.6rem;
+    padding-top: 0.48rem;
   }
   &.has-footer {
     &:after {
@@ -32,4 +32,25 @@ body {
       height: 53px;
     }
   }
+}
+
+sub {
+  vertical-align: baseline;
+  font-size: 50%;
+}
+
+.right {
+  float: right !important;
+}
+
+.left {
+  float: left !important;
+}
+
+.hide {
+  display: none !important;
+}
+
+.show {
+  display: block !important;
 }

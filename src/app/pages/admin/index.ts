@@ -3,11 +3,13 @@ import {AdminLoginComponent} from './login/login.component';
 import {AdminIndexComponent} from './index/index.component';
 import {AdminProfileComponent} from './profile/profile.component';
 import {AdminClockInComponent} from './clockIn/clockIn.component';
+import {AdminListsComponent} from './lists/lists.component';
 
 export const ADMIN_PAGES_DECLARATIONS = [
   AdminComponent,
   AdminLoginComponent,
   AdminIndexComponent,
   AdminProfileComponent,
-  AdminClockInComponent
+  AdminClockInComponent,
+  AdminListsComponent
 ];

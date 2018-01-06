@@ -1,13 +1,25 @@
 import {Component, OnInit} from '@angular/core';
+import {DatePipe} from '@angular/common';
 import {PageConfig} from './page.config';
+import {DateService} from '../../../services/date.service';
 import {WXService} from '../../../services/wx.service';
 import {UserService} from '../../../services/user.service';
 import {MoService} from '../../../services/mo.service';
 import {GeoService} from '../../../services/geo.service';
+import {current} from 'codelyzer/util/syntaxKind';
 
 declare var mojs: any;
 declare var $: any;
 declare var qq: any;
+
+interface DateItem {
+  now: any; // 当前时间
+  day: number; // 当前日期
+  month: number; // 当前月份
+  year: number;
+  week: number; // 当前星期几
+  count?: number; // 当前月份有几天
+}
 
 @Component({
   selector: 'app-admin-clock-in',
@@ -19,16 +31,27 @@ export class AdminClockInComponent implements OnInit {
   navBarConfig = PageConfig.navBar;
   clocked: boolean = false;
   clocking: boolean = false;
+  clockInType: number; // 0:无打卡,1:正常,2:迟到,3:请假,4:旷工
+
+  dateNow: any = new Date(); // 当前时间
+
+  currDateItem: DateItem = {
+    now: this.dateNow,
+    day: this.dateNow.getDate(),
+    month: this.dateNow.getMonth() + 1,
+    year: this.dateNow.getFullYear(),
+    week: this.dateNow.getDay(),
+    count: this.date.getCountDays(this.dateNow)
+  };
+
+  currDateItems: DateItem[] = [];
 
   userId: string;
   user: any;
 
-  location: any = {
-    location: String,
-    address: String
-  };
+  location: any = {};
 
-  constructor(private geo: GeoService, private wx: WXService, private userSvc: UserService, private moSvc: MoService) {
+  constructor(private date: DateService, private geo: GeoService, private wx: WXService, private userSvc: UserService, private moSvc: MoService) {
   }
 
   clockIn(e): void {
@@ -44,14 +67,28 @@ export class AdminClockInComponent implements OnInit {
       });
     }
 
+    for (let i = 1; i <= this.currDateItem.count; i++) {
+      const dateNow = new Date(this.currDateItem.year + '/' + this.currDateItem.month + '/' + i);
+      const currDateItems = [];
+      const dateItem: DateItem = {
+        now: new Date(this.currDateItem.year + '/' + this.currDateItem.month + '/' + i),
+        day: dateNow.getDate(),
+        month: dateNow.getMonth() + 1,
+        year: dateNow.getFullYear(),
+        week: dateNow.getDay(),
+        count: this.date.getCountDays(dateNow)
+      };
+      this.currDateItems.push(dateItem);
+    }
+
     this.geo.get().then((res) => {
       const geolocation = new qq.maps.Geolocation('PDBBZ-2NVWV-7GAPA-UKVP5-YED6S-FRB6L', 'danius');
       geolocation.getLocation((position) => {
-        const markUrl = 'https://apis.map.qq.com/tools/poimarker' +
+        /*const markUrl = 'https://apis.map.qq.com/tools/poimarker' +
           '?marker=coord:' + position.lat + ',' + position.lng +
           ';title:我的位置;addr:' + (position.addr || position.city) +
           '&key=OB4BZ-D4W3U-B7VVO-4PJWW-6TKDJ-WPB77&referer=myapp';
-        document.getElementById('markPage').src = markUrl;
+        document.getElementById('markPage').src = markUrl;*/
 
         this.location.location = position.lat + ',' + position.lng;
 
@@ -63,11 +100,7 @@ export class AdminClockInComponent implements OnInit {
       });
     });
 
-    /*this.geo.getLocation(function (position) {
-      console.log(position);
-    });*/
-
-    /*this.moSvc.get().then((res) => {
+    this.moSvc.get().then((res) => {
 
       const location = document.getElementById('location');
       const locationIcon = document.getElementById('locationIcon');
@@ -112,7 +145,7 @@ export class AdminClockInComponent implements OnInit {
         timeline.play();
       });
 
-    });*/
+    });
   }
 
 }

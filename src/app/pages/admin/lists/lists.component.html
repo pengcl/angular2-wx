@@ -1,0 +1,77 @@
+<app-navbar [navBar]="navBarConfig"></app-navbar>
+
+<div class="filter">
+  <div class="filter-control weui-cells">
+    <div class="weui-cell">
+      <div class="weui-cell__bd">
+        <p>119 条记录</p>
+
+        <div class="list-type">
+          <a class="" href="javascript:;">
+            <img src="/assets/images/icons/list.png">
+          </a>
+          <a href="javascript:;">
+            <img src="/assets/images/icons/apps.png">
+          </a>
+        </div>
+      </div>
+      <div class="weui-cell__ft" (click)="showFilter(true)">条件查找</div>
+    </div>
+  </div>
+  <div class="filter-content animated" [ngClass]="{'slideInDown':filterShow,'slideOutUp':!filterShow}">
+    <div class="weui-form-preview">
+      <div class="weui-form-preview__bd">
+        <div class="weui-form-preview__item">
+          <label class="weui-form-preview__label">22</label>
+          <span class="weui-form-preview__value">电动打蛋机</span>
+        </div>
+        <div class="weui-form-preview__item">
+          <label class="weui-form-preview__label">22</label>
+          <span class="weui-form-preview__value">名字名字名字</span>
+        </div>
+        <div class="weui-form-preview__item">
+          <label class="weui-form-preview__label">标题标题</label>
+          <span class="weui-form-preview__value">很长很长的名字很长很长的名字很长很长的名字很长很长的名字很长很长的名字</span>
+        </div>
+      </div>
+      <div class="weui-form-preview__ft">
+        <a class="weui-form-preview__btn weui-form-preview__btn_primary" (click)="showFilter(false)"
+           href="javascript:">确定</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="content-scrollable">
+
+  <div class="butlers">
+    <ul class="weui-grids">
+      <li *ngFor="let item of butlers; let i=index" class="weui-grid">
+        <div (click)="selectedButler(item)" class="butler-box">
+          <div class="img">
+            <img src="{{item.post}}">
+          </div>
+          <div class="txt">
+            <p class="attr">
+              <span class="name">{{item.name}}</span>
+              <sub class="sex">
+                <span *ngIf="!!item.sex">男</span>
+                <span *ngIf="!item.sex">女</span>,
+              </sub>
+              <sub class="age">{{item.age}},</sub>
+              <sub class="origin">{{item.origin}}</sub>
+            </p>
+            <p class="skill">擅长：安全预防，驾驶，法律</p>
+            <div class="extra">
+              <div class="price left"><sub>￥</sub><span>10000</span><sub>/月</sub></div>
+              <div class="like right" (click)="like($event,i)">
+                <img *ngIf="!item.like" src="/assets/images/icons/like.png">
+                <img *ngIf="item.like" src="/assets/images/icons/like_fill.png">
+              </div>
+            </div>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
