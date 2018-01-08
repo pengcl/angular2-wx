@@ -4,6 +4,7 @@ import {NgModule} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpModule} from '@angular/http';
 import {HttpClientModule} from '@angular/common/http';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 // services
 import {SERVICES_DECLARATIONS} from './services';
@@ -44,6 +45,7 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     AppRoutingModule,
     HttpModule,
     HttpClientModule,
+    BrowserAnimationsModule,
     SwiperModule
   ],
   providers: [

@@ -19,12 +19,6 @@
         </div>
       </a>
     </div>
-    <!--<div class="weui-panel__ft">
-      <a href="javascript:void(0);" class="weui-cell weui-cell_access weui-cell_link">
-        <div class="weui-cell__bd">查看更多</div>
-        <span class="weui-cell__ft"></span>
-      </a>
-    </div>-->
   </div>
 
   <div class="photos">
@@ -32,26 +26,8 @@
       <a *ngFor="let item of slides" href="javascript:;" (click)="showGallery(true)" class="weui-grid">
         <img src="{{item}}" alt="">
       </a>
-      <a href="javascript:;" class="weui-grid">
-        <div class="weui-grid__icon">
-          <img src="{{item}}" alt="">
-        </div>
-      </a>
     </div>
   </div>
-
-  <!--<div class="userinfo" *ngIf="user">
-    <div class="userinfo-avatar">
-      <img src="{{user.wx.headimgurl}}" background-size="cover"/>
-      <span class="weui-badge" style="position: absolute;bottom: -.4em;right: -1em;">金牌管家</span>
-    </div>
-    <div class="userinfo-nickname">{{user.wx.nickname}}&lt;!&ndash;<span>金牌管家</span>&ndash;&gt;</div>
-    <div class="userinfo-service weui-flex">
-      <div class="weui-flex__item" style="text-align: right"><span>服务对象：李先生</span></div>
-      <div class="dot">●</div>
-      <div class="weui-flex__item" style="text-align: left"><span>2017.12.15-2018.06.14</span></div>
-    </div>
-  </div>-->
 
 
 </div>

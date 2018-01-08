@@ -1,0 +1,53 @@
+<app-navbar [navBar]="navBarConfig"></app-navbar>
+
+<div class="content-scrollable">
+  <form novalidate [formGroup]="agreementForm" (ngSubmit)="onSubmit()">
+    <article class="weui-article">
+      <h1>协议内容</h1>
+      <section>
+        <h2 class="title">使用须知</h2>
+        <section>
+          <p>WeUI-Design 是微信官方设计团队作品，知识产权等相关权利归腾讯公司所有。使用前，请阅读以下使用须知及法律声明。对于违反使用须知及法律声明的行为，我们将保留法律追究权利。</p>
+          <h3>1.1 我们鼓励</h3>
+          <p>
+            使用 WeUI-Design 的控件，进行适当地再次加工创作，形成自己的作品
+          </p>
+        </section>
+        <section>
+          <h3>1.2 我们禁止</h3>
+          <p>
+            未经允许直接利用 WeUI-Design 作品开展牟利行为，包括但不限于打包售卖、另行建立镜像收取费用、有偿下载、积分下载等行为
+          </p>
+        </section>
+        <section>
+          <h3>法律声明</h3>
+          <ol>
+            <li>
+              <p>腾讯公司是本帐号及其下项目的知识产权权利人。</p>
+            </li>
+            <li>
+              <p>本帐号下所有项目及相关所有信息的一切著作权、商标权、专利权、商业秘密等知识产权（包括但不限于文字、图片、音频、视频、图表、界面设计、版面框架、有关数据或电子文档等）均受中华人民共和国法律法规和相应的国际条约保护，腾讯享有上述知识产权，但相关权利人依照法律规定应享有的权利除外。</p>
+            </li>
+            <li>
+              <p>未经腾讯或相关权利人书面同意，你不得以直接盈利为目的自行或许可任何第三方直接售卖本帐号下项目数据，或者建立收费镜像下载本帐号下项目数据等。</p>
+            </li>
+            <li>
+              <p>腾讯公司欢迎其它方式的使用，包括在本帐号下项目的基础上进行再加工、衍生、演绎，形成其它作品或将其作为作品的元素。</p>
+            </li>
+          </ol>
+        </section>
+      </section>
+    </article>
+    <label for="weuiAgree" class="weui-agree">
+      <input formControlName="agree" id="weuiAgree" (click)="toggleAgree()" type="checkbox"
+             class="weui-agree__checkbox">
+      <span class="weui-agree__text">阅读并同意</span>
+    </label>
+
+    <div class="weui-btn-area">
+      <button class="weui-btn weui-btn_primary" [disabled]="agreementForm.invalid && !this.agreementForm.value.agree">
+        提交
+      </button>
+    </div>
+  </form>
+</div>

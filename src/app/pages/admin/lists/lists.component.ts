@@ -3,24 +3,10 @@ import {PageConfig} from './page.config';
 import {WXService} from '../../../services/wx.service';
 import {UserService} from '../../../services/user.service';
 import {MoService} from '../../../services/mo.service';
-import {timeout} from 'rxjs/operator/timeout';
+import {Butler} from '../../../models/product.model';
 
 declare var $: any;
 declare var mojs: any;
-
-interface Butler {
-  userId: string;
-  name: string;
-  age: number;
-  sex: number;
-  experience: number;
-  skill: string[];
-  avatar: string;
-  post: string;
-  price: number;
-  origin: string;
-  like?: boolean;
-}
 
 const OPTS = {
   fill: 'none',
@@ -47,87 +33,103 @@ export class AdminListsComponent implements OnInit {
   user: any;
   timer: any;
 
+  filter: number | string [] = ['', '', ''];
+  orderBy: boolean[] = [false, false];
+
   butlers: Butler[] = [
     {
       userId: '001',
+      type: 1,
       name: '黑寡妇',
       age: 40,
       sex: 0,
       experience: 10,
       skill: [],
-      avatar: '',
+      avatar: '/assets/images/avatar/1.jpg',
       post: '/assets/images/butlers/1.jpg',
       price: 10000,
       origin: '美国',
+      level: 2,
       like: false
     },
     {
       userId: '002',
+      type: 1,
       name: '钢铁侠',
       age: 40,
       sex: 1,
-      experience: 10,
+      experience: 9,
       skill: [],
       avatar: '',
       post: '/assets/images/butlers/2.jpg',
       price: 10000,
       origin: '美国',
+      level: 1,
       like: false
     },
     {
       userId: '003',
+      type: 1,
       name: '美国队长',
       age: 40,
       sex: 1,
-      experience: 10,
+      experience: 8,
       skill: [],
       avatar: '',
       post: '/assets/images/butlers/3.jpg',
       price: 10000,
       origin: '美国',
+      level: 1,
       like: false
     },
     {
       userId: '004',
+      type: 1,
       name: '绿巨人',
       age: 40,
       sex: 1,
-      experience: 10,
+      experience: 7,
       skill: [],
       avatar: '',
       post: '/assets/images/butlers/4.jpg',
       price: 10000,
       origin: '美国',
+      level: 1,
       like: false
     },
     {
       userId: '005',
+      type: 1,
       name: '雷神',
       age: 40,
       sex: 1,
-      experience: 10,
+      experience: 6,
       skill: [],
       avatar: '',
       post: '/assets/images/butlers/5.jpg',
       price: 10000,
       origin: '美国',
+      level: 1,
       like: false
     },
     {
       userId: '006',
+      type: 1,
       name: '鹰眼',
       age: 40,
       sex: 1,
-      experience: 10,
+      experience: 5,
       skill: [],
       avatar: '',
       post: '/assets/images/butlers/6.jpg',
       price: 10000,
       origin: '美国',
+      level: 1,
       like: false
     },
     {
       userId: '007',
+      type: 1,
       name: '红女巫',
       age: 40,
       sex: 0,
@@ -137,19 +139,22 @@ export class AdminListsComponent implements OnInit {
       post: '/assets/images/butlers/7.jpg',
       price: 10000,
       origin: '美国',
+      level: 2,
       like: false
     },
     {
       userId: '008',
+      type: 1,
       name: '快银',
       age: 40,
       sex: 1,
-      experience: 10,
+      experience: 4,
       skill: [],
       avatar: '',
       post: '/assets/images/butlers/8.jpg',
       price: 10000,
       origin: '美国',
+      level: 2,
       like: false
     },
   ];
@@ -212,8 +217,18 @@ export class AdminListsComponent implements OnInit {
 
   }
 
-  showFilter(show: boolean) {
-    this.filterShow = show;
+  selectedFilter(filter) {
+    this.filter = filter;
+    console.log(this.filter);
+  }
+
+  toggleOrderBy(orderBy) {
+    this.orderBy = orderBy;
+    console.log(this.orderBy);
+  }
+
+  toggleFilter() {
+    this.filterShow = !this.filterShow;
   }
 
   selectedButler(butler) {

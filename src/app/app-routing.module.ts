@@ -12,11 +12,33 @@ import {AdminIndexComponent} from './pages/admin/index/index.component';
 import {AdminProfileComponent} from './pages/admin/profile/profile.component';
 import {AdminClockInComponent} from './pages/admin/clockIn/clockIn.component';
 import {AdminListsComponent} from './pages/admin/lists/lists.component';
+import {AdminFormComponent} from './pages/admin/form/form.component';
+import {AdminFormLeaveComponent} from './pages/admin/form/leave/leave.component';
+import {AdminFormAgreementComponent} from './pages/admin/form/agreement/agreement.component';
+import {AdminOrderComponent} from './pages/admin/order/order.component';
+import {AdminOrderListComponent} from './pages/admin/order/list/list.component';
+import {AdminOrderDetailsComponent} from './pages/admin/order/details/details.component';
 
 const appFrontRedRoutes: Routes = [
   {path: 'get', component: FrontRedGetComponent},
   {
     path: '**', redirectTo: 'get'
+  }
+];
+
+const appAdminFormRoutes: Routes = [
+  {path: 'leave', component: AdminFormLeaveComponent},
+  {path: 'agreement', component: AdminFormAgreementComponent},
+  {
+    path: '**', redirectTo: 'leave'
+  }
+];
+
+const appAdminOrderRoutes: Routes = [
+  {path: 'list', component: AdminOrderListComponent},
+  {path: 'details', component: AdminOrderDetailsComponent},
+  {
+    path: '**', redirectTo: 'leave'
   }
 ];
 
@@ -26,6 +48,16 @@ const appAdminRoutes: Routes = [
   {path: 'profile', component: AdminProfileComponent},
   {path: 'clockIn', component: AdminClockInComponent},
   {path: 'lists', component: AdminListsComponent},
+  {
+    path: 'form',
+    component: AdminFormComponent,
+    children: appAdminFormRoutes
+  },
+  {
+    path: 'order',
+    component: AdminOrderComponent,
+    children: appAdminOrderRoutes
+  },
   {
     path: '**', redirectTo: 'index'
   }

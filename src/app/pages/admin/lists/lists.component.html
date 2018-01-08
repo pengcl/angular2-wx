@@ -15,27 +15,39 @@
           </a>
         </div>
       </div>
-      <div class="weui-cell__ft" (click)="showFilter(true)">条件查找</div>
+      <div class="weui-cell__ft" (click)="toggleFilter()">条件查找</div>
     </div>
   </div>
   <div class="filter-content animated" [ngClass]="{'slideInDown':filterShow,'slideOutUp':!filterShow}">
     <div class="weui-form-preview">
       <div class="weui-form-preview__bd">
-        <div class="weui-form-preview__item">
-          <label class="weui-form-preview__label">22</label>
-          <span class="weui-form-preview__value">电动打蛋机</span>
+        <div class="weui-cells__title">想看到的性别</div>
+        <div class="weui-navbar">
+          <div (click)="selectedFilter(['',filter[1],filter[2]])" [ngClass]="{'weui-bar__item_on':filter[0] === ''}" class="weui-navbar__item weui-bar__item_on">
+            全部
+          </div>
+          <div (click)="selectedFilter([1,filter[1],filter[2]])" [ngClass]="{'weui-bar__item_on':filter[0] === 1}" class="weui-navbar__item">
+            男
+          </div>
+          <div (click)="selectedFilter([0,filter[1],filter[2]])" [ngClass]="{'weui-bar__item_on':filter[0] === 0}" class="weui-navbar__item">
+            女
+          </div>
         </div>
-        <div class="weui-form-preview__item">
-          <label class="weui-form-preview__label">22</label>
-          <span class="weui-form-preview__value">名字名字名字</span>
-        </div>
-        <div class="weui-form-preview__item">
-          <label class="weui-form-preview__label">标题标题</label>
-          <span class="weui-form-preview__value">很长很长的名字很长很长的名字很长很长的名字很长很长的名字很长很长的名字</span>
+        <div class="weui-cells__title">想看到级别</div>
+        <div class="weui-navbar">
+          <div (click)="selectedFilter([filter[0],'',filter[2]])" [ngClass]="{'weui-bar__item_on':filter[1] === ''}" class="weui-navbar__item weui-bar__item_on">
+            全部
+          </div>
+          <div (click)="selectedFilter([filter[0],2,filter[2]])" [ngClass]="{'weui-bar__item_on':filter[1] === 2}" class="weui-navbar__item">
+            金牌
+          </div>
+          <div (click)="selectedFilter([filter[0],1,filter[2]])" [ngClass]="{'weui-bar__item_on':filter[1] === 1}" class="weui-navbar__item">
+            银牌
+          </div>
         </div>
       </div>
       <div class="weui-form-preview__ft">
-        <a class="weui-form-preview__btn weui-form-preview__btn_primary" (click)="showFilter(false)"
+        <a class="weui-form-preview__btn weui-form-preview__btn_primary" (click)="toggleFilter()"
            href="javascript:">确定</a>
       </div>
     </div>
@@ -43,7 +55,7 @@
 </div>
 
 <div class="content-scrollable">
-
+  <div class="butlers-order weui-cells__title"><a (click)="toggleOrderBy([!orderBy[0],orderBy[1]])" href="javascript:;">好评</a> | <a (click)="toggleOrderBy([orderBy[0],!orderBy[1]])" href="javascript:;">经验</a></div>
   <div class="butlers">
     <ul class="weui-grids">
       <li *ngFor="let item of butlers; let i=index" class="weui-grid">
