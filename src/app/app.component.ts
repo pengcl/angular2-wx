@@ -7,8 +7,11 @@ import {Component, ViewEncapsulation} from '@angular/core';
   encapsulation: ViewEncapsulation.None
 })
 export class AppComponent {
-  title = 'app';
 
   constructor() {
+  }
+
+  getState(outlet) {
+    return outlet.activatedRouteData.state;
   }
 }

@@ -1,0 +1,127 @@
+<app-navbar [navBar]="navBarConfig"></app-navbar>
+
+<div class="content-scrollable has-footer">
+  <div class="weui-panel weui-panel_access">
+    <div class="weui-panel__bd">
+      <a href="javascript:void(0);" *ngIf="user" class="userinfo weui-media-box weui-media-box_appmsg">
+        <div class="weui-media-box__hd">
+          <img class="weui-media-box__thumb" src="{{user.wx.headimgurl}}" background-size="cover" alt="">
+        </div>
+        <div class="weui-media-box__bd">
+          <h4 class="weui-media-box__title">{{user.wx.nickname}} <span>(15013262507)</span></h4>
+          <p class="weui-media-box__desc">由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。</p>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <div class="weui-cells__title">服务时间</div>
+  <div class="weui-cells weui-cells_form">
+    <div class="weui-cell">
+      <div class="weui-cell__hd"><label for="" class="weui-label">日期</label></div>
+      <div class="weui-cell__bd">
+        <input class="weui-input" type="date" value="">
+      </div>
+    </div>
+    <a class="weui-cell weui-cell_access" href="javascript:;">
+      <div class="weui-cell__bd">
+        <p>需要管家服务</p>
+      </div>
+      <div class="weui-cell__ft">3个月</div>
+    </a>
+  </div>
+
+  <div class="weui-cells__title">您需要的服务</div>
+  <div class="weui-cells">
+    <a class="weui-cell weui-cell_access" href="javascript:;">
+      <div class="weui-cell__bd">
+        <p>主要工作类型</p>
+      </div>
+      <div class="weui-cell__ft">未选</div>
+    </a>
+    <div class="weui-cell">
+      <div class="weui-cell__hd"><label for="" class="weui-label">服务城市</label></div>
+      <div class="weui-cell__bd">
+        <input class="weui-input" type="number" pattern="[0-9]*" value="weui input error" placeholder="请输入卡号">
+      </div>
+      <div class="weui-cell__ft">
+        <i class="weui-icon-warn"></i>
+      </div>
+    </div>
+  </div>
+
+  <div class="weui-cells__title">出勤要求</div>
+  <div class="weui-cells weui-cells_form">
+    <div class="weui-cell weui-cell_access">
+      <div class="weui-cell__hd"><label for="" class="weui-label">从</label></div>
+      <div class="weui-cell__bd">
+        <input class="weui-input" type="date" value="">
+      </div>
+      <div class="weui-cell__ft">开始上班</div>
+    </div>
+    <div class="weui-cell weui-cell_access">
+      <div class="weui-cell__hd"><label for="" class="weui-label">至</label></div>
+      <div class="weui-cell__bd">
+        <input class="weui-input" type="date" value="">
+      </div>
+      <div class="weui-cell__ft">下班</div>
+    </div>
+    <a class="weui-cell weui-cell_access" href="javascript:;">
+      <div class="weui-cell__bd">
+        <p>每周工作</p>
+      </div>
+      <div class="weui-cell__ft">不确定</div>
+    </a>
+    <a class="weui-cell weui-cell_access" href="javascript:;">
+      <div class="weui-cell__bd">
+        <p>休息日为</p>
+      </div>
+      <div class="weui-cell__ft">不确定</div>
+    </a>
+  </div>
+
+  <div class="weui-cells__title">出勤备注</div>
+  <div class="weui-cells weui-cells_form">
+    <div class="weui-cell">
+      <div class="weui-cell__bd">
+        <textarea class="weui-textarea" placeholder="请输入文本" rows="3"></textarea>
+        <div class="weui-textarea-counter"><span>0</span>/200</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="weui-cells__title">详细要求</div>
+  <div class="weui-cells weui-cells_form">
+    <div class="weui-cell">
+      <div class="weui-cell__bd">
+        <textarea class="weui-textarea" placeholder="请输入文本" rows="3"></textarea>
+        <div class="weui-textarea-counter"><span>0</span>/200</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="weui-cells__title">您的联系方式</div>
+  <div class="weui-cells weui-cells_form">
+    <div class="weui-cell">
+      <div class="weui-cell__hd"><label for="" class="weui-label">您的称呼</label></div>
+      <div class="weui-cell__bd">
+        <input class="weui-input" type="number" pattern="[0-9]*" value="weui input error" placeholder="请输入姓名">
+      </div>
+      <div class="weui-cell__ft">
+        <i class="weui-icon-warn"></i>
+      </div>
+    </div>
+    <div class="weui-cell">
+      <div class="weui-cell__hd"><label for="" class="weui-label">联系电话</label></div>
+      <div class="weui-cell__bd">
+        <input class="weui-input" type="number" pattern="[0-9]*" value="weui input error" placeholder="请输入手机号">
+      </div>
+      <div class="weui-cell__ft">
+        <i class="weui-icon-warn"></i>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<app-gallery *ngIf="gallery" [slides]="slides"></app-gallery>

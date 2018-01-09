@@ -4,6 +4,7 @@ import {AdminIndexComponent} from './index/index.component';
 import {AdminProfileComponent} from './profile/profile.component';
 import {AdminClockInComponent} from './clockIn/clockIn.component';
 import {AdminListsComponent} from './lists/lists.component';
+import {AdminDetailsComponent} from './details/details.component';
 import {ADMIN_PAGES_FORM_DECLARATIONS} from './form';
 import {ADMIN_PAGES_ORDER_DECLARATIONS} from './order';
 
@@ -14,6 +15,7 @@ export const ADMIN_PAGES_DECLARATIONS = [
   AdminProfileComponent,
   AdminClockInComponent,
   AdminListsComponent,
+  AdminDetailsComponent,
   ...ADMIN_PAGES_FORM_DECLARATIONS,
   ...ADMIN_PAGES_ORDER_DECLARATIONS
 ];

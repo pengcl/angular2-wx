@@ -1,25 +1,5 @@
 <app-navbar [navBar]="navBarConfig"></app-navbar>
 
 <div class="content-scrollable">
-  <form novalidate [formGroup]="agreementForm" (ngSubmit)="onSubmit()">
-    <div class="weui-cells__title">协议内容</div>
-    <div class="weui-cells weui-cells_form">
-      <div class="weui-cell">
-        <div class="weui-cell__bd">
-          <textarea formControlName="content" class="weui-textarea" placeholder="" rows="3"></textarea>
-        </div>
-      </div>
-    </div>
-    <label for="weuiAgree" class="weui-agree">
-      <input formControlName="agree" id="weuiAgree" (click)="toggleAgree()" type="checkbox"
-             class="weui-agree__checkbox">
-      <span class="weui-agree__text">阅读并同意</span>
-    </label>
 
-    <div class="weui-btn-area">
-      <button class="weui-btn weui-btn_primary" [disabled]="agreementForm.invalid && !this.agreementForm.value.agree">
-        提交
-      </button>
-    </div>
-  </form>
 </div>

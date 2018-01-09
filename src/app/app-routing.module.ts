@@ -12,6 +12,7 @@ import {AdminIndexComponent} from './pages/admin/index/index.component';
 import {AdminProfileComponent} from './pages/admin/profile/profile.component';
 import {AdminClockInComponent} from './pages/admin/clockIn/clockIn.component';
 import {AdminListsComponent} from './pages/admin/lists/lists.component';
+import {AdminDetailsComponent} from './pages/admin/details/details.component';
 import {AdminFormComponent} from './pages/admin/form/form.component';
 import {AdminFormLeaveComponent} from './pages/admin/form/leave/leave.component';
 import {AdminFormAgreementComponent} from './pages/admin/form/agreement/agreement.component';
@@ -27,27 +28,28 @@ const appFrontRedRoutes: Routes = [
 ];
 
 const appAdminFormRoutes: Routes = [
-  {path: 'leave', component: AdminFormLeaveComponent},
-  {path: 'agreement', component: AdminFormAgreementComponent},
+  {path: 'leave', component: AdminFormLeaveComponent, data: {state: 'leave'}},
+  {path: 'agreement', component: AdminFormAgreementComponent, data: {state: 'agreement'}},
   {
     path: '**', redirectTo: 'leave'
   }
 ];
 
 const appAdminOrderRoutes: Routes = [
-  {path: 'list', component: AdminOrderListComponent},
-  {path: 'details', component: AdminOrderDetailsComponent},
+  {path: 'list', component: AdminOrderListComponent, data: {state: 'orderList'}},
+  {path: 'details', component: AdminOrderDetailsComponent, data: {state: 'orderDetails'}},
   {
     path: '**', redirectTo: 'leave'
   }
 ];
 
 const appAdminRoutes: Routes = [
-  {path: 'index', component: AdminIndexComponent},
-  {path: 'login', component: AdminLoginComponent},
-  {path: 'profile', component: AdminProfileComponent},
-  {path: 'clockIn', component: AdminClockInComponent},
-  {path: 'lists', component: AdminListsComponent},
+  {path: 'index', component: AdminIndexComponent, data: {state: 'index'}},
+  {path: 'login', component: AdminLoginComponent, data: {state: 'login'}},
+  {path: 'profile', component: AdminProfileComponent, data: {state: 'profile'}},
+  {path: 'clockIn', component: AdminClockInComponent, data: {state: 'clockIn'}},
+  {path: 'lists', component: AdminListsComponent, data: {state: 'lists'}},
+  {path: 'details', component: AdminDetailsComponent, data: {state: 'details'}},
   {
     path: 'form',
     component: AdminFormComponent,
