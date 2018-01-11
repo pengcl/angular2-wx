@@ -10,6 +10,7 @@ import {JWeiXinService} from './jweixin.service';
 import {ProductsService} from './products.service';
 import {ButtonConfig} from '../components/button/button.config';
 import {MoService} from './mo.service';
+import {ButlerService} from './butler.service';
 
 export const SERVICES_DECLARATIONS = [
   StorageService,
@@ -23,5 +24,6 @@ export const SERVICES_DECLARATIONS = [
   JWeiXinService,
   ProductsService,
   ButtonConfig,
-  MoService
+  MoService,
+  ButlerService
 ];

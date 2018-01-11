@@ -30,7 +30,8 @@ WxSvc.getAccessToken = function () { //获取基础access_token;
               deferred.resolve(body);
             });
           } else {
-            deferred.reject(new Error(error));
+            console.log(body);
+            deferred.reject(new Error(body));
           }
         } else {
           deferred.reject(new Error(error));
@@ -51,7 +52,6 @@ WxSvc.getTicket = function () { //获取ticket
     } else {//如果ticket.json不存在，或者已过期
       WxSvc.getAccessToken().then(function (data) {
         request('http://api.weixin.qq.com/cgi-bin/ticket/getticket?type=jsapi&access_token=' + data.access_token, function (error, response, body) {
-          console.log(body);
           if (!error && response.statusCode == 200) {//请求成功
             body = JSON.parse(body);
             if (body.ticket) {
@@ -69,7 +69,8 @@ WxSvc.getTicket = function () { //获取ticket
                 deferred.resolve(body);
               });
             } else {
-              deferred.reject(new Error(error));
+              console.log(body);
+              deferred.reject(new Error(body));
             }
           } else {
             deferred.reject(new Error(error));

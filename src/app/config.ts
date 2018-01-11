@@ -3,6 +3,7 @@ export const Config = {
   'prefix': {
     'front': 'http://wx.dutyhb.com/front',
     'admin': 'http://wx.dutyhb.com/admin',
-    'api': 'http://wx.dutyhb.com/api'
+    'api': 'http://wx.dutyhb.com/api',
+    'wApi': 'http://wx.dutyhb.com/wApi'
   }
 };

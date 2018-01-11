@@ -13,6 +13,7 @@ import {AdminProfileComponent} from './pages/admin/profile/profile.component';
 import {AdminClockInComponent} from './pages/admin/clockIn/clockIn.component';
 import {AdminListsComponent} from './pages/admin/lists/lists.component';
 import {AdminDetailsComponent} from './pages/admin/details/details.component';
+import {AdminMessageComponent} from './pages/admin/message/message.component';
 import {AdminFormComponent} from './pages/admin/form/form.component';
 import {AdminFormLeaveComponent} from './pages/admin/form/leave/leave.component';
 import {AdminFormAgreementComponent} from './pages/admin/form/agreement/agreement.component';
@@ -50,6 +51,7 @@ const appAdminRoutes: Routes = [
   {path: 'clockIn', component: AdminClockInComponent, data: {state: 'clockIn'}},
   {path: 'lists', component: AdminListsComponent, data: {state: 'lists'}},
   {path: 'details', component: AdminDetailsComponent, data: {state: 'details'}},
+  {path: 'message', component: AdminMessageComponent, data: {state: 'message'}},
   {
     path: 'form',
     component: AdminFormComponent,

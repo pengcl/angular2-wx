@@ -2,16 +2,6 @@
   background: #f8f8f8;
 }
 
-.userinfo {
-  /*.weui-media-box__hd {
-    width: 0.96rem;
-    height: 0.96rem;
-    img {
-      border-radius: 0.06rem;
-    }
-  }*/
-}
-
 .weui-cells_form {
   .weui-cell__ft {
     font-size: inherit;
@@ -22,55 +12,19 @@
   font-size: 0.12rem;
 }
 
-.photos {
-  padding: 10px;
-  .weui-grids {
-    &:before, &:after {
-      display: none;
-    }
-    .weui-grid {
-      width: 50%;
-      &:before, &:after {
-        display: none;
-      }
-      padding: 5px;
-      img {
-        width: 100%;
-        border-radius: 0.06rem;
-        display: block;
-      }
-    }
-  }
-}
-
-/*.userinfo-avatar {
-  width: 0.64rem;
-  height: 0.64rem;
-  margin: 0.1rem;
-  position: relative;
-  img {
-    width: 100%;
-    display: block;
-    border-radius: 50%;
-  }
-}
-
-.userinfo-nickname {
-  color: #000;
-  font-size: 0.16rem;
-  span {
-    color: #999;
-    font-size: 0.12rem;
-  }
-}
-
-.userinfo-service {
+.userinfo-attr {
   color: #999;
-  width: 100%;
-  margin-top: 0.05rem;
+}
+
+.weui-flex {
   text-align: center;
-  .dot {
-    margin-left: 0.1rem;
-    margin-right: 0.1rem;
+  background: #fff;
+  padding: 0 0 0.3rem;
+  .number {
+    font-size: 0.24rem;
+    font-style: normal;
   }
-}*/
+  .text {
+    color: #9e9e9e;
+  }
+}

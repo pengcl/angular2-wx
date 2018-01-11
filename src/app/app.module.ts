@@ -1,19 +1,25 @@
 // modules
 import {BrowserModule} from '@angular/platform-browser';
-import {NgModule} from '@angular/core';
+import {NgModule, ModuleWithProviders} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {AppRoutingModule} from './app-routing.module';
+import {ActionSheetModule} from './components/actionsheet/actionsheet.module';
+import {CellModule} from './modules/cell';
+import {PickerModule} from './modules/picker';
 
 // services
 import {SERVICES_DECLARATIONS} from './services';
 
 // components
 import {AppComponent} from './app.component';
-import {AppRoutingModule} from './app-routing.module';
 import {COMPONENTS_DECLARATIONS} from './components';
 import {FRONT_PAGES_DECLARATIONS} from './pages/front';
 import {ADMIN_PAGES_DECLARATIONS} from './pages/admin';
+
+// directives
+import {DIRECTIVES_DECLARATIONS} from './directives';
 
 import {SwiperModule, SWIPER_CONFIG, SwiperConfigInterface} from 'ngx-swiper-wrapper';
 import {InfiniteLoaderConfig} from './components/infinite-loader/infinite-loader.config';
@@ -35,7 +41,8 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     AppComponent,
     ...COMPONENTS_DECLARATIONS,
     ...FRONT_PAGES_DECLARATIONS,
-    ...ADMIN_PAGES_DECLARATIONS
+    ...ADMIN_PAGES_DECLARATIONS,
+    ...DIRECTIVES_DECLARATIONS
   ],
   imports: [
     BrowserModule,
@@ -44,7 +51,10 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    SwiperModule
+    CellModule,
+    SwiperModule,
+    ActionSheetModule,
+    PickerModule
   ],
   providers: [
     ...SERVICES_DECLARATIONS,
