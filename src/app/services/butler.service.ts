@@ -15,6 +15,27 @@ export class ButlerService {
   constructor(private http: HttpClient) {
   }
 
+  getHousekeepers() {
+    return this.http.get(Config.prefix.wApi + '/interface/housekeeper/getList.ht')
+      .toPromise()
+      .then(response => response)
+      .catch(this.handleError);
+  }
+
+  getHousekeeper(housekeeperId) {
+    return this.http.get(Config.prefix.wApi + '/interface/housekeeper/getHousekeeper.ht?housekeeperId=' + housekeeperId)
+      .toPromise()
+      .then(response => response)
+      .catch(this.handleError);
+  }
+
+  getWorkTypeList(housekeeperTypeId) {
+    return this.http.get(Config.prefix.wApi + '/interface/housekeeper/getWorkTypeList.ht?housekeeperTypeId=' + housekeeperTypeId)
+      .toPromise()
+      .then(response => response)
+      .catch(this.handleError);
+  }
+
   reserveButler(body): Promise<any[]> {
     const prams = formDataToUrl(body);
     return this.http.post(Config.prefix.wApi + '/interface/order/submitOrder.ht' + prams, {}, {})

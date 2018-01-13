@@ -1,3 +1,7 @@
+.content-scrollable {
+  background: #f8f8f8;
+}
+
 .userinfo {
   display: flex;
   flex-direction: column;
@@ -38,38 +42,123 @@
   }
 }
 
-.item-list {
-  margin: 0rem 0.5rem 0.2rem;
+.weui-grids, .weui-grid {
   &:before, &:after {
     display: none;
   }
-  .list-item {
-    width: 50%;
-    padding: 0.2rem 0.1rem;
-    &.no-right-border {
-      &:before {
-        display: none;
-      }
-    }
-    &.no-bottom-border {
-      &:after {
-        display: none;
-      }
-    }
-  }
-  .img {
-    position: relative;
-    margin: 0.15rem auto;
-    width: 0.4rem;
+}
+
+.weui-grid {
+  width: 50%;
+  .weui-grid__img {
     img {
       display: block;
       width: 100%;
     }
   }
-  .txt {
-    .weui-grid__label {
+}
+
+.weui-form-preview {
+  &:before, &:after {
+    display: none;
+  }
+}
+
+.weui-panel {
+  margin-top: 0.05rem;
+  &:before, &:after {
+    display: none;
+  }
+  .weui-panel__hd {
+    &:after {
+      display: none;
+    }
+  }
+}
+
+.weui-media-box {
+  padding: 0.15rem;
+}
+
+.weui-media-box__hd {
+  width: 1rem;
+  height: 1rem;
+}
+
+.weui-media-box__info {
+  margin-top: 0.1rem;
+  padding-bottom: 0;
+  &.ui-label:first-child {
+    margin-left: 0 !important;
+  }
+}
+
+.weui-media-box__desc {
+  -webkit-line-clamp: default;
+}
+
+.weui-media-box__thumb {
+  border-radius: 4px;
+}
+
+.menus {
+  &:before, &:after {
+    display: none;
+  }
+  .weui-form-preview__btn {
+    padding: 0.15rem 0;
+    &:after {
+      display: none;
+    }
+    .icon {
+      width: 60%;
+      margin: 0 auto;
+      img {
+        display: block;
+        width: 100%;
+      }
+    }
+    p {
       font-size: 0.14rem;
-      color: #999;
+      line-height: 1;
+      margin-top: 0.1rem;
+    }
+  }
+}
+
+.promise {
+  .weui-grids {
+    margin: -0.1rem;
+    .weui-grid {
+      padding: 0.1rem;
+      text-align: center;
+    }
+  }
+  .weui-grid__icon, .weui-grid__label {
+    display: inline-block;
+    vertical-align: middle;
+  }
+  .weui-grid__icon {
+    width: 0.34rem;
+    height: 0.34rem;
+    margin-right: 0.05rem;
+  }
+  .weui-grid__label {
+    font-size: 0.14rem;
+    margin-top: 0;
+    color: #FBA703;
+  }
+}
+
+.train {
+  .weui-grids {
+    margin: -0.05rem;
+    .weui-grid {
+      padding: 0.05rem;
+      img {
+        border-radius: 0.04rem;
+        box-shadow: 0 0 0.02rem 0.03rem rgba(100, 100, 100, 0.1);
+      }
     }
   }
 }

@@ -8,6 +8,8 @@ import {AppRoutingModule} from './app-routing.module';
 import {ActionSheetModule} from './components/actionsheet/actionsheet.module';
 import {CellModule} from './modules/cell';
 import {PickerModule} from './modules/picker';
+import {ChartF2Module} from './modules/chart-f2';
+import {RatingModule} from './modules/rating';
 
 // services
 import {SERVICES_DECLARATIONS} from './services';
@@ -54,7 +56,9 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     CellModule,
     SwiperModule,
     ActionSheetModule,
-    PickerModule
+    PickerModule,
+    ChartF2Module,
+    RatingModule
   ],
   providers: [
     ...SERVICES_DECLARATIONS,

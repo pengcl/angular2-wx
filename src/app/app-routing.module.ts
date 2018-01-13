@@ -14,6 +14,7 @@ import {AdminClockInComponent} from './pages/admin/clockIn/clockIn.component';
 import {AdminListsComponent} from './pages/admin/lists/lists.component';
 import {AdminDetailsComponent} from './pages/admin/details/details.component';
 import {AdminMessageComponent} from './pages/admin/message/message.component';
+import {AdminDashboardComponent} from './pages/admin/dashboard/dashboard.component';
 import {AdminFormComponent} from './pages/admin/form/form.component';
 import {AdminFormLeaveComponent} from './pages/admin/form/leave/leave.component';
 import {AdminFormAgreementComponent} from './pages/admin/form/agreement/agreement.component';
@@ -47,11 +48,12 @@ const appAdminOrderRoutes: Routes = [
 const appAdminRoutes: Routes = [
   {path: 'index', component: AdminIndexComponent, data: {state: 'index'}},
   {path: 'login', component: AdminLoginComponent, data: {state: 'login'}},
-  {path: 'profile', component: AdminProfileComponent, data: {state: 'profile'}},
+  {path: 'profile/:id', component: AdminProfileComponent, data: {state: 'profile'}},
   {path: 'clockIn', component: AdminClockInComponent, data: {state: 'clockIn'}},
   {path: 'lists', component: AdminListsComponent, data: {state: 'lists'}},
   {path: 'details', component: AdminDetailsComponent, data: {state: 'details'}},
   {path: 'message', component: AdminMessageComponent, data: {state: 'message'}},
+  {path: 'dashboard', component: AdminDashboardComponent, data: {state: 'dashboard'}},
   {
     path: 'form',
     component: AdminFormComponent,

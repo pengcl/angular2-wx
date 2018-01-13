@@ -1,87 +1,157 @@
 <app-navbar [navBar]="navBarConfig"></app-navbar>
 
 <div class="content-scrollable has-footer">
-  <div class="userinfo" *ngIf="user">
-    <div class="userinfo-avatar">
-      <img src="{{user.wx.headimgurl}}" background-size="cover"/>
-      <span class="weui-badge" style="position: absolute;bottom: -.4em;right: -1em;">金牌管家</span>
+  <div class="weui-form-preview">
+    <div class="weui-form-preview__bd">
+      <div class="userinfo" *ngIf="user">
+        <div class="userinfo-avatar">
+          <img src="{{user.wx.headimgurl}}" background-size="cover"/>
+          <span class="weui-badge" style="position: absolute;bottom: -.4em;right: -1em;">金牌管家</span>
+        </div>
+        <div class="userinfo-nickname">{{user.wx.nickname}}<!--<span>金牌管家</span>--></div>
+      </div>
     </div>
-    <div class="userinfo-nickname">{{user.wx.nickname}}<!--<span>金牌管家</span>--></div>
-    <div class="userinfo-service weui-flex">
-      <div class="weui-flex__item" style="text-align: right"><span>服务对象：李先生</span></div>
-      <div class="dot">●</div>
-      <div class="weui-flex__item" style="text-align: left"><span>2017.12.15-2018.06.14</span></div>
-    </div>
-  </div>
-
-  <div class="dashboard">
-    <div class="item-list weui-grids">
-      <a [routerLink]="" class="list-item weui-grid">
-        <div class="item-box">
-          <div class="img">
-            <img class="img" src="/assets/images/icons/location_light.png">
-            <span class="weui-badge weui-badge_dot" style="position: absolute;top: -.4em;right: -.4em;"></span>
-          </div>
-          <div class="txt">
-            <div class="weui-grid__label">打卡</div>
-          </div>
+    <div class="menus weui-form-preview__ft">
+      <a class="weui-form-preview__btn weui-form-preview__btn_default">
+        <div class="icon">
+          <img src="/assets/images/icons/driver.png">
         </div>
+        <p>专业司机</p>
       </a>
-
-      <a [routerLink]="" class="list-item weui-grid no-right-border">
-        <div class="item-box">
-          <div class="img">
-            <img class="img" src="/assets/images/icons/profile_light.png">
-          </div>
-          <div class="txt">
-            <div class="weui-grid__label">个人资料</div>
-          </div>
+      <a class="weui-form-preview__btn weui-form-preview__btn_default">
+        <div class="icon">
+          <img src="/assets/images/icons/todolist.png">
         </div>
+        <p>事物代办</p>
       </a>
-
-      <a [routerLink]="" class="list-item weui-grid">
-        <div class="item-box">
-          <div class="img">
-            <img class="img" src="/assets/images/icons/comment_light.png">
-          </div>
-          <div class="txt">
-            <div class="weui-grid__label">消息</div>
-          </div>
+      <a class="weui-form-preview__btn weui-form-preview__btn_default">
+        <div class="icon">
+          <img src="/assets/images/icons/athletics.png">
         </div>
+        <p>运动陪练</p>
       </a>
-
-      <a [routerLink]="" class="list-item weui-grid no-right-border">
-        <div class="item-box">
-          <div class="img">
-            <img class="img" src="/assets/images/icons/we_fill_light.png">
-          </div>
-          <div class="txt">
-            <div class="weui-grid__label">服务</div>
-          </div>
+      <a class="weui-form-preview__btn weui-form-preview__btn_default">
+        <div class="icon">
+          <img src="/assets/images/icons/more.png">
         </div>
-      </a>
-
-      <a [routerLink]="" class="list-item weui-grid no-bottom-border">
-        <div class="item-box">
-          <div class="img">
-            <img class="img" src="/assets/images/icons/medal_light.png">
-          </div>
-          <div class="txt">
-            <div class="weui-grid__label">提升</div>
-          </div>
-        </div>
-      </a>
-
-      <a [routerLink]="" class="list-item weui-grid no-bottom-border no-right-border">
-        <div class="item-box">
-          <div class="img">
-            <img class="img" src="/assets/images/icons/more_light.png">
-          </div>
-          <div class="txt">
-            <div class="weui-grid__label">更多</div>
-          </div>
-        </div>
+        <p>更多服务</p>
       </a>
     </div>
   </div>
+
+  <div class="weui-panel weui-panel_access">
+    <div class="weui-panel__hd">为您推荐管家</div>
+    <div class="weui-panel__bd">
+      <app-profile [profile]="item" *ngFor="let item of items" class="weui-media-box weui-media-box_appmsg">
+        <!--<div class="weui-media-box__hd">
+          <img class="weui-media-box__thumb"
+               src="{{item.avatar}}"
+               alt="">
+        </div>
+        <div class="weui-media-box__bd">
+          <h4 class="weui-media-box__title">{{item.name}} <span class="ui-label yellow hollow horizontal">金牌管家</span>
+          </h4>
+          <p class="weui-media-box__desc">由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。</p>
+          <p class="weui-media-box__info">
+            <span class="ui-label red colors horizontal">金牌管家</span><span
+            class="ui-label blue colors horizontal">金牌管家</span><span
+            class="ui-label green colors horizontal">金牌管家</span>
+          </p>
+        </div>-->
+      </app-profile>
+    </div>
+    <div class="weui-panel__ft">
+      <a href="javascript:void(0);" class="weui-cell weui-cell_access weui-cell_link">
+        <div class="weui-cell__bd">查看更多</div>
+        <span class="weui-cell__ft"></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="promise weui-panel">
+    <div class="weui-panel__hd">服务承诺</div>
+    <div class="weui-panel__bd">
+      <div class="weui-media-box">
+        <div class="weui-grids">
+          <div href="javascript:;" class="weui-grid">
+            <div class="weui-grid__icon">
+              <img src="/assets/images/icons/safe.png" alt="">
+            </div>
+            <p class="weui-grid__label">严格筛选 安全认证</p>
+          </div>
+          <div href="javascript:;" class="weui-grid">
+            <div class="weui-grid__icon">
+              <img src="/assets/images/icons/heartService.png" alt="">
+            </div>
+            <div class="weui-grid__label">贴心服务 快速响应</div>
+          </div>
+          <div href="javascript:;" class="weui-grid">
+            <div class="weui-grid__icon">
+              <img src="/assets/images/icons/right.png" alt="">
+            </div>
+            <p class="weui-grid__label">专属售后 权益保障</p>
+          </div>
+          <div href="javascript:;" class="weui-grid">
+            <div class="weui-grid__icon">
+              <img src="/assets/images/icons/promise.png" alt="">
+            </div>
+            <p class="weui-grid__label">专业训练 信心保证</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="train weui-panel">
+    <div class="weui-panel__hd">训练风采</div>
+    <div class="weui-panel__bd">
+      <div class="weui-media-box">
+        <div class="weui-grids">
+          <div href="javascript:;" class="weui-grid">
+            <div class="weui-grid__img">
+              <img src="/assets/images/train/1.jpg" alt="">
+            </div>
+          </div>
+          <div href="javascript:;" class="weui-grid">
+            <div class="weui-grid__img">
+              <img src="/assets/images/train/2.jpg" alt="">
+            </div>
+          </div>
+          <div href="javascript:;" class="weui-grid">
+            <div class="weui-grid__img">
+              <img src="/assets/images/train/3.jpg" alt="">
+            </div>
+          </div>
+          <div href="javascript:;" class="weui-grid">
+            <div class="weui-grid__img">
+              <img src="/assets/images/train/4.jpg" alt="">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="weui-panel weui-panel_access">
+    <div class="weui-panel__bd">
+      <div class="weui-media-box weui-media-box_appmsg">
+        <div class="weui-media-box__hd">
+          <img class="weui-media-box__thumb"
+               src="/assets/images/avatars/1.jpg"
+               alt="">
+        </div>
+        <div class="weui-media-box__bd">
+          <p class="weui-media-box__desc">如果您有任何问题，请随时联系我们在线客服，或者拨打客服热线：400-1234-567；我们将有专人为您服务，为您解答疑问和保障您的权益。</p>
+        </div>
+      </div>
+    </div>
+    <div class="weui-panel__ft">
+      <a href="javascript:void(0);" class="weui-cell weui-cell_access weui-cell_link">
+        <div class="weui-cell__bd">查看更多</div>
+        <span class="weui-cell__ft"></span>
+      </a>
+    </div>
+  </div>
+
+  <canvas id="mountNode" style="width:100%;height:200px;display: none"></canvas>
 </div>

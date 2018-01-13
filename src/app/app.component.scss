@@ -10,6 +10,10 @@ body {
   }
 }
 
+#container {
+  min-height: 100%;
+}
+
 .content-scrollable {
   position: absolute;
   top: 0;
@@ -53,4 +57,17 @@ sub {
 
 .show {
   display: block !important;
+}
+
+.pageTips {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  text-align: center;
+  transform: translate3d(0px, -50%, 0px);
+  margin-top: -0.3rem;
+  p {
+    margin-left: 0.15rem;
+    margin-right: 0.15rem;
+  }
 }

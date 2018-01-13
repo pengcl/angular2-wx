@@ -5,6 +5,7 @@ import {DialogComponent} from './dialog/dialog.component';
 import {ToastComponent} from './toast/toast.component';
 import {InfiniteLoaderComponent} from './infinite-loader/infinite-loader.component';
 import {ButtonComponent} from './button/button.component';
+import {ProfileComponent} from './profile/profile.component';
 
 export const COMPONENTS_DECLARATIONS = [
   NavbarComponent,
@@ -13,5 +14,6 @@ export const COMPONENTS_DECLARATIONS = [
   DialogComponent,
   ToastComponent,
   InfiniteLoaderComponent,
-  ButtonComponent
+  ButtonComponent,
+  ProfileComponent
 ];

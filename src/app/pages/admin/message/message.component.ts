@@ -16,7 +16,7 @@ export class AdminMessageComponent implements OnInit {
   userId: string;
   user: any;
 
-  public count: number = 0;
+  tab: string = 'user';
 
   constructor(private wx: WXService, private userSvc: UserService) {
   }
@@ -30,6 +30,10 @@ export class AdminMessageComponent implements OnInit {
         });
       }
     }
+  }
+
+  setTab(tab) {
+    this.tab = tab;
   }
 
   /*toggleAgree() {

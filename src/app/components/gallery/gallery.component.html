@@ -1,5 +1,12 @@
-<div class="weui-gallery" style="display: block">
-  <swiper *ngIf="type == 'component' && show" class="swiper-container" [config]="config"
+<div class="weui-grids" (click)="onShow()">
+  <div *ngFor="let img of (slides ? slides.slice(0,3): [])" class="weui-grid">
+    <div class="photo" [ngStyle]="{'background-image':'url(' + img + ')'}">
+
+    </div>
+  </div>
+</div>
+<div *ngIf="type == 'component' && show" class="weui-gallery" style="display: block">
+  <swiper class="swiper-container" [config]="config"
           (indexChange)="onIndexChange($event)" fxFlex="auto">
 
         <span *ngFor="let slide of slides" class="weui-gallery__img"

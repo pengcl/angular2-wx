@@ -12,7 +12,7 @@ import {
 })
 export class GalleryComponent implements OnInit, AfterViewInit {
   @Input() slides;
-  show = true;
+  show = false;
   type = 'component';
 
   @ViewChild(SwiperDirective) directiveRef: SwiperDirective; // ngAfterViewInit
@@ -27,6 +27,10 @@ export class GalleryComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     this.componentRef.directiveRef.startAutoplay();
+  }
+
+  onShow() {
+    this.show = true;
   }
 
   onIndexChange(index: number) {

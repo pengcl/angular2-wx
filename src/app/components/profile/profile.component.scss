@@ -1,0 +1,61 @@
+.ui-label {
+  padding: 0.2em 0.8em;
+}
+
+.hollow, .colors {
+  border-radius: 100px;
+}
+
+.weui-media-box__hd {
+  width: 1rem;
+  height: auto;
+  .avatar-box {
+    overflow: hidden;
+    height: 1.3rem;
+    border-radius: 0.04rem;
+    position: relative;
+    overflow: hidden;
+    background-size: cover;
+    background-position: center center;
+    img {
+      border-radius: 0;
+    }
+    .state {
+      position: absolute;
+      width: 100%;
+      bottom: 0;
+      line-height: 1.8;
+      font-size: 0.12rem;
+      background-color: rgba(234, 90, 43, 0.7);
+      color: #fff;
+      border-radius: 0.04rem;
+    }
+  }
+}
+
+.weui-media-box__title {
+  font-size: 0.15rem;
+  color: #162F4D;
+}
+
+.weui-media-box__info {
+  margin-top: 0.05rem;
+  padding-bottom: 0;
+  &.ui-label:first-child {
+    margin-left: 0 !important;
+  }
+}
+
+.weui-media-box__thumb {
+  border-radius: 4px;
+}
+
+.attr {
+  font-size: 0.12rem;
+  color: #999;
+}
+
+.price {
+  font-size: 0.18rem;
+  color: #FBA703;
+}

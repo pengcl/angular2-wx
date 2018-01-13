@@ -34,6 +34,7 @@ export class AdminDetailsComponent implements OnInit, OnDestroy {
 
   menus: any[];
   extraShow: boolean = false;
+  isSubmit: boolean = false;
 
   items: string[] = Array(6).fill('').map((v: string, idx: number) => `Item${idx}`);
   itemGroup: any = [
@@ -79,7 +80,7 @@ export class AdminDetailsComponent implements OnInit, OnDestroy {
     this.reserveForm = new FormGroup({
       housekeeperId: new FormControl('', [Validators.required]),
       customerName: new FormControl('', [Validators.required]),
-      customerMobile: new FormControl('', [Validators.required, Validators.minLength(10), Validators.maxLength(200)]),
+      customerMobile: new FormControl('', [Validators.required, Validators.minLength(11), Validators.maxLength(11)]),
       serviceStartDate: new FormControl('', [Validators.required]),
       servicePeriod: new FormControl('', [Validators.required]),
       workTypeIds: new FormControl('', [Validators.required]),
@@ -87,18 +88,23 @@ export class AdminDetailsComponent implements OnInit, OnDestroy {
       startJobTime: new FormControl('', [Validators.required]),
       endJobTime: new FormControl('', [Validators.required]),
       workDay: new FormControl('', [Validators.required]),
-      restDay: new FormControl('', [Validators.required]),
+      // restDay: new FormControl('', [Validators.required]),
       attendanceNotes: new FormControl('', [Validators.required, Validators.minLength(10), Validators.maxLength(200)]),
       detailed: new FormControl('', [Validators.required, Validators.minLength(10), Validators.maxLength(200)]),
       agree: new FormControl('', [Validators.required]),
     });
     this.reserveForm.get('housekeeperId').setValue('10000096020354');
+
+    this.butlerSvc.getHousekeeper('10000096020354').then(result => {
+      console.log(result);
+    });
   }
 
   onShow(target) {
     this.config.title = '请选择' + this.actionSheets[target].title;
     this.menus = this.actionSheets[target].data;
     this.actionSheet.show(this.menus, this.config).subscribe((res: any) => {
+      console.log(res);
       this.reserveForm.get(target).setValue(res.value);
     });
   }
@@ -120,16 +126,19 @@ export class AdminDetailsComponent implements OnInit, OnDestroy {
   }
 
   onSubmit() {
-    this.butlerSvc.reserveButler(this.reserveForm.value).then(result => {
-      console.log(result);
-    });
+    this.isSubmit = true;
+    console.log(this.reserveForm);
+    console.log(this.reserveForm.valid);
     if (this.reserveForm.valid) {
+      this.butlerSvc.reserveButler(this.reserveForm.value).then(result => {
+        console.log(result);
+      });
     }
   }
 
   onPickerShow(type: string, formControlName) {
     switch (type) {
-      case 'city':
+      /*case 'city':
         this.picker.showCity(this.cityData).subscribe((res: any) => {
           this.srvRes = res.value;
         });
@@ -138,19 +147,19 @@ export class AdminDetailsComponent implements OnInit, OnDestroy {
         this.picker.showDateTime(type).subscribe((res: any) => {
           this.srvRes = res.value;
         });
-        break;
+        break;*/
       case 'date':
         this.picker.showDateTime(type).subscribe((res: any) => {
-          const date = this.datePipe.transform(res.value, 'yyyy-MM-dd');
+          const date = this.datePipe.transform(res.value, 'yyyy/MM/dd');
           this.reserveForm.get(formControlName).setValue(date);
           this.srvRes = date;
         });
         break;
-      case 'datetime':
+      /*case 'datetime':
         this.picker.showDateTime(type).subscribe((res: any) => {
           this.srvRes = res.value;
         });
-        break;
+        break;*/
       case 'time':
         this.picker.showDateTime(type).subscribe((res: any) => {
           const date = this.datePipe.transform(res.value, 'hh:mm');
@@ -158,7 +167,7 @@ export class AdminDetailsComponent implements OnInit, OnDestroy {
           this.srvRes = date;
         });
         break;
-      case 'data':
+      /*case 'data':
         console.log(this.items);
         this.items = this.actionSheets[formControlName].data;
         this.picker.show(this.items, this.actionSheets[formControlName].data[0].value).subscribe((res: any) => {
@@ -167,7 +176,7 @@ export class AdminDetailsComponent implements OnInit, OnDestroy {
           this.srvRes = date;
           this.srvRes = res.value;
         });
-        break;
+        break;*/
     }
   }
 
