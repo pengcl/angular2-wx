@@ -4,6 +4,7 @@ import {WXService} from '../../../services/wx.service';
 import {UserService} from '../../../services/user.service';
 import {MoService} from '../../../services/mo.service';
 import {Butler} from '../../../models/product.model';
+import {ButlerService} from '../../../services/butler.service';
 
 declare var $: any;
 declare var mojs: any;
@@ -165,7 +166,7 @@ export class AdminListsComponent implements OnInit {
 
   filterShow: boolean = true;
 
-  constructor(private wx: WXService, private userSvc: UserService, private moSvc: MoService) {
+  constructor(private wx: WXService, private userSvc: UserService, private moSvc: MoService, private butler: ButlerService) {
   }
 
   ngOnInit() {
@@ -175,6 +176,10 @@ export class AdminListsComponent implements OnInit {
         this.user = user;
       });
     }
+
+    this.butler.getHousekeepers().then(housekeepers => {
+      /*this.butlers = JSON.parse(housekeepers);*/
+    });
 
     this.moSvc.get().then((res) => {
 

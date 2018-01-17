@@ -3,26 +3,10 @@
 <div class="content-scrollable has-footer">
 
   <form novalidate [formGroup]="reserveForm" (ngSubmit)="onSubmit()">
-    <div class="userinfo" *ngIf="user">
-      <input formControlName="housekeeperId" class="weui-input" type="hidden" value="">
-      <img class="userinfo-avatar" src="{{user.wx.headimgurl}}" background-size="cover"/>
-      <div class="userinfo-nickname">{{user.wx.nickname}}</div>
-      <div class="userinfo-attr">
-        <span>26</span><sub>岁</sub>,<span>176</span><sub>CM</sub>,<span>76</span><sub>KG</sub>
-      </div>
-    </div>
-    <div class="weui-flex">
-      <div class="weui-flex__item">
-        <div class="number"><em>9</em><sub>年</sub></div>
-        <div class="text">工作经验</div>
-      </div>
-      <div class="weui-flex__item">
-        <div class="number"><em>22</em><sub>个</sub></div>
-        <div class="text">客户推荐</div>
-      </div>
-      <div class="weui-flex__item">
-        <div class="number"><em>12000</em><sub>元/月</sub></div>
-        <div class="text">服务费</div>
+    <div class="weui-panel weui-panel_access">
+      <div class="weui-panel__bd">
+        <app-profile *ngIf="housekeeper" [profile]="housekeeper"
+                     class="weui-media-box weui-media-box_appmsg"></app-profile>
       </div>
     </div>
 
@@ -57,24 +41,26 @@
     <div class="weui-cells weui-cells_form">
       <a class="weui-cell weui-cell_access"
          [ngClass]="{'weui-cell_warn':isSubmit && reserveForm.get('workTypeIds').invalid}"
-         (click)="onShow('workTypeIds')" href="javascript:;">
+         (click)="onShow('workTypeIds','workTypeNames')" href="javascript:;">
         <div class="weui-cell__bd">
           <input formControlName="workTypeIds" class="weui-input" type="hidden" value="">
+          <input formControlName="workTypeNames" class="weui-input" type="hidden" value="">
           <p>主要工作类型</p>
         </div>
-        <div class="weui-cell__ft">{{reserveForm.get('workTypeIds').value ?
-          actionSheets['workTypeIds'][reserveForm.get('workTypeIds').value].text:'未选'}} <i class="weui-icon-warn"></i>
+        <div class="weui-cell__ft">{{reserveForm.get('workTypeNames').value ?
+          reserveForm.get('workTypeNames').value:'未选'}} <i class="weui-icon-warn"></i>
         </div>
       </a>
       <a class="weui-cell weui-cell_access"
          [ngClass]="{'weui-cell_warn':isSubmit && reserveForm.get('serviceAreaId').invalid}"
-         (click)="onShow('serviceAreaId')" href="javascript:;">
+         (click)="onShow('serviceAreaId','serviceAreaName')" href="javascript:;">
         <div class="weui-cell__bd">
           <input formControlName="serviceAreaId" class="weui-input" type="hidden" value="">
+          <input formControlName="serviceAreaName" class="weui-input" type="hidden" value="">
           <p>服务城市</p>
         </div>
-        <div class="weui-cell__ft">{{reserveForm.get('serviceAreaId').value ?
-          reserveForm.get('serviceAreaId').value:'未选'}} <i class="weui-icon-warn"></i>
+        <div class="weui-cell__ft">{{reserveForm.get('serviceAreaName').value ?
+          reserveForm.get('serviceAreaName').value:'未选'}} <i class="weui-icon-warn"></i>
         </div>
       </a>
     </div>

@@ -10,6 +10,8 @@ import {CellModule} from './modules/cell';
 import {PickerModule} from './modules/picker';
 import {ChartF2Module} from './modules/chart-f2';
 import {RatingModule} from './modules/rating';
+import {DialogModule} from './modules/dialog';
+import {UploaderModule} from './modules/uploader';
 
 // services
 import {SERVICES_DECLARATIONS} from './services';
@@ -58,7 +60,9 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     ActionSheetModule,
     PickerModule,
     ChartF2Module,
-    RatingModule
+    RatingModule,
+    DialogModule,
+    UploaderModule
   ],
   providers: [
     ...SERVICES_DECLARATIONS,

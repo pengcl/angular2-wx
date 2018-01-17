@@ -4,13 +4,13 @@ import {DateService} from './date.service';
 import {WXService} from './wx.service';
 import {UserService} from './user.service';
 import {ToastService} from './toast.service';
-import {DialogService} from './dialog.service';
 import {LoaderService} from './loader.service';
 import {JWeiXinService} from './jweixin.service';
 import {ProductsService} from './products.service';
 import {ButtonConfig} from '../components/button/button.config';
 import {MoService} from './mo.service';
 import {ButlerService} from './butler.service';
+import {EventService} from './event.service';
 
 export const SERVICES_DECLARATIONS = [
   StorageService,
@@ -19,11 +19,11 @@ export const SERVICES_DECLARATIONS = [
   WXService,
   UserService,
   ToastService,
-  DialogService,
   LoaderService,
   JWeiXinService,
   ProductsService,
   ButtonConfig,
   MoService,
-  ButlerService
+  ButlerService,
+  EventService
 ];

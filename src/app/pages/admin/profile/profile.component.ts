@@ -1,6 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {ActivatedRoute, ParamMap} from '@angular/router';
-import {Location} from '@angular/common';
 
 import 'rxjs/add/operator/switchMap';
 
@@ -10,7 +9,9 @@ import {UserService} from '../../../services/user.service';
 import {RatingComponent, RatingConfig} from '../../../modules/rating';
 import {ButlerService} from '../../../services/butler.service';
 import {ChartF2Service} from '../../../modules/chart-f2';
+import {Config} from '../../../config';
 
+declare var $: any;
 declare var F2: any;
 
 @Component({
@@ -25,7 +26,7 @@ export class AdminProfileComponent implements OnInit {
   userId: string;
   user: any;
 
-  gallery;
+  show: boolean = false;
 
   ratingConfig: RatingConfig = {
     cls: 'rating',
@@ -35,7 +36,7 @@ export class AdminProfileComponent implements OnInit {
 
   rate: number = 3;
 
-  slides: string[] = ['/assets/images/butlers/1.jpg', '/assets/images/butlers/2.jpg', '/assets/images/butlers/3.jpg', '/assets/images/butlers/4.jpg', '/assets/images/butlers/5.jpg', '/assets/images/butlers/6.jpg'];
+  slides;
 
   profile: any = {
     id: '001',
@@ -61,10 +62,9 @@ export class AdminProfileComponent implements OnInit {
     },
   };
 
-  getHousekeeper: any;
+  housekeeper: any;
 
   constructor(private route: ActivatedRoute,
-              private location: Location,
               private wx: WXService,
               private userSvc: UserService,
               private butlerSvc: ButlerService,
@@ -72,7 +72,11 @@ export class AdminProfileComponent implements OnInit {
   }
 
   showGallery(show: boolean) {
-    this.gallery = show;
+    this.show = show;
+  }
+
+  onDelete(item: any) {
+    console.log(item);
   }
 
   ngOnInit() {
@@ -84,8 +88,12 @@ export class AdminProfileComponent implements OnInit {
     }
 
     this.route.paramMap.switchMap((params: ParamMap) => this.butlerSvc.getHousekeeper(+params.get('id'))).subscribe(housekeeper => {
-      this.getHousekeeper = JSON.parse(housekeeper);
-      console.log(this.getHousekeeper);
+      this.housekeeper = JSON.parse((JSON.parse(housekeeper)).msg);
+      const images = [];
+      $.each(this.housekeeper.imageList, function (i, k) {
+        images.push(Config.prefix.wApi + k.imageurl);
+      });
+      this.slides = images;
     });
 
     this.chartSvc.get().then(res => {
@@ -125,7 +133,8 @@ export class AdminProfileComponent implements OnInit {
       });
 
       chart.area().position('props*value').color('name').style({
-        opacity: 0.6
+        opacity: 0.6,
+        background: '#FBA703'
       });
       // x和y轴同时缩放的动画
       chart.animate({

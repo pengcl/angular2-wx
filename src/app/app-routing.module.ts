@@ -18,9 +18,14 @@ import {AdminDashboardComponent} from './pages/admin/dashboard/dashboard.compone
 import {AdminFormComponent} from './pages/admin/form/form.component';
 import {AdminFormLeaveComponent} from './pages/admin/form/leave/leave.component';
 import {AdminFormAgreementComponent} from './pages/admin/form/agreement/agreement.component';
+import {AdminFormEventComponent} from './pages/admin/form/event/event.component';
 import {AdminOrderComponent} from './pages/admin/order/order.component';
 import {AdminOrderListComponent} from './pages/admin/order/list/list.component';
 import {AdminOrderDetailsComponent} from './pages/admin/order/details/details.component';
+import {AdminADMComponent} from './pages/admin/adm/adm.component';
+import {AdminSettingComponent} from './pages/admin/setting/setting.component';
+import {AdminUploaderAvatarComponent} from './pages/admin/uploader/avatar/avatar.component';
+import {AdminUploaderGalleryComponent} from './pages/admin/uploader/gallery/gallery.component';
 
 const appFrontRedRoutes: Routes = [
   {path: 'get', component: FrontRedGetComponent},
@@ -32,6 +37,7 @@ const appFrontRedRoutes: Routes = [
 const appAdminFormRoutes: Routes = [
   {path: 'leave', component: AdminFormLeaveComponent, data: {state: 'leave'}},
   {path: 'agreement', component: AdminFormAgreementComponent, data: {state: 'agreement'}},
+  {path: 'event/:eventTypeId', component: AdminFormEventComponent, data: {state: 'event'}},
   {
     path: '**', redirectTo: 'leave'
   }
@@ -51,9 +57,13 @@ const appAdminRoutes: Routes = [
   {path: 'profile/:id', component: AdminProfileComponent, data: {state: 'profile'}},
   {path: 'clockIn', component: AdminClockInComponent, data: {state: 'clockIn'}},
   {path: 'lists', component: AdminListsComponent, data: {state: 'lists'}},
-  {path: 'details', component: AdminDetailsComponent, data: {state: 'details'}},
+  {path: 'details/:id', component: AdminDetailsComponent, data: {state: 'details'}},
   {path: 'message', component: AdminMessageComponent, data: {state: 'message'}},
   {path: 'dashboard', component: AdminDashboardComponent, data: {state: 'dashboard'}},
+  {path: 'ADM', component: AdminADMComponent, data: {state: 'ADM'}},
+  {path: 'setting', component: AdminSettingComponent, data: {state: 'setting'}},
+  {path: 'uploader/avatar', component: AdminUploaderAvatarComponent, data: {state: 'avatar'}},
+  {path: 'uploader/gallery', component: AdminUploaderGalleryComponent, data: {state: 'gallery'}},
   {
     path: 'form',
     component: AdminFormComponent,

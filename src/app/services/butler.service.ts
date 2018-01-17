@@ -15,28 +15,51 @@ export class ButlerService {
   constructor(private http: HttpClient) {
   }
 
-  getHousekeepers() {
+  getHousekeepers(): Promise<any> {
     return this.http.get(Config.prefix.wApi + '/interface/housekeeper/getList.ht')
       .toPromise()
       .then(response => response)
       .catch(this.handleError);
   }
 
-  getHousekeeper(housekeeperId) {
+  getHousekeeper(housekeeperId): Promise<any> {
     return this.http.get(Config.prefix.wApi + '/interface/housekeeper/getHousekeeper.ht?housekeeperId=' + housekeeperId)
       .toPromise()
       .then(response => response)
       .catch(this.handleError);
   }
 
-  getWorkTypeList(housekeeperTypeId) {
+  getWorkTypeList(housekeeperTypeId): Promise<any> {
     return this.http.get(Config.prefix.wApi + '/interface/housekeeper/getWorkTypeList.ht?housekeeperTypeId=' + housekeeperTypeId)
       .toPromise()
       .then(response => response)
       .catch(this.handleError);
   }
 
-  reserveButler(body): Promise<any[]> {
+  uploadHeadImage(body): Promise<any> {
+    return this.http.post(Config.prefix.wApi + '/interface/housekeeper/uploadHeadImage.ht', body, {})
+      .toPromise()
+      .then(response => response)
+      .catch(this.handleError);
+  }
+
+  delImage(body): Promise<any> {
+    const prams = formDataToUrl(body);
+    return this.http.post(Config.prefix.wApi + '/interface/housekeeper/delImage.ht' + prams, body, {})
+      .toPromise()
+      .then(response => response)
+      .catch(this.handleError);
+  }
+
+  clockIn(body): Promise<any> {
+    const prams = formDataToUrl(body);
+    return this.http.post(Config.prefix.wApi + '/interface/housekeeper/doSign.ht' + prams, {}, {})
+      .toPromise()
+      .then(response => response)
+      .catch(this.handleError);
+  }
+
+  reserveButler(body): Promise<any> {
     const prams = formDataToUrl(body);
     return this.http.post(Config.prefix.wApi + '/interface/order/submitOrder.ht' + prams, {}, {})
       .toPromise()

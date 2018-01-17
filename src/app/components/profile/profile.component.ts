@@ -1,4 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
+import {Config} from '../../config';
 
 @Component({
   selector: 'app-profile',
@@ -7,7 +8,7 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 export class ProfileComponent implements OnInit {
   @Input() profile;
-  @Input() isList;
+  config: any = Config;
 
   constructor() {
   }

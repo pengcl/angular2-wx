@@ -3,7 +3,8 @@
 <div class="content-scrollable has-footer">
   <div class="weui-panel weui-panel_access">
     <div class="weui-panel__bd">
-      <app-profile [profile]="profile" class="weui-media-box weui-media-box_appmsg"></app-profile>
+      <app-profile *ngIf="housekeeper" [profile]="housekeeper"
+                   class="weui-media-box weui-media-box_appmsg"></app-profile>
     </div>
     <div class="weui-panel__ft">
       <div class="weui-grids">
@@ -83,7 +84,9 @@
                alt="">
         </div>
         <div class="weui-media-box__bd">
-          <h4 class="weui-media-box__title">慕小姐<app-rating class="right" [(ngModel)]="rate" [config]="ratingConfig" [readonly]="true"></app-rating></h4>
+          <h4 class="weui-media-box__title">慕小姐
+            <app-rating class="right" [(ngModel)]="rate" [config]="ratingConfig" [readonly]="true"></app-rating>
+          </h4>
           <p class="weui-media-box__desc">由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。</p>
           <ul class="weui-media-box__info">
             <li class="weui-media-box__info__meta">文字来源</li>
@@ -100,7 +103,9 @@
                alt="">
         </div>
         <div class="weui-media-box__bd">
-          <h4 class="weui-media-box__title">慕小姐<app-rating class="right" [(ngModel)]="rate" [config]="ratingConfig" [readonly]="true"></app-rating></h4>
+          <h4 class="weui-media-box__title">慕小姐
+            <app-rating class="right" [(ngModel)]="rate" [config]="ratingConfig" [readonly]="true"></app-rating>
+          </h4>
           <p class="weui-media-box__desc">由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。</p>
           <ul class="weui-media-box__info">
             <li class="weui-media-box__info__meta">文字来源</li>
@@ -120,10 +125,17 @@
       </a>
     </div>
     <div class="weui-panel__bd">
-      <div class="weui-media-box">
-        <app-gallery [slides]="slides"></app-gallery>
+
+      <div class="weui-grids">
+        <div *ngFor="let img of (slides ? slides.slice(0,3): [])" class="weui-grid">
+          <div (click)="showGallery(true)" class="photo" [ngStyle]="{'background-image':'url(' + img + ')'}">
+
+          </div>
+        </div>
       </div>
+      <!--<app-gallery *ngIf="galleryShow" [slides]="slides"></app-gallery>-->
     </div>
+
   </div>
 
   <div class="skills weui-panel weui-panel_access">

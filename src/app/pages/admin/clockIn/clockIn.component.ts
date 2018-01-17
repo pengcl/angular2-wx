@@ -8,6 +8,9 @@ import {MoService} from '../../../services/mo.service';
 import {GeoService} from '../../../services/geo.service';
 import {current} from 'codelyzer/util/syntaxKind';
 
+import {ButlerService} from '../../../services/butler.service';
+import {DialogService} from '../../../modules/dialog';
+
 declare var mojs: any;
 declare var $: any;
 declare var qq: any;
@@ -24,7 +27,8 @@ interface DateItem {
 @Component({
   selector: 'app-admin-clock-in',
   templateUrl: './clockIn.component.html',
-  styleUrls: ['./clockIn.component.scss']
+  styleUrls: ['./clockIn.component.scss'],
+  providers: [DatePipe]
 })
 export class AdminClockInComponent implements OnInit {
   tabBarConfig = PageConfig.tabBar;
@@ -51,12 +55,34 @@ export class AdminClockInComponent implements OnInit {
 
   location: any = {};
 
-  constructor(private date: DateService, private geo: GeoService, private wx: WXService, private userSvc: UserService, private moSvc: MoService) {
+  constructor(private datePipe: DatePipe,
+              private date: DateService,
+              private geo: GeoService,
+              private wx: WXService,
+              private userSvc: UserService,
+              private moSvc: MoService,
+              private butler: ButlerService,
+              private dialog: DialogService) {
   }
 
   clockIn(e): void {
     this.clocking = true;
     this.clocked = true;
+    this.butler.clockIn({
+      housekeeperId: '10000096750345',
+      location: this.location.location,
+      address: this.location.address,
+      signRemark: ''
+    }).then(result => {
+      this.dialog.show({
+        title: '打卡成功',
+        content: '<p>开始上班 ' + this.datePipe.transform(this.dateNow, 'HH:mm:ss') + '</p><p>新的一天开始了，加油哦！</p>'
+      }).subscribe(res => {
+        if (res === 'confirm') {
+          // this.onSubmit();
+        }
+      });
+    });
   }
 
   ngOnInit() {

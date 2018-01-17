@@ -1,7 +1,7 @@
 import {Component, OnInit, ViewEncapsulation, ViewChild} from '@angular/core';
 import {PageConfig} from './page.config';
 import {ToastService} from '../../../services/toast.service';
-import {DialogService} from '../../../services/dialog.service';
+import {DialogService} from '../../../modules/dialog';
 import {WXService} from '../../../services/wx.service';
 import {ProductsService} from '../../../services/products.service';
 
@@ -9,7 +9,6 @@ import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/timer';
 
 import {InfiniteLoaderComponent} from '../../../components/infinite-loader/infinite-loader.component';
-import {Dialog} from '../../../models/dialog.model';
 
 @Component({
   selector: 'app-front-index',

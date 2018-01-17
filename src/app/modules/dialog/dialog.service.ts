@@ -1,8 +1,8 @@
 import {Injectable, ComponentFactoryResolver, ApplicationRef, Injector} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import {Subject} from 'rxjs/Subject';
-import {BaseService} from './base.service';
-import {DialogComponent} from '../components/dialog/dialog.component';
+import {BaseService} from '../../services/base.service';
+import {DialogComponent} from './dialog.component';
 
 @Injectable()
 export class DialogService extends BaseService {

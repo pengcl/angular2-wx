@@ -25,7 +25,8 @@ export class UserService {
         this.userId = this.storageService.get('userId');
         return this.userId;
       } else {// 如果localStorage中不存在userId;
-        if (this.wxService.isWx()) {// 微信环境,查找地址栏参数中是否存在userId;
+        window.location.href = Config.prefix.admin + '/login';
+        /*if (this.wxService.isWx()) {// 微信环境,查找地址栏参数中是否存在userId;
           if (this.activatedRoute.snapshot.queryParams['userId']) {// 如果地址栏参数存在userId;
             this.userId = this.activatedRoute.snapshot.queryParams['userId']; // 把userId存入userId内存中;
             this.storageService.set('userId', this.userId); // 把userId存入localStorage
@@ -35,7 +36,7 @@ export class UserService {
           }
         } else {// 非微信环境,跳转至登录页;
           window.location.href = Config.prefix.admin + '/login';
-        }
+        }*/
       }
     }
   }
