@@ -27,6 +27,8 @@ import {AdminSettingComponent} from './pages/admin/setting/setting.component';
 import {AdminUploaderAvatarComponent} from './pages/admin/uploader/avatar/avatar.component';
 import {AdminUploaderGalleryComponent} from './pages/admin/uploader/gallery/gallery.component';
 
+import {AppPayComponent} from './pages/pay/pay.component';
+
 const appFrontRedRoutes: Routes = [
   {path: 'get', component: FrontRedGetComponent},
   {
@@ -94,6 +96,7 @@ const appFrontRoutes: Routes = [
 export const routes: Routes = [
 
   {path: '', redirectTo: '/index', pathMatch: 'full'},
+  {path: 'pay', component: AppPayComponent, data: {state: 'pay'}},
   {
     path: 'front',
     component: FrontComponent,

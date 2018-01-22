@@ -1,3 +1,5 @@
+<app-navbar [navBar]="navBarConfig"></app-navbar>
+
 <div class="userinfo" *ngIf="user">
   <img class="userinfo-avatar" src="{{user.wx.headimgurl}}" background-size="cover"/>
   <div class="userinfo-nickname">{{user.wx.nickname}}</div>
@@ -12,8 +14,9 @@
       <div class="weui-cell__bd">
         <input class="weui-input" type="tel" formControlName="mobile" placeholder="请输入手机号">
       </div>
-      <div class="weui-cell__ft">
-        获取验证码
+      <div class="weui-cell__ft" *ngIf="loginForm.get('mobile').valid"
+           (click)="getCode($event,loginForm.get('mobile').value)">
+        {{activeText}}
       </div>
     </div>
     <div class="weui-cell">
@@ -26,7 +29,8 @@
     </div>
   </div>
 
-  <a id="login" class="weui-btn weui-btn_primary" (click)="onSubmit()" [ngClass]="{'weui-btn_disabled':loginForm.invalid}">登录</a>
+  <a id="login" class="weui-btn weui-btn_primary" (click)="onSubmit()"
+     [ngClass]="{'weui-btn_disabled':loginForm.invalid}">登录</a>
 </form>
 
 <div class="weui-footer weui-footer_fixed-bottom">

@@ -59,6 +59,21 @@ export class ButlerService {
       .catch(this.handleError);
   }
 
+  getSignInfo(housekeeperId): Promise<any> {
+    return this.http.get(Config.prefix.wApi + '/interface/housekeeper/getSignInfo.ht?housekeeperId=' + housekeeperId)
+      .toPromise()
+      .then(response => response)
+      .catch(this.handleError);
+  }
+
+  getMonthSignInfo(body): Promise<any> {
+    const prams = formDataToUrl(body);
+    return this.http.get(Config.prefix.wApi + '/interface/housekeeper/getMonthSignInfo.ht' + prams)
+      .toPromise()
+      .then(response => response)
+      .catch(this.handleError);
+  }
+
   reserveButler(body): Promise<any> {
     const prams = formDataToUrl(body);
     return this.http.post(Config.prefix.wApi + '/interface/order/submitOrder.ht' + prams, {}, {})

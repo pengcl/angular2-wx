@@ -3,13 +3,13 @@
 <div class="content-scrollable has-footer">
   <div class="weui-form-preview">
     <div class="weui-form-preview__bd">
-      <div class="userinfo" *ngIf="user">
+      <!--<div class="userinfo" *ngIf="user">
         <div class="userinfo-avatar">
           <img src="{{user.wx.headimgurl}}" background-size="cover"/>
           <span class="weui-badge" style="position: absolute;bottom: -.4em;right: -1em;">金牌管家</span>
         </div>
-        <div class="userinfo-nickname">{{user.wx.nickname}}<!--<span>金牌管家</span>--></div>
-      </div>
+        <div class="userinfo-nickname">{{user.wx.nickname}}&lt;!&ndash;<span>金牌管家</span>&ndash;&gt;</div>
+      </div>-->
     </div>
     <div class="menus weui-form-preview__ft">
       <a class="weui-form-preview__btn weui-form-preview__btn_default">
@@ -42,7 +42,8 @@
   <div class="weui-panel weui-panel_access">
     <div class="weui-panel__hd">为您推荐管家</div>
     <div class="weui-panel__bd">
-      <app-profile [profile]="item" *ngFor="let item of butlers" class="weui-media-box weui-media-box_appmsg">
+      <app-profile [routerLink]="['/admin/details', item.housekeeperid]" [profile]="item" *ngFor="let item of butlers"
+                   class="weui-media-box weui-media-box_appmsg">
         <!--<div class="weui-media-box__hd">
           <img class="weui-media-box__thumb"
                src="{{item.avatar}}"

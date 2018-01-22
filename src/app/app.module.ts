@@ -18,6 +18,7 @@ import {SERVICES_DECLARATIONS} from './services';
 
 // components
 import {AppComponent} from './app.component';
+import {AppPayComponent} from './pages/pay/pay.component';
 import {COMPONENTS_DECLARATIONS} from './components';
 import {FRONT_PAGES_DECLARATIONS} from './pages/front';
 import {ADMIN_PAGES_DECLARATIONS} from './pages/admin';
@@ -43,6 +44,7 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
 @NgModule({
   declarations: [
     AppComponent,
+    AppPayComponent,
     ...COMPONENTS_DECLARATIONS,
     ...FRONT_PAGES_DECLARATIONS,
     ...ADMIN_PAGES_DECLARATIONS,

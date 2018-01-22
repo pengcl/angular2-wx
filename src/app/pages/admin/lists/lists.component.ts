@@ -36,8 +36,9 @@ export class AdminListsComponent implements OnInit {
 
   filter: number | string [] = ['', '', ''];
   orderBy: boolean[] = [false, false];
+  butlers;
 
-  butlers: Butler[] = [
+  /*butlers: Butler[] = [
     {
       userId: '001',
       type: 1,
@@ -158,13 +159,13 @@ export class AdminListsComponent implements OnInit {
       level: 2,
       like: false
     },
-  ];
+  ];*/
 
   mainCircle: any;
   smallCircles: any[] = [];
   timeline: any;
 
-  filterShow: boolean = true;
+  filterShow: boolean = false;
 
   constructor(private wx: WXService, private userSvc: UserService, private moSvc: MoService, private butler: ButlerService) {
   }
@@ -177,7 +178,9 @@ export class AdminListsComponent implements OnInit {
       });
     }
 
-    this.butler.getHousekeepers().then(housekeepers => {
+    this.butler.getHousekeepers().then(res => {
+      this.butlers = res.list;
+      console.log(this.butlers);
       /*this.butlers = JSON.parse(housekeepers);*/
     });
 

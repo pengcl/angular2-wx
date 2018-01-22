@@ -56,6 +56,12 @@
   border-radius: 4px;
 }
 
+.weui-flex__item {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 .attr {
   font-size: 0.12rem;
   color: #999;

@@ -9,7 +9,7 @@ import {StorageService} from './storage.service';
 
 @Injectable()
 export class UserService {
-  private userId;
+  private custId;
 
   constructor(private storageService: StorageService,
               private activatedRoute: ActivatedRoute,
@@ -17,13 +17,13 @@ export class UserService {
               private wxService: WXService) {
   }
 
-  getUserId() {// 获取userId;
-    if (this.userId) {// 如果userId存在;
-      return this.userId;
+  getCustId() {// 获取userId;
+    if (this.custId) {// 如果userId存在;
+      return this.custId;
     } else {// 如果userId不存在,查找localStorage;
-      if (this.storageService.get('userId')) {// 如果localStorage中存在userId;
-        this.userId = this.storageService.get('userId');
-        return this.userId;
+      if (this.storageService.get('custId')) {// 如果localStorage中存在userId;
+        this.custId = this.storageService.get('custId');
+        return this.custId;
       } else {// 如果localStorage中不存在userId;
         window.location.href = Config.prefix.admin + '/login';
         /*if (this.wxService.isWx()) {// 微信环境,查找地址栏参数中是否存在userId;
@@ -57,12 +57,39 @@ export class UserService {
       .catch(this.handleError);
   }
 
-  isLogin() {
-    return this.getUserId();
+  getCustom(id): Promise<any> {
+    return this.http.get(Config.prefix.wApi + '/interface/cust/getCustDetail.ht?custId=' + id)
+      .toPromise()
+      .then(response => {
+        return response;
+      })
+      .catch(this.handleError);
   }
 
-  login(mobile) {
-    return this.http.get(Config.prefix.api + '/users/login?mobile=' + mobile)
+  isLogin() {
+    return this.getCustId();
+  }
+
+  getCode(mobile) {
+    return this.http.get(Config.prefix.wApi + '/interface/user/getSystemMobileCode.ht?custMoblie=' + mobile)
+      .toPromise()
+      .then(response => {
+        return response;
+      })
+      .catch(this.handleError);
+  }
+
+  checkCode(mobile, code) {
+    return this.http.get(Config.prefix.wApi + '/interface/user/checkMobileCode.ht?custMoblie=' + mobile + '&code=' + code)
+      .toPromise()
+      .then(response => {
+        return response;
+      })
+      .catch(this.handleError);
+  }
+
+  login(mobile, code) {
+    return this.http.get(Config.prefix.wApi + '/interface/user/login.ht?custMoblie=' + mobile + '&code=' + code)
       .toPromise()
       .then(response => {
         return response;

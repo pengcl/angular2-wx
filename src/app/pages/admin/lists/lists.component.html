@@ -4,7 +4,7 @@
   <div class="filter-control weui-cells">
     <div class="weui-cell">
       <div class="weui-cell__bd">
-        <p>119 条记录</p>
+        <p>{{butlers?.length}} 条记录</p>
 
         <div class="list-type">
           <a class="" href="javascript:;">
@@ -23,25 +23,31 @@
       <div class="weui-form-preview__bd">
         <div class="weui-cells__title">想看到的性别</div>
         <div class="weui-navbar">
-          <div (click)="selectedFilter(['',filter[1],filter[2]])" [ngClass]="{'weui-bar__item_on':filter[0] === ''}" class="weui-navbar__item weui-bar__item_on">
+          <div (click)="selectedFilter(['',filter[1],filter[2]])" [ngClass]="{'weui-bar__item_on':filter[0] === ''}"
+               class="weui-navbar__item weui-bar__item_on">
             全部
           </div>
-          <div (click)="selectedFilter([1,filter[1],filter[2]])" [ngClass]="{'weui-bar__item_on':filter[0] === 1}" class="weui-navbar__item">
+          <div (click)="selectedFilter([1,filter[1],filter[2]])" [ngClass]="{'weui-bar__item_on':filter[0] === 1}"
+               class="weui-navbar__item">
             男
           </div>
-          <div (click)="selectedFilter([0,filter[1],filter[2]])" [ngClass]="{'weui-bar__item_on':filter[0] === 0}" class="weui-navbar__item">
+          <div (click)="selectedFilter([0,filter[1],filter[2]])" [ngClass]="{'weui-bar__item_on':filter[0] === 0}"
+               class="weui-navbar__item">
             女
           </div>
         </div>
         <div class="weui-cells__title">想看到级别</div>
         <div class="weui-navbar">
-          <div (click)="selectedFilter([filter[0],'',filter[2]])" [ngClass]="{'weui-bar__item_on':filter[1] === ''}" class="weui-navbar__item weui-bar__item_on">
+          <div (click)="selectedFilter([filter[0],'',filter[2]])" [ngClass]="{'weui-bar__item_on':filter[1] === ''}"
+               class="weui-navbar__item weui-bar__item_on">
             全部
           </div>
-          <div (click)="selectedFilter([filter[0],2,filter[2]])" [ngClass]="{'weui-bar__item_on':filter[1] === 2}" class="weui-navbar__item">
+          <div (click)="selectedFilter([filter[0],2,filter[2]])" [ngClass]="{'weui-bar__item_on':filter[1] === 2}"
+               class="weui-navbar__item">
             金牌
           </div>
-          <div (click)="selectedFilter([filter[0],1,filter[2]])" [ngClass]="{'weui-bar__item_on':filter[1] === 1}" class="weui-navbar__item">
+          <div (click)="selectedFilter([filter[0],1,filter[2]])" [ngClass]="{'weui-bar__item_on':filter[1] === 1}"
+               class="weui-navbar__item">
             银牌
           </div>
         </div>
@@ -55,8 +61,7 @@
 </div>
 
 <div class="content-scrollable">
-  <div class="butlers-order weui-cells__title"><a (click)="toggleOrderBy([!orderBy[0],orderBy[1]])" href="javascript:;">好评</a> | <a (click)="toggleOrderBy([orderBy[0],!orderBy[1]])" href="javascript:;">经验</a></div>
-  <div class="butlers">
+  <!--<div class="butlers">
     <ul class="weui-grids">
       <li *ngFor="let item of butlers; let i=index" class="weui-grid">
         <div (click)="selectedButler(item)" class="butler-box">
@@ -85,5 +90,12 @@
         </div>
       </li>
     </ul>
+  </div>-->
+
+  <div class="weui-panel weui-panel_access">
+    <div class="weui-panel__bd">
+      <app-profile [routerLink]="['/admin/details', item.housekeeperid]" [profile]="item" *ngFor="let item of butlers"
+                   class="weui-media-box weui-media-box_appmsg"></app-profile>
+    </div>
   </div>
 </div>

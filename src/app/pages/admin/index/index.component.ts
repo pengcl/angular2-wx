@@ -13,8 +13,8 @@ export class AdminIndexComponent implements OnInit {
   tabBarConfig = PageConfig.tabBar;
   navBarConfig = PageConfig.navBar;
 
-  userId: string;
-  user: any;
+  custId: string;
+  custom: any;
   butlers: any[];
 
   constructor(private wx: WXService, private userSvc: UserService, private butler: ButlerService) {
@@ -22,13 +22,19 @@ export class AdminIndexComponent implements OnInit {
 
   ngOnInit() {
     if (this.wx.isWx()) {
-      this.userId = this.userSvc.isLogin();
-      this.userSvc.getUser(this.userId).then(user => {
-        this.user = user;
+      this.custId = this.userSvc.isLogin();
+      this.userSvc.getCustom(this.custId).then(custom => {
+        console.log(custom);
+        this.custom = custom;
       });
     }
-    this.butler.getHousekeepers().then(getHousekeepers => {
-      this.butlers = JSON.parse((JSON.parse(getHousekeepers)).msg);
+    this.butler.getHousekeepers().then(res => {
+      if (res.code === 0) {
+        this.butlers = res.list;
+      }
+      console.log(res);
+      /*this.butlers = res.msg;
+      console.log(res);*/
     });
   }
 

@@ -55,6 +55,8 @@ export class AdminClockInComponent implements OnInit {
 
   location: any = {};
 
+  signInfo;
+
   constructor(private datePipe: DatePipe,
               private date: DateService,
               private geo: GeoService,
@@ -92,6 +94,21 @@ export class AdminClockInComponent implements OnInit {
         this.user = user;
       });
     }
+
+    this.butler.getSignInfo('10000096750345').then(res => {
+      if (res.code === 0) {
+        this.signInfo = res.housekeeperSign;
+      }
+      console.log(res);
+    });
+
+    this.butler.getMonthSignInfo({
+      housekeeperId: '10000096750345',
+      year: '2018',
+      month: '01'
+    }).then(res => {
+      console.log(res);
+    });
 
     for (let i = 1; i <= this.currDateItem.count; i++) {
       const dateNow = new Date(this.currDateItem.year + '/' + this.currDateItem.month + '/' + i);

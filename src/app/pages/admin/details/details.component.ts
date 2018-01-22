@@ -45,16 +45,16 @@ export class AdminDetailsComponent implements OnInit, OnDestroy {
   tabBarConfig = PageConfig.tabBar;
   navBarConfig = PageConfig.navBar;
 
-  userId: string;
-  user: any;
+  custId: string;
+  custom: any;
 
   actionSheets = ACTIONSHEETS;
-  srvRes: any = '';
-  cityData: any = DATA;
 
   menus: any[];
   extraShow: boolean = false;
   isSubmit: boolean = false;
+  protocolShow: boolean = false;
+  protocolContent;
 
   housekeeper;
 
@@ -73,14 +73,15 @@ export class AdminDetailsComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     if (this.wx.isWx()) {
-      this.userId = this.userSvc.isLogin();
-      this.userSvc.getUser(this.userId).then(user => {
-        this.user = user;
+      this.custId = this.userSvc.isLogin();
+      this.userSvc.getCustom(this.custId).then(custom => {
+        this.custom = custom.cust;
       });
     }
     this.reserveForm = new FormGroup({
+      type: new FormControl('', [Validators.required]),
       custId: new FormControl('', [Validators.required]),
-      housekeeperCustId: new FormControl('', [Validators.required]),
+      housekeeperId: new FormControl('', [Validators.required]),
       customerName: new FormControl('', [Validators.required]),
       customerMobile: new FormControl('', [Validators.required, Validators.minLength(11), Validators.maxLength(11)]),
       serviceStartDate: new FormControl('', [Validators.required]),
@@ -95,22 +96,21 @@ export class AdminDetailsComponent implements OnInit, OnDestroy {
       // restDay: new FormControl('', [Validators.required]),
       attendanceNotes: new FormControl('', [Validators.required, Validators.minLength(10), Validators.maxLength(200)]),
       detailed: new FormControl('', [Validators.required, Validators.minLength(10), Validators.maxLength(200)]),
-      agree: new FormControl('', [Validators.required]),
+      agree: new FormControl('', []),
     });
 
     this.route.paramMap.switchMap((params: ParamMap) => {
-      this.reserveForm.get('custId').setValue('10000098020359');
-      this.reserveForm.get('housekeeperCustId').setValue(params.get('id'));
+      this.reserveForm.get('type').setValue(0);
+      this.reserveForm.get('custId').setValue(this.custId);
+      this.reserveForm.get('housekeeperId').setValue(params.get('id'));
       return this.butlerSvc.getHousekeeper(+params.get('id'));
-    }).subscribe(housekeeper => {
-      const body = JSON.parse((JSON.parse(housekeeper)).msg);
-      this.actionSheets['serviceAreaId'] = getServiceArea(body.serviceareaids, body.serviceareanames);
-      console.log(this.actionSheets['serviceAreaId']);
-      this.housekeeper = body;
+    }).subscribe(res => {
+      this.housekeeper = res.housekeeper;
+      this.actionSheets['serviceAreaId'] = getServiceArea(this.housekeeper.serviceareaids, this.housekeeper.serviceareanames);
     });
   }
 
-  onShow(target, exTarget) {
+  onShow(target, exTarget?) {
     this.config.title = '请选择' + this.actionSheets[target].title;
     this.menus = this.actionSheets[target].data;
     this.actionSheet.show(this.menus, this.config).subscribe((res: any) => {
@@ -140,16 +140,43 @@ export class AdminDetailsComponent implements OnInit, OnDestroy {
 
   onSubmit() {
     this.isSubmit = true;
-    if (this.reserveForm.valid) {
-      this.butlerSvc.reserveButler(this.reserveForm.value).then(result => {
-        result = JSON.parse(result);
-        this.dialog.show({
-          title: '系统提示',
-          content: result.msg
-        }).subscribe(res => {
-          console.log(res);
+    if (this.reserveForm.valid) {// 表单验证成功
+      if (this.reserveForm.get('type').value === 0) {// 获取协议
+        this.butlerSvc.reserveButler(this.reserveForm.value).then(res => {
+
+          if (res.code === 0) {
+
+            this.reserveForm.get('type').setValue(1);
+            this.protocolShow = true;
+            this.protocolContent = res.protocolContent;
+
+          } else {
+            this.dialog.show({
+              title: '系统提示',
+              content: res.msg
+            });
+          }
         });
-      });
+      } else {// 提交订单
+        if (!this.reserveForm.get('agree').value) {// 不同意用户协议
+          this.dialog.show({
+            title: '系统提示',
+            content: '请阅读并勾选同意本协议!'
+          });
+          return false;
+        } else {// 同意用户协议
+          this.butlerSvc.reserveButler(this.reserveForm.value).then(res => {
+            if (res.code === 0 || res.code === '0') {
+              window.location.href = res.msg;
+            } else {
+              this.dialog.show({
+                title: '系统提示',
+                content: res.msg
+              });
+            }
+          });
+        }
+      }
     }
   }
 

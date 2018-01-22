@@ -6,31 +6,31 @@
   </div>
 </div>
 <div class="weui-media-box__bd">
-  <h4 class="weui-media-box__title">{{profile.name}} <span class="ui-label yellow hollow horizontal">金牌管家</span>
+  <h4 class="weui-media-box__title">{{profile.name}} <span class="ui-label yellow hollow horizontal">{{profile.levelname}}管家</span>
   </h4>
   <div class="attr">
     <div class="weui-flex">
       <div class="weui-flex__item">
-        <span class="label">年龄：</span><span class="value">{{profile.age}}</span>
+        <span class="label">年龄：{{profile.age}}</span>
       </div>
       <div class="weui-flex__item">
-        <span class="label">体重：</span><span class="value">{{profile.weight}}<sub>KG</sub></span>
-      </div>
-    </div>
-    <div class="weui-flex">
-      <div class="weui-flex__item">
-        <span class="label">身高：</span><span class="value">{{profile.height}}<sub>CM</sub></span>
-      </div>
-      <div class="weui-flex__item">
-        <span class="label">籍贯：</span><span class="value">{{profile.placeoforigin}}</span>
+        <span class="label">体重：{{profile.weight}}<sub>KG</sub></span>
       </div>
     </div>
     <div class="weui-flex">
       <div class="weui-flex__item">
-        <span class="label">服务地：</span><span class="value">{{profile.serviceareanames}}</span>
+        <span class="label">身高：{{profile.height}}<sub>CM</sub></span>
       </div>
       <div class="weui-flex__item">
-        <span class="label">服务经验：</span><span class="value">{{profile.workexperience}}个月</span>
+        <span class="label">籍贯：{{profile.placeoforigin}}</span>
+      </div>
+    </div>
+    <div class="weui-flex">
+      <div class="weui-flex__item">
+        <span class="label">服务地：{{profile.serviceareanames}}</span>
+      </div>
+      <div class="weui-flex__item">
+        <span class="label">服务经验：{{profile.workexperience}}个月</span>
       </div>
     </div>
   </div>
