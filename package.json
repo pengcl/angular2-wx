@@ -5,7 +5,7 @@
   "scripts": {
     "ng": "ng",
     "start": "sudo ng serve --disable-host-check --proxy-config proxy.conf.json --port 80",
-    "build": "ng build",
+    "build": "ng build --prod --aot --build-optimizer",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
@@ -37,6 +37,7 @@
     "mongoose": "^4.13.7",
     "morgan": "~1.8.1",
     "ngx-swiper-wrapper": "^5.2.0",
+    "ngx-weui": "^1.2.2",
     "node-sass-middleware": "^0.9.8",
     "q": "^1.5.1",
     "run-sequence": "^2.1.0",

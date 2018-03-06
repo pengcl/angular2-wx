@@ -1,0 +1,27 @@
+.rating {
+  .weui-rating__container {
+    i {
+      font-size: 0.2rem;
+      vertical-align: inherit;
+    }
+  }
+}
+
+.impression {
+  .weui-media-box {
+    padding: 0.15rem;
+  }
+}
+
+.ui-label {
+  &.curr {
+    color: #FBA703;
+    &:after {
+      border: 1px solid #FBA703;
+    }
+  }
+}
+
+.disabled {
+  opacity: 0.5;
+}

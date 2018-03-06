@@ -1,0 +1,61 @@
+.weui-panel {
+  .weui-panel__hd {
+    padding: 0.1rem 0 0;
+  }
+}
+
+.weui-progress__lab {
+  width: 5.5em;
+  margin-right: 0.1rem;
+  color: #666;
+}
+
+.weui-progress__bar {
+  font-size: 0.1rem;
+  background-color: rgba(251, 167, 3, 0.1);
+  over-flow: hidden;
+  height: 0.12rem;
+  border-radius: 1rem;
+  .weui-progress__inner-bar {
+    background-color: #FBA703;
+    height: 0.12rem;
+    border-radius: 1rem;
+    span {
+      padding-left: 0.1rem;
+      font-size: 0.1rem;
+      line-height: 0.12rem;
+      color: #fff;
+      display: block;
+    }
+  }
+}
+
+.weui-progress__opr {
+  margin-left: 0.15rem;
+}
+
+.weui-progress {
+  margin: 0.1rem 0;
+  font-size: 0.12rem;
+}
+
+.weui-grids {
+  margin: -0.05rem;
+  &:before, &:after {
+    display: none;
+  }
+  .weui-grid {
+    &:before, &:after {
+      display: none;
+    }
+    padding: 5px;
+    .photo {
+      width: 100%;
+      height: 0.7rem;
+      overflow: hidden;
+      border-radius: 0.04rem;
+      background-size: cover;
+      background-position: top center;
+    }
+  }
+}

@@ -34,7 +34,6 @@ router.get('/', function (req, res, next) {
                   });
 
                   user.save(function (err, user) { //保存用户信息到数据库
-                    console.log(user);
                     if (err) {
                       return;
                     } else {//微信信息插入成功

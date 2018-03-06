@@ -57,7 +57,7 @@ export const PageConfig = {
   'navBar': {
     'backgroundTextStyle': 'light',
     'navigationBarBackgroundColor': '#fff',
-    'navigationBarTitleText': 'WeChat',
+    'navigationBarTitleText': '大牛管家',
     'navigationBarTextStyle': 'black',
     'enablePullDownRefresh': false
   }

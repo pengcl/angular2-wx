@@ -1,0 +1,15 @@
+.order-controls {
+  span,a {
+    display: inline-block;
+    vertical-align: middle;
+  }
+  .ui-label {
+    font-weight: normal;
+    &.grey {
+      background-color: #dcdcdc !important;
+    }
+  }
+  .amount {
+    margin-right: 0.05rem;
+  }
+}

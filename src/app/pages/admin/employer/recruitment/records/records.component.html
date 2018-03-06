@@ -1,0 +1,140 @@
+<app-navbar [navBar]="navBarConfig"></app-navbar>
+<div class="content-scrollable has-footer">
+  <div class="weui-tab">
+    <div class="weui-navbar">
+      <div class="weui-navbar__item" (click)="setTab('channels')"
+           [ngClass]="{'weui-bar__item_on':tab === 'channels' || !tab}">
+        渠道招募
+      </div>
+      <div class="weui-navbar__item" (click)="setTab('employees')"
+           [ngClass]="{'weui-bar__item_on':tab === 'employees'}">
+        学员招募
+      </div>
+    </div>
+    <div class="weui-tab__panel" *ngIf="tab === 'channels' || !tab">
+
+      <div class="weui-panel">
+        <div class="weui-panel__hd">2018年03月 <em (click)="onPickerShow('date-ym')">更改</em><em class="right">所有</em></div>
+        <div class="weui-panel__bd">
+          <div class="weui-media-box">
+            <div class="weui-flex">
+              <div class="weui-flex__item">
+                <div class="blue statistic">
+                  <div class="value">1,200</div>
+                  <div class="label">总收益</div>
+                </div>
+              </div>
+              <div class="weui-flex__item">
+                <div class="green statistic">
+                  <div class="value">600</div>
+                  <div class="label">已发放</div>
+                </div>
+              </div>
+              <div class="weui-flex__item">
+                <div class="red statistic">
+                  <div class="value">600</div>
+                  <div class="label">未发放</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="weui-panel">
+        <div class="weui-panel__bd">
+          <div class="weui-media-box weui-media-box_small-appmsg">
+            <div class="weui-cells">
+              <div class="weui-cell weui-cell_access" href="javascript:;">
+                <div class="weui-cell__hd"><img class="avatar" src="/assets/images/avatars/1.jpg" alt=""></div>
+                <div class="weui-cell__bd weui-cell_primary">
+                  <h4 class="weui-media-box__title">美国队长</h4>
+                  <p class="weui-media-box__desc">15013262507</p>
+                </div>
+                <span class="weui-cell__ft">本月已招123名学员<br>本月有78人成为签约管家</span>
+              </div>
+              <div class="weui-cell weui-cell_access" href="javascript:;">
+                <div class="weui-cell__hd"><img class="avatar" src="/assets/images/avatars/2.jpg" alt=""></div>
+                <div class="weui-cell__bd weui-cell_primary">
+                  <h4 class="weui-media-box__title">美国队长</h4>
+                  <p class="weui-media-box__desc">15013262507</p>
+                </div>
+                <span class="weui-cell__ft">本月已招123名学员<br>本月有78人成为签约管家</span>
+              </div>
+              <div class="weui-cell weui-cell_access" href="javascript:;">
+                <div class="weui-cell__hd"><img class="avatar" src="/assets/images/avatars/3.jpg" alt=""></div>
+                <div class="weui-cell__bd weui-cell_primary">
+                  <h4 class="weui-media-box__title">美国队长</h4>
+                  <p class="weui-media-box__desc">15013262507</p>
+                </div>
+                <span class="weui-cell__ft">本月已招123名学员<br>本月有78人成为签约管家</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="weui-tab__panel" *ngIf="tab === 'employees'">
+      <div class="weui-panel">
+        <div class="weui-panel__hd">2018年03月 <em (click)="onPickerShow('date-ym')">更改</em><em class="right">所有</em></div>
+        <div class="weui-panel__bd">
+          <div class="weui-media-box">
+            <div class="weui-flex">
+              <div class="weui-flex__item">
+                <div class="blue statistic">
+                  <div class="value">18</div>
+                  <div class="label">总</div>
+                </div>
+              </div>
+              <div class="weui-flex__item">
+                <div class="green statistic">
+                  <div class="value">12</div>
+                  <div class="label">已录取</div>
+                </div>
+              </div>
+              <div class="weui-flex__item">
+                <div class="red statistic">
+                  <div class="value">2</div>
+                  <div class="label">已签约</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="weui-panel">
+        <div class="weui-panel__bd">
+          <div class="weui-media-box weui-media-box_small-appmsg">
+            <div class="weui-cells">
+              <div class="weui-cell" href="javascript:;">
+                <div class="weui-cell__hd"><img class="avatar" src="/assets/images/avatars/1.jpg" alt=""></div>
+                <div class="weui-cell__bd weui-cell_primary">
+                  <h4 class="weui-media-box__title">美国队长</h4>
+                  <p class="weui-media-box__desc">15013262507</p>
+                </div>
+                <span class="weui-cell__ft">已报名<br>2018-03-23</span>
+              </div>
+              <div class="weui-cell" href="javascript:;">
+                <div class="weui-cell__hd"><img class="avatar" src="/assets/images/avatars/2.jpg" alt=""></div>
+                <div class="weui-cell__bd weui-cell_primary">
+                  <h4 class="weui-media-box__title">美国队长</h4>
+                  <p class="weui-media-box__desc">15013262507</p>
+                </div>
+                <span class="weui-cell__ft">已报名<br>2018-03-23</span>
+              </div>
+              <div class="weui-cell" href="javascript:;">
+                <div class="weui-cell__hd"><img class="avatar" src="/assets/images/avatars/3.jpg" alt=""></div>
+                <div class="weui-cell__bd weui-cell_primary">
+                  <h4 class="weui-media-box__title">美国队长</h4>
+                  <p class="weui-media-box__desc">15013262507</p>
+                </div>
+                <span class="weui-cell__ft">已报名<br>2018-03-23</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

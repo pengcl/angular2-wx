@@ -10,7 +10,8 @@ export class EventService {
   }
 
   getEventTypeList(): Promise<any> {
-    return this.http.get(Config.prefix.wApi + '/interface/event/getEventTypeList.ht').toPromise()
+    return this.http.get(Config.prefix.wApi + '/interface/event/getEventTypeList.ht')
+      .toPromise()
       .then(response => response)
       .catch(this.handleError);
   }
@@ -36,14 +37,21 @@ export class EventService {
       .catch(this.handleError);
   }
 
-  getEventList(custId): Promise<any> {
-    return this.http.get(Config.prefix.wApi + '/interface/event/getEventList.ht?custId=' + custId).toPromise()
+  getEventList(body): Promise<any> {
+    const prams = formDataToUrl(body);
+    return this.http.get(Config.prefix.wApi + '/interface/event/getEventList.ht' + prams).toPromise()
       .then(response => response)
       .catch(this.handleError);
   }
 
   getEventDetail(eventId): Promise<any> {
     return this.http.get(Config.prefix.wApi + '/interface/event/getEventDetail.ht?eventId=' + eventId).toPromise()
+      .then(response => response)
+      .catch(this.handleError);
+  }
+
+  getEventProcess(eventId): Promise<any> {
+    return this.http.get(Config.prefix.wApi + '/interface/event/getAuthList.ht?eventId=' + eventId).toPromise()
       .then(response => response)
       .catch(this.handleError);
   }
@@ -57,6 +65,22 @@ export class EventService {
    * }
    */
   feedback(body): Promise<any[]> {
+    const prams = formDataToUrl(body);
+    return this.http.post(Config.prefix.wApi + '/interface/event/feedBack.ht' + prams, {}, {})
+      .toPromise()
+      .then(response => response)
+      .catch(this.handleError);
+  }
+
+  /**
+   * approve
+   *
+   * @body {
+   *    eventId:string;
+   *    isConfirm:string;
+   * }
+   */
+  approve(body): Promise<any> {
     const prams = formDataToUrl(body);
     return this.http.post(Config.prefix.wApi + '/interface/event/feedBack.ht' + prams, {}, {})
       .toPromise()

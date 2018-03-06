@@ -1,4 +1,5 @@
 import {Injectable, ComponentFactoryResolver, ApplicationRef, Injector, Optional, EmbeddedViewRef, ComponentRef} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
 import {Observer} from 'rxjs/Observer';
 import {FORMAT_TYPE, DatePickerComponent, DatePickerType} from './picker-date.component';
@@ -7,13 +8,14 @@ import {PickerData} from './data';
 import {PickerOptions} from './options';
 import {PickerComponent} from './picker.component';
 import {CityPickerComponent} from './picker-city.component';
+import {Config} from '../../config';
 
 /**
  * 多列选择器Service，可直接通过Class构造选择器
  */
 @Injectable()
 export class PickerService extends BaseService {
-  constructor(resolver: ComponentFactoryResolver, applicationRef: ApplicationRef, injector: Injector) {
+  constructor(private http: HttpClient, resolver: ComponentFactoryResolver, applicationRef: ApplicationRef, injector: Injector) {
     super(resolver, applicationRef, injector);
   }
 
@@ -47,6 +49,13 @@ export class PickerService extends BaseService {
     });
     componentRef.instance._onShow();
     return componentRef.instance.change;
+  }
+
+  getCity(): Promise<any[]> {
+    return this.http.get('/assets/js/cnCity.js')
+      .toPromise()
+      .then(response => response)
+      .catch(this.handleError);
   }
 
   /**
@@ -127,6 +136,11 @@ export class PickerService extends BaseService {
       componentRef.instance._triggerShow();
     }, 200);
     return componentRef.instance.change;
+  }
+
+  private handleError(error: any): Promise<any> {
+    console.error('An error occurred', error); // for demo purposes only
+    return Promise.reject(error.message || error);
   }
 
 }

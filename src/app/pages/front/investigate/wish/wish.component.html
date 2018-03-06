@@ -1,0 +1,64 @@
+<app-navbar [navBar]="navBarConfig"></app-navbar>
+
+<div class="content-scrollable">
+
+  <div class="img-box">
+    <img src="/assets/images/front/investigate/wish/banner.png">
+  </div>
+
+  <form novalidate [formGroup]="wishForm" (ngSubmit)="onSubmit()">
+    <div class="weui-cells weui-cells_form">
+      <div class="weui-cell" [ngClass]="{'weui-cell_warn':isSubmit && wishForm.get('name').invalid}">
+        <div class="weui-cell__hd"><label for="" class="weui-label">您的称呼</label></div>
+        <div class="weui-cell__bd">
+          <input formControlName="name" class="weui-input" type="text" placeholder="请输入姓名">
+        </div>
+        <div class="weui-cell__ft">
+          <i class="weui-icon-warn"></i>
+        </div>
+      </div>
+      <div class="weui-cell" [ngClass]="{'weui-cell_warn':isSubmit && wishForm.get('mobile').invalid}">
+        <div class="weui-cell__hd"><label for="" class="weui-label">联系电话</label></div>
+        <div class="weui-cell__bd">
+          <input formControlName="mobile" class="weui-input" type="number" placeholder="请输入手机号">
+        </div>
+        <div class="weui-cell__ft">
+          <i class="weui-icon-warn"></i>
+        </div>
+      </div>
+    </div>
+    <div class="weui-cells__tips"><em>大牛管家向您承诺，您的所有资料均会严格保密，请放心填写。</em></div>
+
+    <div class="weui-panel weui-panel_access">
+      <div class="weui-panel__hd"><p>我们的个人管家服务即将推出，现在预付1元，可获优先 预订资格，并获得50元的管家服务抵扣券</p>
+        <p>您是否愿意预订我们的大牛管家服务？</p></div>
+      <div class="weui-panel__bd">
+        <div class="weui-media-box">
+          <div class="check-list weui-grids">
+            <div class="check-item weui-grid">
+              <div (click)="select('wish','1')"
+                   [ngClass]="{'curr':wishForm.get('wish').value === '1'}" class="check-box">
+                <div class="weui-grid__label">愿意接受预订<em>(预付￥1.00)</em></div>
+                <span class="weui-grid__icon"></span>
+              </div>
+            </div>
+            <div class="check-item weui-grid">
+              <div (click)="select('wish','0')"
+                   [ngClass]="{'curr':wishForm.get('wish').value === '0'}" class="check-box">
+                <div class="weui-grid__label">暂不需要</div>
+                <span class="weui-grid__icon"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="weui-btn-area">
+      <button [userTrack]="'submit'" [ngClass]="{'weui-btn_disabled':wishForm.invalid}"
+              class="weui-btn weui-btn_primary box-shadow">
+        提交
+      </button>
+    </div>
+  </form>
+</div>

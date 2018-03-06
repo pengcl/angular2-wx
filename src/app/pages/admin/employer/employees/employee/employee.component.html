@@ -1,0 +1,103 @@
+<app-navbar [navBar]="navBarConfig"></app-navbar>
+
+<div class="content-scrollable">
+  <div class="weui-panel weui-panel_access">
+    <div class="weui-panel__bd">
+      <app-profile [routerLink]="['/admin/employer/employees/employee/profile',housekeeper.housekeeperid]" *ngIf="housekeeper" [profile]="housekeeper"
+                   class="weui-media-box weui-media-box_access weui-media-box_appmsg"></app-profile>
+    </div>
+  </div>
+
+  <div *ngIf="contact" class="weui-form-preview">
+    <div class="weui-form-preview__hd">
+      <div class="weui-form-preview__item">
+        <label class="weui-form-preview__label">服务期限</label>
+        <em [routerLink]="['/admin/employer/order/protocol', contact.conid]"
+            class="weui-form-preview__link">查看协议</em>
+      </div>
+    </div>
+    <div class="weui-form-preview__bd">
+      <div class="weui-form-preview__item">
+        <label class="weui-form-preview__label">服务日期</label>
+        <span class="weui-form-preview__value">{{contact.servicestartdate | date : 'yyyy.MM.dd'}} - {{contact.serviceenddate | date : 'yyyy.MM.dd'}}</span>
+      </div>
+      <div class="weui-form-preview__item">
+        <label class="weui-form-preview__label">服务时长</label>
+        <span class="weui-form-preview__value">共{{contact.periodList.length}}个月</span>
+      </div>
+      <div class="weui-form-preview__item">
+        <label class="weui-form-preview__label">服务月费</label>
+        <span class="weui-form-preview__value">￥{{contact.commissionamount}}/月</span>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="contact" class="weui-form-preview">
+    <div class="weui-form-preview__hd">
+      <div class="weui-form-preview__item">
+        <label class="weui-form-preview__label">服务费用</label>
+        <em [routerLink]="['/admin/employer/order/details',contact.conid]"
+            class="weui-form-preview__link">查看缴费清单</em>
+      </div>
+    </div>
+    <div class="weui-form-preview__bd">
+      <div class="weui-form-preview__item">
+        <label class="weui-form-preview__label">本月费用</label>
+        <span class="weui-form-preview__value">{{thisMonthItem.periodmonth}}({{thisMonthItem.paidamount === thisMonthItem.amount ? '已支付' : '未支付'}})</span>
+      </div>
+      <div *ngIf="nextMonthItem" class="weui-form-preview__item">
+        <label class="weui-form-preview__label">下月费用</label>
+        <span class="weui-form-preview__value">{{nextMonthItem.periodmonth}}({{nextMonthItem.paidamount === nextMonthItem.amount ? '已支付' : '未支付'}})</span>
+      </div>
+    </div>
+    <div
+      *ngIf="!(thisMonthItem.paidamount === thisMonthItem.amount && nextMonthItem.paidamount === nextMonthItem.amount)"
+      class="weui-form-preview__ft">
+      <!-- 本月已支付 start -->
+      <div *ngIf="thisMonthItem.paidamount === thisMonthItem.amount">
+
+        <!-- 下月存在 start -->
+        <div *ngIf="nextMonthItem">
+          <!-- 下月已支付 start-->
+          <!-- 下月已支付 end-->
+
+          <!-- 下月未支付 end-->
+          <div *ngIf="nextMonthItem.paidamount !== nextMonthItem.amount">
+            <div class="weui-btn-area">
+              <button [userTrack]="'submit'" class="weui-btn weui-btn_warn">
+                支付下月服务费 下月未支付
+              </button>
+            </div>
+            <div class="weui-cells__tips">请在每月最后一日前支付下个月的服务费用，逾期支付将可能收取滞纳金，感谢您的配合，谢谢！</div>
+          </div>
+        </div>
+        <!-- 下月存在 end -->
+
+        <!-- 下月不存在 start -->
+        <div *ngIf="!nextMonthItem">
+          <div class="weui-btn-area">
+            <button [userTrack]="'submit'" class="weui-btn weui-btn_warn">
+              和他续约
+            </button>
+          </div>
+          <div class="weui-cells__tips">请在每月最后一日前支付下个月的服务费用，逾期支付将可能收取滞纳金，感谢您的配合，谢谢！</div>
+        </div>
+        <!-- 下月不存在 end -->
+      </div>
+      <!-- 本月已支付 end -->
+
+      <!-- 本月未支付 start -->
+      <div *ngIf="thisMonthItem.paidamount !== thisMonthItem.amount">
+        <div class="weui-btn-area">
+          <button [userTrack]="'submit'" class="weui-btn weui-btn_warn">
+            支付本月服务费
+          </button>
+        </div>
+        <div class="weui-cells__tips">本月尚未缴服务费，请尽快支付。逾期支付将收取滞纳金，感谢您的配合！如有问题，请与客服联系，谢谢！</div>
+      </div>
+      <!-- 本月未支付 end -->
+    </div>
+  </div>
+
+
+</div>

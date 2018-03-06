@@ -5,6 +5,9 @@ import {UploaderConfig} from './uploader.config';
 import {FileLikeObject} from './file-like-object.class';
 import {FileType} from './file-type.class';
 
+import {Observer} from 'rxjs/Observer';
+import {Observable} from 'rxjs/Observable';
+
 // tslint:disable-next-line:interface-over-type-literal
 export type ParsedResponseHeaders = { [headerFieldName: string]: string };
 
@@ -18,6 +21,7 @@ export class Uploader {
   private _isUploading: boolean = false;
   private _nextIndex: number = 0;
   private _failFilterIndex: number;
+  observer: Observer<boolean>;
 
   /**
    * 获取当前上传组件配置项

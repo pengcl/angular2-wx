@@ -1,0 +1,127 @@
+<app-navbar [navBar]="navBarConfig"></app-navbar>
+
+<div class="content-scrollable">
+
+  <div class="user-info weui-panel">
+    <div class="weui-panel__bd">
+      <div href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg">
+        <div class="weui-media-box__hd">
+          <img class="avatar weui-media-box__thumb"
+               src="{{employer?.headimageurl ? employer.headimageurl : '/assets/images/logo.png'}}"
+               alt="">
+        </div>
+        <div class="weui-media-box__bd">
+          <h4 class="weui-media-box__title">{{employer?.cust_name}}</h4>
+          <p class="weui-media-box__desc">广东 广州</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panels">
+    <div class="housekeepers weui-panel" *ngIf="contractList?.length > 0">
+      <div class="weui-panel__title weui-panel__hd">当前服务管家</div>
+      <div class="weui-panel__bd">
+        <div class="weui-media-box weui-media-box_small-appmsg">
+          <div class="weui-cells">
+            <a *ngFor="let contract of contractList" class="weui-cell weui-cell_access"
+               [routerLink]="['/admin/employer/employees/employee',contract.housekeeperid]"
+               [queryParams]="{contactId: contract.conid}">
+              <div class="weui-cell__bd weui-cell_primary">
+                <p>{{contract.housekeepername}}</p>
+              </div>
+              <span class="weui-cell__ft">{{contract.servicestartdate | date : 'yyyy-MM-dd'}} ~ {{contract.serviceenddate | date : 'yyyy-MM-dd'}}</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="dashboard weui-panel">
+      <div class="weui-panel__title weui-panel__hd">我的事务</div>
+      <div class="weui-panel__bd">
+        <div class="weui-grids">
+          <a [routerLink]="['/admin/employer/order/list']" class="weui-grid">
+            <div class="item-box">
+              <div class="img red">
+                <img src="/assets/images/icons/white/form_fill_light.png">
+              </div>
+              <div class="txt">
+                <div class="weui-grid__label">我的订单</div>
+              </div>
+            </div>
+          </a>
+          <a [routerLink]="['/admin/employer/employees']" class="weui-grid">
+            <div class="item-box">
+              <div class="img green">
+                <img src="/assets/images/icons/white/friend_fill.png">
+              </div>
+              <div class="txt">
+                <div class="weui-grid__label">我的管家</div>
+              </div>
+            </div>
+          </a>
+          <a *ngIf="contractList?.length > 0"
+             [routerLink]="['/admin/employer/employees/employee/attendance',contractList[0]?.housekeeperid]"
+             class="weui-grid">
+            <div class="item-box">
+              <div class="img yellow">
+                <img src="/assets/images/icons/white/exit.png">
+              </div>
+              <div class="txt">
+                <div class="weui-grid__label">管家考勤</div>
+              </div>
+            </div>
+          </a>
+          <a [routerLink]="['/admin/employer/rate/list']" class="weui-grid">
+            <div class="item-box">
+              <div class="img yellow">
+                <img src="/assets/images/icons/white/favor_fill_light.png">
+                <span *ngIf="count.rate > 0" class="weui-badge">{{count.rate}}</span>
+              </div>
+              <div class="txt">
+                <div class="weui-grid__label">人员评价</div>
+              </div>
+            </div>
+          </a>
+          <a [routerLink]="['/admin/employer/message']" class="weui-grid">
+            <div class="item-box">
+              <div class="img blue">
+                <img src="/assets/images/icons/white/community_fill_light.png">
+                <span *ngIf="count.msg > 0" class="weui-badge">{{count.msg}}</span>
+              </div>
+              <div class="txt">
+                <div class="weui-grid__label">我的消息</div>
+              </div>
+            </div>
+          </a>
+          <a [routerLink]="['/front/resume/job']" [queryParams]="{referee:employer?.mobile}" class="weui-grid">
+            <div class="item-box">
+              <div class="img red">
+                <img src="/assets/images/icons/white/hire.png">
+              </div>
+              <div class="txt">
+                <div class="weui-grid__label">招募学员</div>
+              </div>
+            </div>
+          </a>
+          <a (click)="onShare()" class="weui-grid">
+            <div class="item-box">
+              <div class="img green">
+                <img src="/assets/images/icons/white/we_fill_light.png">
+              </div>
+              <div class="txt">
+                <div class="weui-grid__label">推荐好友</div>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="btns-group">
+  <div routerLink="/admin/employer/feedback" class="btn-secondary no-state">意见反馈</div>
+  <div class="btn-secondary">联系客服</div>
+</div>

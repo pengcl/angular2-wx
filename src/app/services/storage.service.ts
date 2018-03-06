@@ -10,7 +10,7 @@ export class StorageService {
     this.localStorage = localStorage;
   }
 
-  public set(key: string, value: string): void {
+  public set(key: string, value): void {
     this.localStorage[key] = value;
   }
 

@@ -1,0 +1,70 @@
+<app-navbar [navBar]="navBarConfig"></app-navbar>
+
+<div class="content-scrollable has-footer">
+
+  <div *ngIf="event.event" class="weui-form-preview">
+    <div class="weui-form-preview__hd">
+      <div class="weui-form-preview__item">
+        <label class="weui-form-preview__label">请假信息</label>
+        <em class="weui-form-preview__value">
+          <span *ngIf="event.event.dealstatus === 1">未处理</span>
+          <span *ngIf="event.event.dealstatus === 2">处理中</span>
+          <span *ngIf="event.event.dealstatus === 3">已通过</span>
+          <span *ngIf="event.event.dealstatus === 4">已拒绝</span>
+        </em>
+      </div>
+    </div>
+    <div class="weui-form-preview__bd">
+      <div class="weui-form-preview__item">
+        <label class="weui-form-preview__label">请假类型</label>
+        <span class="weui-form-preview__value">{{event.event.eventtypename}}</span>
+      </div>
+      <div class="weui-form-preview__item">
+        <label class="weui-form-preview__label">开始时间</label>
+        <span class="weui-form-preview__value">{{event.event.startdate}}</span>
+      </div>
+      <div class="weui-form-preview__item">
+        <label class="weui-form-preview__label">结束时间</label>
+        <span class="weui-form-preview__value">{{event.event.enddate}}</span>
+      </div>
+      <div class="weui-form-preview__item">
+        <label class="weui-form-preview__label">请假时长</label>
+        <span class="weui-form-preview__value">{{event.event.enddate}}</span>
+      </div>
+      <div class="weui-form-preview__item">
+        <label class="weui-form-preview__label">请假事由</label>
+        <span class="weui-form-preview__value">{{event.event.eventtitle}}</span>
+      </div>
+      <div class="weui-form-preview__item">
+        <label class="weui-form-preview__label">备注</label>
+        <span class="weui-form-preview__value">{{event.event.remark}}</span>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="event.process" class="weui-form-preview">
+    <div class="weui-form-preview__hd">
+      <div class="weui-form-preview__item">
+        <label class="weui-form-preview__label">审批进度</label>
+        <em class="weui-form-preview__value"></em>
+      </div>
+    </div>
+    <div class="weui-form-preview__bd">
+      <div [ngClass]="{'curr':item.startTime && !item.endTime}" *ngFor="let item of event.process"
+           class="process-item weui-form-preview__item">
+        <label class="weui-form-preview__label">{{item.taskName}} <span [innerHTML]="item.status"></span></label>
+        <span class="weui-form-preview__value">{{item.endTime}}</span>
+      </div>
+    </div>
+    <div class="weui-cell">
+      <div class="weui-cell__bd">如有任何问题，您也可以先联系我们的客服人员进行咨询及调解</div>
+      <div class="weui-cell__ft"><span class="ui-label horizontal hollow">联系客服</span></div>
+    </div>
+  </div>
+
+</div>
+
+<div *ngIf="event?.event?.dealstatus === 2" class="btns-group">
+  <div (click)="approve(2)" class="btn-secondary no-state">拒绝</div>
+  <div (click)="approve(1)" class="btn-secondary">同意</div>
+</div>

@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {PageConfig} from './page.config';
-import {WXService} from '../../../services/wx.service';
+import {WxService} from '../../../modules/wx';
 import {UserService} from '../../../services/user.service';
-import {ButlerService} from '../../../services/butler.service';
+import {EmployeeService} from '../../../services/employee.service';
 
 @Component({
   selector: 'app-admin-index',
@@ -13,28 +13,26 @@ export class AdminIndexComponent implements OnInit {
   tabBarConfig = PageConfig.tabBar;
   navBarConfig = PageConfig.navBar;
 
-  custId: string;
-  custom: any;
+  user: any;
   butlers: any[];
 
-  constructor(private wx: WXService, private userSvc: UserService, private butler: ButlerService) {
+  constructor(private wx: WxService,
+              private userSvc: UserService,
+              private employeeSvc: EmployeeService) {
   }
 
   ngOnInit() {
     if (this.wx.isWx()) {
-      this.custId = this.userSvc.isLogin();
-      this.userSvc.getCustom(this.custId).then(custom => {
-        console.log(custom);
+      this.user = this.userSvc.isLogin();
+      /*this.userSvc.getUserInfo(this.user.id).then(res => {
+        console.log(res.cust);
         this.custom = custom;
-      });
+      });*/
     }
-    this.butler.getHousekeepers().then(res => {
+    this.employeeSvc.getHousekeepers().then(res => {
       if (res.code === 0) {
         this.butlers = res.list;
       }
-      console.log(res);
-      /*this.butlers = res.msg;
-      console.log(res);*/
     });
   }
 

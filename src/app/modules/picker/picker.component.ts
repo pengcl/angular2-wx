@@ -64,7 +64,7 @@ export class PickerComponent implements ControlValueAccessor, OnInit, OnDestroy,
    * 多列数据，以数组的长度来决定几列数据
    * 支持string[]单列数组，单纯只是为了方便
    */
-  @Input() set groups(d: PickerData[][] | String[]) {
+  @Input() set groups(d: PickerData[][] | PickerData[] | String[]) {
     if (!d) {
       throw new Error('无效数据源');
     }
@@ -76,6 +76,13 @@ export class PickerComponent implements ControlValueAccessor, OnInit, OnDestroy,
           })
         ];
       }
+      /*if (typeof d[0] === 'object') {
+        d = [
+          (<PickerData[]>d).map<PickerData>((v) => {
+            return {label: v.label, value: v.value};
+          })
+        ];
+      }*/
     }
     this._groups = <PickerData[][]>d;
     this._selected = this._selected ? this._selected : Array(d.length).fill(0);
@@ -106,7 +113,7 @@ export class PickerComponent implements ControlValueAccessor, OnInit, OnDestroy,
 
   ngOnInit() {
     /*if (!this.options) {*/
-      this.parseOptions();
+    this.parseOptions();
     /*}*/
   }
 

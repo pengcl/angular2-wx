@@ -1,9 +1,11 @@
+import {environment} from '../environments/environment';
+
 export const Config = {
-  'webHost': 'http://wx.dutyhb.com',
+  'webHost': environment.webHost,
   'prefix': {
-    'front': 'http://wx.dutyhb.com/front',
-    'admin': 'http://wx.dutyhb.com/admin',
-    'api': 'http://wx.dutyhb.com/api',
-    'wApi': 'http://wx.dutyhb.com/wApi'
+    'front': environment.webHost + '/front',
+    'admin': environment.webHost + '/admin',
+    'api': environment.webHost + '/api',
+    'wApi': environment.webHost + '/wApi'
   }
 };

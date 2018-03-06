@@ -3,7 +3,6 @@ var sha1 = require('sha1');
 
 //检查微信签名认证中间件
 utils.sign = function (config) {
-  console.log(config);
   return function (req, res, next) {
     config = config || {};
     var q = req.query;

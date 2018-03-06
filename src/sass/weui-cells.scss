@@ -1,0 +1,53 @@
+.weui-cells {
+  font-size: 0.17rem;
+}
+
+.weui-cell {
+  padding: 0.1rem 0.15rem;
+}
+
+.weui-cell_warn {
+  textarea::-webkit-input-placeholder {
+    color: #E64340;
+  }
+}
+
+.weui-cell__hd {
+  align-self: start;
+}
+
+.weui-cell__bd {
+  &.weui-cell__title {
+    position: relative;
+    padding-left: 0.2rem;
+    font-size: 0.17rem;
+    color: #162F4D;
+    font-weight: 500;
+    &:before {
+      content: ' ';
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 0.12rem;
+      height: 0.12rem;
+      box-sizing: border-box;
+      border: 0.02rem solid #FBA703;
+      border-radius: 50%;
+    }
+  }
+}
+
+.weui-cell__desc {
+  font-size: 0.13rem;
+  color: #808080;
+}
+
+.weui-cell_swiped {
+  padding: 0;
+}
+
+.weui-cells__tips {
+  font-size: 0.12rem;
+  color: #EA5A2B;
+}

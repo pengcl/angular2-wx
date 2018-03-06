@@ -1,0 +1,32 @@
+<app-navbar [navBar]="navBarConfig"></app-navbar>
+<div class="content-scrollable">
+  <div *ngIf="housekeeper" class="user-info weui-panel">
+    <div class="weui-panel__bd">
+      <div class="weui-media-box weui-media-box_appmsg">
+        <div class="weui-media-box__hd"><img class="avatar" src="{{config.prefix.wApi + housekeeper.headimageurl}}"></div>
+        <div class="weui-media-box__bd">更换管家人员</div>
+        <div class="weui-media-box__ft"><img class="avatar" src="/assets/images/icons/white/friend_fill.png"></div>
+      </div>
+    </div>
+  </div>
+  <form novalidate [formGroup]="exchangeForm" (ngSubmit)="onSubmit()">
+    <div class="weui-cells__title">更换管家原因</div>
+    <div class="weui-cells weui-cells_form">
+      <div class="weui-cell">
+        <div class="weui-cell__bd">
+          <textarea formControlName="remark" class="weui-textarea" placeholder="请输入文本" rows="3"></textarea>
+          <div class="weui-textarea-counter"><span>{{exchangeForm.get('reason').value.length}}</span>/200</div>
+        </div>
+      </div>
+    </div>
+    <label for="agree" class="weui-agree">
+      <input id="agree" formControlName="agree" type="checkbox" class="weui-agree__checkbox">
+      <span class="weui-agree__text">
+                提示：若更换管家，需要重新签订新的合同，其他管家的每个月服务费也可能不同(根据管家技能、级别等不同有所影响)请您知悉！
+            </span>
+    </label>
+    <div class="weui-btn-area">
+      <a class="weui-btn weui-btn_primary" (click)="onSubmit()" href="javascript:">确定更换</a>
+    </div>
+  </form>
+</div>

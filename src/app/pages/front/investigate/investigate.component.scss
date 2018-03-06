@@ -1,0 +1,38 @@
+.content-scrollable {
+  background: #fff;
+}
+
+.check-todo, .check-budget {
+  .check-list {
+    .check-item {
+      width: 50%;
+    }
+  }
+}
+
+.weui-grid__label.error {
+  color: red !important;
+}
+
+.weui-panel {
+  margin-top: 0;
+  &:before, &:after {
+    display: none;
+  }
+  .weui-panel__hd {
+    padding-top: 0.05rem;
+    padding-bottom: 0;
+    font-size: 0.14rem;
+    color: #0f0f0f;
+    font-weight: bold;
+    &:before, &:after {
+      display: none;
+    }
+    &.error {
+      color: red;
+    }
+  }
+  .weui-media-box {
+    padding-top: 0.05rem;
+  }
+}

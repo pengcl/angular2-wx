@@ -1,31 +1,35 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
+import {Location} from '@angular/common';
 import 'rxjs/add/operator/toPromise';
 
 import {Config} from '../config';
-import {WXService} from './wx.service';
+import {WxService} from '../modules/wx';
 import {StorageService} from './storage.service';
 
 @Injectable()
 export class UserService {
   private custId;
+  private user;
 
   constructor(private storageService: StorageService,
               private activatedRoute: ActivatedRoute,
+              private router: Router,
+              private location: Location,
               private http: HttpClient,
-              private wxService: WXService) {
+              private wxService: WxService) {
   }
 
-  getCustId() {// 获取userId;
-    if (this.custId) {// 如果userId存在;
-      return this.custId;
+  getUser() {
+    if (this.user) {// 如果userId存在;
+      return this.user;
     } else {// 如果userId不存在,查找localStorage;
-      if (this.storageService.get('custId')) {// 如果localStorage中存在userId;
-        this.custId = this.storageService.get('custId');
-        return this.custId;
+      if (this.storageService.get('user')) {// 如果localStorage中存在userId;
+        this.user = JSON.parse(this.storageService.get('user'));
+        return this.user;
       } else {// 如果localStorage中不存在userId;
-        window.location.href = Config.prefix.admin + '/login';
+        window.location.href = Config.prefix.admin + '/login?callbackUrl=' + this.router.url;
         /*if (this.wxService.isWx()) {// 微信环境,查找地址栏参数中是否存在userId;
           if (this.activatedRoute.snapshot.queryParams['userId']) {// 如果地址栏参数存在userId;
             this.userId = this.activatedRoute.snapshot.queryParams['userId']; // 把userId存入userId内存中;
@@ -48,26 +52,8 @@ export class UserService {
       .catch(this.handleError);
   }
 
-  getUser(id): Promise<any> {
-    return this.http.get(Config.prefix.api + '/users/find?id=' + id)
-      .toPromise()
-      .then(response => {
-        return response;
-      })
-      .catch(this.handleError);
-  }
-
-  getCustom(id): Promise<any> {
-    return this.http.get(Config.prefix.wApi + '/interface/cust/getCustDetail.ht?custId=' + id)
-      .toPromise()
-      .then(response => {
-        return response;
-      })
-      .catch(this.handleError);
-  }
-
   isLogin() {
-    return this.getCustId();
+    return this.getUser();
   }
 
   getCode(mobile) {

@@ -1,0 +1,23 @@
+.rule-list {
+  padding: 11px 15px 16px;
+  background: #fff;
+  margin-bottom: 22px;
+  .rule-tit {
+    font-size: 15px;
+    line-height: 21px;
+    color: #222;
+    padding-bottom: 6px;
+  }
+  .rule-txt {
+    font-size: 13px;
+    line-height: 24px;
+    color: #222;
+    dt {
+      float: left;
+      width: 19px
+    }
+    dd {
+      margin-left: 19px
+    }
+  }
+}

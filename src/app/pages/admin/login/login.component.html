@@ -1,15 +1,15 @@
 <app-navbar [navBar]="navBarConfig"></app-navbar>
 
-<div class="userinfo" *ngIf="user">
-  <img class="userinfo-avatar" src="{{user.wx.headimgurl}}" background-size="cover"/>
-  <div class="userinfo-nickname">{{user.wx.nickname}}</div>
+<div class="userinfo">
+  <img class="userinfo-avatar" src="/assets/images/logo.png" background-size="cover"/>
+  <div class="userinfo-nickname">大牛管家</div>
 </div>
 
 <form novalidate [formGroup]="loginForm" (ngSubmit)="onSubmit()">
   <div class="weui-cells">
     <div class="weui-cell">
       <div class="weui-cell__hd">
-        <img style="width:20px;margin-right:5px;display:block" src="/assets/images/icons/mobile.png">
+        <img style="width:0.2rem;margin-right:0.05rem;display:block" src="/assets/images/icons/mobile.png">
       </div>
       <div class="weui-cell__bd">
         <input class="weui-input" type="tel" formControlName="mobile" placeholder="请输入手机号">
@@ -21,7 +21,7 @@
     </div>
     <div class="weui-cell">
       <div class="weui-cell__hd">
-        <img style="width:20px;margin-right:5px;display:block" src="/assets/images/icons/lock.png">
+        <img style="width:0.2rem;margin-right:0.05rem;display:block" src="/assets/images/icons/lock.png">
       </div>
       <div class="weui-cell__bd">
         <input class="weui-input" type="text" formControlName="code" placeholder="请输入验证码">

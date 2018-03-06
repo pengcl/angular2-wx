@@ -1,0 +1,52 @@
+.weui-article {
+  h1 {
+    text-align: center;
+  }
+  ul, ol {
+    margin-left: 1.3em;
+    li {
+      font-size: 0.13rem;
+      color: #333;
+    }
+  }
+  h1 {
+    font-size: 0.18rem;
+  }
+  h3 {
+    font-size: 0.15rem;
+  }
+  p {
+    font-size: 0.13rem;
+    color: #333;
+  }
+}
+
+.resume-code {
+  width: 50%;
+  margin: 0 auto;
+  img {
+    display: block;
+    width: 100%;
+  }
+}
+
+em {
+  color: blue;
+  text-decoration: underline;
+}
+
+.avatar {
+  width: 0.4rem;
+  height: 0.4rem;
+  border-radius: 50%;
+}
+
+.weui-panel {
+  .weui-cells {
+    font-size: 0.14rem;
+    .weui-media-box__title {
+      font-size: 0.14rem;
+    }
+  }
+}
+

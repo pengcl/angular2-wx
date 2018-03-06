@@ -1,11 +1,9 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {ActivatedRoute, ParamMap} from '@angular/router';
-import {Location} from '@angular/common';
+import {Component, OnInit} from '@angular/core';
 
 import {PageConfig} from './page.config';
-import {WXService} from '../../../../services/wx.service';
+import {WxService} from '../../../../modules/wx';
 import {UserService} from '../../../../services/user.service';
-import {ButlerService} from '../../../../services/butler.service';
+import {EmployeeService} from '../../../../services/employee.service';
 import {Uploader, UploaderOptions} from '../../../../modules/uploader';
 import {Config} from '../../../../config';
 
@@ -20,7 +18,7 @@ export class AdminUploaderAvatarComponent implements OnInit {
   tabBarConfig = PageConfig.tabBar;
   navBarConfig = PageConfig.navBar;
 
-  userId: string;
+  config = Config;
   user: any;
 
   img: any;
@@ -32,8 +30,9 @@ export class AdminUploaderAvatarComponent implements OnInit {
     url: Config.prefix.wApi + '/interface/housekeeper/uploadHeadImage.ht',
     headers: [],
     params: {
-      housekeeperId: '10000096750345'
+      housekeeperId: ''
     },
+    auto: true,
     // 自定义transport
     // uploadTransport: function(item: FileItem) {
     //     return Observable.create(observer => {
@@ -82,20 +81,16 @@ export class AdminUploaderAvatarComponent implements OnInit {
     }
   });
 
-  constructor(private wx: WXService,
+  constructor(private wx: WxService,
               private userSvc: UserService,
-              private butlerSvc: ButlerService) {
+              private employeeSvc: EmployeeService) {
   }
 
   ngOnInit() {
-    if (this.wx.isWx()) {
-      this.userId = this.userSvc.isLogin();
-      this.userSvc.getUser(this.userId).then(user => {
-        this.user = user;
-      });
-    }
-    this.butlerSvc.getHousekeeper('10000096750345').then(housekeeper => {
-      this.housekeeper = JSON.parse((JSON.parse(housekeeper)).msg);
+    this.user = this.userSvc.isLogin();
+    this.uploader.options.params.housekeeperId = this.user.housekeeperId;
+    this.employeeSvc.getHousekeeper(this.user.housekeeperId).then(res => {
+      this.housekeeper = res.housekeeper;
     });
   }
 

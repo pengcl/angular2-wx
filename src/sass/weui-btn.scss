@@ -1,0 +1,18 @@
+.weui-btn {
+  &:after {
+    display: none;
+  }
+  &.weui-btn_primary {
+    background: #FBA703;
+    &.box-shadow {
+      box-shadow: 0 0 15px 0 rgba(251,150,3,0.30);
+    }
+  }
+  &.weui-btn_disabled {
+    background: #f5f5f5;
+    color: #dcdcdc;
+    &.box-shadow {
+      box-shadow: none;
+    }
+  }
+}

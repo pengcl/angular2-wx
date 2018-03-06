@@ -12,6 +12,7 @@ export class AppComponent {
   }
 
   getState(outlet) {
+    console.log(outlet);
     return outlet.activatedRouteData.state;
   }
 }

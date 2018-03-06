@@ -1,0 +1,39 @@
+<app-navbar [navBar]="navBarConfig"></app-navbar>
+
+<div class="content-scrollable">
+
+  <app-msg *ngIf="event?.list?.length === 0" [msg]='{title:"暂无\"审批\"记录",desc:"您可以关注\"大牛管家\"公众号，获取最新活动消息。",cancel:"返回"}'></app-msg>
+
+  <div *ngFor="let event of event.list" class="weui-form-preview">
+    <div class="weui-form-preview__hd">
+      <div class="weui-form-preview__item">
+        <label class="weui-form-preview__label">{{event.createtime}}</label>
+        <em class="weui-form-preview__value">
+          <span *ngIf="event.dealstatus === 1">未处理</span>
+          <span *ngIf="event.dealstatus === 2">处理中</span>
+          <span *ngIf="event.dealstatus === 3">已通过</span>
+          <span *ngIf="event.dealstatus === 4">已拒绝</span>
+        </em>
+      </div>
+    </div>
+    <div class="weui-form-preview__bd">
+      <div class="weui-form-preview__item">
+        <label class="weui-form-preview__label">请假类型</label>
+        <span class="weui-form-preview__value">{{event.eventtypename}}</span>
+      </div>
+      <div class="weui-form-preview__item">
+        <label class="weui-form-preview__label">开始时间</label>
+        <span class="weui-form-preview__value">{{event.startdate}}</span>
+      </div>
+      <div class="weui-form-preview__item">
+        <label class="weui-form-preview__label">结束时间</label>
+        <span class="weui-form-preview__value">{{event.enddate}}</span>
+      </div>
+    </div>
+    <div class="weui-form-preview__ft">
+      <a [routerLink]="['/admin/employee/ADM/approvals/events/event',event.eventid]"
+         class="weui-form-preview__btn weui-form-preview__btn_primary">查看详情</a>
+    </div>
+  </div>
+
+</div>

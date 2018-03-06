@@ -1,0 +1,30 @@
+<app-navbar [navBar]="navBarConfig"></app-navbar>
+
+<div class="content-scrollable">
+
+  <app-msg *ngIf="items?.length === 0" [msg]='{title:"暂无\"评价\"记录",desc:"您可以关注\"大牛管家\"公众号，获取最新活动消息。",cancel:"返回"}'></app-msg>
+
+  <div *ngFor="let item of items" class="weui-panel weui-panel_access">
+    <div class="weui-panel__hd">订单编号：{{item.payno}} <span class="right">{{item.periodmonth}}</span></div>
+    <div class="weui-panel__bd">
+      <div class="weui-media-box weui-media-box_small-appmsg">
+        <swiper class="swiper-container" [config]="swiperConfig">
+
+          <img *ngFor="let avatar of item.housekeeperList" class="avatar"
+               src="{{config.prefix.wApi + avatar.headimageurl}}">
+        </swiper>
+      </div>
+    </div>
+    <div class="weui-panel__ft">
+      <a *ngIf="item.isCommented === 0" [routerLink]="['/admin/employer/rate/add',item.contmainpayid]" class="weui-cell weui-cell_link">
+        <div class="weui-cell__bd"></div>
+        <span class="weui-cell__ft">未评价</span>
+      </a>
+      <a *ngIf="item.isCommented !== 0" [routerLink]="['/admin/employer/rate/add',item.contmainpayid]" class="weui-cell weui-cell_link">
+        <div class="weui-cell__bd"></div>
+        <span class="weui-cell__ft">已评价</span>
+      </a>
+    </div>
+  </div>
+
+</div>

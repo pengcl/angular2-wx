@@ -1,0 +1,50 @@
+.weui-form-preview__value {
+  font-size: inherit;
+  color: #999;
+}
+
+.weui-form-preview {
+  .weui-form-preview__bd {
+    position: relative;
+    &:before {
+      content: " ";
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 1px;
+      border-bottom: 1px solid #e5e5e5;
+      color: #e5e5e5;
+      -webkit-transform-origin: 0 100%;
+      transform-origin: 0 100%;
+      -webkit-transform: scaleY(.5);
+      transform: scaleY(.5);
+      left: 15px;
+    }
+  }
+  .weui-cell {
+    font-size: 0.9em;
+    color: #999;
+    .weui-cell__ft {
+      .ui-label {
+        margin: 0 0 0 0.1rem;
+      }
+    }
+  }
+  .weui-form-preview__hd + .weui-form-preview__bd {
+    &:before {
+      display: none;
+    }
+  }
+  .tips-controls {
+    .weui-form-preview__label {
+      width: 60%;
+    }
+  }
+}
+
+.tips-item {
+  .weui-form-preview__label {
+    text-align: left;
+    text-justify: none;
+  }
+}

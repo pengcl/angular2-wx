@@ -1,0 +1,52 @@
+<app-navbar [navBar]="navBarConfig"></app-navbar>
+
+<div class="content-scrollable">
+
+  <div *ngIf="order" class="weui-form-preview">
+    <div class="weui-form-preview__hd">
+      <div class="weui-form-preview__item">
+        <label class="weui-form-preview__label">合同缴费清单</label>
+        <em class="weui-form-preview__value"></em>
+      </div>
+    </div>
+    <div class="weui-form-preview__bd">
+      <div class="weui-form-preview__item">
+        <label class="weui-form-preview__label">合同名称</label>
+        <span class="weui-form-preview__value">大牛管家服务费用</span>
+      </div>
+      <div class="weui-form-preview__item">
+        <label class="weui-form-preview__label">合同编号</label>
+        <span class="weui-form-preview__value">{{order.no}}</span>
+      </div>
+      <div class="weui-form-preview__item">
+        <label class="weui-form-preview__label">合同周期</label>
+        <span class="weui-form-preview__value">{{order.meta.startAt | date : 'yyyy-MM-dd'}} ~ {{order.meta.startAt | date : 'yyyy-MM-dd'}}</span>
+      </div>
+      <div class="weui-form-preview__item">
+        <label class="weui-form-preview__label">管家人员</label>
+        <span class="weui-form-preview__value"><span
+          *ngFor="let item of order.employees">{{item.name}}({{item.no}})</span></span>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="order" class="weui-panel weui-panel_access">
+    <div class="weui-panel__hd">缴费记录</div>
+    <div class="weui-panel__bd">
+      <div class="weui-cells_radio">
+        <label *ngFor="let period of order.payState.periods" class="weui-cell weui-check__label">
+          <div class="weui-cell__bd">
+            <p>{{period.name}} 管家服务费</p>
+          </div>
+          <div class="order-controls weui-cell__ft">
+            <span class="amount">￥{{period.amount}}</span>
+            <a href="http://pay.danius.cn/interface/payment/gotoPay.ht?orderNo={{order.no}}"
+               *ngIf="period.paid !== period.amount" class="ui-label circle colors orange horizontal">去支付</a>
+            <a href="http://pay.danius.cn/interface/payment/gotoPay.ht?orderNo={{order.no}}"
+               *ngIf="period.paid === period.amount" class="ui-label circle colors grey horizontal">已支付</a>
+          </div>
+        </label>
+      </div>
+    </div>
+  </div>
+</div>

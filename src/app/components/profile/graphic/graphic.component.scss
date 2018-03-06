@@ -1,0 +1,23 @@
+.weui-form-preview {
+  margin-top: 0.1rem;
+}
+.score {
+  width: 100%;
+  text-align: center;
+  .score-rate {
+    font-size: 0.24rem;
+    text-align: center;
+    color: #FBA703;
+    em {
+      font-size: 0.48rem;
+    }
+    sub {
+      font-size: 0.24rem;
+    }
+  }
+
+  .score-label {
+    text-align: center;
+    margin-top: 0.05rem;
+  }
+}

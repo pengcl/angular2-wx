@@ -11,7 +11,7 @@
           </div>
           <div class="weui-uploader__bd">
             <ul class="weui-uploader__files">
-              <li class="weui-uploader__file" *ngIf="housekeeper" [ngStyle]="{'background-image':'url(http://wx.dutyhb.com/wApi' + housekeeper.headimageurl + ')'}"></li>
+              <li class="weui-uploader__file" *ngIf="housekeeper" [ngStyle]="{'background-image':'url(' + config.prefix.wApi + housekeeper.headimageurl + ')'}"></li>
               <li class="weui-uploader__file" *ngFor="let item of uploader.queue"
                   [weui-thumb]="item._file"
                   (click)="onGallery(item)"
@@ -31,9 +31,4 @@
       </div>
     </div>
   </div>
-  <div class="weui-btn-area">
-    <button weui-button (click)="uploader.uploadAll()" [disabled]="uploader.isUploading">更换头像</button>
-  </div>
-
-
 </div>

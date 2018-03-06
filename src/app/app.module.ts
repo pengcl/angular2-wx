@@ -7,11 +7,19 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {AppRoutingModule} from './app-routing.module';
 import {ActionSheetModule} from './components/actionsheet/actionsheet.module';
 import {CellModule} from './modules/cell';
-import {PickerModule} from './modules/picker';
+/*import {PickerModule} from './modules/picker';*/
 import {ChartF2Module} from './modules/chart-f2';
 import {RatingModule} from './modules/rating';
 import {DialogModule} from './modules/dialog';
 import {UploaderModule} from './modules/uploader';
+import {WxModule} from './modules/wx';
+import {ButtonModule} from './modules/button';
+import {PickerModule} from 'ngx-weui';
+
+// pipes
+import {EmployeesPipe} from './pipes/employees.pipe';
+import {RenamePipe} from './pipes/rename.pipe';
+import {WeekPipe} from './pipes/pipes.pipe';
 
 // services
 import {SERVICES_DECLARATIONS} from './services';
@@ -43,6 +51,9 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
 
 @NgModule({
   declarations: [
+    EmployeesPipe,
+    RenamePipe,
+    WeekPipe,
     AppComponent,
     AppPayComponent,
     ...COMPONENTS_DECLARATIONS,
@@ -60,15 +71,19 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     CellModule,
     SwiperModule,
     ActionSheetModule,
-    PickerModule,
+    PickerModule.forRoot(),
     ChartF2Module,
     RatingModule,
+    WxModule,
     DialogModule,
+    ButtonModule,
     UploaderModule
   ],
   providers: [
     ...SERVICES_DECLARATIONS,
     InfiniteLoaderConfig,
+    EmployeesPipe,
+    WeekPipe,
     {
       provide: SWIPER_CONFIG,
       useValue: DEFAULT_SWIPER_CONFIG

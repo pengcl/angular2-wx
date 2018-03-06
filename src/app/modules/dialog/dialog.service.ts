@@ -1,12 +1,10 @@
 import {Injectable, ComponentFactoryResolver, ApplicationRef, Injector} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
-import {Subject} from 'rxjs/Subject';
 import {BaseService} from '../../services/base.service';
 import {DialogComponent} from './dialog.component';
 
 @Injectable()
 export class DialogService extends BaseService {
-  private subject = new Subject<any>();
 
   constructor(resolver: ComponentFactoryResolver, applicationRef: ApplicationRef, injector: Injector) {
     super(resolver, applicationRef, injector);

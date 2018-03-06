@@ -32,7 +32,7 @@ import {RatingConfig} from './rating.config';
     multi: true
   }]
 })
-export class RatingComponent implements ControlValueAccessor, OnChanges {
+export class RatingComponent implements ControlValueAccessor, OnInit, OnChanges {
   /** 配置项 */
   @Input() config: RatingConfig;
   /** 是否只读模式 */
@@ -49,6 +49,9 @@ export class RatingComponent implements ControlValueAccessor, OnChanges {
   private onTouched: any = Function.prototype;
 
   constructor(private DEF: RatingConfig) {
+  }
+
+  ngOnInit() {
   }
 
   _setConfig(cog: RatingConfig) {
@@ -81,6 +84,10 @@ export class RatingComponent implements ControlValueAccessor, OnChanges {
   }
 
   writeValue(_value: any): void {
+    if (!_value) {// add by Pen G Chen lan;
+      this._rate(5);
+      return;
+    }
     if (_value % 1 !== _value) {
       this._value = Math.round(_value);
       this._preValue = _value;

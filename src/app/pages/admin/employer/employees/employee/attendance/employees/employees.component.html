@@ -1,0 +1,20 @@
+<app-navbar [navBar]="navBarConfig"></app-navbar>
+
+<div class="content-scrollable">
+
+  <div class="weui-cells">
+
+    <a [routerLink]="['/admin/employer/employees/employee/attendance',employee.housekeeperid]"
+       *ngFor="let employee of employees" class="weui-cell weui-cell_access">
+      <div class="weui-cell__hd">
+        <img class="avatar" src="{{config.prefix.wApi + employee.headimageurl}}" alt=""
+             style="width:0.2rem;height:0.2rem;margin-right:0.05rem;display:block">
+      </div>
+      <div class="weui-cell__bd">
+        <p>{{employee.name}}</p>
+      </div>
+      <div class="weui-cell__ft"></div>
+    </a>
+  </div>
+
+</div>

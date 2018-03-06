@@ -7,7 +7,7 @@
               [ngStyle]="{'background-image':'url('+ config.prefix.wApi + slide +')'}"></span>
     </swiper>
     <div class="weui-gallery__opr weui-flex">
-      <a href="javascript:" (click)="_onDel(current)" class="weui-gallery__del weui-flex__item">
+      <a *ngIf="canDelete" href="javascript:" (click)="_onDel(current)" class="weui-gallery__del weui-flex__item">
         删除
       </a>
       <a href="javascript:" class="weui-gallery__del weui-flex__item" (click)="_onHide()">

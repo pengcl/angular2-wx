@@ -1,0 +1,82 @@
+<app-navbar [navBar]="navBarConfig"></app-navbar>
+
+<div class="content-scrollable">
+  <div class="weui-tab">
+    <div class="weui-navbar">
+      <div (click)="setTab('processing')" [ngClass]="{'weui-bar__item_on' : tabState === 'processing'}" class="weui-navbar__item">
+        待处理
+      </div>
+      <div (click)="setTab('processed')" [ngClass]="{'weui-bar__item_on' : tabState === 'processed'}" class="weui-navbar__item">
+        已处理
+      </div>
+    </div>
+    <div *ngIf="tabState === 'processing'" class="weui-tab__panel">
+      <div *ngIf="approval?.processing?.length === 0" class="pageTips">
+        <h2>暂无"系统"消息</h2>
+        <p>您可以关注"大牛管家"公众号，获取最新活动消息。</p>
+      </div>
+
+      <div *ngFor="let item of approval.processing" class="weui-cells">
+        <div [routerLink]="['/admin/employer/approvals/leaves/leave',item.eventid]" class="weui-cell weui-cell_access">
+          <div class="weui-cell__hd">
+            <img class="avatar" src="{{config.prefix.wApi + item.housekeeper.headimageurl}}">
+          </div>
+          <div class="weui-cell__bd">
+            <span>{{item.housekeeper.name}}</span>
+            <span class="right">
+            <span *ngIf="item.dealstatus === 1">未处理</span>
+            <span *ngIf="item.dealstatus === 2">处理中</span>
+            <span *ngIf="item.dealstatus === 3">已通过</span>
+            <span *ngIf="item.dealstatus === 4">已拒绝</span>
+          </span>
+            <p class="weui-cell__desc">请假类型：{{item.eventtypename}}</p>
+            <p class="weui-cell__desc">开始时间：{{item.startdate}}</p>
+            <p class="weui-cell__desc">结束时间：{{item.enddate}}</p>
+          </div>
+          <div class="weui-cell__ft"></div>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="tabState === 'processed'" class="weui-tab__panel">
+      <div *ngIf="approvals?.length === 0" class="pageTips">
+        <h2>暂无"系统"消息</h2>
+        <p>您可以关注"大牛管家"公众号，获取最新活动消息。</p>
+      </div>
+
+      <div *ngFor="let item of approval.processed" class="weui-cells">
+        <div [routerLink]="['/admin/employer/approvals/leaves/leave',item.eventid]" class="weui-cell weui-cell_access">
+          <div class="weui-cell__hd">
+            <img class="avatar" src="{{config.prefix.wApi + item.housekeeper.headimageurl}}">
+          </div>
+          <div class="weui-cell__bd">
+            <span>{{item.housekeeper.name}}</span>
+            <span class="right">
+            <span *ngIf="item.dealstatus === 1">未处理</span>
+            <span *ngIf="item.dealstatus === 2">处理中</span>
+            <span *ngIf="item.dealstatus === 3">已通过</span>
+            <span *ngIf="item.dealstatus === 4">已拒绝</span>
+          </span>
+            <p class="weui-cell__desc">请假类型：{{item.eventtypename}}</p>
+            <p class="weui-cell__desc">开始时间：{{item.startdate}}</p>
+            <p class="weui-cell__desc">结束时间：{{item.enddate}}</p>
+          </div>
+          <div class="weui-cell__ft"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--<div *ngIf="approvals?.length > 0" class="weui-cells">
+    <div *ngFor="let approval of approvals" class="weui-cell">
+      <div class="weui-cell__hd">
+        <img class="avatar" src="/assets/images/avatars/1.jpg" alt="">
+      </div>
+      <div class="weui-cell__bd">
+        <p>标题文字<span class="right">13:54</span></p>
+        <p class="weui-media-box__desc">由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。</p>
+      </div>
+      <div class="weui-cell__ft"></div>
+    </div>
+  </div>-->
+</div>

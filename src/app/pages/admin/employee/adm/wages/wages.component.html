@@ -1,0 +1,82 @@
+<app-navbar [navBar]="navBarConfig"></app-navbar>
+
+<div class="content-scrollable">
+
+  <app-msg *ngIf="!wages" [msg]='{title:"暂无\"工资\"记录",desc:"您可以关注\"大牛管家\"公众号，获取最新活动消息。",cancel:"返回"}'></app-msg>
+
+  <div *ngIf="wages" class="weui-form-preview">
+    <div class="weui-form-preview__hd">
+      <div class="weui-form-preview__item">
+        <label class="weui-form-preview__label">{{dateMonth}} 更改</label>
+        <em (click)="onPickerShow()" class="weui-form-preview__value">实发工资:{{wages.realwages}}</em>
+      </div>
+    </div>
+    <div class="weui-form-preview__bd">
+      <div class="weui-form-preview__item">
+        <label class="weui-form-preview__label">基本工资</label>
+        <span class="green weui-form-preview__value">{{wages.basepay}}</span>
+      </div>
+      <div class="weui-form-preview__item">
+        <label class="weui-form-preview__label">考核奖金</label>
+        <span class="green weui-form-preview__value">{{wages.meritpay}}</span>
+      </div>
+      <div class="weui-form-preview__item">
+        <label class="weui-form-preview__label">补贴</label>
+        <span class="green weui-form-preview__value">{{wages.subsidy}}</span>
+      </div>
+      <div class="weui-form-preview__item">
+        <label class="weui-form-preview__label">请假</label>
+        <span class="red weui-form-preview__value">-{{wages.leavemoney}}</span>
+      </div>
+      <div class="weui-form-preview__item">
+        <label class="weui-form-preview__label">迟到</label>
+        <span class="red weui-form-preview__value">{{wages.meritpay}}</span>
+      </div>
+      <div class="weui-form-preview__item">
+        <label class="weui-form-preview__label">加班</label>
+        <span class="green weui-form-preview__value">{{wages.overtime}}</span>
+      </div>
+      <div class="weui-form-preview__item">
+        <label class="weui-form-preview__label">本月应发工资</label>
+        <span class="weui-form-preview__value">{{wages.grosspay}}</span>
+      </div>
+      <div class="weui-form-preview__item">
+        <label class="weui-form-preview__label">养老保险</label>
+        <span class="red weui-form-preview__value">-{{wages.endowmentinsurance}}</span>
+      </div>
+      <div class="weui-form-preview__item">
+        <label class="weui-form-preview__label">医疗保险</label>
+        <span class="red weui-form-preview__value">-{{wages.medicalinsurance}}</span>
+      </div>
+      <div class="weui-form-preview__item">
+        <label class="weui-form-preview__label">失业保险</label>
+        <span class="red weui-form-preview__value">-{{wages.unemploymentinsurance}}</span>
+      </div>
+      <div class="weui-form-preview__item">
+        <label class="weui-form-preview__label">工伤保险</label>
+        <span class="red weui-form-preview__value">-{{wages.eiinsurance}}</span>
+      </div>
+      <div class="weui-form-preview__item">
+        <label class="weui-form-preview__label">生育保险</label>
+        <span class="red weui-form-preview__value">-{{wages.maternityinsurance}}</span>
+      </div>
+      <div class="weui-form-preview__item">
+        <label class="weui-form-preview__label">税前应发工资</label>
+        <span class="weui-form-preview__value">{{wages.grosspay}}</span>
+      </div>
+      <div class="weui-form-preview__item">
+        <label class="weui-form-preview__label">扣除个人所得税</label>
+        <span class="red weui-form-preview__value">-{{wages.incometax}}</span>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="wages" class="weui-panel">
+    <div class="weui-panel__hd">备注</div>
+    <div class="weui-panel__bd">
+      <div class="weui-media-box weui-media-box_text">
+        <p class="weui-media-box__desc">{{wages?.remark}}</p>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,80 @@
+.content-scrollable {
+  background: #fff;
+}
+
+em {
+  font-style: normal;
+  color: #EA5A2B;
+}
+
+.check-list {
+  .check-item {
+    width: 50%;
+  }
+}
+
+.weui-panel__hd {
+  &.error {
+    color: red;
+  }
+}
+
+.weui-cells.weui-cells_form {
+  margin-top: 0;
+  font-size: 0.14rem;
+  &:before, &:after {
+    display: none;
+  }
+  .weui-cell {
+    &:before, &:after {
+      display: none;
+    }
+    padding: 0.05rem 0.15rem;
+    .weui-cell__hd {
+      align-self: center;
+      .weui-label {
+        width: 5em;
+      }
+    }
+    .weui-cell__bd {
+      background: #F5F5F5;
+      padding: 0.1rem 0.15rem;
+      border-radius: 0.02rem;
+    }
+  }
+}
+
+
+.weui-cells__tips {
+  font-size: 0.12rem;
+}
+
+.weui-panel {
+  margin-top: 0.3rem;
+  padding-top: 0.2rem;
+
+  &:before {
+    left: 0.15rem;
+    right: 0.15rem;
+    border-top-width: 4px;
+  }
+  &:after {
+    display: none;
+  }
+  .weui-panel__hd {
+    &:after {
+      display: none;
+    }
+    p {
+      font-size: 0.14rem;
+      color: #0f0f0f;
+      font-weight: bold;
+    }
+    p + p {
+      margin-top: 0.1rem;
+    }
+  }
+  .weui-media-box {
+    padding-top: 0;
+  }
+}

@@ -15,6 +15,10 @@ var auth = require('./routes/wx/auth');
 var getUsers = require('./routes/wx/getUsers');
 var wxConfig = require('./routes/wx/config');
 var users = require('./routes/users');
+var log = require('./routes/log');
+
+var config = require('./config/config.json');
+var utils = require('./utils/utils');
 
 var app = express();
 
@@ -37,7 +41,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 //微信签名认证
-//app.use(utils.sign(config));
+/*app.use(utils.sign(config));*/
 
 app.use('/', index);
 app.use('/lists', lists);
@@ -47,6 +51,7 @@ app.use('/wx/auth', auth);
 app.use('/wx/getUsers', getUsers);
 app.use('/location', qLocation);
 app.use('/users', users);
+app.use('/log', log);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

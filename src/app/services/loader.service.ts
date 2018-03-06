@@ -1,6 +1,5 @@
 import {Injectable, Inject} from '@angular/core';
-import {DOCUMENT} from '@angular/platform-browser';
-import {Subject} from 'rxjs/Subject';
+import {DOCUMENT} from '@angular/common';
 
 @Injectable()
 export class LoaderService {

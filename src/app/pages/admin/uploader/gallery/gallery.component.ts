@@ -1,15 +1,14 @@
-import {Component, ViewEncapsulation, ViewChild, Input, OnInit} from '@angular/core';
-import {Location, LocationStrategy, PathLocationStrategy} from '@angular/common';
+import {Component, OnInit} from '@angular/core';
 
 import 'rxjs/add/operator/switchMap';
 
 import {PageConfig} from './page.config';
 import {Config} from '../../../../config';
 
-import {UploaderOptions, FileItem, Uploader, UploaderHeaders} from '../../../../modules/uploader';
-import {WXService} from '../../../../services/wx.service';
+import {UploaderOptions, Uploader} from '../../../../modules/uploader';
+import {WxService} from '../../../../modules/wx';
 import {UserService} from '../../../../services/user.service';
-import {ButlerService} from '../../../../services/butler.service';
+import {EmployeeService} from '../../../../services/employee.service';
 
 declare var F2: any;
 
@@ -22,8 +21,8 @@ export class AdminUploaderGalleryComponent implements OnInit {
   tabBarConfig = PageConfig.tabBar;
   navBarConfig = PageConfig.navBar;
 
-  userId: string;
   user: any;
+  housekeeper;
 
   img: any;
   imgShow: boolean = false;
@@ -32,8 +31,9 @@ export class AdminUploaderGalleryComponent implements OnInit {
     url: Config.prefix.wApi + '/interface/housekeeper/uploadImage.ht',
     headers: [],
     params: {
-      housekeeperId: '10000096750345'
+      housekeeperId: ''
     },
+    auto: true,
     // 自定义transport
     // uploadTransport: function(item: FileItem) {
     //     return Observable.create(observer => {
@@ -82,18 +82,17 @@ export class AdminUploaderGalleryComponent implements OnInit {
     }
   });
 
-  constructor(private wx: WXService,
+  constructor(private wx: WxService,
               private userSvc: UserService,
-              private butlerSvc: ButlerService) {
+              private employeeSvc: EmployeeService) {
   }
 
   ngOnInit() {
-    if (this.wx.isWx()) {
-      this.userId = this.userSvc.isLogin();
-      this.userSvc.getUser(this.userId).then(user => {
-        this.user = user;
-      });
-    }
+    this.user = this.userSvc.isLogin();
+    this.uploader.options.params.housekeeperId = this.user.housekeeperId;
+    this.employeeSvc.getHousekeeper(this.user.housekeeperId).then(res => {
+      this.housekeeper = res.housekeeper;
+    });
   }
 
   onGallery(item: any) {

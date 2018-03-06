@@ -1,0 +1,458 @@
+<app-navbar [navBar]="navBarConfig"></app-navbar>
+
+<div #scrollMe class="content-scrollable has-footer">
+  <div class="img-box">
+    <img src="/assets/images/front/investigate/banner.png">
+  </div>
+  <div class="check-city weui-panel weui-panel_access">
+    <div class="weui-panel__hd" [ngClass]="{'error':investigateForm.get('city').invalid && isSubmit}">1、您所在的城市是？</div>
+    <div class="weui-panel__bd">
+      <div class="weui-media-box">
+        <div class="check-list weui-grids">
+          <div class="check-item weui-grid">
+            <div (click)="select('city','北京')" [ngClass]="{'curr':investigateForm.get('city').value === '北京'}"
+                 class="check-box">
+              <div class="weui-grid__label">北京</div>
+              <span class="weui-grid__icon"></span>
+            </div>
+          </div>
+          <div class="check-item weui-grid">
+            <div (click)="select('city','上海')" [ngClass]="{'curr':investigateForm.get('city').value === '上海'}"
+                 class="check-box">
+              <div class="weui-grid__label">上海</div>
+              <span class="weui-grid__icon"></span>
+            </div>
+          </div>
+          <div class="check-item weui-grid">
+            <div (click)="select('city','广州')" [ngClass]="{'curr':investigateForm.get('city').value === '广州'}"
+                 class="check-box">
+              <div class="weui-grid__label">广州</div>
+              <span class="weui-grid__icon"></span>
+            </div>
+          </div>
+          <div class="check-item weui-grid">
+            <div (click)="select('city','深圳')" [ngClass]="{'curr':investigateForm.get('city').value === '深圳'}"
+                 class="check-box">
+              <div class="weui-grid__label">深圳</div>
+              <span class="weui-grid__icon"></span>
+            </div>
+          </div>
+          <div class="check-item weui-grid">
+            <div (click)="select('city','杭州')" [ngClass]="{'curr':investigateForm.get('city').value === '杭州'}"
+                 class="check-box">
+              <div class="weui-grid__label">杭州</div>
+              <span class="weui-grid__icon"></span>
+            </div>
+          </div>
+          <div class="check-item weui-grid">
+            <div (click)="select('city','其他')" [ngClass]="{'curr':investigateForm.get('city').value === '其他'}"
+                 class="check-box">
+              <div class="weui-grid__label">其他</div>
+              <span class="weui-grid__icon"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="check-todo weui-panel weui-panel_access">
+    <div class="weui-panel__hd" [ngClass]="{'error':investigateForm.get('todo').invalid && isSubmit}">
+      2、您希望管家主要为您做什么工作呢？(多选)
+    </div>
+    <div class="weui-panel__bd">
+      <div class="weui-media-box">
+        <div class="check-list weui-grids">
+          <div class="check-item weui-grid">
+            <div (click)="selects('todo','司机工作（驾车及维护）')"
+                 [ngClass]="{'curr':investigateForm.get('todo').value.indexOf('司机工作（驾车及维护）') !== -1}" class="check-box">
+              <div class="weui-grid__label">司机工作（驾车及维护）</div>
+              <span class="weui-grid__icon"></span>
+            </div>
+          </div>
+          <div class="check-item weui-grid">
+            <div (click)="selects('todo','人身跟随及家人陪护')"
+                 [ngClass]="{'curr':investigateForm.get('todo').value.indexOf('人身跟随及家人陪护') !== -1}" class="check-box">
+              <div class="weui-grid__label">人身跟随及家人陪护</div>
+              <span class="weui-grid__icon"></span>
+            </div>
+          </div>
+          <div class="check-item weui-grid">
+            <div (click)="selects('todo','健康运动陪练及指导')"
+                 [ngClass]="{'curr':investigateForm.get('todo').value.indexOf('健康运动陪练及指导') !== -1}" class="check-box">
+              <div class="weui-grid__label">健康运动陪练及指导</div>
+              <span class="weui-grid__icon"></span>
+            </div>
+          </div>
+          <div class="check-item weui-grid">
+            <div (click)="selects('todo','工作事务助理')"
+                 [ngClass]="{'curr':investigateForm.get('todo').value.indexOf('工作事务助理') !== -1}" class="check-box">
+              <div class="weui-grid__label">工作事务助理</div>
+              <span class="weui-grid__icon"></span>
+            </div>
+          </div>
+          <div class="check-item weui-grid">
+            <div (click)="selects('todo','贵重物品管理和保养')"
+                 [ngClass]="{'curr':investigateForm.get('todo').value.indexOf('贵重物品管理和保养') !== -1}" class="check-box">
+              <div class="weui-grid__label">贵重物品管理和保养</div>
+              <span class="weui-grid__icon"></span>
+            </div>
+          </div>
+          <div class="check-item weui-grid">
+            <div (click)="selects('todo','生活照料及家务助理')"
+                 [ngClass]="{'curr':investigateForm.get('todo').value.indexOf('生活照料及家务助理') !== -1}" class="check-box">
+              <div class="weui-grid__label">生活照料及家务助理</div>
+              <span class="weui-grid__icon"></span>
+            </div>
+          </div>
+          <div class="check-item weui-grid">
+            <div (click)="selects('todo','旅游出行计划安排')"
+                 [ngClass]="{'curr':investigateForm.get('todo').value.indexOf('旅游出行计划安排') !== -1}" class="check-box">
+              <div class="weui-grid__label">旅游出行计划安排</div>
+              <span class="weui-grid__icon"></span>
+            </div>
+          </div>
+          <div class="check-item weui-grid">
+            <div (click)="selects('todo','其他')"
+                 [ngClass]="{'curr':investigateForm.get('todo').value.indexOf('其他') !== -1}" class="check-box">
+              <div class="weui-grid__label">其他</div>
+              <span class="weui-grid__icon"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="check-requirement weui-panel weui-panel_access">
+    <div class="weui-panel__hd" [ngClass]="{'error':investigateForm.get('requirement').invalid && isSubmit}">
+      3、对管家的身高体形有什么要求？
+    </div>
+    <div class="weui-panel__bd">
+      <div class="weui-media-box">
+        <div class="check-list weui-grids">
+          <div class="title check-item weui-grid">
+            <div class="check-box">
+              <div [ngClass]="{'error':!requirement[0] && isSubmit}" class="weui-grid__label">身高</div>
+            </div>
+          </div>
+          <div class="check-item weui-grid">
+            <div (click)="dbSelect('requirement',['无要求',requirement[1]])" [ngClass]="{'curr':requirement[0] === '无要求'}" class="check-box">
+              <div class="weui-grid__label">无要求</div>
+              <span class="weui-grid__icon"></span>
+            </div>
+          </div>
+          <div class="check-item weui-grid">
+            <div (click)="dbSelect('requirement',['175cm以上',requirement[1]])" [ngClass]="{'curr':requirement[0] === '175cm以上'}" class="check-box">
+              <div class="weui-grid__label">175cm以上</div>
+              <span class="weui-grid__icon"></span>
+            </div>
+          </div>
+          <div class="check-item weui-grid">
+            <div (click)="dbSelect('requirement',['180cm以上',requirement[1]])" [ngClass]="{'curr':requirement[0] === '180cm以上'}" class="check-box">
+              <div class="weui-grid__label">180cm以上</div>
+              <span class="weui-grid__icon"></span>
+            </div>
+          </div>
+          <div class="title check-item weui-grid">
+            <div class="check-box">
+              <div [ngClass]="{'error':!requirement[1] && isSubmit}" class="weui-grid__label">体形</div>
+            </div>
+          </div>
+          <div class="check-item weui-grid">
+            <div (click)="dbSelect('requirement',[requirement[0],'无要求'])" [ngClass]="{'curr':requirement[1] === '无要求'}" class="check-box">
+              <div class="weui-grid__label">无要求</div>
+              <span class="weui-grid__icon"></span>
+            </div>
+          </div>
+          <div class="check-item weui-grid">
+            <div (click)="dbSelect('requirement',[requirement[0],'身材高大'])" [ngClass]="{'curr':requirement[1] === '身材高大'}" class="check-box">
+              <div class="weui-grid__label">身材高大</div>
+              <span class="weui-grid__icon"></span>
+            </div>
+          </div>
+          <div class="check-item weui-grid">
+            <div (click)="dbSelect('requirement',[requirement[0],'身材适中'])" [ngClass]="{'curr':requirement[1] === '身材适中'}" class="check-box">
+              <div class="weui-grid__label">身材适中</div>
+              <span class="weui-grid__icon"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div #skill class="check-skill weui-panel weui-panel_access">
+    <div class="weui-panel__hd" [ngClass]="{'error':investigateForm.get('skill').invalid && isSubmit}">4、您最注重管家的哪些技能呢？(多选)
+    </div>
+    <div class="weui-panel__bd">
+      <div class="weui-media-box">
+        <div class="check-list weui-grids">
+          <div class="check-item weui-grid">
+            <div (click)="selects('skill','驾驶能力')"
+                 [ngClass]="{'curr':investigateForm.get('skill').value.indexOf('驾驶能力') !== -1}" class="check-box">
+              <div class="weui-grid__label">驾驶能力</div>
+              <span class="weui-grid__icon"></span>
+            </div>
+          </div>
+          <div class="check-item weui-grid">
+            <div (click)="selects('skill','出行安排')"
+                 [ngClass]="{'curr':investigateForm.get('skill').value.indexOf('出行安排') !== -1}" class="check-box">
+              <div class="weui-grid__label">出行安排</div>
+              <span class="weui-grid__icon"></span>
+            </div>
+          </div>
+          <div class="check-item weui-grid">
+            <div (click)="selects('skill','运动指导')"
+                 [ngClass]="{'curr':investigateForm.get('skill').value.indexOf('运动指导') !== -1}" class="check-box">
+              <div class="weui-grid__label">运动指导</div>
+              <span class="weui-grid__icon"></span>
+            </div>
+          </div>
+          <div class="check-item weui-grid">
+            <div (click)="selects('skill','运动陪练')"
+                 [ngClass]="{'curr':investigateForm.get('skill').value.indexOf('运动陪练') !== -1}" class="check-box">
+              <div class="weui-grid__label">运动陪练</div>
+              <span class="weui-grid__icon"></span>
+            </div>
+          </div>
+          <div class="check-item weui-grid">
+            <div (click)="selects('skill','健康建议')"
+                 [ngClass]="{'curr':investigateForm.get('skill').value.indexOf('健康建议') !== -1}" class="check-box">
+              <div class="weui-grid__label">健康建议</div>
+              <span class="weui-grid__icon"></span>
+            </div>
+          </div>
+          <div class="check-item weui-grid">
+            <div (click)="selects('skill','安全防护')"
+                 [ngClass]="{'curr':investigateForm.get('skill').value.indexOf('安全防护') !== -1}" class="check-box">
+              <div class="weui-grid__label">安全防护</div>
+              <span class="weui-grid__icon"></span>
+            </div>
+          </div>
+          <div class="check-item weui-grid">
+            <div (click)="selects('skill','消防意识')"
+                 [ngClass]="{'curr':investigateForm.get('skill').value.indexOf('消防意识') !== -1}" class="check-box">
+              <div class="weui-grid__label">消防意识</div>
+              <span class="weui-grid__icon"></span>
+            </div>
+          </div>
+          <div class="check-item weui-grid">
+            <div (click)="selects('skill','急救知识')"
+                 [ngClass]="{'curr':investigateForm.get('skill').value.indexOf('急救知识') !== -1}" class="check-box">
+              <div class="weui-grid__label">急救知识</div>
+              <span class="weui-grid__icon"></span>
+            </div>
+          </div>
+          <div class="check-item weui-grid">
+            <div (click)="selects('skill','法律常识')"
+                 [ngClass]="{'curr':investigateForm.get('skill').value.indexOf('法律常识') !== -1}" class="check-box">
+              <div class="weui-grid__label">法律常识</div>
+              <span class="weui-grid__icon"></span>
+            </div>
+          </div>
+          <div class="check-item weui-grid">
+            <div (click)="selects('skill','生活助理')"
+                 [ngClass]="{'curr':investigateForm.get('skill').value.indexOf('生活助理') !== -1}" class="check-box">
+              <div class="weui-grid__label">生活助理</div>
+              <span class="weui-grid__icon"></span>
+            </div>
+          </div>
+          <div class="check-item weui-grid">
+            <div (click)="selects('skill','会议组织')"
+                 [ngClass]="{'curr':investigateForm.get('skill').value.indexOf('会议组织') !== -1}" class="check-box">
+              <div class="weui-grid__label">会议组织</div>
+              <span class="weui-grid__icon"></span>
+            </div>
+          </div>
+          <div class="check-item weui-grid">
+            <div (click)="selects('skill','接待礼仪')"
+                 [ngClass]="{'curr':investigateForm.get('skill').value.indexOf('接待礼仪') !== -1}" class="check-box">
+              <div class="weui-grid__label">接待礼仪</div>
+              <span class="weui-grid__icon"></span>
+            </div>
+          </div>
+          <div class="check-item weui-grid">
+            <div (click)="selects('skill','陪伴老人')"
+                 [ngClass]="{'curr':investigateForm.get('skill').value.indexOf('陪伴老人') !== -1}" class="check-box">
+              <div class="weui-grid__label">陪伴老人</div>
+              <span class="weui-grid__icon"></span>
+            </div>
+          </div>
+          <div class="check-item weui-grid">
+            <div (click)="selects('skill','照顾小孩')"
+                 [ngClass]="{'curr':investigateForm.get('skill').value.indexOf('照顾小孩') !== -1}" class="check-box">
+              <div class="weui-grid__label">照顾小孩</div>
+              <span class="weui-grid__icon"></span>
+            </div>
+          </div>
+          <div class="check-item weui-grid">
+            <div (click)="selects('skill','心理素质')"
+                 [ngClass]="{'curr':investigateForm.get('skill').value.indexOf('心理素质') !== -1}" class="check-box">
+              <div class="weui-grid__label">心理素质</div>
+              <span class="weui-grid__icon"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="check-age weui-panel weui-panel_access">
+    <div class="weui-panel__hd" [ngClass]="{'error':investigateForm.get('age').invalid && isSubmit}">5、对管家的年龄有要求吗？</div>
+    <div class="weui-panel__bd">
+      <div class="weui-media-box">
+        <div class="check-list weui-grids">
+          <div class="check-item weui-grid">
+            <div (click)="select('age','无要求')" [ngClass]="{'curr':investigateForm.get('age').value === '无要求'}"
+                 class="check-box">
+              <div class="weui-grid__label">无要求</div>
+              <span class="weui-grid__icon"></span>
+            </div>
+          </div>
+          <div class="check-item weui-grid">
+            <div (click)="select('age','20-25岁')" [ngClass]="{'curr':investigateForm.get('age').value === '20-25岁'}"
+                 class="check-box">
+              <div class="weui-grid__label">20-25岁</div>
+              <span class="weui-grid__icon"></span>
+            </div>
+          </div>
+          <div class="check-item weui-grid">
+            <div (click)="select('age','26-30岁')" [ngClass]="{'curr':investigateForm.get('age').value === '26-30岁'}"
+                 class="check-box">
+              <div class="weui-grid__label">26-30岁</div>
+              <span class="weui-grid__icon"></span>
+            </div>
+          </div>
+          <div class="check-item weui-grid">
+            <div (click)="select('age','31-35岁')" [ngClass]="{'curr':investigateForm.get('age').value === '31-35岁'}"
+                 class="check-box">
+              <div class="weui-grid__label">31-35岁</div>
+              <span class="weui-grid__icon"></span>
+            </div>
+          </div>
+          <div class="check-item weui-grid">
+            <div (click)="select('age','36岁以上')" [ngClass]="{'curr':investigateForm.get('age').value === '36岁以上'}"
+                 class="check-box">
+              <div class="weui-grid__label">36岁以上</div>
+              <span class="weui-grid__icon"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="check-character weui-panel weui-panel_access">
+    <div class="weui-panel__hd" [ngClass]="{'error':investigateForm.get('character').invalid && isSubmit}">
+      6、希望管家的性格如何？
+    </div>
+    <div class="weui-panel__bd">
+      <div class="weui-media-box">
+        <div class="check-list weui-grids">
+          <div class="check-item weui-grid">
+            <div (click)="select('character','无要求')"
+                 [ngClass]="{'curr':investigateForm.get('character').value === '无要求'}" class="check-box">
+              <div class="weui-grid__label">无要求</div>
+              <span class="weui-grid__icon"></span>
+            </div>
+          </div>
+          <div class="check-item weui-grid">
+            <div (click)="select('character','内敛')" [ngClass]="{'curr':investigateForm.get('character').value === '内敛'}"
+                 class="check-box">
+              <div class="weui-grid__label">内敛</div>
+              <span class="weui-grid__icon"></span>
+            </div>
+          </div>
+          <div class="check-item weui-grid">
+            <div (click)="select('character','外向')" [ngClass]="{'curr':investigateForm.get('character').value === '外向'}"
+                 class="check-box">
+              <div class="weui-grid__label">外向</div>
+              <span class="weui-grid__icon"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="check-marriage weui-panel weui-panel_access">
+    <div class="weui-panel__hd" [ngClass]="{'error':investigateForm.get('marriage').invalid && isSubmit}">
+      7、对管家的婚姻状态是否有要求？
+    </div>
+    <div class="weui-panel__bd">
+      <div class="weui-media-box">
+        <div class="check-list weui-grids">
+          <div class="check-item weui-grid">
+            <div (click)="select('marriage','无要求')" [ngClass]="{'curr':investigateForm.get('marriage').value === '无要求'}"
+                 class="check-box">
+              <div class="weui-grid__label">无要求</div>
+              <span class="weui-grid__icon"></span>
+            </div>
+          </div>
+          <div class="check-item weui-grid">
+            <div (click)="select('marriage','已婚')" [ngClass]="{'curr':investigateForm.get('marriage').value === '已婚'}"
+                 class="check-box">
+              <div class="weui-grid__label">已婚</div>
+              <span class="weui-grid__icon"></span>
+            </div>
+          </div>
+          <div class="check-item weui-grid">
+            <div (click)="select('marriage','未婚')" [ngClass]="{'curr':investigateForm.get('marriage').value === '未婚'}"
+                 class="check-box">
+              <div class="weui-grid__label">未婚</div>
+              <span class="weui-grid__icon"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="check-budget weui-panel weui-panel_access">
+    <div class="weui-panel__hd" [ngClass]="{'error':investigateForm.get('budget').invalid && isSubmit}">
+      8、您聘用一位管家的每月预算大概是多少？
+    </div>
+    <div class="weui-panel__bd">
+      <div class="weui-media-box">
+        <div class="check-list weui-grids">
+          <div class="check-item weui-grid">
+            <div (click)="select('budget','8000元以下')"
+                 [ngClass]="{'curr':investigateForm.get('budget').value === '8000元以下'}" class="check-box">
+              <div class="weui-grid__label">8000元以下</div>
+              <span class="weui-grid__icon"></span>
+            </div>
+          </div>
+          <div class="check-item weui-grid">
+            <div (click)="select('budget','8000-12000元')"
+                 [ngClass]="{'curr':investigateForm.get('budget').value === '8000-12000元'}" class="check-box">
+              <div class="weui-grid__label">8000-12000元</div>
+              <span class="weui-grid__icon"></span>
+            </div>
+          </div>
+          <div class="check-item weui-grid">
+            <div (click)="select('budget','12000-15000元')"
+                 [ngClass]="{'curr':investigateForm.get('budget').value === '12000-15000元'}" class="check-box">
+              <div class="weui-grid__label">12000-15000元</div>
+              <span class="weui-grid__icon"></span>
+            </div>
+          </div>
+          <div class="check-item weui-grid">
+            <div (click)="select('budget','15000元以上')"
+                 [ngClass]="{'curr':investigateForm.get('budget').value === '15000元以上'}" class="check-box">
+              <div class="weui-grid__label">15000元以上</div>
+              <span class="weui-grid__icon"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="weui-btn-area">
+    <button (click)="onSubmit()" [userTrack]="'submit'" [ngClass]="{'weui-btn_disabled':investigateForm.invalid}"
+            class="weui-btn weui-btn_primary box-shadow">
+      提交
+    </button>
+  </div>
+</div>

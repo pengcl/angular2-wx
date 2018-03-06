@@ -1,13 +1,10 @@
 import {Component, OnInit, OnChanges, Input, Output, SimpleChanges, EventEmitter, ViewChild, AfterViewInit} from '@angular/core';
-import {animate, state, style, transition, trigger} from '@angular/animations';
 import {Title} from '@angular/platform-browser';
 import {
-  SwiperComponent, SwiperDirective, SwiperConfigInterface,
-  SwiperScrollbarInterface, SwiperPaginationInterface
+  SwiperComponent, SwiperDirective
 } from 'ngx-swiper-wrapper';
 
 import {Config} from '../../config';
-import {getIndex} from '../../utils/utils';
 
 @Component({
   selector: 'app-gallery',
@@ -43,7 +40,6 @@ export class GalleryComponent implements OnInit, OnChanges, AfterViewInit {
   @ViewChild(SwiperComponent) componentRef: SwiperComponent; // ngAfterViewInit
 
   _onDel(current: any) {
-    console.log(current);
     if (this.canDelete) {
       this.delete.emit(current);
       this._onHide();
@@ -59,7 +55,7 @@ export class GalleryComponent implements OnInit, OnChanges, AfterViewInit {
 
   onIndexChange(index: number) {
     this.current = index;
-    this.titleService.setTitle(String(index + 1) + '/' + String(this.slides.length));
+    // this.titleService.setTitle(1 + '/' + String(this.slides.length));
   }
 
   ngOnChanges(changes: SimpleChanges) {

@@ -5,49 +5,54 @@ export const ORDERLIST: any[] = [
   {
     id: 'DX000001',
     amount: 36000,
+    paid: 12000,
     payState: {
-      paid: false,
+      amount: 36000,
+      paid: 12000,
       type: 0,
-      period: [
+      periods: [
         {
-          paid: true,
+          paid: 12000,
           amount: 12000,
           meta: {
-            createAt: 1515400329000,
-            paidAt: 1515400329000,
-            expireAt: 1515400329000
+            createAt: '2018-01-27 16:00:00',
+            paidAt: '2018-01-27 16:00:00',
+            expireAt: '2018-01-27 16:00:00'
+          }
+        },
+        {
+          paid: 12000,
+          amount: 12000,
+          meta: {
+            createAt: '2018-02-27 16:00:00',
+            paidAt: '2018-02-27 16:00:00',
+            expireAt: '2018-02-27 16:00:00'
           }
         },
         {
           paid: true,
           amount: 12000,
           meta: {
-            createAt: 1515400329000,
-            paidAt: 1515400329000,
-            expireAt: 1515400329000
-          }
-        },
-        {
-          paid: true,
-          amount: 12000,
-          meta: {
-            createAt: 1515400329000,
-            paidAt: 1515400329000,
-            expireAt: 1515400329000
+            createAt: '2018-03-27 16:00:00',
+            paidAt: '2018-03-27 16:00:00',
+            expireAt: '2018-03-27 16:00:00'
           }
         }
       ]
     },
     meta: {
-      createAt: 1515400329000,
-      updateAt: 1515400329000,
-      expireAt: 1515400329000
+      createAt: '2018-01-27 16:00:00',
+      updateAt: '2018-01-27 16:00:00',
+      expireAt: '2018-01-27 16:00:00'
     },
-    items: [
+    employees: [
       {
         id: '001',
-        type: 1,
-        serviceType: '健身教练',
+        no: '001',
+        type: {
+          id: 1,
+          name: '健身教练'
+        },
         name: '黑寡妇',
         age: 40,
         sex: 0,
@@ -62,15 +67,18 @@ export const ORDERLIST: any[] = [
         level: 2,
         like: false,
         meta: {
-          createAt: 1515400329000,
-          updateAt: 1515400329000,
-          expireAt: 1515400329000
+          createAt: '2018-01-27 16:00:00',
+          updateAt: '2018-01-27 16:00:00',
+          expireAt: '2018-01-27 16:00:00'
         },
       },
       {
         id: '002',
-        type: 1,
-        serviceType: '安全保障',
+        no: '002',
+        type: {
+          id: 1,
+          name: '安全保障'
+        },
         name: '钢铁侠',
         age: 40,
         sex: 1,
@@ -85,9 +93,9 @@ export const ORDERLIST: any[] = [
         level: 1,
         like: false,
         meta: {
-          createAt: 1515400329000,
-          updateAt: 1515400329000,
-          expireAt: 1515400329000
+          createAt: '2018-01-27 16:00:00',
+          updateAt: '2018-01-27 16:00:00',
+          expireAt: '2018-01-27 16:00:00'
         },
       }
     ]
@@ -95,49 +103,53 @@ export const ORDERLIST: any[] = [
   {
     id: 'DX000002',
     amount: 36000,
+    paid: 12000,
     payState: {
-      paid: false,
+      amount: 36000,
+      paid: 12000,
       type: 0,
-      period: [
+      periods: [
         {
           paid: true,
           amount: 12000,
           meta: {
-            createAt: 1515400329000,
-            paidAt: 1515400329000,
-            expireAt: 1515400329000
+            createAt: '2018-01-27 16:00:00',
+            paidAt: '2018-01-27 16:00:00',
+            expireAt: '2018-01-27 16:00:00'
           }
         },
         {
           paid: true,
           amount: 12000,
           meta: {
-            createAt: 1515400329000,
-            paidAt: 1515400329000,
-            expireAt: 1515400329000
+            createAt: '2018-02-27 16:00:00',
+            paidAt: '2018-02-27 16:00:00',
+            expireAt: '2018-02-27 16:00:00'
           }
         },
         {
           paid: true,
           amount: 12000,
           meta: {
-            createAt: 1515400329000,
-            paidAt: 1515400329000,
-            expireAt: 1515400329000
+            createAt: '2018-03-27 16:00:00',
+            paidAt: '2018-03-27 16:00:00',
+            expireAt: '2018-03-27 16:00:00'
           }
         }
       ]
     },
     meta: {
-      createAt: 1515400329000,
-      updateAt: 1515400329000,
-      expireAt: 1515400329000
+      createAt: '2018-01-27 16:00:00',
+      updateAt: '2018-01-27 16:00:00',
+      expireAt: '2018-01-27 16:00:00'
     },
-    items: [
+    employees: [
       {
         id: '002',
-        type: 1,
-        serviceType: '安全保障',
+        type: {
+          id: '3',
+          name: '安全保障',
+        },
         name: '钢铁侠',
         age: 40,
         sex: 0,
@@ -152,9 +164,9 @@ export const ORDERLIST: any[] = [
         level: 2,
         like: false,
         meta: {
-          createAt: 1515400329000,
-          updateAt: 1515400329000,
-          expireAt: 1515400329000
+          createAt: '2018-01-27 16:00:00',
+          updateAt: '2018-01-27 16:00:00',
+          expireAt: '2018-01-27 16:00:00'
         },
       }
     ]
@@ -162,49 +174,53 @@ export const ORDERLIST: any[] = [
   {
     id: 'DX000003',
     amount: 36000,
+    paid: 12000,
     payState: {
-      paid: false,
+      amount: 36000,
+      paid: 12000,
       type: 0,
-      period: [
+      periods: [
         {
           paid: true,
           amount: 12000,
           meta: {
-            createAt: 1515400329000,
-            paidAt: 1515400329000,
-            expireAt: 1515400329000
+            createAt: '2018-01-27 16:00:00',
+            paidAt: '2018-01-27 16:00:00',
+            expireAt: '2018-01-27 16:00:00'
           }
         },
         {
           paid: true,
           amount: 12000,
           meta: {
-            createAt: 1515400329000,
-            paidAt: 1515400329000,
-            expireAt: 1515400329000
+            createAt: '2018-02-27 16:00:00',
+            paidAt: '2018-02-27 16:00:00',
+            expireAt: '2018-02-27 16:00:00'
           }
         },
         {
           paid: true,
           amount: 12000,
           meta: {
-            createAt: 1515400329000,
-            paidAt: 1515400329000,
-            expireAt: 1515400329000
+            createAt: '2018-03-27 16:00:00',
+            paidAt: '2018-03-27 16:00:00',
+            expireAt: '2018-03-27 16:00:00'
           }
         }
       ]
     },
     meta: {
-      createAt: 1515400329000,
-      updateAt: 1515400329000,
-      expireAt: 1515400329000
+      createAt: '2018-01-27 16:00:00',
+      updateAt: '2018-01-27 16:00:00',
+      expireAt: '2018-01-27 16:00:00'
     },
-    items: [
+    employees: [
       {
         id: '002',
-        type: 1,
-        serviceType: '安全保障',
+        type: {
+          id: 1,
+          name: '安全保障'
+        },
         name: '钢铁侠',
         age: 40,
         sex: 0,
@@ -219,9 +235,9 @@ export const ORDERLIST: any[] = [
         level: 2,
         like: false,
         meta: {
-          createAt: 1515400329000,
-          updateAt: 1515400329000,
-          expireAt: 1515400329000
+          createAt: '2018-01-27 16:00:00',
+          updateAt: '2018-01-27 16:00:00',
+          expireAt: '2018-01-27 16:00:00'
         },
       }
     ]

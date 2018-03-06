@@ -1,0 +1,53 @@
+.weui-media-box_appmsg .weui-media-box__ft {
+  width: 0.6rem;
+  height: 0.6rem;
+  line-height: 0.6rem;
+  margin-left: 0.8em;
+  text-align: center;
+}
+
+.user-info {
+  color: #fff;
+  .weui-media-box_appmsg {
+    .weui-media-box__bd {
+      text-align: center;
+      position: relative;
+      padding-bottom: 3px;
+      &:before {
+        content: ' ';
+        position: absolute;
+        top: auto;
+        bottom: 3px;
+        left: 0;
+        right: 0;
+        width: 100%;
+        border-top: 1px solid #C8C8CD;
+      }
+      &:after {
+        content: " ";
+        display: inline-block;
+        height: 6px;
+        width: 6px;
+        border-width: 2px 2px 0 0;
+        border-color: #C8C8CD;
+        border-style: solid;
+        -webkit-transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
+        transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
+        position: relative;
+        position: absolute;
+        top: auto;
+        bottom: 0;
+        right: 0;
+        left: auto;
+      }
+    }
+    .weui-media-box__ft{
+      .avatar {
+        background: none;
+      }
+      &:after {
+        display: none;
+      }
+    }
+  }
+}

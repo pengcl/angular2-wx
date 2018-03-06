@@ -1,0 +1,27 @@
+.statistic {
+  text-align: center;
+  .value {
+    font-size: 0.3rem;
+    line-height: 1em;
+  }
+  .label {
+    font-size: 0.14rem;
+    line-height: 1.4285em;
+  }
+
+  &.blue {
+    .value {
+      color: #2185d0;
+    }
+  }
+  &.green {
+    .value {
+      color: #21ba45;
+    }
+  }
+  &.red {
+    .value {
+      color: #db2828;
+    }
+  }
+}
