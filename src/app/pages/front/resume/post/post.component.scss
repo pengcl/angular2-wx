@@ -1,3 +1,9 @@
 .content-scrollable {
   background-color: #f8f8f8;
 }
+
+.weui-agree.weui-cell_warn {
+  .weui-agree__text {
+    color: red !important;
+  }
+}

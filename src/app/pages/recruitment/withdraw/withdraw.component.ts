@@ -54,13 +54,22 @@ export class RecruitmentWithdrawComponent implements OnInit {
 
   // 18620803688
   onSubmit() {
-    if (this.withdrawForm.valid) {
+    if (this.withdrawForm.valid || !this.loading) {
+      this.loading = true;
       this.recruit.withdraw(this.withdrawForm.value).then(res => {
+        this.loading = false;
         if (res.code === 0) {
           this.router.navigate(['/recruitment/msg/success'], {});
-        } else {
           this.dialog.show({
             content: '您已提现￥' + res.draw.drawamount + '，账户剩余￥' + res.balance,
+            cancel: '',
+            confirm: '我知道了'
+          }).subscribe(data => {
+            console.log(data);
+          });
+        } else {
+          this.dialog.show({
+            content: res.msg,
             cancel: '',
             confirm: '我知道了'
           }).subscribe(data => {

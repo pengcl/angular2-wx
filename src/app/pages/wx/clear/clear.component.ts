@@ -24,7 +24,8 @@ export class WxClearComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.user = this.userSvc.isLogin();
+    this.user = JSON.parse(this.storage.get('user'));
+    // this.user = this.userSvc.isLogin();
   }
 
   clear() {

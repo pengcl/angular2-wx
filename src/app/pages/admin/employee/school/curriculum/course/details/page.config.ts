@@ -57,7 +57,7 @@ export const PageConfig = {
   'navBar': {
     'backgroundTextStyle': 'light',
     'navigationBarBackgroundColor': '#fff',
-    'navigationBarTitleText': '用户协议',
+    'navigationBarTitleText': '我的消息',
     'navigationBarTextStyle': 'black',
     'enablePullDownRefresh': false
   }

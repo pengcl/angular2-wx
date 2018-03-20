@@ -24,6 +24,26 @@ export class RecruitmentMsgFriendComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.wx.config({
+      title: '帮您开通大牛管家招聘账号',
+      desc: '您可以开始进行人才招聘，成功后会获得丰厚的补贴哦！',
+      link: Config.webHost + '/recruitment/msg/friend/get',
+      imgUrl: Config.webHost + '/assets/images/front/resume/share-icon.png',
+      success: () => {
+        console.log('success');
+        /*_dialog.show({content: '分享成功', cancel: '', confirm: '我知道了'}).subscribe(res => {
+          console.log(res);
+        });*/
+      },
+      cancel: function () {
+        console.log('cancel');
+      }
+    }).then(() => {
+      // 其它操作，可以确保注册成功以后才有效
+      console.log('注册成功');
+    }).catch((err: string) => {
+    });
+
     this.user = this.userSvc.isLogin();
     this.friend = this.activatedRoute.snapshot.queryParams['friend'];
   }

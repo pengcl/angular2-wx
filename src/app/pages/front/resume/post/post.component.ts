@@ -1,9 +1,9 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Router, NavigationExtras, ActivatedRoute} from '@angular/router';
 import {PageConfig} from './page.config';
 import {WxService} from '../../../../modules/wx';
-import {getAddress} from '../../../../utils/utils';
+import {getAddress, validScroll} from '../../../../utils/utils';
 import {PickerService, DialogService, ActionSheetService, ActionSheetConfig} from 'ngx-weui';
 import {DATA} from '../../../../utils/cn';
 
@@ -20,6 +20,8 @@ import {getIndex} from '../../../../utils/utils';
 export class FrontResumePostComponent implements OnInit {
   tabBarConfig = PageConfig.tabBar;
   navBarConfig = PageConfig.navBar;
+
+  @ViewChild('scrollMe') private container: any;
 
   resumeForm: FormGroup;
   isSubmit: boolean = false;
@@ -602,7 +604,7 @@ export class FrontResumePostComponent implements OnInit {
       retiredOfficerRank: new FormControl('', [Validators.required]), // registerType === 1
       drivingLicence: new FormControl('', [Validators.required, Validators.maxLength(2)]),
       driversAge: new FormControl('', [Validators.required, Validators.pattern(/^[0-9]*$/), Validators.maxLength(2)]),
-      drivingMileage: new FormControl('', [Validators.required]),
+      drivingMileage: new FormControl('', [Validators.required, Validators.min(0), Validators.max(999999)]),
 
       // 社会工作经历
       workExperience: new FormControl('', []),
@@ -621,7 +623,7 @@ export class FrontResumePostComponent implements OnInit {
       specialty: new FormControl('', []),
       certificate: new FormControl('', []),
       infections: new FormControl('', [Validators.required]),
-      userPromise: new FormControl('', [Validators.required]),
+      userPromise: new FormControl('', [Validators.required, Validators.requiredTrue]),
 
       gh: new FormControl('', []), // 下单渠道号
       referee: new FormControl('', []) // 推荐人
@@ -752,6 +754,28 @@ export class FrontResumePostComponent implements OnInit {
 
   onSubmit(form) {
     this.isSubmit = true;
+
+    const valid = validScroll(this.resumeForm.controls);
+    console.log(valid);
+
+    if (!valid.valid) {// page_scroll_to_target
+      const target = this.container.nativeElement.querySelector('.check-' + valid.control).offsetTop;
+      console.log(this.container.nativeElement.querySelector('.check-' + valid.control), target);
+      let times = 1;
+      try {
+        const interval = setInterval(() => {
+          this.container.nativeElement.scrollTop = this.container.nativeElement.scrollTop - (((this.container.nativeElement.scrollTop - target) / 320) * 16 * times);
+          times = times + 1;
+        }, 16);
+        setTimeout(function () {
+          clearInterval(interval);
+        }, 320);
+      } catch (err) {
+        console.log(err);
+      }
+      return false;
+    }
+
     if (this.resumeForm.invalid || this.loading) {
       return false;
     }
@@ -761,9 +785,9 @@ export class FrontResumePostComponent implements OnInit {
     this.loading = true;
     this.employeeSvc.resume(this.resumeForm.value).then(res => {
       this.loading = false;
-      this.dialog.show({title: '系统提示', content: res.msg}).subscribe(data => {
+      this.dialog.show({title: '系统提示', content: res.msg, cancel: '', confirm: '我知道了'}).subscribe(data => {
         console.log(data);
-        if (data === 'confirm' && res.code === 0) {
+        if (data.value && res.code === 0) {
           this.router.navigate(['/front/resume/job'], {queryParamsHandling: 'merge'});
         }
       });

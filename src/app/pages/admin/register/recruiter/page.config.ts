@@ -57,7 +57,7 @@ export const PageConfig = {
   'navBar': {
     'backgroundTextStyle': 'light',
     'navigationBarBackgroundColor': '#fff',
-    'navigationBarTitleText': '大牛管家-荐才行动细则',
+    'navigationBarTitleText': '注册招募官',
     'navigationBarTextStyle': 'black',
     'enablePullDownRefresh': false
   }

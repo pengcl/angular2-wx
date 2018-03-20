@@ -56,6 +56,7 @@ export class RecruitmentIndexComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
 
+    const _dialog = this.dialog;
     this.wx.config({
       title: '大牛管家诚聘优才',
       desc: '欢迎广大有志于高端管家助理服务的退伍军人，体育专业毕业生踊跃报名！',
@@ -63,6 +64,9 @@ export class RecruitmentIndexComponent implements OnInit, OnDestroy {
       imgUrl: Config.webHost + '/assets/images/front/resume/share-icon.png',
       success: () => {
         alert('分享成功');
+        /*_dialog.show({content: '分享成功', cancel: '', confirm: '我知道了'}).subscribe(res => {
+          console.log(res);
+        });*/
       },
       cancel: function () {
         console.log('cancel');
@@ -91,6 +95,7 @@ export class RecruitmentIndexComponent implements OnInit, OnDestroy {
     this.recruit.getChannels(this.user.id).then(res => {
       if (res.code === 0) {
         this.channels = res.list;
+        console.log(this.channels);
       }
     });
   }
