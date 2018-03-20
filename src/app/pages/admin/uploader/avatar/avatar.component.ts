@@ -4,7 +4,7 @@ import {PageConfig} from './page.config';
 import {WxService} from '../../../../modules/wx';
 import {UserService} from '../../../../services/user.service';
 import {EmployeeService} from '../../../../services/employee.service';
-import {Uploader, UploaderOptions} from '../../../../modules/uploader';
+import {Uploader, UploaderOptions} from 'ngx-weui';
 import {Config} from '../../../../config';
 
 declare var F2: any;

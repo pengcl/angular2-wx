@@ -1,15 +1,11 @@
-import {Component, OnInit, EventEmitter} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {PageConfig} from './page.config';
 import {WxService} from '../../../../modules/wx';
 import {UserService} from '../../../../services/user.service';
 import {EventService} from '../../../../services/event.service';
-import {DialogService} from '../../../../modules/dialog';
+import {DialogService, UploaderOptions, Uploader} from 'ngx-weui';
 
-import {Observer} from 'rxjs/Observer';
-import {Observable} from 'rxjs/Observable';
-
-import {UploaderOptions, Uploader} from '../../../../modules/uploader';
 import {Config} from '../../../../config';
 
 @Component({

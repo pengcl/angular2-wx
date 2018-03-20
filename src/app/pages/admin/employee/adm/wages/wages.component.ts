@@ -1,7 +1,7 @@
 import {Component, OnInit, OnDestroy} from '@angular/core';
 import {PageConfig} from './page.config';
 import {UserService} from '../../../../../services/user.service';
-import {PickerService} from '../../../../../modules/picker';
+import {PickerService} from 'ngx-weui';
 import {DatePipe} from '@angular/common';
 
 import {EmployeeService} from '../../../../../services/employee.service';

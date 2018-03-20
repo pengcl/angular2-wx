@@ -1,0 +1,44 @@
+<app-navbar [navBar]="navBarConfig"></app-navbar>
+
+<div class="content-scrollable">
+  <div class="video">
+    <vg-player *ngIf="course?.videourl">
+      <video [vgMedia]="media" #media id="singleVideo" preload="auto" controls>
+        <source src="http://static.videogular.com/assets/videos/videogular.mp4" type="video/mp4">
+      </video>
+    </vg-player>
+
+    <div class="title weui-cells">
+      <div class="weui-cell">
+        <div class="weui-cell__bd">
+          <p>{{course.serno}}.{{course.coursetitle}}</p>
+        </div>
+        <div class="weui-cell__ft">第{{course.serno}}节/共{{courseCatalog?.length}}节</div>
+      </div>
+    </div>
+    <!--<vg-player *ngIf="course?.videourl">
+      <vg-overlay-play></vg-overlay-play>
+      <vg-buffering></vg-buffering>
+
+      <vg-scrub-bar>
+        <vg-scrub-bar-current-time></vg-scrub-bar-current-time>
+        <vg-scrub-bar-buffering-time></vg-scrub-bar-buffering-time>
+      </vg-scrub-bar>
+
+      <vg-controls>
+        <vg-play-pause></vg-play-pause>
+
+        <vg-time-display vgProperty="left" vgFormat="mm:ss"></vg-time-display>
+
+        <vg-mute></vg-mute>
+        <vg-volume></vg-volume>
+
+        <vg-fullscreen></vg-fullscreen>
+      </vg-controls>
+
+      <video [vgMedia]="media" #media id="singleVideo" preload="auto" crossorigin>
+        <source src="http://static.videogular.com/assets/videos/videogular.mp4" type="video/mp4">
+      </video>
+    </vg-player>-->
+  </div>
+</div>

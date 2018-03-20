@@ -1,19 +1,14 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {PageConfig} from './page.config';
-import {WxService} from '../../../../../modules/wx';
 import {UserService} from '../../../../../services/user.service';
-import {EmployeeService} from '../../../../../services/employee.service';
-import {RatingConfig} from '../../../../../modules/rating';
+import {RatingConfig} from 'ngx-weui';
 
-import {ActivatedRoute, ParamMap} from '@angular/router';
+import {ActivatedRoute} from '@angular/router';
 import 'rxjs/add/operator/switchMap';
 
 import {Config} from '../../../../../config';
-import {DialogService} from '../../../../../modules/dialog';
+import {DialogService} from 'ngx-weui';
 import {EmployerService} from '../../../../../services/employer.service';
-import {formatOrder} from '../../../../../utils/utils';
-import {EventService} from '../../../../../services/event.service';
 
 @Component({
   selector: 'app-admin-employer-rate-add',
@@ -39,7 +34,7 @@ export class AdminEmployerRateAddComponent implements OnInit {
     stateOn: 'on'
   };
 
-  rate: number = 5;
+  level: number = 5;
 
   constructor(private userSvc: UserService,
               private router: ActivatedRoute,

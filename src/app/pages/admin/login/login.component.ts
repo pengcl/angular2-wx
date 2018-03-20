@@ -4,11 +4,9 @@ import {UserService} from '../../../services/user.service';
 import {WxService} from '../../../modules/wx';
 import {Router, ActivatedRoute} from '@angular/router';
 
-import {DialogService} from '../../../modules/dialog';
+import {DialogService} from 'ngx-weui';
 import {StorageService} from '../../../services/storage.service';
 import {PageConfig} from './page.config';
-
-declare var $: any;
 
 @Component({
   selector: 'app-admin-login',
@@ -27,6 +25,8 @@ export class AdminLoginComponent implements OnInit {
   second = 59;
   timePromise = undefined;
 
+  isKeyboardShow = false;
+
   constructor(private router: Router,
               private activatedRoute: ActivatedRoute,
               private wx: WxService,
@@ -39,19 +39,20 @@ export class AdminLoginComponent implements OnInit {
 
     this.loginForm = new FormGroup({
       mobile: new FormControl('', [Validators.required, Validators.minLength(11), Validators.maxLength(11)]),
-      code: new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(4)])
+      code: new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(4)]),
+      openid: new FormControl('', [])
     });
   }
 
-  getCode(e, mobile) {
-    if ($(e.currentTarget).hasClass('disabled')) {
+  getCode(mobile) {
+    if (!this.activeClass) {
       return false;
     }
     this.userSvc.getCode(mobile).then(res => {
       if (res.code === 0) {
         this.activeClass = false;
         // $scope.loadingToast.open(false);
-        this.timePromise = setInterval(function () {
+        this.timePromise = setInterval(() => {
           if (this.second <= 0) {
             clearInterval(this.timePromise);
             this.timePromise = undefined;
@@ -60,12 +61,11 @@ export class AdminLoginComponent implements OnInit {
             this.activeText = '重发验证码';
             this.activeClass = true;
           } else {
-            this.activeText = this.second + '秒后可重发';
+            this.activeText = '' + this.second;
             this.activeClass = false;
-            this.second--;
-
+            this.second = this.second - 1;
           }
-        }, 1000, 100);
+        }, 1000);
       } else {
         this.dialog.show({
           title: '系统提示',
@@ -81,7 +81,7 @@ export class AdminLoginComponent implements OnInit {
   // 18620803688
   onSubmit() {
     if (this.loginForm.valid) {
-      this.userSvc.login(this.loginForm.get('mobile').value, this.loginForm.get('code').value).then(res => {
+      this.userSvc.login(this.loginForm.value).then(res => {
         if (res.code === 0) {
           const user = {id: res.custId, housekeeperId: ''};
           let callbackUrl = '/admin/employer';
@@ -90,9 +90,9 @@ export class AdminLoginComponent implements OnInit {
             callbackUrl = '/admin/employee';
           }
           this.storage.set('user', JSON.stringify(user));
-          if (this.activatedRoute.snapshot.queryParams['callbackUrl']) {
+          /*if (this.activatedRoute.snapshot.queryParams['callbackUrl']) {
             callbackUrl = this.activatedRoute.snapshot.queryParams['callbackUrl'];
-          }
+          }*/
           setTimeout(() => {
             this.router.navigate([callbackUrl], {});
           }, 100);

@@ -2,7 +2,7 @@ import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {PageConfig} from './page.config';
 import {WxService} from '../../../../../modules/wx';
 import {UserService} from '../../../../../services/user.service';
-import {RatingConfig} from '../../../../../modules/rating';
+import {RatingConfig} from 'ngx-weui';
 
 import 'rxjs/add/operator/switchMap';
 import {EmployerService} from '../../../../../services/employer.service';

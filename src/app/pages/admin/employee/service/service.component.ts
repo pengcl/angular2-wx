@@ -5,7 +5,7 @@ import {UserService} from '../../../../services/user.service';
 import {EmployeeService} from '../../../../services/employee.service';
 import {Config} from '../../../../config';
 import {ChartF2Service} from '../../../../modules/chart-f2';
-import {RatingConfig} from '../../../../modules/rating';
+import {RatingConfig} from 'ngx-weui';
 
 declare var F2: any;
 

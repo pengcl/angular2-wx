@@ -7,10 +7,10 @@ import 'rxjs/add/operator/toPromise';
 import {Config} from '../config';
 import {WxService} from '../modules/wx';
 import {StorageService} from './storage.service';
+import {formDataToUrl} from '../utils/utils';
 
 @Injectable()
 export class UserService {
-  private custId;
   private user;
 
   constructor(private storageService: StorageService,
@@ -22,25 +22,35 @@ export class UserService {
   }
 
   getUser() {
-    if (this.user) {// 如果userId存在;
-      return this.user;
-    } else {// 如果userId不存在,查找localStorage;
-      if (this.storageService.get('user')) {// 如果localStorage中存在userId;
-        this.user = JSON.parse(this.storageService.get('user'));
+    let loginUrl = Config.webHost + '/admin/login';
+    if (window.location.href.indexOf('recruitment') !== -1) {
+      loginUrl = Config.webHost + '/recruitment/login';
+    }
+    if (JSON.parse(this.storageService.get('user')).id) {// 如果localStorage中存在userId;
+      this.user = JSON.parse(this.storageService.get('user'));
+      if (this.user.id) {
         return this.user;
-      } else {// 如果localStorage中不存在userId;
-        window.location.href = Config.prefix.admin + '/login?callbackUrl=' + this.router.url;
-        /*if (this.wxService.isWx()) {// 微信环境,查找地址栏参数中是否存在userId;
-          if (this.activatedRoute.snapshot.queryParams['userId']) {// 如果地址栏参数存在userId;
-            this.userId = this.activatedRoute.snapshot.queryParams['userId']; // 把userId存入userId内存中;
-            this.storageService.set('userId', this.userId); // 把userId存入localStorage
-            return this.activatedRoute.snapshot.queryParams['userId'];
-          } else {// 如果地址栏参数不存在userId
-            window.location.href = Config.prefix.api + '/wx/auth?callbackUrl=' + encodeURI(window.location.href);
+      }
+    } else {// 如果localStorage中不存在userId;
+      // window.location.href = Config.prefix.admin + '/login?callbackUrl=' + this.router.url;
+      if (this.wxService.isWx()) {// 微信环境,查找地址栏参数中是否存在userId;
+        if (this.activatedRoute.snapshot.queryParams['openid']) {// 如果地址栏参数存在userId;
+          const user = {
+            id: this.activatedRoute.snapshot.queryParams['custId'] ? this.activatedRoute.snapshot.queryParams['custId'] : '',
+            housekeeperId: this.activatedRoute.snapshot.queryParams['housekeeperId'] ? this.activatedRoute.snapshot.queryParams['housekeeperId'] : '',
+            openid: this.activatedRoute.snapshot.queryParams['openid']
+          };
+          this.storageService.set('user', JSON.stringify(user)); // 把userId存入localStorage
+          if (JSON.parse(this.storageService.get('user')).id !== '') {
+            return user;
+          } else {
+            window.location.href = loginUrl + '?openid=' + user.openid + '&callbackUrl=' + this.router.url;
           }
-        } else {// 非微信环境,跳转至登录页;
-          window.location.href = Config.prefix.admin + '/login';
-        }*/
+        } else {// 如果地址栏参数不存在userId
+          window.location.href = Config.prefix.wApi + '/interface/comm/auth.ht?callBackUrl=' + encodeURI(window.location.href);
+        }
+      } else {// 非微信环境,跳转至登录页;
+        window.location.href = loginUrl + '?callbackUrl=' + this.router.url;
       }
     }
   }
@@ -74,8 +84,9 @@ export class UserService {
       .catch(this.handleError);
   }
 
-  login(mobile, code) {
-    return this.http.get(Config.prefix.wApi + '/interface/user/login.ht?custMoblie=' + mobile + '&code=' + code)
+  login(body) {
+    const prams = formDataToUrl(body);
+    return this.http.get(Config.prefix.wApi + '/interface/user/login.ht' + prams)
       .toPromise()
       .then(response => {
         return response;

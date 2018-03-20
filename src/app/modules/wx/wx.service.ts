@@ -41,6 +41,12 @@ export class WxService extends BaseService {
     return componentRef.instance.show();
   }
 
+  hide() {
+    const componentRef = this.build(WxComponent);
+    componentRef.instance.hide();
+  }
+
+
   isWx(): boolean {// 检查是否微信
     return String(ua.match(/MicroMessenger/i)) === 'micromessenger';
   }
@@ -67,40 +73,33 @@ export class WxService extends BaseService {
       this.jsApiList = jsApiList;
     }
     return new Promise((resolve, reject) => {
-      this.wxService.get().then((res) => {
-        if (!res) {
-          reject('jweixin.js 加载失败');
-          return;
-        }
+      wx.ready(() => {
+        this._onMenuShareTimeline()
+          ._onMenuShareAppMessage()
+          ._onMenuShareQQ()
+          ._onMenuShareQZone()
+          ._onMenuShareWeibo();
 
-        wx.ready(() => {
-          this._onMenuShareTimeline()
-            ._onMenuShareAppMessage()
-            ._onMenuShareQQ()
-            ._onMenuShareQZone()
-            ._onMenuShareWeibo();
-
-          resolve();
-        });
-        wx.error(() => {
-          reject('config 注册失败');
-        });
-
-        this.http
-          .get(Config.prefix.api + '/wx/config?url=' + encodeURIComponent(window.location.href))
-          .catch((error: Response | any) => {
-            reject('无法获取签名数据');
-            return Observable.throw('error');
-          })
-          .subscribe((ret: any) => {
-            ret.jsApiList = this.jsApiList;
-            if (!ret) {
-              reject('jsapi 获取失败');
-              return;
-            }
-            wx.config(ret);
-          });
+        resolve();
       });
+      wx.error(() => {
+        reject('config 注册失败');
+      });
+
+      this.http
+        .get(Config.prefix.api + '/wx/config?url=' + encodeURIComponent(window.location.href))
+        .catch((error: Response | any) => {
+          reject('无法获取签名数据');
+          return Observable.throw('error');
+        })
+        .subscribe((ret: any) => {
+          ret.jsApiList = this.jsApiList;
+          if (!ret) {
+            reject('jsapi 获取失败');
+            return;
+          }
+          wx.config(ret);
+        });
     });
   }
 

@@ -64,7 +64,7 @@
 
   <div class="weui-panel weui-panel_access">
     <div class="weui-panel__bd">
-      <app-infinite-loader (loadmore)="onLoadMore($event)" #comp>
+      <weui-infiniteloader (loadmore)="onLoadMore($event)" #comp>
         <div [ngClass]="{'weui-grids':listType === 'grid'}">
           <app-profile [routerLink]="['/front/employees/employee', item.housekeeperid]" [profile]="item"
                        [moJsReady]="moJsReady"
@@ -72,7 +72,7 @@
                        *ngFor="let item of currEmployees"
                        [ngClass]="{'weui-grid':listType === 'grid','weui-media-box weui-media-box_appmsg':listType !== 'grid'}"></app-profile>
         </div>
-      </app-infinite-loader>
+      </weui-infiniteloader>
     </div>
   </div>
 </div>

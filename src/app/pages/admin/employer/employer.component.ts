@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, OnDestroy} from '@angular/core';
 import {PageConfig} from './page.config';
 import {WxService} from '../../../modules/wx';
 import {UserService} from '../../../services/user.service';
@@ -10,7 +10,7 @@ import {OrderService} from '../../../services/order.service';
   templateUrl: './employer.component.html',
   styleUrls: ['./employer.component.scss']
 })
-export class AdminEmployerComponent implements OnInit {
+export class AdminEmployerComponent implements OnInit, OnDestroy {
   tabBarConfig = PageConfig.tabBar;
   navBarConfig = PageConfig.navBar;
   user: any;
@@ -32,9 +32,12 @@ export class AdminEmployerComponent implements OnInit {
     this.user = this.userSvc.isLogin();
 
     this.wx.config({
+      title: '大牛管家诚聘优才',
+      desc: '欢迎广大有志于高端管家助理服务的退伍军人，体育专业毕业生踊跃报名！',
+      link: 'http://wap.danius.cn/front/resume/job',
+      imgUrl: 'http://wap.danius.cn/assets/images/front/resume/share-icon.png',
       success: function () {
-        console.log(this);
-        this.router.navigate(['/front/index'], {});
+        console.log('success');
       },
       cancel: function () {
         console.log('cancel');
@@ -77,5 +80,10 @@ export class AdminEmployerComponent implements OnInit {
   onShare() {
     this.wx.show({}).subscribe(res => {
     });
+  }
+
+  ngOnDestroy() {
+    console.log('ngOnDestroy');
+    this.wx.destroyAll();
   }
 }

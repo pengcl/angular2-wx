@@ -6,7 +6,7 @@
 <div class="weui-media-box__bd">
   <h4 class="weui-media-box__title">{{rate.name.slice(0,1)}}{{rate.sex === 0 ? '小姐':'先生'}}
     <sub>[{{rate.meta.createAt | date : 'MM-dd'}}]</sub>
-    <app-rating class="right" [(ngModel)]="rate.rate" [config]="ratingConfig" [readonly]="true"></app-rating>
+    <weui-rating class="right" [(ngModel)]="rate.rate" [config]="ratingConfig" [readonly]="true"></weui-rating>
   </h4>
   <p class="weui-media-box__desc">{{rate.content}}</p>
   <div class="weui-media-box__info">

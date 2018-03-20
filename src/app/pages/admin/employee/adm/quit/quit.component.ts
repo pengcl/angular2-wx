@@ -5,9 +5,8 @@ import {PageConfig} from './page.config';
 import {WxService} from '../../../../../modules/wx';
 import {UserService} from '../../../../../services/user.service';
 import {EventService} from '../../../../../services/event.service';
-import {PickerService} from '../../../../../modules/picker';
+import {PickerService, DialogService} from 'ngx-weui';
 import {DatePipe} from '@angular/common';
-import {DialogService} from '../../../../../modules/dialog';
 
 @Component({
   selector: 'app-admin-employee-event-quit',

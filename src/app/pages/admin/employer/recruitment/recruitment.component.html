@@ -158,7 +158,13 @@
       </article>
     </div>
     <div class="weui-tab__panel" *ngIf="tab === 'incomes'">
-      <div class="weui-panel">
+
+      <div class="pageTips" *ngIf="incomes?.length === 0">
+        <h2>暂无"奖励"记录</h2>
+        <p>您可以关注"大牛管家"公众号，获取最新活动消息。</p>
+      </div>
+
+      <div class="weui-panel" *ngIf="incomes?.length > 0">
         <div class="weui-panel__hd">2018年03月 <em>更改</em><em class="right">所有</em></div>
         <div class="weui-panel__bd">
           <div class="weui-media-box">
@@ -186,7 +192,7 @@
         </div>
       </div>
 
-      <div class="weui-panel">
+      <div class="weui-panel" *ngIf="incomes?.length > 0">
         <div class="weui-panel__bd">
           <div href="javascript:void(0);" class="weui-media-box weui-media-box_small-appmsg">
             <div class="weui-cells">
@@ -256,7 +262,7 @@
   </div>
 </div>
 
-<div class="btns-group" [ngClass]="{'weui-bar__item_on':tab === 'channels' || !tab}">
+<div class="btns-group" *ngIf="tab === 'channels' || !tab">
   <div (click)="onShare({targetTips:'来招募更多渠道吧'})" class="btn-secondary no-state">立即招募</div>
   <a routerLink="/admin/employer/recruitment/records" class="btn-secondary">招募记录</a>
 </div>

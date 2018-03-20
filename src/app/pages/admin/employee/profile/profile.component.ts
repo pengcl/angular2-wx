@@ -6,7 +6,7 @@ import 'rxjs/add/operator/switchMap';
 import {PageConfig} from './page.config';
 import {WxService} from '../../../../modules/wx';
 import {UserService} from '../../../../services/user.service';
-import {RatingConfig} from '../../../../modules/rating';
+import {RatingConfig} from 'ngx-weui';
 import {EmployeeService} from '../../../../services/employee.service';
 import {ChartF2Service} from '../../../../modules/chart-f2';
 import {Config} from '../../../../config';

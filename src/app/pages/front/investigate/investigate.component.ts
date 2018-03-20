@@ -8,7 +8,7 @@ import {EmployerService} from '../../../services/employer.service';
 import {Router} from '@angular/router';
 
 import {validScroll} from '../../../utils/utils';
-import {DialogService} from '../../../modules/dialog';
+import {DialogService} from 'ngx-weui';
 
 declare var $: any;
 

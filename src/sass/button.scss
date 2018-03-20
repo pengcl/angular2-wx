@@ -1,6 +1,6 @@
 
 .btn {
-  font-size: 0.14rem;
+  font-size: 14px;
   line-height: 2.5;
   position: relative;
   width: 100%;
@@ -10,7 +10,7 @@
     border-radius: 100px;
   }
   &.radius {
-    border-radius: 0.06rem;
+    border-radius: 6px;
   }
   &.yellow {
     background-color: #FBA703;
@@ -36,7 +36,7 @@ $color-primary-shadow: #c83e14;
 $color-secondary: $color-well; //
 $color-tertiary: $color-medium-well; //
 $color-complementary: #000; //
-
+$color-yellow: #FBA703;
 // Social Colors
 $color-twitter: #46c8f5;
 $color-twitter-shadow: #33c8f0;
@@ -47,10 +47,10 @@ $color-negative: #ff5b29;
 [class^="btn-"],
 [class*=" btn-"] {
   // Sizing
-  font-size: 0.14rem;
-  line-height: 0.18rem;
-  line-height: 0.26rem !important; //override line-height always so we can use em's to size.
-  padding: 0.125rem 0.125rem 0.095rem 0.125rem; // 48px tall
+  font-size: 14px;
+  line-height: 18px;
+  line-height: 22px !important; //override line-height always so we can use em's to size.
+  padding: 14px 15px 12px; // 48px tall
 
   // Style
   font-family: "lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -125,6 +125,18 @@ $color-negative: #ff5b29;
     }
   }
 
+  &[class*="yellow"] {
+    background: $color-yellow;
+    color: $color-empty;
+
+    &:hover {
+      background-color: $color-orange;
+    }
+    &:active{
+      box-shadow: darken($color-orange, 3%) 0 0 0px 2px inset;
+    }
+  }
+
   &[class*="twitter"] {
     background-color: $color-twitter;
     color: $color-empty;
@@ -186,12 +198,12 @@ $color-negative: #ff5b29;
 .btns-group {
   display: flex;
   flex-wrap: wrap;
-  position: absolute;
+  position: fixed;
   top: auto;
   bottom: 0;
   left: 0;
   width: 100%;
-
+  z-index: 999;
   [class*="btn-"] {
     //.ellipsized;
     flex: 1;

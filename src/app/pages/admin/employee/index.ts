@@ -19,6 +19,10 @@ import {AdminEmployeeServiceComponent} from './service/service.component';
 import {AdminEmployeeOrdersComponent} from './orders/orders.component';
 import {AdminEmployeeOrdersProtocolComponent} from './orders/protocol/protocol.component';
 
+import {AdminEmployeeSchoolIndexComponent} from './school/index/index.component';
+import {AdminEmployeeSchoolCurriculumCourseDetailsComponent} from './school/curriculum/course/details/details.component';
+import {AdminEmployeeSchoolCurriculumCourseItemComponent} from './school/curriculum/course/item/item.component';
+
 export const ADMIN_PAGES_EMPLOYEE_DECLARATIONS = [
   AdminEmployeeComponent,
   AdminEmployeeClockInComponent,
@@ -39,5 +43,8 @@ export const ADMIN_PAGES_EMPLOYEE_DECLARATIONS = [
   AdminEmployeeCoursesMineComponent,
   AdminEmployeeServiceComponent,
   AdminEmployeeOrdersComponent,
-  AdminEmployeeOrdersProtocolComponent
+  AdminEmployeeOrdersProtocolComponent,
+  AdminEmployeeSchoolIndexComponent,
+  AdminEmployeeSchoolCurriculumCourseDetailsComponent,
+  AdminEmployeeSchoolCurriculumCourseItemComponent
 ];

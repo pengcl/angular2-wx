@@ -8,7 +8,7 @@ import {MoService} from '../../../../services/mo.service';
 import {GeoService} from '../../../../services/geo.service';
 
 import {EmployeeService} from '../../../../services/employee.service';
-import {DialogService} from '../../../../modules/dialog';
+import {DialogService} from 'ngx-weui';
 
 declare var mojs: any;
 declare var $: any;

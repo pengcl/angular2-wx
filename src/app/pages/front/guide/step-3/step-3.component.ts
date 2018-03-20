@@ -7,7 +7,7 @@ import {EmployeeService} from '../../../../services/employee.service';
 
 import {simAnim, slide} from '../../../../utils/animate';
 
-import {InfiniteLoaderComponent} from '../../../../components/infinite-loader/infinite-loader.component';
+import {InfiniteLoaderComponent} from 'ngx-weui';
 import {Observable} from 'rxjs/Observable';
 import {ActivatedRoute} from '@angular/router';
 

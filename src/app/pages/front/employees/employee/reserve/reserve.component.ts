@@ -7,12 +7,10 @@ import 'rxjs/add/operator/switchMap';
 import {PageConfig} from './page.config';
 import {WxService} from '../../../../../modules/wx';
 import {EmployeeService} from '../../../../../services/employee.service';
-import {ActionSheetService, ActionSheetConfig} from '../../../../../components/actionsheet';
 
 import {ACTIONSHEETS} from '../../../../../../mockData/actionSheets';
-import {PickerService} from '../../../../../modules/picker';
+import {PickerService, DialogService, ActionSheetService, ActionSheetConfig} from 'ngx-weui';
 
-import {DialogService} from '../../../../../modules/dialog';
 import {LogService} from '../../../../../services/log.service';
 import {validScroll} from '../../../../../utils/utils';
 

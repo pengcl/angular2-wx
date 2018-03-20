@@ -4,7 +4,7 @@ import {WxService} from '../../../modules/wx';
 import {UserService} from '../../../services/user.service';
 import {MoService} from '../../../services/mo.service';
 import {EmployeeService} from '../../../services/employee.service';
-import {InfiniteLoaderComponent} from '../../../components/infinite-loader/infinite-loader.component';
+import {InfiniteLoaderComponent} from 'ngx-weui';
 
 import {EmployeesPipe} from '../../../pipes/employees.pipe';
 

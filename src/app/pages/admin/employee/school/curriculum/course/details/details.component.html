@@ -1,0 +1,88 @@
+<app-navbar [navBar]="navBarConfig"></app-navbar>
+
+<div class="content-scrollable">
+  <div *ngIf="course" class="banner"
+       [ngStyle]="{'background-image':'url(' + config.prefix.wApi + course?.catalog?.imageurl + ')'}"></div>
+  <weui-navbar *ngIf="course">
+    <weui-tab heading="课程介绍" [active]="active === 0">
+
+      <div class="title weui-cells">
+        <div class="weui-cell">
+          <div class="weui-cell__bd">
+            <p>{{course.catalog.title}}</p>
+          </div>
+          <div class="weui-cell__ft">{{course.learnSize}}人在学习</div>
+        </div>
+      </div>
+
+      <div class="describe weui-panel">
+        <div class="weui-panel__hd">课程简介</div>
+        <div class="weui-panel__bd">
+          <div class="weui-media-box weui-media-box_text">
+            {{course.catalog.describe}}
+          </div>
+        </div>
+      </div>
+
+      <div class="pdb"></div>
+
+
+      <div class="btns-group">
+        <a *ngIf="!course.isLearn" (click)="joinCourse()" class="btn btn-yellow">加入学习</a>
+        <a *ngIf="course.isLearn" (click)="active = 1" class="btn btn-yellow">继续学习</a>
+      </div>
+    </weui-tab>
+    <weui-tab heading="课程目录" [active]="active === 1">
+      <div class="weui-panel">
+        <div class="weui-panel__bd">
+          <div class="weui-media-box weui-media-box_small-appmsg">
+            <div class="weui-cells">
+              <a [routerLink]="['/admin/employee/school/curriculum/course/item',item.courseid]" *ngFor="let item of courseCatalog" class="weui-cell weui-cell_access">
+                <div class="weui-cell__hd"><span class="ui-label yellow circle horizontal">{{item.videourl ? '视频' : '图文'}}</span>
+                </div>
+                <div class="weui-cell__bd weui-cell_primary">
+                  <p>{{item.coursetitle}}</p>
+                </div>
+                <span class="weui-cell__ft"></span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </weui-tab>
+    <weui-tab class="comment-panel" heading="学员评价" [active]="active === 2">
+      <div class="weui-panel weui-panel_access">
+        <div class="weui-panel__bd">
+          <div *ngFor="let item of comments" class="weui-media-box weui-media-box_appmsg">
+            <div class="weui-media-box__hd">
+              <img class="avatar weui-media-box__thumb"
+                   src="{{item.headimageurl ? item.headimageurl : '/assets/images/logo.png'}}"
+                   alt="">
+            </div>
+            <div class="weui-media-box__bd">
+              <h4 class="weui-media-box__title">{{item.cust_name}} <span class="right">{{item.createtime}}</span></h4>
+              <p class="weui-media-box__desc">{{item.content}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pdb"></div>
+
+      <div class="post-comment">
+        <form novalidate [formGroup]="commentForm" (ngSubmit)="onSubmit()">
+          <div class="weui-grids">
+            <div class="comment weui-grid">
+              <input formControlName="content" placeholder="说点什么吧！">
+            </div>
+            <div class="post weui-grid">
+              <button type="submit" weui-button [weui-type]="'primary'" [weui-loading]="loading">
+                <span *ngIf="!loading">发布</span>
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </weui-tab>
+  </weui-navbar>
+</div>

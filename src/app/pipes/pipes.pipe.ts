@@ -1,5 +1,4 @@
 import {Injectable, Pipe, PipeTransform} from '@angular/core';
-import {forEach} from '@angular/router/src/utils/collection';
 
 function weekToCnWeek(num) {
   const _num = parseInt(num, 10);
@@ -44,5 +43,18 @@ export class WeekPipe implements PipeTransform {
       weeks.push(weekToCnWeek(item));
     });
     return weeks.toString();
+  }
+}
+
+@Pipe({
+  name: 'callback',
+  pure: false
+})
+export class CallbackPipe implements PipeTransform {
+  transform(items: any[], callback: (item: any, value: number) => boolean): any {
+    if (!items || !callback) {
+      return items;
+    }
+    return items.filter((item, value) => callback(item, value));
   }
 }

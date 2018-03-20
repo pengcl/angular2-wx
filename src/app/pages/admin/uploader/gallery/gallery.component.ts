@@ -5,12 +5,10 @@ import 'rxjs/add/operator/switchMap';
 import {PageConfig} from './page.config';
 import {Config} from '../../../../config';
 
-import {UploaderOptions, Uploader} from '../../../../modules/uploader';
+import {UploaderOptions, Uploader} from 'ngx-weui';
 import {WxService} from '../../../../modules/wx';
 import {UserService} from '../../../../services/user.service';
 import {EmployeeService} from '../../../../services/employee.service';
-
-declare var F2: any;
 
 @Component({
   selector: 'app-admin-uploader-gallery',

@@ -4,8 +4,8 @@ import {WxService} from '../../../../../modules/wx';
 import {UserService} from '../../../../../services/user.service';
 import {EmployerService} from '../../../../../services/employer.service';
 import {StorageService} from '../../../../../services/storage.service';
-import {getAddress} from '../../../../../utils/utils';
-import {PickerService} from '../../../../../modules/picker';
+import {PickerService} from 'ngx-weui';
+import {RecruitService} from '../../../../../services/recruit.service';
 
 @Component({
   selector: 'app-admin-employer-recruitment-records',
@@ -23,11 +23,15 @@ export class AdminEmployerRecruitmentRecordsComponent implements OnInit {
 
   referee;
 
+  recruiters = [];
+  trainee;
+
   constructor(private wx: WxService,
               private userSvc: UserService,
               private employerSvc: EmployerService,
               private storage: StorageService,
-              private picker: PickerService) {
+              private picker: PickerService,
+              private recruit: RecruitService) {
   }
 
   ngOnInit() {
@@ -48,6 +52,16 @@ export class AdminEmployerRecruitmentRecordsComponent implements OnInit {
       console.log('注册成功');
     }).catch((err: string) => {
       console.log(`注册失败，原因：${err}`);
+    });
+
+    this.recruit.getRecruiters(this.user.id).then(res => {
+      this.recruiters = res.list;
+      console.log(this.recruiters);
+    });
+
+    this.recruit.getTrainees(this.user.id).then(res => {
+      this.trainee = res;
+      console.log(this.trainee);
     });
 
     this.employerSvc.getEmployer(this.user.id).then(res => {

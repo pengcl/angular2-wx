@@ -1,0 +1,15 @@
+.weui-tab {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.weui-navbar {
+  position: absolute;
+}
+
+.weui-tab__panel {
+  weui-tab {
+    min-height: 100%;
+  }
+}

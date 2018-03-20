@@ -104,6 +104,13 @@
       color: #3E9AD5 !important;
       font-weight: normal !important;
     }
+    &.hollow {
+      background-color: transparent !important;
+      color: #3E9AD5 !important;
+      &:after {
+        border: 1px solid #3E9AD5;
+      }
+    }
   }
   &.violet {
     background-color: #6435c9 !important;

@@ -17,7 +17,7 @@
       </a>
       <a class="weui-cell weui-cell_access"
          [ngClass]="{'weui-cell_warn':isSubmit && reportCityForm.get('employeeType').invalid}"
-         (click)="onPickerShow('data','employeeType')" href="javascript:;">
+         (click)="onActionSheetShow('employeeType')" href="javascript:;">
         <div class="weui-cell__bd">
           <input formControlName="employeeType" class="weui-input" type="hidden" value="">
           <p>我要聘请</p>

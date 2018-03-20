@@ -15,7 +15,7 @@
           <div class="weui-media-box__bd">
             <h4 class="weui-media-box__title">{{employee.housekeeperName}}</h4>
             <p class="rating weui-media-box__desc">
-              <app-rating [(ngModel)]="level" [config]="ratingConfig" required name="level"></app-rating>
+              <weui-rating [(ngModel)]="level" [config]="ratingConfig" required name="level"></weui-rating>
               <span *ngIf="level >= 4">非常满意，无可挑剔</span>
               <span *ngIf="level < 4 && level > 1">一般</span>
               <span *ngIf="level <= 1">非常差</span>
@@ -51,48 +51,5 @@
       </div>
     </div>
 
-    <!--<div *ngIf="!employee.level" class="weui-panel weui-panel_access">
-      <div class="weui-panel__bd">
-        <div class="weui-media-box weui-media-box_appmsg">
-          <div class="weui-media-box__hd">
-            <img class=" avatar weui-media-box__thumb" src="{{config.prefix.wApi + employee.headimageurl}}" alt="">
-          </div>
-          <div class="weui-media-box__bd">
-            <h4 class="weui-media-box__title">{{employee.housekeeperName}}</h4>
-            <p class="rating weui-media-box__desc">
-              <app-rating [(ngModel)]="employee.rate" [config]="ratingConfig"></app-rating>
-              <span *ngIf="rateForm.get('level').value >= 4">非常满意，无可挑剔</span>
-              <span *ngIf="rateForm.get('level').value < 4 && rateForm.get('level').value > 1">一般</span>
-              <span *ngIf="rateForm.get('level').value <= 1">非常差</span>
-            </p>
-          </div>
-        </div>
-        <div class="weui-media-box">
-          <div class="labels">
-              <span *ngFor="let item of impress" (click)="setImpressions(index,item.impressid)"
-                    class="ui-label hollow circle"
-                    [ngClass]="{'curr':rateForm.get('impress').value.split(',').indexOf('' + item.impressid) !== -1}">{{item.impressname}}</span>
-          </div>
-        </div>
-        <div class="weui-cell"
-             [ngClass]="{'weui-cell_warn':rateForm.get('evaluateContent').invalid && employee.isSubmit}">
-          <div class="weui-cell__bd">
-              <textarea [(ngModel)]="employee.evaluateContent"
-                        class="weui-textarea"
-                        placeholder="请输入管家本月服务的其他建议，你的建议很重要喔！"
-                        rows="3"></textarea>
-            <div class="weui-textarea-counter">
-              <span>{{employee.evaluateContent ? employee.evaluateContent?.length : 0}}</span>/200
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="weui-form-preview__ft">
-        <a class="weui-form-preview__btn"
-           [ngClass]="{'weui-form-preview__btn_primary':rateForm.valid,'weui-form-preview__btn_default disabled':rateForm.invalid}"
-           (click)="onSubmit(employee);employee.isSubmit = true">评价</a>
-      </div>
-    </div>-->
   </form>
 </div>

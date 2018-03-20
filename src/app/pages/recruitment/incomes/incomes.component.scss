@@ -1,0 +1,15 @@
+.weui-cells {
+  font-size: 0.14rem;
+}
+
+.weui-cell__hd {
+  align-self: center;
+}
+
+.weui-tab__panel {
+  .weui-panel:first-of-type {
+    &:before {
+      display: none;
+    }
+  }
+}

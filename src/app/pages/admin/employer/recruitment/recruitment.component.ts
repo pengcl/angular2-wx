@@ -5,6 +5,7 @@ import {WxService} from '../../../../modules/wx';
 import {UserService} from '../../../../services/user.service';
 import {EmployerService} from '../../../../services/employer.service';
 import {StorageService} from '../../../../services/storage.service';
+import {RecruitService} from '../../../../services/recruit.service';
 
 @Component({
   selector: 'app-admin-employer-recruitment',
@@ -25,10 +26,13 @@ export class AdminEmployerRecruitmentComponent implements OnInit {
 
   referee;
 
+  incomes: any[] = [];
+
   constructor(private wx: WxService,
               private userSvc: UserService,
               private employerSvc: EmployerService,
-              private storage: StorageService) {
+              private storage: StorageService,
+              private recruit: RecruitService) {
   }
 
   ngOnInit() {
@@ -43,7 +47,7 @@ export class AdminEmployerRecruitmentComponent implements OnInit {
       bank: new FormControl('', [Validators.required])
     });
 
-    this.wx.config({
+    /*this.wx.config({
       success: function () {
         console.log(this);
         this.router.navigate(['/front/index'], {});
@@ -56,6 +60,12 @@ export class AdminEmployerRecruitmentComponent implements OnInit {
       console.log('注册成功');
     }).catch((err: string) => {
       console.log(`注册失败，原因：${err}`);
+    });*/
+
+    this.recruit.getIncomes(this.user.id).then(res => {
+      if (res.code === 0) {
+        this.incomes = res.rewardList;
+      }
     });
 
     this.employerSvc.getEmployer(this.user.id).then(res => {
@@ -68,18 +78,17 @@ export class AdminEmployerRecruitmentComponent implements OnInit {
 
   onShare(state) {
     this.wx.config({
-      success: function () {
-        console.log(this);
-        this.router.navigate(['/front/index'], {});
-      },
-      cancel: function () {
-        console.log('cancel');
-      }
+      title: '大牛管家诚聘优才',
+      desc: '欢迎广大有志于高端管家助理服务的退伍军人，体育专业毕业生踊跃报名！',
+      link: 'http://wap.danius.cn/front/resume/job?gh=gh_test&referee=' + this.user.id,
+      imgUrl: 'http://wap.danius.cn/assets/images/front/resume/share-icon.png'
     }).then(() => {
+      console.log(true);
       // 其它操作，可以确保注册成功以后才有效
-      console.log('注册成功');
+      // this.status = '注册成功';
     }).catch((err: string) => {
-      console.log(`注册失败，原因：${err}`);
+      console.log(err);
+      // this.status = `注册失败，原因：${err}`;
     });
     this.wx.show(state).subscribe(res => {
     });

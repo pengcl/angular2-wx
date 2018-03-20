@@ -44,6 +44,7 @@
     "rxjs": "^5.5.6",
     "serve-favicon": "~2.4.2",
     "sha1": "^1.1.1",
+    "videogular2": "^6.0.6",
     "zone.js": "^0.8.19"
   },
   "devDependencies": {

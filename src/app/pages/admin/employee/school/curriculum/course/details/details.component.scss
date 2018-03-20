@@ -1,0 +1,114 @@
+.content-scrollable {
+  overflow: hidden;
+  background: #f8f8f8;
+}
+
+.banner {
+  position: relative;
+  height: 35%;
+  text-align: center;
+  background: #fff;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center center;
+}
+
+.weui-tab {
+  height: 65%;
+}
+
+.comment-panel {
+  background: #fff;
+  .weui-media-box__hd {
+    width: 0.3rem;
+    height: 0.3rem;
+    line-height: 0.3rem;
+    .avatar {
+      width: 0.3rem;
+      height: 0.3rem;
+    }
+  }
+  .weui-media-box__bd {
+    .weui-media-box__title {
+      font-size: 0.13rem;
+      .right {
+        font-size: 0.12rem;
+        color: #999;
+      }
+    }
+  }
+}
+
+.title, .describe {
+  margin-top: 0;
+  &:before, &:after {
+    display: none;
+  }
+}
+
+.title {
+  line-height: 1;
+  .weui-cell {
+    padding: 0.2rem 0.15rem;
+    .weui-cell__ft {
+      font-size: 0.13rem;
+    }
+  }
+}
+
+.describe {
+  margin-top: 0.1rem;
+  .weui-media-box {
+    font-size: 0.14rem;
+    color: #666;
+  }
+}
+
+.weui-panel__hd {
+  font-size: 0.15rem;
+  color: #0F0F0F;
+}
+
+.pdb {
+  display: block;
+  height: 58px;
+}
+
+.ui-label {
+  display: block;
+}
+
+.post-comment {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: #f8f8f8;
+  .weui-grid {
+    padding: 0.15rem;
+  }
+  .comment {
+    width: 75%;
+    padding-right: 0;
+    input {
+      width: 100%;
+      padding: 0.1rem;
+      margin: 0;
+      box-sizing: border-box;
+      border: 1px solid #eee;
+      border-radius: 0.04rem;
+      line-height: 0.18rem;
+      font-size: 0.15rem;
+    }
+  }
+  .post {
+    width: 25%;
+    .weui-btn {
+      font-size: 0.15rem;
+      line-height: 0.18rem;
+      padding: 0.1rem;
+      border: 1px solid #f8f8f8;
+      border-radius: 0.36rem;
+    }
+  }
+}

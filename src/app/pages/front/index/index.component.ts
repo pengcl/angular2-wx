@@ -1,11 +1,10 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {PageConfig} from './page.config';
-import {ToastService} from '../../../services/toast.service';
-import {DialogService} from '../../../modules/dialog';
+import {DialogService} from 'ngx-weui';
 import {WxService} from '../../../modules/wx';
 import 'rxjs/add/observable/timer';
 
-import {InfiniteLoaderComponent} from '../../../components/infinite-loader/infinite-loader.component';
+import {InfiniteLoaderComponent} from 'ngx-weui';
 import {EmployeeService} from '../../../services/employee.service';
 
 @Component({
@@ -22,7 +21,6 @@ export class FrontIndexComponent implements OnInit {
   @ViewChild(InfiniteLoaderComponent) il;
 
   constructor(private dialog: DialogService,
-              private toast: ToastService,
               private wx: WxService,
               private employeeSvc: EmployeeService) {
   }

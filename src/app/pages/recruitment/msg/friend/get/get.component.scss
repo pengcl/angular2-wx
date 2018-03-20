@@ -1,0 +1,27 @@
+.content-scrollable {
+  background: #fff;
+}
+
+.weui-msg {
+  padding-top: 0;
+}
+
+.weui-msg__title {
+  font-size: 0.18rem;
+}
+
+.weui-msg__desc {
+  font-size: 0.14rem;
+  color: #FBA703;
+}
+.weui-msg__icon-area {
+  margin-bottom: 0rem;
+}
+.weui-msg__extra-area {
+  width: 50%;
+  margin: 0 auto;
+  position: static !important;
+  .img-box {
+    display: inline-block;
+  }
+}

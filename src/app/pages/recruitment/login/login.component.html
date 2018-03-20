@@ -1,0 +1,38 @@
+<app-navbar [navBar]="navBarConfig"></app-navbar>
+
+<div class="userinfo">
+  <img class="userinfo-avatar" src="/assets/images/logo.png" background-size="cover"/>
+  <div class="userinfo-nickname">大牛管家荐才行动</div>
+  <div class="userinfo-service">加入大牛管家荐才行动，您将成为大牛管家的伯乐，帮大牛管家招聘合资格人才成为学员或管家，即可获得大牛管家发放的补贴！
+    <a routerLink="/recruitment/about">[荐才行动具体细则]</a></div>
+</div>
+
+<form novalidate [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+  <div class="weui-cells__title">马上登记加入吧！</div>
+  <div class="weui-cells">
+    <div class="weui-cell">
+      <div class="weui-cell__hd">
+        <img style="width:0.2rem;margin-right:0.05rem;display:block" src="/assets/images/icons/mobile.png">
+      </div>
+      <div class="weui-cell__bd">
+        <input class="weui-input" type="tel" formControlName="mobile" placeholder="请输入手机号">
+      </div>
+      <div class="weui-cell__ft" [ngClass]="{'disabled' : !activeClass}" *ngIf="loginForm.get('mobile').valid"
+           (click)="getCode($event,loginForm.get('mobile').value)">
+        {{activeText}}
+      </div>
+    </div>
+    <div class="weui-cell">
+      <div class="weui-cell__hd">
+        <img style="width:0.2rem;margin-right:0.05rem;display:block" src="/assets/images/icons/lock.png">
+      </div>
+      <div class="weui-cell__bd">
+        <input class="weui-input" type="tel" formControlName="code" placeholder="请输入验证码">
+      </div>
+    </div>
+  </div>
+
+  <a id="login" class="weui-btn weui-btn_primary" (click)="onSubmit()"
+     [ngClass]="{'weui-btn_disabled':loginForm.invalid}">登录</a>
+  <div class="weui-cells__tips">*已有账号可直接输入手机号和验证码登录</div>
+</form>

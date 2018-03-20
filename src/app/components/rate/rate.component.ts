@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Config} from '../../config';
-import {RatingConfig} from '../../modules/rating';
+import {RatingConfig} from 'ngx-weui';
 
 @Component({
   selector: 'app-rate',

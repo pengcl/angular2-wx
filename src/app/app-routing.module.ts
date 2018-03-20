@@ -2,6 +2,8 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {RouterModule, Routes} from '@angular/router';
 
+import {appWxRoutes} from './pages/wx/wx-routing.module';
+
 import {FrontComponent} from './pages/front/front.component';
 import {FrontIndexComponent} from './pages/front/index/index.component';
 import {FrontEmployeesComponent} from './pages/front/employees/employees.component';
@@ -69,11 +71,31 @@ import {AdminEmployeeCoursesMineComponent} from './pages/admin/employee/courses/
 import {AdminEmployeeServiceComponent} from './pages/admin/employee/service/service.component';
 import {AdminEmployeeOrdersComponent} from './pages/admin/employee/orders/orders.component';
 import {AdminEmployeeOrdersProtocolComponent} from './pages/admin/employee/orders/protocol/protocol.component';
+import {AdminEmployeeSchoolIndexComponent} from './pages/admin/employee/school/index/index.component';
+import {AdminEmployeeSchoolCurriculumCourseDetailsComponent} from './pages/admin/employee/school/curriculum/course/details/details.component';
+import {AdminEmployeeSchoolCurriculumCourseItemComponent} from './pages/admin/employee/school/curriculum/course/item/item.component';
 
 import {AdminUploaderAvatarComponent} from './pages/admin/uploader/avatar/avatar.component';
 import {AdminUploaderGalleryComponent} from './pages/admin/uploader/gallery/gallery.component';
 
+import {RecruitmentComponent} from './pages/recruitment/recruitment.component';
+import {RecruitmentLoginComponent} from './pages/recruitment/login/login.component';
+import {RecruitmentIndexComponent} from './pages/recruitment/index/index.component';
+import {RecruitmentIncomesComponent} from './pages/recruitment/incomes/incomes.component';
+import {RecruitmentWithdrawComponent} from './pages/recruitment/withdraw/withdraw.component';
+import {RecruitmentWithdrawAboutComponent} from './pages/recruitment/withdraw/about/about.component';
+import {RecruitmentBankAddComponent} from './pages/recruitment/bank/add/add.component';
+import {RecruitmentBankEditComponent} from './pages/recruitment/bank/edit/edit.component';
+import {RecruitmentMsgSuccessComponent} from './pages/recruitment/msg/success/success.component';
+import {RecruitmentMsgFriendComponent} from './pages/recruitment/msg/friend/friend.component';
+import {RecruitmentMsgFriendGetComponent} from './pages/recruitment/msg/friend/get/get.component';
+import {RecruitmentChannelDetailsComponent} from './pages/recruitment/channel/details/details.component';
+import {RecruitmentAboutComponent} from './pages/recruitment/about/about.component';
+import {RecruitmentArticleIncomeRulesComponent} from './pages/recruitment/article/incomeRules/incomeRules.component';
+import {RecruitmentArticleRequirementsComponent} from './pages/recruitment/article/requirements/requirements.component';
+
 import {AppPayComponent} from './pages/pay/pay.component';
+import {WxComponent} from './pages/wx/wx.component';
 
 const appFrontRedRoutes: Routes = [
   {path: 'get', component: FrontRedGetComponent},
@@ -106,6 +128,10 @@ const appAdminRoutes: Routes = [
   {path: 'employee/service', component: AdminEmployeeServiceComponent},
   {path: 'employee/orders', component: AdminEmployeeOrdersComponent},
   {path: 'employee/orders/protocol/:id', component: AdminEmployeeOrdersProtocolComponent},
+
+  {path: 'employee/school/index', component: AdminEmployeeSchoolIndexComponent},
+  {path: 'employee/school/curriculum/course/details/:id', component: AdminEmployeeSchoolCurriculumCourseDetailsComponent},
+  {path: 'employee/school/curriculum/course/item/:id', component: AdminEmployeeSchoolCurriculumCourseItemComponent},
 
   {path: 'employer', component: AdminEmployerComponent},
   {path: 'employer/order/list', component: AdminEmployerOrderListComponent},
@@ -161,6 +187,23 @@ const appFrontRoutes: Routes = [
   }
 ];
 
+const appRecruitmentRoutes: Routes = [
+  {path: 'index', component: RecruitmentIndexComponent},
+  {path: 'incomes', component: RecruitmentIncomesComponent},
+  {path: 'login', component: RecruitmentLoginComponent},
+  {path: 'withdraw', component: RecruitmentWithdrawComponent},
+  {path: 'withdraw/about', component: RecruitmentWithdrawAboutComponent},
+  {path: 'bank/add', component: RecruitmentBankAddComponent},
+  {path: 'bank/edit', component: RecruitmentBankEditComponent},
+  {path: 'msg/success', component: RecruitmentMsgSuccessComponent},
+  {path: 'msg/friend', component: RecruitmentMsgFriendComponent},
+  {path: 'msg/friend/get', component: RecruitmentMsgFriendGetComponent},
+  {path: 'channel/details', component: RecruitmentChannelDetailsComponent},
+  {path: 'about', component: RecruitmentAboutComponent},
+  {path: 'article/incomeRules', component: RecruitmentArticleIncomeRulesComponent},
+  {path: 'article/requirements', component: RecruitmentArticleRequirementsComponent},
+];
+
 export const routes: Routes = [
 
   {path: '', redirectTo: '/front/employees', pathMatch: 'full'},
@@ -174,6 +217,16 @@ export const routes: Routes = [
     path: 'admin',
     component: AdminComponent,
     children: appAdminRoutes
+  },
+  {
+    path: 'recruitment',
+    component: RecruitmentComponent,
+    children: appRecruitmentRoutes
+  },
+  {
+    path: 'wx',
+    component: WxComponent,
+    children: appWxRoutes
   }
 ];
 

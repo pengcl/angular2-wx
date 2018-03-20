@@ -1,25 +1,34 @@
 // modules
 import {BrowserModule} from '@angular/platform-browser';
-import {NgModule, ModuleWithProviders} from '@angular/core';
+import {NgModule, ModuleWithProviders, ErrorHandler} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {AppRoutingModule} from './app-routing.module';
-import {ActionSheetModule} from './components/actionsheet/actionsheet.module';
-import {CellModule} from './modules/cell';
-/*import {PickerModule} from './modules/picker';*/
 import {ChartF2Module} from './modules/chart-f2';
-import {RatingModule} from './modules/rating';
-import {DialogModule} from './modules/dialog';
-import {UploaderModule} from './modules/uploader';
+import {
+  CellModule,
+  DialogModule,
+  InfiniteLoaderModule,
+  PickerModule,
+  ActionSheetModule,
+  ButtonModule,
+  RatingModule,
+  UploaderModule,
+  TabModule,
+  ToastModule
+} from 'ngx-weui';
 import {WxModule} from './modules/wx';
-import {ButtonModule} from './modules/button';
-import {PickerModule} from 'ngx-weui';
+
+import {VgCoreModule} from 'videogular2/core';
+import {VgControlsModule} from 'videogular2/controls';
+import {VgOverlayPlayModule} from 'videogular2/overlay-play';
+import {VgBufferingModule} from 'videogular2/buffering';
 
 // pipes
 import {EmployeesPipe} from './pipes/employees.pipe';
 import {RenamePipe} from './pipes/rename.pipe';
-import {WeekPipe} from './pipes/pipes.pipe';
+import {WeekPipe, CallbackPipe} from './pipes/pipes.pipe';
 
 // services
 import {SERVICES_DECLARATIONS} from './services';
@@ -30,12 +39,13 @@ import {AppPayComponent} from './pages/pay/pay.component';
 import {COMPONENTS_DECLARATIONS} from './components';
 import {FRONT_PAGES_DECLARATIONS} from './pages/front';
 import {ADMIN_PAGES_DECLARATIONS} from './pages/admin';
+import {RECRUITMENT_PAGES_DECLARATIONS} from './pages/recruitment';
+import {WX_PAGES_DECLARATIONS} from './pages/wx';
 
 // directives
 import {DIRECTIVES_DECLARATIONS} from './directives';
 
 import {SwiperModule, SWIPER_CONFIG, SwiperConfigInterface} from 'ngx-swiper-wrapper';
-import {InfiniteLoaderConfig} from './components/infinite-loader/infinite-loader.config';
 
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
   direction: 'horizontal',
@@ -54,11 +64,14 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     EmployeesPipe,
     RenamePipe,
     WeekPipe,
+    CallbackPipe,
     AppComponent,
     AppPayComponent,
     ...COMPONENTS_DECLARATIONS,
     ...FRONT_PAGES_DECLARATIONS,
     ...ADMIN_PAGES_DECLARATIONS,
+    ...RECRUITMENT_PAGES_DECLARATIONS,
+    ...WX_PAGES_DECLARATIONS,
     ...DIRECTIVES_DECLARATIONS
   ],
   imports: [
@@ -68,26 +81,34 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    CellModule,
+    CellModule.forRoot(),
     SwiperModule,
-    ActionSheetModule,
+    ActionSheetModule.forRoot(),
     PickerModule.forRoot(),
     ChartF2Module,
-    RatingModule,
+    RatingModule.forRoot(),
     WxModule,
-    DialogModule,
-    ButtonModule,
-    UploaderModule
+    InfiniteLoaderModule.forRoot(),
+    DialogModule.forRoot(),
+    ButtonModule.forRoot(),
+    UploaderModule.forRoot(),
+    TabModule.forRoot(),
+    ToastModule.forRoot(),
+    VgCoreModule,
+    VgControlsModule,
+    VgOverlayPlayModule,
+    VgBufferingModule
   ],
   providers: [
     ...SERVICES_DECLARATIONS,
-    InfiniteLoaderConfig,
     EmployeesPipe,
     WeekPipe,
+    CallbackPipe,
     {
       provide: SWIPER_CONFIG,
       useValue: DEFAULT_SWIPER_CONFIG
-    }
+    },
+    {provide: ErrorHandler, useClass: AppComponent}
   ],
   bootstrap: [AppComponent],
   entryComponents: [...COMPONENTS_DECLARATIONS]

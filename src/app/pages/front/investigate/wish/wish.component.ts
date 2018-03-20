@@ -5,7 +5,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {PageConfig} from '../../../page.config';
 import {WxService} from '../../../../modules/wx';
 import {EmployerService} from '../../../../services/employer.service';
-import {DialogService} from '../../../../modules/dialog';
+import {DialogService} from 'ngx-weui';
 
 @Component({
   selector: 'app-front-investigate-wish',

@@ -1,6 +1,6 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute, ParamMap} from '@angular/router';
-import {InfiniteLoaderComponent} from '../../../../../components/infinite-loader/infinite-loader.component';
+import {InfiniteLoaderComponent} from 'ngx-weui';
 import {PageConfig} from './page.config';
 import {WxService} from '../../../../../modules/wx';
 import {EmployeeService} from '../../../../../services/employee.service';

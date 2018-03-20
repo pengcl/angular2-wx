@@ -12,10 +12,10 @@
         <img style="width:0.2rem;margin-right:0.05rem;display:block" src="/assets/images/icons/mobile.png">
       </div>
       <div class="weui-cell__bd">
-        <input class="weui-input" type="tel" formControlName="mobile" placeholder="请输入手机号">
+        <input class="weui-input" (focus)="isKeyboardShow = true" (blur)="isKeyboardShow = false" type="tel" formControlName="mobile" placeholder="请输入手机号">
       </div>
       <div class="weui-cell__ft" *ngIf="loginForm.get('mobile').valid"
-           (click)="getCode($event,loginForm.get('mobile').value)">
+           (click)="getCode(loginForm.get('mobile').value)">
         {{activeText}}
       </div>
     </div>
@@ -24,7 +24,7 @@
         <img style="width:0.2rem;margin-right:0.05rem;display:block" src="/assets/images/icons/lock.png">
       </div>
       <div class="weui-cell__bd">
-        <input class="weui-input" type="text" formControlName="code" placeholder="请输入验证码">
+        <input class="weui-input" (focus)="isKeyboardShow = true" (blur)="isKeyboardShow = false" type="tel" formControlName="code" placeholder="请输入验证码">
       </div>
     </div>
   </div>
@@ -33,7 +33,7 @@
      [ngClass]="{'weui-btn_disabled':loginForm.invalid}">登录</a>
 </form>
 
-<div class="weui-footer weui-footer_fixed-bottom">
+<div *ngIf="!isKeyboardShow" class="weui-footer weui-footer_fixed-bottom">
   <p class="weui-footer__links">
     <a href="javascript:home();" class="weui-footer__link">大牛管家</a>
   </p>

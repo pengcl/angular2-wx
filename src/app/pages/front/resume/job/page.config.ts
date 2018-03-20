@@ -57,7 +57,7 @@ export const PageConfig = {
   'navBar': {
     'backgroundTextStyle': 'light',
     'navigationBarBackgroundColor': '#fff',
-    'navigationBarTitleText': '大牛管家欢迎你!',
+    'navigationBarTitleText': '大牛管家招募令!',
     'navigationBarTextStyle': 'black',
     'enablePullDownRefresh': false
   }

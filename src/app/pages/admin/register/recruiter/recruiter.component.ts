@@ -1,10 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {UserService} from '../../../../services/user.service';
-import {WxService} from '../../../../modules/wx';
-import {Router, ActivatedRoute} from '@angular/router';
 
-import {DialogService} from '../../../../modules/dialog';
+import {DialogService} from 'ngx-weui';
 import {StorageService} from '../../../../services/storage.service';
 import {PageConfig} from './page.config';
 
@@ -20,6 +17,7 @@ export class AdminRegisterRecruiterComponent implements OnInit {
   navBarConfig = PageConfig.navBar;
 
   registerForm: FormGroup;
+
   // user: any;
 
   constructor(private storage: StorageService,

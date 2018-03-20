@@ -1,0 +1,88 @@
+<app-navbar [navBar]="navBarConfig"></app-navbar>
+
+
+<weui-navbar>
+  <weui-tab *ngIf="allItems" heading="所有 {{allItems.length}}人">
+    <div class="weui-panel" *ngIf="allItems.length > 0">
+      <div class="weui-panel__bd">
+        <div class="weui-media-box weui-media-box_small-appmsg">
+          <div class="weui-cells" style="font-size: 0.14rem">
+            <div *ngFor="let item of allItems"
+                 class="weui-cell">
+              <div class="weui-cell__bd weui-cell_primary">
+                <h4 class="weui-media-box__title">{{item.name}}</h4>
+                <p class="weui-media-box__desc">{{item.mobile}}</p>
+              </div>
+              <div class="weui-cell__ft">
+                <span *ngIf="item.progresstype === 1">已报名</span>
+                <span *ngIf="item.progresstype === 2">学员</span>
+                <span *ngIf="item.progresstype === 3">管家</span>
+                <br>{{item.progresstime}}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pageTips" *ngIf="allItems.length === 0">
+      <h2>暂无"应聘人员"</h2>
+      <p>您可以关注"大牛管家"公众号，获取最新活动消息。</p>
+    </div>
+  </weui-tab>
+  <weui-tab *ngIf="trainees" heading="学员 {{trainees.length}}人">
+    <div class="weui-panel" *ngIf="trainees.length > 0">
+      <div class="weui-panel__bd">
+        <div class="weui-media-box weui-media-box_small-appmsg">
+          <div class="weui-cells" style="font-size: 0.14rem">
+            <div *ngFor="let item of trainees" class="weui-cell">
+              <div class="weui-cell__bd weui-cell_primary">
+                <h4 class="weui-media-box__title">{{item.name}}</h4>
+                <p class="weui-media-box__desc">{{item.mobile}}</p>
+              </div>
+              <div class="weui-cell__ft">
+                <span *ngIf="item.progresstype === 1">已报名</span>
+                <span *ngIf="item.progresstype === 2">学员</span>
+                <span *ngIf="item.progresstype === 3">管家</span>
+                <br>{{item.progresstime}}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pageTips" *ngIf="trainees.length === 0">
+      <h2>暂无人"录取为学员"</h2>
+      <p>您可以关注"大牛管家"公众号，获取最新活动消息。</p>
+    </div>
+  </weui-tab>
+  <weui-tab *ngIf="housekeepers" heading="管家 {{housekeepers.length}}人">
+    <div class="weui-panel" *ngIf="housekeepers.length > 0">
+      <div class="weui-panel__bd">
+        <div class="weui-media-box weui-media-box_small-appmsg">
+          <div class="weui-cells" style="font-size: 0.14rem">
+            <div *ngFor="let item of housekeepers" class="weui-cell">
+              <div class="weui-cell__bd weui-cell_primary">
+                <h4 class="weui-media-box__title">{{item.name}}</h4>
+                <p class="weui-media-box__desc">{{item.mobile}}</p>
+              </div>
+              <div class="weui-cell__ft">
+                <span *ngIf="item.progresstype === 1">已报名</span>
+                <span *ngIf="item.progresstype === 2">学员</span>
+                <span *ngIf="item.progresstype === 3">管家</span>
+                <br>{{item.progresstime}}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pageTips" *ngIf="housekeepers.length === 0">
+      <h2>暂无人"签约为管家"</h2>
+      <p>您可以关注"大牛管家"公众号，获取最新活动消息。</p>
+    </div>
+  </weui-tab>
+</weui-navbar>
+
+<div class="btns-group">
+  <a (click)="onShare()" class="btn-twitter">继续邀请</a>
+</div>

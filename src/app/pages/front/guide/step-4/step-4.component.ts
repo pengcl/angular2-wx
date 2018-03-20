@@ -3,10 +3,9 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {PageConfig} from './../../../page.config';
 import {WxService} from '../../../../modules/wx';
-import {ActionSheetConfig} from '../../../../components/actionsheet';
+import {DialogService, ActionSheetService, ActionSheetConfig} from 'ngx-weui';
+
 import {ACTIONSHEETS} from '../../../../../mockData/actionSheets';
-import {ActionSheetService} from '../../../../components/actionsheet';
-import {DialogService} from '../../../../modules/dialog';
 
 declare var $: any;
 declare var mojs: any;

@@ -6,7 +6,7 @@ import {MoService} from '../../../../services/mo.service';
 import {EmployerService} from '../../../../services/employer.service';
 
 import {Config} from '../../../../config';
-import {InfiniteLoaderComponent} from '../../../../components/infinite-loader/infinite-loader.component';
+import {InfiniteLoaderComponent} from 'ngx-weui';
 import {Observable} from 'rxjs/Observable';
 
 declare var $: any;

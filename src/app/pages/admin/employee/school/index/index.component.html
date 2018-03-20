@@ -1,0 +1,88 @@
+<app-navbar [navBar]="navBarConfig"></app-navbar>
+
+<weui-navbar>
+  <weui-tab heading="首页">
+    <div class="banner">
+      <div class="img-box">
+        <img src="/assets/images/admin/employee/school/index/banner.png">
+      </div>
+    </div>
+
+    <div class="catalogs weui-grids">
+      <a *ngFor="let catalog of catalogList" [routerLink]="['/admin/employee/school']" class="weui-grid">
+        <div class="weui-grid__icon">
+          <img src="{{config.prefix.wApi + catalog.imageurl}}" alt="">
+        </div>
+        <p class="weui-grid__label">{{catalog.coursecatalogname}}</p>
+      </a>
+    </div>
+
+    <div class="weui-panel weui-panel_access">
+      <div class="weui-panel__title weui-panel__hd">热门课程</div>
+      <div class="weui-panel__bd">
+        <div class="weui-media-box">
+          <div class="hot weui-grids">
+            <a *ngFor="let item of hotList" [routerLink]="['/admin/employee/school/curriculum/course/details',item.coursecatalogid]" class="weui-grid">
+              <div class="item-box">
+                <div class="weui-grid__icon">
+                  <img src="{{config.prefix.wApi + item.imageurl}}" alt="">
+                </div>
+                <p class="weui-grid__label">{{item.title}}</p>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="weui-panel weui-panel_access">
+      <div class="weui-panel__title weui-panel__hd">最新课程</div>
+      <div class="weui-panel__bd">
+        <div class="weui-media-box">
+          <div class="new weui-grids">
+            <a *ngFor="let item of newList"
+               [routerLink]="['/admin/employee/school/curriculum/course/details',item.coursecatalogid]"
+               class="weui-grid">
+              <div class="item-box">
+                <div class="weui-grid__icon">
+                  <img src="{{config.prefix.wApi + item.imageurl}}" alt="">
+                </div>
+                <p class="weui-grid__label">{{item.title}}</p>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="weui-panel weui-panel_access">
+      <div class="weui-panel__title weui-panel__hd">培训专题</div>
+      <div class="weui-panel__bd">
+        <div class="weui-media-box">
+          <div class="spc weui-grids">
+            <a *ngFor="let item of specialList" [routerLink]="['/admin/employee/school/curriculum/course/details',item.coursecatalogid]" class="weui-grid">
+              <div class="item-box">
+                <div class="weui-grid__icon">
+                  <img src="{{config.prefix.wApi + item.imageurl}}" alt="">
+                </div>
+                <p class="weui-grid__label"><span>{{item.title}}</span></p>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="weui-panel__ft">
+        <a href="javascript:void(0);" class="weui-cell weui-cell_access weui-cell_link">
+          <div class="weui-cell__bd">查看更多</div>
+          <span class="weui-cell__ft"></span>
+        </a>
+      </div>
+    </div>
+  </weui-tab>
+  <weui-tab heading="课程分类">
+    课程分类
+  </weui-tab>
+  <weui-tab heading="我的学习">
+    我的学习
+  </weui-tab>
+</weui-navbar>
