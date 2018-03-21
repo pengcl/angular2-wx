@@ -90,6 +90,7 @@ export class RecruitmentIndexComponent implements OnInit, OnDestroy {
 
     this.userInfo = this.employer.getEmployer(this.user.id).then(res => {
       this.userInfo = res.cust;
+      console.log(this.userInfo);
     });
 
     this.recruit.getChannels(this.user.id).then(res => {
@@ -181,29 +182,45 @@ export class RecruitmentIndexComponent implements OnInit, OnDestroy {
     });
   }
 
-  onShare(gh, state) {
-    this.wx.config({
-      title: '大牛管家诚聘优才',
-      desc: '欢迎广大有志于高端管家助理服务的退伍军人，体育专业毕业生踊跃报名！',
-      link: Config.webHost + '/front/resume/job?gh=' + gh + '&referee=' + this.user.id,
-      imgUrl: Config.webHost + '/assets/images/front/resume/share-icon.png',
-      success: () => {
-        alert('分享成功');
-      },
-      cancel: function () {
-        console.log('cancel');
-      }
-    }).then(() => {
-      console.log(true);
-      // 其它操作，可以确保注册成功以后才有效
-      // this.status = '注册成功';
-    }).catch((err: string) => {
-      console.log(err);
-      // this.status = `注册失败，原因：${err}`;
-    });
-    this.wx.show(state).subscribe(res => {
-      console.log(res);
-    });
+  onShare(gh, state, id, status) {
+    if (status === 1) {
+      this.dialog.show({content: '此渠道已用，请创建新渠道', confirm: '我知道了', cancel: ''}).subscribe(res => {
+        console.log(res);
+      });
+    } else {
+      this.wx.config({
+        title: '大牛管家诚聘优才',
+        desc: '欢迎广大有志于高端管家助理服务的退伍军人，体育专业毕业生踊跃报名！',
+        link: Config.webHost + '/front/resume/job?gh=' + gh + '&referee=' + this.user.id,
+        imgUrl: Config.webHost + '/assets/images/front/resume/share-icon.png',
+        success: () => {
+          alert('分享成功');
+          this.recruit.updateChannelStatus(id).then(_res => {
+            if (_res.code === 0) {
+              this.recruit.getChannels(this.user.id).then(res => {
+                if (res.code === 0) {
+                  this.channels = res.list;
+                  console.log(this.channels);
+                }
+              });
+            }
+          });
+        },
+        cancel: function () {
+          console.log('cancel');
+        }
+      }).then(() => {
+        console.log(true);
+        // 其它操作，可以确保注册成功以后才有效
+        // this.status = '注册成功';
+      }).catch((err: string) => {
+        console.log(err);
+        // this.status = `注册失败，原因：${err}`;
+      });
+      this.wx.show(state).subscribe(res => {
+        console.log(res);
+      });
+    }
   }
 
   addFriend() {

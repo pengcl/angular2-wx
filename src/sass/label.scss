@@ -28,6 +28,9 @@
     text-align: center;
     vertical-align: text-bottom;
   }
+  &.disabled {
+    opacity: 0.5;
+  }
   &.hollow {
     background-color: transparent !important;
     &:after {

@@ -42,4 +42,4 @@ function leaveDate(leave, workingTime, rest) {
 leaveDate([new Date('2018/03/04 09:30'), new Date('2018/04/09 17:00')], ['09:00:00', '18:00:00'], [7]);
 */
 
-console.log([].length);
+console.log(new Date(1521593974005));

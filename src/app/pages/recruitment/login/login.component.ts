@@ -51,10 +51,16 @@ export class RecruitmentLoginComponent implements OnInit {
     this.loginForm = new FormGroup({
       mobile: new FormControl('', [Validators.required, Validators.minLength(11), Validators.maxLength(11)]),
       code: new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(4)]),
-      openid: new FormControl('', [])
+      openid: new FormControl('', []),
+      refereeId: new FormControl('', []),
+      gh: new FormControl('', []),
     });
 
     this.loginForm.get('openid').setValue(this.activatedRoute.snapshot.queryParams['openid']);
+    this.loginForm.get('refereeId').setValue(this.activatedRoute.snapshot.queryParams['refereeId']);
+    this.loginForm.get('gh').setValue(this.activatedRoute.snapshot.queryParams['gh']);
+
+    console.log(this.loginForm.get('refereeId').value);
   }
 
   getCode(e, mobile) {

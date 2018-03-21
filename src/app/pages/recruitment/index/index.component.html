@@ -35,22 +35,22 @@
           <div *ngFor="let channel of channels" class="weui-cell">
             <div class="weui-cell__bd weui-cell_primary">
               <h4 class="weui-media-box__title">
-                      <span [routerLink]="['/recruitment/channel/details']"
-                            [queryParams]="{gh: channel.channel.channelno}">
+                      <span>
                         {{channel.channel.channelname}}</span>
                 <sub>
                   [<span (click)="showUpdateChannel(channel.channel.channelid)">更改名称</span>]
                 </sub>
               </h4>
-              <p style="margin-top: 0.1rem" [routerLink]="['/recruitment/channel/details']" [queryParams]="{gh: channel.channel.channelno}"
-                 class="weui-media-box__desc">
-                查看报名情况>
-                <!--<span>录取学员 {{channel.traineeCount}}人</span>，<span>签约管家 {{channel.housekeeperCount}}人</span>-->
+              <p style="margin-top: 0.1rem" class="weui-media-box__desc">
+                <!--查看报名情况>-->
+                <span>录取学员 {{channel.traineeCount}}人</span>，<span>签约管家 {{channel.housekeeperCount}}人</span>
               </p>
             </div>
-            <div (click)="onShare(channel.channel.channelno,{targetTips:'来招募更多学员吧'})"
-                 class="weui-cell__ft">
-              <a class="ui-label circle colors orange">马上分享</a>
+            <div
+              (click)="onShare(channel.channel.channelno,{targetTips:'来招募更多学员吧'},channel.channel.channelid,channel.channel.sendstatus)"
+              class="weui-cell__ft">
+              <a class="ui-label circle colors orange" [ngClass]="{'disabled':channel.channel.sendstatus === 1}">{{channel.channel.sendstatus
+                === 1 ? '已分享' : '马上分享'}}</a>
             </div>
           </div>
         </div>
@@ -67,6 +67,8 @@
 </div>
 
 <div class="btns-group" *ngIf="channels">
+  <a *ngIf="userInfo?.distributor_type === 1" routerLink="/recruitment/recruiters"
+     class="btn-secondary no-state">我的招募官</a>
   <a routerLink="/recruitment/incomes" class="btn-secondary no-state">查看我的补贴</a>
   <div (click)="addFriend()" class="btn-secondary">帮朋友创建账号</div>
 </div>

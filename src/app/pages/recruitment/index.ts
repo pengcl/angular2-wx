@@ -13,6 +13,7 @@ import {RecruitmentChannelDetailsComponent} from './channel/details/details.comp
 import {RecruitmentAboutComponent} from './about/about.component';
 import {RecruitmentArticleIncomeRulesComponent} from './article/incomeRules/incomeRules.component';
 import {RecruitmentArticleRequirementsComponent} from './article/requirements/requirements.component';
+import {RecruitmentRecruitersComponent} from './recruiters/recruiters.component';
 
 export const RECRUITMENT_PAGES_DECLARATIONS = [
   RecruitmentComponent,
@@ -29,5 +30,6 @@ export const RECRUITMENT_PAGES_DECLARATIONS = [
   RecruitmentChannelDetailsComponent,
   RecruitmentAboutComponent,
   RecruitmentArticleIncomeRulesComponent,
-  RecruitmentArticleRequirementsComponent
+  RecruitmentArticleRequirementsComponent,
+  RecruitmentRecruitersComponent
 ];

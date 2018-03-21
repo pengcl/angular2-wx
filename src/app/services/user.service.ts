@@ -38,13 +38,14 @@ export class UserService {
           const user = {
             id: this.activatedRoute.snapshot.queryParams['custId'] ? this.activatedRoute.snapshot.queryParams['custId'] : '',
             housekeeperId: this.activatedRoute.snapshot.queryParams['housekeeperId'] ? this.activatedRoute.snapshot.queryParams['housekeeperId'] : '',
-            openid: this.activatedRoute.snapshot.queryParams['openid']
+            openid: this.activatedRoute.snapshot.queryParams['openid'],
+            referee: this.activatedRoute.snapshot.queryParams['refereeId']
           };
           this.storageService.set('user', JSON.stringify(user)); // 把userId存入localStorage
           if (JSON.parse(this.storageService.get('user')).id !== '') {
             return user;
           } else {
-            window.location.href = loginUrl + '?openid=' + user.openid + '&callbackUrl=' + this.router.url;
+            window.location.href = loginUrl + '?openid=' + user.openid + '&refereeId=' + user.referee + '&callbackUrl=' + this.router.url;
           }
         } else {// 如果地址栏参数不存在userId
           window.location.href = Config.prefix.wApi + '/interface/comm/auth.ht?callBackUrl=' + encodeURI(window.location.href);

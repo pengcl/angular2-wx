@@ -93,6 +93,7 @@ import {RecruitmentChannelDetailsComponent} from './pages/recruitment/channel/de
 import {RecruitmentAboutComponent} from './pages/recruitment/about/about.component';
 import {RecruitmentArticleIncomeRulesComponent} from './pages/recruitment/article/incomeRules/incomeRules.component';
 import {RecruitmentArticleRequirementsComponent} from './pages/recruitment/article/requirements/requirements.component';
+import {RecruitmentRecruitersComponent} from './pages/recruitment/recruiters/recruiters.component';
 
 import {AppPayComponent} from './pages/pay/pay.component';
 import {WxComponent} from './pages/wx/wx.component';
@@ -202,6 +203,7 @@ const appRecruitmentRoutes: Routes = [
   {path: 'about', component: RecruitmentAboutComponent},
   {path: 'article/incomeRules', component: RecruitmentArticleIncomeRulesComponent},
   {path: 'article/requirements', component: RecruitmentArticleRequirementsComponent},
+  {path: 'recruiters', component: RecruitmentRecruitersComponent},
 ];
 
 export const routes: Routes = [

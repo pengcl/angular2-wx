@@ -3,6 +3,7 @@ import {PageConfig} from './page.config';
 import {Config} from '../../../config';
 import {WxService} from '../../../modules/wx';
 import {Router, ActivatedRoute} from '@angular/router';
+import {LogService} from '../../../services/log.service';
 
 @Component({
   selector: 'app-wx-index',
@@ -19,7 +20,8 @@ export class WxIndexComponent implements OnInit {
 
   constructor(private router: Router,
               private activatedRoute: ActivatedRoute,
-              private wx: WxService) {
+              private wx: WxService,
+              private log: LogService) {
   }
 
   ngOnInit() {
@@ -36,6 +38,10 @@ export class WxIndexComponent implements OnInit {
     }).catch((err: string) => {
       console.log(`注册失败，原因：${err}`);
       this.status = `注册失败，原因：${err}`;
+    });
+
+    this.log._log('test', {}).then(res => {
+      console.log(res);
     });
   }
 }

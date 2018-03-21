@@ -55,6 +55,12 @@ export class RecruitService {
       .catch(this.handleError);
   }
 
+  updateChannelStatus(id): Promise<any> {
+    return this.http.post(Config.prefix.wApi + '/interface/recruit/updateChannelStatus.ht?channelId=' + id, {}, {}).toPromise()
+      .then(response => response)
+      .catch(this.handleError);
+  }
+
   addBank(body): Promise<any> {
     const prams = formDataToUrl(body);
     return this.http.post(Config.prefix.wApi + '/interface/recruit/updateAccount.ht' + prams, {}, {}).toPromise()
