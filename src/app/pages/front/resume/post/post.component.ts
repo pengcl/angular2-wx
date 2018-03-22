@@ -611,7 +611,7 @@ export class FrontResumePostComponent implements OnInit {
 
       // 体能指标
       pushUp: new FormControl('', [Validators.required]),
-      standingLongJump: new FormControl('', [Validators.required]),
+      standingLongJump: new FormControl('', [Validators.required, Validators.min(1), Validators.max(10)]),
       pullUps: new FormControl('', [Validators.required]),
       sitUp: new FormControl('', [Validators.required]),
       hundredMDash: new FormControl('', [Validators.required]),
@@ -745,7 +745,6 @@ export class FrontResumePostComponent implements OnInit {
         break;
       case 'data':
         this.picker.show(data, {}, [], {confirm: '确定'}).subscribe((res: any) => {
-          console.log(res);
           this.resumeForm.get(formControlName).setValue(res.formatValue);
         });
         break;
@@ -756,11 +755,9 @@ export class FrontResumePostComponent implements OnInit {
     this.isSubmit = true;
 
     const valid = validScroll(this.resumeForm.controls);
-    console.log(valid);
 
     if (!valid.valid) {// page_scroll_to_target
       const target = this.container.nativeElement.querySelector('.check-' + valid.control).offsetTop;
-      console.log(this.container.nativeElement.querySelector('.check-' + valid.control), target);
       let times = 1;
       try {
         const interval = setInterval(() => {
@@ -786,7 +783,6 @@ export class FrontResumePostComponent implements OnInit {
     this.employeeSvc.resume(this.resumeForm.value).then(res => {
       this.loading = false;
       this.dialog.show({title: '系统提示', content: res.msg, cancel: '', confirm: '我知道了'}).subscribe(data => {
-        console.log(data);
         if (data.value && res.code === 0) {
           this.router.navigate(['/front/resume/job'], {queryParamsHandling: 'merge'});
         }

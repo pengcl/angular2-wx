@@ -382,7 +382,6 @@ export function formatAttendance(attendance) {
 }
 
 export function validScroll(controls: object) {
-  console.log(controls);
   const result = {
     valid: true,
     control: ''

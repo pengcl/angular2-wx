@@ -53,19 +53,6 @@
         </div>
       </div>
 
-      <!--<div (click)="onShow('isMarried')" [ngClass]="{'weui-cell_warn':isSubmit && resumeForm.get('isMarried').invalid}"
-           class="weui-cell weui-cell_access">
-        <div class="weui-cell__hd">
-          <label class="weui-label">婚姻状况</label>
-        </div>
-        <div class="weui-cell__bd">
-          {{actionSheets['isMarried'].selected}}
-        </div>
-        <div class="weui-cell__ft">
-          <i class="weui-icon-warn"></i>
-        </div>
-      </div>-->
-
       <div [ngClass]="{'weui-cell_warn':isSubmit && resumeForm.get('mobile').invalid}" class="check-mobile weui-cell">
         <div class="weui-cell__hd"><label class="weui-label">手机号码</label></div>
         <div class="weui-cell__bd">
@@ -88,7 +75,7 @@
       <div [ngClass]="{'weui-cell_warn':isSubmit && resumeForm.get('height').invalid}" class="check-height weui-cell">
         <div class="weui-cell__hd"><label class="weui-label">身高</label></div>
         <div class="weui-cell__bd">
-          <input formControlName="height" class="weui-input" type="number">
+          <input formControlName="height" class="weui-input" placeholder="填写身高(厘米)" type="number">
         </div>
         <div class="weui-cell__ft">厘米</div>
       </div>
@@ -96,7 +83,7 @@
       <div [ngClass]="{'weui-cell_warn':isSubmit && resumeForm.get('weight').invalid}" class="check-weight weui-cell">
         <div class="weui-cell__hd"><label class="weui-label">体重</label></div>
         <div class="weui-cell__bd">
-          <input formControlName="weight" class="weui-input" type="number">
+          <input formControlName="weight" class="weui-input" placeholder="填写体重(公斤)" type="number">
         </div>
         <div class="weui-cell__ft">公斤</div>
       </div>
@@ -115,14 +102,6 @@
         </div>
       </div>
 
-      <!--<div [ngClass]="{'weui-cell_warn':isSubmit && resumeForm.get('nation').invalid}" class="weui-cell">
-        <div class="weui-cell__hd"><label class="weui-label">民族</label></div>
-        <div class="weui-cell__bd">
-          <input formControlName="nation" class="weui-input" placeholder="" type="text">
-        </div>
-        <div class="weui-cell__ft"><i class="weui-icon-warn"></i></div>
-      </div>-->
-
       <div (click)="onShow('education')" [ngClass]="{'weui-cell_warn':isSubmit && resumeForm.get('education').invalid}"
            class="check-education weui-cell weui-cell_access">
         <div class="weui-cell__hd">
@@ -135,45 +114,6 @@
           <i class="weui-icon-warn"></i>
         </div>
       </div>
-
-      <!--<a class="weui-cell weui-cell_access"
-         [ngClass]="{'weui-cell_warn':isSubmit && resumeForm.get('placeOfOrigin').invalid}"
-         (click)="onPickerShow('city','placeOfOrigin')" href="javascript:;">
-        <div class="weui-cell__hd"><label class="weui-label">籍贯</label></div>
-        <div class="weui-cell__bd">
-          <input formControlName="placeOfOrigin" class="weui-input" type="hidden" value="">
-          {{resumeForm.get('placeOfOrigin').value ?
-          resumeForm.get('placeOfOrigin').value:'请选择'}}
-        </div>
-        <div class="weui-cell__ft">
-          <i class="weui-icon-warn"></i>
-        </div>
-      </a>
-
-      <a class="weui-cell weui-cell_access"
-         [ngClass]="{'weui-cell_warn':isSubmit && resumeForm.get('birthplace').invalid}"
-         (click)="onPickerShow('city','birthplace')" href="javascript:;">
-        <div class="weui-cell__hd"><label class="weui-label">户籍地</label></div>
-        <div class="weui-cell__bd">
-          <input formControlName="birthplace" class="weui-input" type="hidden" value="">
-          {{resumeForm.get('birthplace').value ?
-          resumeForm.get('birthplace').value:'请选择'}}
-        </div>
-      </a>
-
-      <div (click)="onShow('birthplaceType')"
-           [ngClass]="{'weui-cell_warn':isSubmit && resumeForm.get('birthplaceType').invalid}"
-           class="weui-cell weui-cell_access">
-        <div class="weui-cell__hd">
-          <label class="weui-label">户口性质</label>
-        </div>
-        <div class="weui-cell__bd">
-          {{actionSheets['birthplaceType'].selected}}
-        </div>
-        <div class="weui-cell__ft">
-          <i class="weui-icon-warn"></i>
-        </div>
-      </div>-->
 
       <a class="check-address weui-cell weui-cell_access"
          [ngClass]="{'weui-cell_warn':isSubmit && resumeForm.get('address').invalid}"
@@ -200,133 +140,124 @@
         </div>
       </div>
 
-      <div class="register-type" *ngIf="resumeForm.get('registerType').value == '0'">
-        <div [ngClass]="{'weui-cell_warn':isSubmit && resumeForm.get('graduationPlace').invalid}" class="check-graduationPlace weui-cell">
-          <div class="weui-cell__hd"><label class="weui-label">毕业院校</label></div>
-          <div class="weui-cell__bd">
-            <input formControlName="graduationPlace" class="weui-input" placeholder="" type="text">
-          </div>
-        </div>
+    </div>
 
-        <div (click)="onPickerShow('date-ym','graduationTime')"
-             [ngClass]="{'weui-cell_warn':isSubmit && resumeForm.get('graduationTime').invalid}"
-             class="check-graduationTime weui-cell weui-cell_access">
-          <div class="weui-cell__hd"><label class="weui-label">毕业时间</label></div>
-          <div class="weui-cell__bd">
-            {{resumeForm.get('graduationTime').value ? resumeForm.get('graduationTime').value:'请选择'}}
-            <!--<input formControlName="graduationTime" class="weui-input" type="date">-->
-          </div>
-          <div class="weui-cell__ft"><i class="weui-icon-warn"></i></div>
-        </div>
-
-        <!--<div class="weui-cell">
-          <div class="weui-cell__hd"><label class="weui-label">专业</label></div>
-          <div class="weui-cell__bd">
-            <input formControlName="major" class="weui-input" placeholder="" type="text">
-          </div>
-          <div class="weui-cell__ft">若无可不填</div>
-        </div>-->
-
-        <div (click)="onShow('movementType')"
-             [ngClass]="{'weui-cell_warn':isSubmit && resumeForm.get('movementType').invalid}"
-             class="check-movementType weui-cell weui-cell_access">
-          <div class="weui-cell__hd">
-            <label class="weui-label">专业类型</label>
-          </div>
-          <div class="weui-cell__bd">
-            {{actionSheets['movementType'].selected}}
-          </div>
-          <div class="weui-cell__ft">
-            <i class="weui-icon-warn"></i>
-          </div>
-        </div>
-
-      </div>
-
-      <div class="register-type" *ngIf="resumeForm.get('registerType').value == '1'">
-        <div [ngClass]="{'weui-cell_warn':isSubmit && resumeForm.get('armyServePlace').invalid}" class="check-armyServePlace weui-cell">
-          <div class="weui-cell__hd"><label class="weui-label">原服役部队</label></div>
-          <div class="weui-cell__bd">
-            <input formControlName="armyServePlace" class="weui-input" placeholder="" type="text">
-          </div>
-        </div>
-
-        <div (click)="onPickerShow('date-ym','enlistmentTime')"
-             [ngClass]="{'weui-cell_warn':isSubmit && resumeForm.get('enlistmentTime').invalid}"
-             class="check-enlistmentTime weui-cell weui-cell_access">
-          <div class="weui-cell__hd"><label class="weui-label">入伍时间</label></div>
-          <div class="weui-cell__bd">
-            {{resumeForm.get('enlistmentTime').value ? resumeForm.get('enlistmentTime').value:'请选择'}}
-            <!--<input formControlName="enlistmentTime" class="weui-input" type="date">-->
-          </div>
-          <div class="weui-cell__ft"><i class="weui-icon-warn"></i></div>
-        </div>
-
-        <div (click)="onPickerShow('date-ym','retirementTime')"
-             [ngClass]="{'weui-cell_warn':isSubmit && resumeForm.get('retirementTime').invalid}"
-             class="check-retirementTime weui-cell weui-cell_access">
-          <div class="weui-cell__hd"><label class="weui-label">退伍时间</label></div>
-          <div class="weui-cell__bd">
-            {{resumeForm.get('retirementTime').value ? resumeForm.get('retirementTime').value:'请选择'}}
-            <!--<input formControlName="retirementTime" class="weui-input" type="date">-->
-          </div>
-          <div class="weui-cell__ft"><i class="weui-icon-warn"></i></div>
-        </div>
-
-        <div (click)="onServices('armyType')"
-             [ngClass]="{'weui-cell_warn':isSubmit && resumeForm.get('armyType').invalid}" class="check-armyType weui-cell">
-          <div class="weui-cell__hd"><label class="weui-label">军种</label></div>
-          <div class="weui-cell__bd">
-            {{actionSheets['armyType'].selected}}
-          </div>
-          <div class="weui-cell__ft">
-            <i class="weui-icon-warn"></i>
-          </div>
-        </div>
-
-        <div (click)="onServices('services')"
-             [ngClass]="{'weui-cell_warn':isSubmit && resumeForm.get('services').invalid}" class="check-services weui-cell">
-          <div class="weui-cell__hd"><label class="weui-label">兵种</label></div>
-          <div class="weui-cell__bd">
-            {{actionSheets['services'].selected}}
-          </div>
-          <div class="weui-cell__ft">
-            <i class="weui-icon-warn"></i>
-          </div>
-        </div>
-
-        <!--<div (click)="onShow('isSpecialArms')"
-             [ngClass]="{'weui-cell_warn':isSubmit && resumeForm.get('isSpecialArms').invalid}"
-             class="weui-cell weui-cell_access">
-          <div class="weui-cell__hd">
-            <label class="weui-label">是否特种兵</label>
-          </div>
-          <div class="weui-cell__bd">
-            {{actionSheets['isSpecialArms'].selected}}
-          </div>
-          <div class="weui-cell__ft">
-            <i class="weui-icon-warn"></i>
-          </div>
-        </div>-->
-
-        <div [ngClass]="{'weui-cell_warn':isSubmit && resumeForm.get('militarySpecialty').invalid}" class="check-militarySpecialty weui-cell">
-          <div class="weui-cell__hd"><label class="weui-label">部队专业</label></div>
-          <div class="weui-cell__bd">
-            <input formControlName="militarySpecialty" class="weui-input" placeholder="" type="text">
-          </div>
-        </div>
-
-        <div [ngClass]="{'weui-cell_warn':isSubmit && resumeForm.get('retiredOfficerRank').invalid}" class="check-retiredOfficerRank weui-cell">
-          <div class="weui-cell__hd"><label class="weui-label">退伍军衔</label></div>
-          <div class="weui-cell__bd">
-            <input formControlName="retiredOfficerRank" class="weui-input" placeholder="" type="text">
-          </div>
+    <div class="check-graduationPlace check-graduationTime check-movementType weui-cells__title" *ngIf="resumeForm.get('registerType').value == '0'">学历信息</div>
+    <div class="weui-cells weui-cells_form" *ngIf="resumeForm.get('registerType').value == '0'">
+      <div [ngClass]="{'weui-cell_warn':isSubmit && resumeForm.get('graduationPlace').invalid}"
+           class="weui-cell">
+        <div class="weui-cell__hd"><label class="weui-label">毕业院校</label></div>
+        <div class="weui-cell__bd">
+          <input formControlName="graduationPlace" class="weui-input" placeholder="请填写毕业院校名称" type="text">
         </div>
       </div>
 
+      <div (click)="onPickerShow('date-ym','graduationTime')"
+           [ngClass]="{'weui-cell_warn':isSubmit && resumeForm.get('graduationTime').invalid}"
+           class="weui-cell weui-cell_access">
+        <div class="weui-cell__hd"><label class="weui-label">毕业时间</label></div>
+        <div class="weui-cell__bd">
+          {{resumeForm.get('graduationTime').value ? resumeForm.get('graduationTime').value:'请选择'}}
+          <!--<input formControlName="graduationTime" class="weui-input" type="date">-->
+        </div>
+        <div class="weui-cell__ft"><i class="weui-icon-warn"></i></div>
+      </div>
+
+      <div (click)="onShow('movementType')"
+           [ngClass]="{'weui-cell_warn':isSubmit && resumeForm.get('movementType').invalid}"
+           class="weui-cell weui-cell_access">
+        <div class="weui-cell__hd">
+          <label class="weui-label">专业类型</label>
+        </div>
+        <div class="weui-cell__bd">
+          {{actionSheets['movementType'].selected}}
+        </div>
+        <div class="weui-cell__ft">
+          <i class="weui-icon-warn"></i>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="check-armyServePlace check-enlistmentTime check-retirementTime check-armyType check-services check-militarySpecialty check-retiredOfficerRank weui-cells__title" *ngIf="resumeForm.get('registerType').value == '1'">部队信息</div>
+    <div class="weui-cells weui-cells_form" *ngIf="resumeForm.get('registerType').value == '1'">
+      <div [ngClass]="{'weui-cell_warn':isSubmit && resumeForm.get('armyServePlace').invalid}"
+           class="weui-cell">
+        <div class="weui-cell__hd"><label class="weui-label">原服役部队</label></div>
+        <div class="weui-cell__bd">
+          <input formControlName="armyServePlace" class="weui-input" placeholder="请填写原部队单位名称" type="text">
+        </div>
+      </div>
+
+      <div (click)="onPickerShow('date-ym','enlistmentTime')"
+           [ngClass]="{'weui-cell_warn':isSubmit && resumeForm.get('enlistmentTime').invalid}"
+           class="weui-cell weui-cell_access">
+        <div class="weui-cell__hd"><label class="weui-label">入伍时间</label></div>
+        <div class="weui-cell__bd">
+          {{resumeForm.get('enlistmentTime').value ? resumeForm.get('enlistmentTime').value:'请选择'}}
+          <!--<input formControlName="enlistmentTime" class="weui-input" type="date">-->
+        </div>
+        <div class="weui-cell__ft"><i class="weui-icon-warn"></i></div>
+      </div>
+
+      <div (click)="onPickerShow('date-ym','retirementTime')"
+           [ngClass]="{'weui-cell_warn':isSubmit && resumeForm.get('retirementTime').invalid}"
+           class="weui-cell weui-cell_access">
+        <div class="weui-cell__hd"><label class="weui-label">退伍时间</label></div>
+        <div class="weui-cell__bd">
+          {{resumeForm.get('retirementTime').value ? resumeForm.get('retirementTime').value:'请选择'}}
+          <!--<input formControlName="retirementTime" class="weui-input" type="date">-->
+        </div>
+        <div class="weui-cell__ft"><i class="weui-icon-warn"></i></div>
+      </div>
+
+      <div (click)="onServices('armyType')"
+           [ngClass]="{'weui-cell_warn':isSubmit && resumeForm.get('armyType').invalid}"
+           class="weui-cell">
+        <div class="weui-cell__hd"><label class="weui-label">军种</label></div>
+        <div class="weui-cell__bd">
+          {{actionSheets['armyType'].selected}}
+        </div>
+        <div class="weui-cell__ft">
+          <i class="weui-icon-warn"></i>
+        </div>
+      </div>
+
+      <div (click)="onServices('services')"
+           [ngClass]="{'weui-cell_warn':isSubmit && resumeForm.get('services').invalid}"
+           class="weui-cell">
+        <div class="weui-cell__hd"><label class="weui-label">兵种</label></div>
+        <div class="weui-cell__bd">
+          {{actionSheets['services'].selected}}
+        </div>
+        <div class="weui-cell__ft">
+          <i class="weui-icon-warn"></i>
+        </div>
+      </div>
+
+      <div [ngClass]="{'weui-cell_warn':isSubmit && resumeForm.get('militarySpecialty').invalid}"
+           class="weui-cell">
+        <div class="weui-cell__hd"><label class="weui-label">部队专业</label></div>
+        <div class="weui-cell__bd">
+          <input formControlName="militarySpecialty" class="weui-input" placeholder="请填写部队专业名称" type="text">
+        </div>
+      </div>
+
+      <div [ngClass]="{'weui-cell_warn':isSubmit && resumeForm.get('retiredOfficerRank').invalid}"
+           class="weui-cell">
+        <div class="weui-cell__hd"><label class="weui-label">退伍军衔</label></div>
+        <div class="weui-cell__bd">
+          <input formControlName="retiredOfficerRank" class="weui-input" placeholder="请填写退伍时的军衔" type="text">
+        </div>
+      </div>
+    </div>
+
+
+    <div class="check-drivingLicence check-driversAge check-drivingMileage weui-cells__title">驾驶经验</div>
+    <div class="weui-cells weui-cells_form">
       <div (click)="onShow('drivingLicence')"
            [ngClass]="{'weui-cell_warn':isSubmit && resumeForm.get('drivingLicence').invalid}"
-           class="check-drivingLicence weui-cell weui-cell_access">
+           class="weui-cell weui-cell_access">
         <div class="weui-cell__hd">
           <label class="weui-label">驾照类型</label>
         </div>
@@ -339,29 +270,30 @@
       </div>
 
       <div *ngIf="resumeForm.get('drivingLicence').value !== '0'"
-           [ngClass]="{'weui-cell_warn':isSubmit && resumeForm.get('driversAge').invalid}" class="check-driversAge weui-cell"
+           [ngClass]="{'weui-cell_warn':isSubmit && resumeForm.get('driversAge').invalid}"
+           class="weui-cell"
            ng-if="drivingLicence != '0'">
         <div class="weui-cell__hd"><label class="weui-label">驾龄</label></div>
         <div class="weui-cell__bd">
-          <input formControlName="driversAge" class="weui-input" placeholder="" type="text">
+          <input formControlName="driversAge" class="weui-input" placeholder="请填写整数" type="text">
         </div>
         <div class="weui-cell__ft">年</div>
       </div>
 
       <div *ngIf="resumeForm.get('drivingLicence').value !== '0'"
-           [ngClass]="{'weui-cell_warn':isSubmit && resumeForm.get('drivingMileage').invalid}" class="check-drivingMileage weui-cell"
+           [ngClass]="{'weui-cell_warn':isSubmit && resumeForm.get('drivingMileage').invalid}"
+           class="weui-cell"
            ng-if="drivingLicence != '0'">
         <div class="weui-cell__hd"><label class="weui-label">驾驶里程</label></div>
         <div class="weui-cell__bd">
-          <input formControlName="drivingMileage" class="weui-input" placeholder="" type="number">
+          <input formControlName="drivingMileage" class="weui-input" placeholder="请填写大概的驾驶里程" type="number">
         </div>
         <div class="weui-cell__ft">公里</div>
       </div>
-
     </div>
 
-    <div class="weui-cells__title">社会工作经历 [请尽量详细]</div>
-    <div class="check-workExperience weui-cells weui-cells_form">
+    <div class="check-workExperience weui-cells__title">社会工作经历 [请尽量详细]</div>
+    <div class="weui-cells weui-cells_form">
       <div class="weui-cell">
         <div class="weui-cell__bd">
           <textarea formControlName="workExperience" class="weui-textarea"
@@ -372,12 +304,15 @@
       </div>
     </div>
 
-    <div class="check-pushUp check-standingLongJump check-pullUps check-sitUp check-hundredMDash check-thousandMDash check-thousandMin check-thousandSec weui-cells__title">体能指标</div>
+    <div
+      class="check-pushUp check-standingLongJump check-pullUps check-sitUp check-hundredMDash check-thousandMDash check-thousandMin check-thousandSec weui-cells__title">
+      体能指标
+    </div>
     <div class="weui-cells weui-cells_form">
       <div [ngClass]="{'weui-cell_warn':isSubmit && resumeForm.get('pushUp').invalid}" class="weui-cell">
         <div class="weui-cell__hd"><label class="weui-label">俯卧撑</label></div>
         <div class="weui-cell__bd">
-          <input formControlName="pushUp" class="weui-input" placeholder="" type="number">
+          <input formControlName="pushUp" class="weui-input" placeholder="每分钟俯卧撑数量" type="number">
         </div>
         <div class="weui-cell__ft">个/分钟</div>
       </div>
@@ -385,15 +320,15 @@
       <div [ngClass]="{'weui-cell_warn':isSubmit && resumeForm.get('standingLongJump').invalid}" class="weui-cell">
         <div class="weui-cell__hd"><label class="weui-label">立定跳远</label></div>
         <div class="weui-cell__bd">
-          <input formControlName="standingLongJump" class="weui-input" placeholder="" type="text">
+          <input formControlName="standingLongJump" class="weui-input" placeholder="立定跳远的距离" type="number">
         </div>
-        <div class="weui-cell__ft">米</div>
+        <div class="weui-cell__ft">厘米</div>
       </div>
 
       <div [ngClass]="{'weui-cell_warn':isSubmit && resumeForm.get('pullUps').invalid}" class="weui-cell">
         <div class="weui-cell__hd"><label class="weui-label">引体向上</label></div>
         <div class="weui-cell__bd">
-          <input formControlName="pullUps" class="weui-input" placeholder="" type="number">
+          <input formControlName="pullUps" class="weui-input" placeholder="每分钟引体向上数量" type="number">
         </div>
         <div class="weui-cell__ft">个/分钟</div>
       </div>
@@ -401,7 +336,7 @@
       <div [ngClass]="{'weui-cell_warn':isSubmit && resumeForm.get('sitUp').invalid}" class="weui-cell">
         <div class="weui-cell__hd"><label class="weui-label">仰卧起坐</label></div>
         <div class="weui-cell__bd">
-          <input formControlName="sitUp" class="weui-input" placeholder="" type="number">
+          <input formControlName="sitUp" class="weui-input" placeholder="每分钟仰卧起坐数量" type="number">
         </div>
         <div class="weui-cell__ft">个/分钟</div>
       </div>
@@ -409,7 +344,7 @@
       <div [ngClass]="{'weui-cell_warn':isSubmit && resumeForm.get('hundredMDash').invalid}" class="weui-cell">
         <div class="weui-cell__hd"><label class="weui-label">100米</label></div>
         <div class="weui-cell__bd">
-          <input formControlName="hundredMDash" class="weui-input" placeholder="" type="number">
+          <input formControlName="hundredMDash" class="weui-input" placeholder="短跑100米用时" type="number">
         </div>
         <div class="weui-cell__ft">秒</div>
       </div>
@@ -474,7 +409,8 @@
       </div>
     </div>
 
-    <label [ngClass]="{'weui-cell_warn':isSubmit && resumeForm.get('userPromise').invalid}" class="check-userPromise weui-agree">
+    <label [ngClass]="{'weui-cell_warn':isSubmit && resumeForm.get('userPromise').invalid}"
+           class="check-userPromise weui-agree">
       <input formControlName="userPromise" type="checkbox" class="weui-agree__checkbox">
       <span class="weui-agree__text">本人保证以上所填资料和信息皆为真实有效，如有虚报或故意隐瞒，公司可不予录用或解除劳动关系并不给予任何经济补偿，本人自行承担由此引起的法律责任。</span>
     </label>
