@@ -1,0 +1,43 @@
+<app-navbar [navBar]="navBarConfig"></app-navbar>
+
+<div class="content-scrollable">
+
+  <div class="sub weui-tab">
+    <div class="swiper-container weui-navbar" [swiper]="swiperConfig" (indexChange)="onIndexChange($event)"
+         [(index)]="current">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide weui-navbar__item" (click)="setTab(parentId)"
+             [ngClass]="{'weui-bar__item_on':catalogId === parentId}">全部
+        </div>
+        <div *ngFor="let item of catalog" (click)="setTab(item.coursecatalogid)" class="weui-navbar__item swiper-slide"
+             [ngClass]="{'weui-bar__item_on':catalogId === item.coursecatalogid}">
+          {{item.coursecatalogname}}
+        </div>
+      </div>
+    </div>
+    <div class="weui-tab__panel">
+      <div *ngIf="courses === null" class="pageTips">
+        <h2>该栏目暂无课程</h2>
+        <p>您可以关注"大牛管家"公众号，获取最新课程消息。</p>
+      </div>
+      <div *ngIf="courses !== null && courses?.length > 0" class="weui-panel">
+        <div class="weui-panel__bd">
+          <div class="weui-media-box">
+            <div class="weui-grids">
+              <a [routerLink]="['/admin/employee/school/curriculum/course/details',item.coursecatalogid]"
+                 *ngFor="let item of courses" class="weui-grid">
+                <div class="item-box">
+                  <div class="weui-grid__icon">
+                    <img src="{{config.prefix.wApi + item.imageurl}}">
+                  </div>
+                  <div class="weui-grid__label">{{item.title}}</div>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

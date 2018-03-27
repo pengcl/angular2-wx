@@ -1,0 +1,22 @@
+<app-navbar [navBar]="navBarConfig"></app-navbar>
+
+<div class="content-scrollable">
+  <div class="weui-panel weui-panel_access">
+    <div class="weui-panel__bd">
+      <div class="weui-media-box">
+        <div class="spc weui-grids">
+          <a *ngFor="let item of specialList"
+             [routerLink]="['/admin/employee/school/curriculum/course/spc/details',item.specialid]"
+             class="weui-grid">
+            <div class="item-box">
+              <div class="weui-grid__icon">
+                <img src="{{config.prefix.wApi + item.imageurl}}" alt="">
+              </div>
+              <p class="weui-grid__label"><span>{{item.title}}</span></p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

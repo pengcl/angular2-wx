@@ -1,0 +1,62 @@
+.banner {
+  position: relative;
+  text-align: center;
+  background: #fff;
+  img {
+    display: block;
+    width: 100%;
+
+  }
+}
+
+.title, .describe {
+  margin-top: 0;
+  &:before, &:after {
+    display: none;
+  }
+}
+
+.title {
+  line-height: 1;
+  .weui-cell {
+    padding: 0.2rem 0.15rem;
+    .weui-cell__bd {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      padding-right: 0.15rem;
+    }
+    .weui-cell__ft {
+      font-size: 0.13rem;
+    }
+  }
+}
+
+.describe {
+  margin-top: 0.1rem;
+  .weui-media-box {
+    font-size: 0.14rem;
+    color: #666;
+  }
+}
+
+.courses {
+  margin-left: -0.08rem;
+  margin-right: -0.08rem;
+  .weui-grid {
+    width: 50%;
+    padding: 0;
+    margin: 0;
+    .item-box {
+      margin: 0.08rem;
+      position: relative;
+    }
+    .weui-grid__icon {
+      width: 100%;
+      height: auto;
+    }
+    .weui-grid__label {
+      text-align: left;
+    }
+  }
+}

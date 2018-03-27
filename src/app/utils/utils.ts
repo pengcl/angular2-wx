@@ -395,3 +395,19 @@ export function validScroll(controls: object) {
   }
   return result;
 }
+
+export function getPrevOfArray(array, currIndex) {
+  if (currIndex === 0) {
+    return '';
+  } else {
+    return currIndex - 1;
+  }
+}
+
+export function getNextOfArray(array, currIndex) {
+  if (currIndex === array.length - 1) {
+    return '';
+  } else {
+    return currIndex + 1;
+  }
+}

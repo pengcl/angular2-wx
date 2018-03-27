@@ -22,6 +22,9 @@ import {AdminEmployeeOrdersProtocolComponent} from './orders/protocol/protocol.c
 import {AdminEmployeeSchoolIndexComponent} from './school/index/index.component';
 import {AdminEmployeeSchoolCurriculumCourseDetailsComponent} from './school/curriculum/course/details/details.component';
 import {AdminEmployeeSchoolCurriculumCourseItemComponent} from './school/curriculum/course/item/item.component';
+import {AdminEmployeeSchoolCurriculumCourseListComponent} from './school/curriculum/course/list/list.component';
+import {AdminEmployeeSchoolCurriculumCourseSpcListComponent} from './school/curriculum/course/spc/list/list.component';
+import {AdminEmployeeSchoolCurriculumCourseSpcDetailsComponent} from './school/curriculum/course/spc/details/details.component';
 
 export const ADMIN_PAGES_EMPLOYEE_DECLARATIONS = [
   AdminEmployeeComponent,
@@ -46,5 +49,8 @@ export const ADMIN_PAGES_EMPLOYEE_DECLARATIONS = [
   AdminEmployeeOrdersProtocolComponent,
   AdminEmployeeSchoolIndexComponent,
   AdminEmployeeSchoolCurriculumCourseDetailsComponent,
-  AdminEmployeeSchoolCurriculumCourseItemComponent
+  AdminEmployeeSchoolCurriculumCourseItemComponent,
+  AdminEmployeeSchoolCurriculumCourseListComponent,
+  AdminEmployeeSchoolCurriculumCourseSpcListComponent,
+  AdminEmployeeSchoolCurriculumCourseSpcDetailsComponent
 ];

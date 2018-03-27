@@ -1,4 +1,6 @@
-import {Injectable, Pipe, PipeTransform} from '@angular/core';
+import {Injectable, Pipe, PipeTransform, SecurityContext} from '@angular/core';
+import {DomSanitizer} from '@angular/platform-browser';
+import {Config} from '../config';
 
 function weekToCnWeek(num) {
   const _num = parseInt(num, 10);
@@ -56,5 +58,21 @@ export class CallbackPipe implements PipeTransform {
       return items;
     }
     return items.filter((item, value) => callback(item, value));
+  }
+}
+
+@Pipe({
+  name: 'repairSrc',
+  pure: false
+})
+export class RepairSrcPipe implements PipeTransform {
+  constructor(private sanitizer: DomSanitizer) {
+  }
+
+  transform(html): any {
+    html = html.replace(/src="/g, 'src="' + Config.prefix.wApi);
+    html = this.sanitizer.bypassSecurityTrustHtml(html);
+    html = this.sanitizer.sanitize(SecurityContext.HTML, html);
+    return html;
   }
 }

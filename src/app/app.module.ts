@@ -28,7 +28,7 @@ import {VgBufferingModule} from 'videogular2/buffering';
 // pipes
 import {EmployeesPipe} from './pipes/employees.pipe';
 import {RenamePipe} from './pipes/rename.pipe';
-import {WeekPipe, CallbackPipe} from './pipes/pipes.pipe';
+import {WeekPipe, CallbackPipe, RepairSrcPipe} from './pipes/pipes.pipe';
 
 // services
 import {SERVICES_DECLARATIONS} from './services';
@@ -64,6 +64,7 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     EmployeesPipe,
     RenamePipe,
     WeekPipe,
+    RepairSrcPipe,
     CallbackPipe,
     AppComponent,
     AppPayComponent,
@@ -104,6 +105,7 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     EmployeesPipe,
     WeekPipe,
     CallbackPipe,
+    RepairSrcPipe,
     {
       provide: SWIPER_CONFIG,
       useValue: DEFAULT_SWIPER_CONFIG

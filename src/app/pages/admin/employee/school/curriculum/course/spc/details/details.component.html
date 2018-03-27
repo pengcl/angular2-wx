@@ -1,0 +1,46 @@
+<app-navbar [navBar]="navBarConfig"></app-navbar>
+
+<div *ngIf="special" class="content-scrollable">
+  <div class="banner">
+    <img src="{{config.prefix.wApi + special?.imageurl}}" alt="">
+  </div>
+  <div class="title weui-cells">
+    <div class="weui-cell">
+      <div class="weui-cell__bd">
+        {{special?.title}}
+      </div>
+      <div class="weui-cell__ft"></div>
+    </div>
+  </div>
+
+  <div class="describe weui-panel">
+    <div class="weui-panel__title weui-panel__hd">课程简介</div>
+    <div class="weui-panel__bd">
+      <div class="weui-media-box weui-media-box_text">
+        {{special?.describe}}
+      </div>
+    </div>
+  </div>
+
+  <div class="weui-panel weui-panel_access">
+    <div class="weui-panel__title weui-panel__hd">最新课程</div>
+    <div class="weui-panel__bd">
+      <div class="weui-media-box">
+        <div class="courses weui-grids">
+          <a *ngFor="let item of courses"
+             [routerLink]="['/admin/employee/school/curriculum/course/details',item.coursecatalogid]"
+             class="weui-grid">
+            <div class="item-box">
+              <div class="weui-grid__icon">
+                <img src="{{config.prefix.wApi + item.imageurl}}" alt="">
+              </div>
+              <p class="weui-grid__label">{{item.coursetitle}}</p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="pdb"></div>
+</div>

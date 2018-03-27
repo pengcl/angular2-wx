@@ -1,6 +1,8 @@
 .content-scrollable {
   background: #f8f8f8;
+  overflow: hidden;
 }
+
 .catalogs .weui-grid {
   width: 25%;
   background: #fff;
@@ -24,6 +26,30 @@
     .weui-grid__label {
       text-align: left;
     }
+  }
+}
+
+.weui-tab {
+  height: 100%;
+  box-sizing: border-box;
+  padding-top: 50px;
+  .weui-tab__panel {
+    padding: 0 !important;
+  }
+}
+
+.weui-tab__panel {
+  background: #f8f8f8;
+
+}
+
+.button-sp-area {
+  width: 100%;
+  .ui-label.grey.colors {
+    padding: 0.8em;
+    background-color: #f3f3f3 !important;
+    color: #0f0f0f !important;
+    margin: 0 .5em 0.5em 0 !important;
   }
 }
 
@@ -53,6 +79,16 @@
         line-height: 0.2rem;
         margin-top: -0.1rem;
       }
+    }
+  }
+}
+
+.mine {
+  .weui-media-box__hd {
+    width: 1.1rem;
+    height: 0.8rem;
+    .weui-media-box__thumb {
+      height: 100%;
     }
   }
 }

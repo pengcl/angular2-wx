@@ -1,6 +1,5 @@
 .content-scrollable {
   overflow: hidden;
-  background: #f8f8f8;
 }
 
 .banner {
@@ -11,10 +10,54 @@
   overflow: hidden;
   background-size: cover;
   background-position: center center;
+  .ratio {
+    position: absolute;
+    right: 0;
+    top: 10%;
+    background: rgba(0, 0, 0, 0.4);
+    color: #fff;
+    padding: 0.05rem 0.1rem;
+    border-top-left-radius: 0.5rem;
+    border-bottom-left-radius: 0.5rem;
+
+  }
 }
 
 .weui-tab {
   height: 65%;
+  box-sizing: border-box;
+  padding-top: 50px;
+  .weui-tab__panel {
+    padding: 0 !important;
+  }
+}
+
+.weui-navbar {
+  background: #fff;
+  &:after {
+    border-bottom: 2px solid #f8f8f8;
+    transform: scaleY(1);
+  }
+  .weui-navbar__item {
+    &:after {
+      display: block !important;
+      border-right: none;
+      height: 1px;
+      width: 4em;
+      left: 50%;
+      margin-left: -2em;
+      bottom: 0;
+      top: auto;
+      transform: scaleX(1);
+    }
+    &.weui-bar__item_on {
+      background: none;
+      color: #FBA703;
+      &:after{
+        border-bottom: 4px solid #FBA703;
+      }
+    }
+  }
 }
 
 .comment-panel {
@@ -76,6 +119,27 @@
 
 .ui-label {
   display: block;
+  font-size: 0.12rem;
+  padding: 0.4em !important;
+}
+
+.learned {
+  .weui-cell__hd {
+    .ui-label {
+      display: block;
+      background: #F3F3F3 !important;
+      color: #999 !important;
+    }
+  }
+  .weui-cell__bd {
+    color: #999;
+  }
+}
+
+.catalog {
+  .weui-cell {
+    padding: 0.2rem 0.15rem;
+  }
 }
 
 .post-comment {

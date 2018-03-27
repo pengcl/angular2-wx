@@ -1,4 +1,4 @@
-import {Component, OnInit, OnDestroy, ViewEncapsulation, ViewChild} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {PageConfig} from './page.config';
 import {Config} from '../../../config';
 
@@ -10,7 +10,6 @@ import {DialogService, ToastService, InfiniteLoaderComponent} from 'ngx-weui';
 import {WxService} from '../../../modules/wx';
 import {Router, ActivatedRoute} from '@angular/router';
 import {Observable} from 'rxjs/Observable';
-import {getIndex} from '../../../utils/utils';
 
 @Component({
   selector: 'app-recruitment-recruiters',

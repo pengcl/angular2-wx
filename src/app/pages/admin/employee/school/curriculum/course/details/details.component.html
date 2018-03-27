@@ -2,9 +2,11 @@
 
 <div class="content-scrollable">
   <div *ngIf="course" class="banner"
-       [ngStyle]="{'background-image':'url(' + config.prefix.wApi + course?.catalog?.imageurl + ')'}"></div>
-  <weui-navbar *ngIf="course">
-    <weui-tab heading="课程介绍" [active]="active === 0">
+       [ngStyle]="{'background-image':'url(' + config.prefix.wApi + course?.catalog?.imageurl + ')'}">
+    <span class="ratio">已学习{{course.ratio * 100}}%</span>
+  </div>
+  <weui-navbar class="main course-navbar" *ngIf="course">
+    <weui-tab heading="课程介绍" (select)="active = 0" [active]="active === 0">
 
       <div class="title weui-cells">
         <div class="weui-cell">
@@ -32,38 +34,48 @@
         <a *ngIf="course.isLearn" (click)="active = 1" class="btn btn-yellow">继续学习</a>
       </div>
     </weui-tab>
-    <weui-tab heading="课程目录" [active]="active === 1">
+    <weui-tab heading="课程目录" (select)="active = 1" [active]="active === 1">
       <div class="weui-panel">
+        <div class="weui-panel__hd">课程目录({{courseCatalog?.length}})</div>
         <div class="weui-panel__bd">
           <div class="weui-media-box weui-media-box_small-appmsg">
-            <div class="weui-cells">
-              <a [routerLink]="['/admin/employee/school/curriculum/course/item',item.courseid]" *ngFor="let item of courseCatalog" class="weui-cell weui-cell_access">
-                <div class="weui-cell__hd"><span class="ui-label yellow circle horizontal">{{item.videourl ? '视频' : '图文'}}</span>
+            <div class="catalog weui-cells" style="font-size: 0.13rem">
+              <a [routerLink]="['/admin/employee/school/curriculum/course/item',item.courseid]"
+                 *ngFor="let item of courseCatalog" [ngClass]="{'learned':item.islearn === 1}"
+                 class="weui-cell weui-cell_access">
+                <div class="weui-cell__hd"><span class="ui-label yellow colors circle horizontal">{{item.videourl ? '视频' : '图文'}}</span>
                 </div>
                 <div class="weui-cell__bd weui-cell_primary">
                   <p>{{item.coursetitle}}</p>
                 </div>
-                <span class="weui-cell__ft"></span>
+                <span class="weui-cell__ft">
+                  <span *ngIf="item.islearn === 2">学习中</span>
+                </span>
               </a>
             </div>
           </div>
         </div>
       </div>
     </weui-tab>
-    <weui-tab class="comment-panel" heading="学员评价" [active]="active === 2">
-      <div class="weui-panel weui-panel_access">
+    <weui-tab class="comment-panel" heading="学员评价" (select)="active = 2" [active]="active === 2">
+      <div *ngIf="comments" class="weui-panel weui-panel_access">
+        <div class="weui-panel__hd">
+          评价详情({{comments.length}})
+        </div>
         <div class="weui-panel__bd">
-          <div *ngFor="let item of comments" class="weui-media-box weui-media-box_appmsg">
-            <div class="weui-media-box__hd">
-              <img class="avatar weui-media-box__thumb"
-                   src="{{item.headimageurl ? item.headimageurl : '/assets/images/logo.png'}}"
-                   alt="">
+          <weui-infiniteloader (loadmore)="onLoadMore($event)" #comp>
+            <div *ngFor="let item of currComments" class="weui-media-box weui-media-box_appmsg">
+              <div class="weui-media-box__hd">
+                <img class="avatar weui-media-box__thumb"
+                     src="{{item.headimageurl ? item.headimageurl : '/assets/images/logo.png'}}"
+                     alt="">
+              </div>
+              <div class="weui-media-box__bd">
+                <h4 class="weui-media-box__title">{{item.cust_name}} <span class="right">{{item.createtime}}</span></h4>
+                <p class="weui-media-box__desc">{{item.content}}</p>
+              </div>
             </div>
-            <div class="weui-media-box__bd">
-              <h4 class="weui-media-box__title">{{item.cust_name}} <span class="right">{{item.createtime}}</span></h4>
-              <p class="weui-media-box__desc">{{item.content}}</p>
-            </div>
-          </div>
+          </weui-infiniteloader>
         </div>
       </div>
 
@@ -76,7 +88,8 @@
               <input formControlName="content" placeholder="说点什么吧！">
             </div>
             <div class="post weui-grid">
-              <button type="submit" weui-button [weui-type]="'primary'" [weui-loading]="loading">
+              <button type="submit" weui-button [weui-type]="'primary'" [disabled]="commentForm.invalid"
+                      [weui-loading]="loading">
                 <span *ngIf="!loading">发布</span>
               </button>
             </div>

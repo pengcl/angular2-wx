@@ -1,88 +1,198 @@
 <app-navbar [navBar]="navBarConfig"></app-navbar>
+<div class="content-scrollable">
 
-<weui-navbar>
-  <weui-tab heading="首页">
-    <div class="banner">
-      <div class="img-box">
-        <img src="/assets/images/admin/employee/school/index/banner.png">
+  <div class="main weui-tab">
+    <div class="weui-navbar">
+      <div (click)="setTab({main:0,sub:tab.sub})" class="weui-navbar__item" [ngClass]="{'weui-bar__item_on':tab.main === 0}">
+        首页
+      </div>
+      <div (click)="setTab({main:1,sub:tab.sub})" class="weui-navbar__item" [ngClass]="{'weui-bar__item_on':tab.main === 1}">
+        课程分类
+      </div>
+      <div (click)="setTab({main:2,sub:tab.sub})" class="weui-navbar__item" [ngClass]="{'weui-bar__item_on':tab.main === 2}">
+        我的收藏
       </div>
     </div>
-
-    <div class="catalogs weui-grids">
-      <a *ngFor="let catalog of catalogList" [routerLink]="['/admin/employee/school']" class="weui-grid">
-        <div class="weui-grid__icon">
-          <img src="{{config.prefix.wApi + catalog.imageurl}}" alt="">
+    <div *ngIf="tab.main === 0" class="weui-tab__panel">
+      <div class="banner">
+        <div class="img-box">
+          <img src="/assets/images/admin/employee/school/index/banner.png">
         </div>
-        <p class="weui-grid__label">{{catalog.coursecatalogname}}</p>
-      </a>
-    </div>
+      </div>
 
-    <div class="weui-panel weui-panel_access">
-      <div class="weui-panel__title weui-panel__hd">热门课程</div>
-      <div class="weui-panel__bd">
-        <div class="weui-media-box">
-          <div class="hot weui-grids">
-            <a *ngFor="let item of hotList" [routerLink]="['/admin/employee/school/curriculum/course/details',item.coursecatalogid]" class="weui-grid">
-              <div class="item-box">
-                <div class="weui-grid__icon">
-                  <img src="{{config.prefix.wApi + item.imageurl}}" alt="">
-                </div>
-                <p class="weui-grid__label">{{item.title}}</p>
-              </div>
-            </a>
+      <div class="catalogs weui-grids">
+        <a *ngFor="let catalog of catalogList" (click)="stopPropagation($event)"
+           [routerLink]="['/admin/employee/school/curriculum/course/list',catalog.coursecatalogid]"
+           [queryParams]="{catalogId:catalog.coursecatalogid}" class="weui-grid">
+          <div class="weui-grid__icon">
+            <img src="{{config.prefix.wApi + catalog.imageurl}}" alt="">
           </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="weui-panel weui-panel_access">
-      <div class="weui-panel__title weui-panel__hd">最新课程</div>
-      <div class="weui-panel__bd">
-        <div class="weui-media-box">
-          <div class="new weui-grids">
-            <a *ngFor="let item of newList"
-               [routerLink]="['/admin/employee/school/curriculum/course/details',item.coursecatalogid]"
-               class="weui-grid">
-              <div class="item-box">
-                <div class="weui-grid__icon">
-                  <img src="{{config.prefix.wApi + item.imageurl}}" alt="">
-                </div>
-                <p class="weui-grid__label">{{item.title}}</p>
-              </div>
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="weui-panel weui-panel_access">
-      <div class="weui-panel__title weui-panel__hd">培训专题</div>
-      <div class="weui-panel__bd">
-        <div class="weui-media-box">
-          <div class="spc weui-grids">
-            <a *ngFor="let item of specialList" [routerLink]="['/admin/employee/school/curriculum/course/details',item.coursecatalogid]" class="weui-grid">
-              <div class="item-box">
-                <div class="weui-grid__icon">
-                  <img src="{{config.prefix.wApi + item.imageurl}}" alt="">
-                </div>
-                <p class="weui-grid__label"><span>{{item.title}}</span></p>
-              </div>
-            </a>
-          </div>
-        </div>
-      </div>
-      <div class="weui-panel__ft">
-        <a href="javascript:void(0);" class="weui-cell weui-cell_access weui-cell_link">
-          <div class="weui-cell__bd">查看更多</div>
-          <span class="weui-cell__ft"></span>
+          <p class="weui-grid__label">{{catalog.coursecatalogname}}</p>
         </a>
       </div>
+
+      <div class="weui-panel weui-panel_access">
+        <div class="weui-panel__title weui-panel__hd">热门课程</div>
+        <div class="weui-panel__bd">
+          <div class="weui-media-box">
+            <div class="hot weui-grids">
+              <a *ngFor="let item of hotList" (click)="stopPropagation($event)"
+                 [routerLink]="['/admin/employee/school/curriculum/course/details',item.coursecatalogid]"
+                 class="weui-grid">
+                <div class="item-box">
+                  <div class="weui-grid__icon">
+                    <img src="{{config.prefix.wApi + item.imageurl}}" alt="">
+                  </div>
+                  <p class="weui-grid__label">{{item.title}}</p>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="weui-panel weui-panel_access">
+        <div class="weui-panel__title weui-panel__hd">最新课程</div>
+        <div class="weui-panel__bd">
+          <div class="weui-media-box">
+            <div class="new weui-grids">
+              <a *ngFor="let item of newList" (click)="stopPropagation($event)"
+                 [routerLink]="['/admin/employee/school/curriculum/course/details',item.coursecatalogid]"
+                 class="weui-grid">
+                <div class="item-box">
+                  <div class="weui-grid__icon">
+                    <img src="{{config.prefix.wApi + item.imageurl}}" alt="">
+                  </div>
+                  <p class="weui-grid__label">{{item.title}}</p>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="weui-panel weui-panel_access">
+        <div class="weui-panel__title weui-panel__hd">培训专题</div>
+        <div class="weui-panel__bd">
+          <div class="weui-media-box">
+            <div class="spc weui-grids">
+              <a *ngFor="let item of specialList" (click)="stopPropagation($event)"
+                 [routerLink]="['/admin/employee/school/curriculum/course/spc/details',item.specialid]"
+                 class="weui-grid">
+                <div class="item-box">
+                  <div class="weui-grid__icon">
+                    <img src="{{config.prefix.wApi + item.imageurl}}" alt="">
+                  </div>
+                  <p class="weui-grid__label"><span>{{item.title}}</span></p>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="weui-panel__ft">
+          <a [routerLink]="['/admin/employee/school/curriculum/course/spc/list']" class="weui-cell weui-cell_access weui-cell_link">
+            <div class="weui-cell__bd">查看更多</div>
+            <span class="weui-cell__ft"></span>
+          </a>
+        </div>
+      </div>
     </div>
-  </weui-tab>
-  <weui-tab heading="课程分类">
-    课程分类
-  </weui-tab>
-  <weui-tab heading="我的学习">
-    我的学习
-  </weui-tab>
-</weui-navbar>
+    <div *ngIf="tab.main === 1" class="weui-tab__panel">
+      <div *ngFor="let item of catalog" class="weui-panel weui-panel_access">
+        <div class="weui-panel__hd">{{item.coursecatalogname}}
+          <span (click)="stopPropagation($event)"
+                [routerLink]="['/admin/employee/school/curriculum/course/list',item.coursecatalogid]"
+                [queryParams]="{catalogId:item.coursecatalogid}"
+                class="right">查看更多</span>
+        </div>
+        <div class="weui-panel__bd">
+          <div class="weui-media-box weui-media-box_appmsg">
+            <div class="button-sp-area">
+              <a [routerLink]="['/admin/employee/school/curriculum/course/list',_item.parentid]"
+                 (click)="stopPropagation($event)"
+                 [queryParams]="{catalogId:item.coursecatalogid}"
+                 *ngFor="let _item of item.list" href="javascript:;" class="ui-label horizontal colors grey">{{_item.coursecatalogname}}</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="tab.main === 2" class="weui-tab__panel">
+
+      <div class="sub weui-tab">
+        <div class="weui-navbar">
+          <div (click)="setTab({main:tab.main,sub:0})" class="weui-navbar__item" [ngClass]="{'weui-bar__item_on':tab.sub === 0}">
+            我的学习
+          </div>
+          <div (click)="setTab({main:tab.main,sub:1})" class="weui-navbar__item" [ngClass]="{'weui-bar__item_on':tab.sub === 1}">
+            我的收藏
+          </div>
+        </div>
+        <div *ngIf="tab.sub === 0" class="weui-tab__panel">
+          <div *ngIf="learnList?.length === 0" class="pageTips">
+            <h2>该栏目暂无课程</h2>
+            <p>您可以关注"大牛管家"公众号，获取最新课程消息。</p>
+          </div>
+          <div *ngIf="learnList?.length > 0" class="mine">
+            <div class="weui-panel weui-panel_access">
+              <div class="weui-panel__bd">
+                <weui-infiniteloader (loadmore)="onLoadLearnMore($event)" #learns>
+                  <a [routerLink]="['/admin/employee/school/curriculum/course/details',item.coursecatalogid]"
+                     (click)="stopPropagation($event)"
+                     *ngFor="let item of learnList"
+                     class="weui-media-box weui-media-box_appmsg">
+                    <div class="weui-media-box__hd">
+                      <img class="weui-media-box__thumb" src="{{config.prefix.wApi + item.imageurl}}" alt="">
+                    </div>
+                    <div class="weui-media-box__bd">
+                      <h4 class="weui-media-box__title">{{item.title}}</h4>
+                      <p class="weui-media-box__desc">已学习 {{item.progress * 100}}%</p>
+                      <ul class="weui-media-box__info">
+                        <li class="weui-media-box__info__meta" style="display: block">{{item.createtime.split(' ')[0]}}
+                        </li>
+                        <li class="right">删除记录</li>
+                      </ul>
+                    </div>
+                  </a>
+                </weui-infiniteloader>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="tab.sub === 1" class="weui-tab__panel">
+          <div *ngIf="markList?.length === 0" class="pageTips">
+            <h2>该栏目暂无课程</h2>
+            <p>您可以关注"大牛管家"公众号，获取最新课程消息。</p>
+          </div>
+          <div *ngIf="markList?.length > 0" class="mine">
+            <div class="weui-panel weui-panel_access">
+              <div class="weui-panel__bd">
+                <weui-infiniteloader (loadmore)="onLoadMarkMore($event)" #marks>
+                  <a [routerLink]="['/admin/employee/school/curriculum/course/item',item.courseid]"
+                     (click)="stopPropagation($event)"
+                     *ngFor="let item of markList"
+                     class="weui-media-box weui-media-box_appmsg">
+                    <div class="weui-media-box__hd">
+                      <img class="weui-media-box__thumb" src="{{config.prefix.wApi + item.imageurl}}" alt="">
+                    </div>
+                    <div class="weui-media-box__bd">
+                      <h4 class="weui-media-box__title">{{item.title}}</h4>
+                      <p class="weui-media-box__desc">《{{item.coursetitle}}》</p>
+                      <ul class="weui-media-box__info">
+                        <li class="weui-media-box__info__meta" style="display: block">{{item.createtime.split(' ')[0]}}
+                        </li>
+                        <li class="right">取消收藏</li>
+                      </ul>
+                    </div>
+                  </a>
+                </weui-infiniteloader>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>

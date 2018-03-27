@@ -1,6 +1,7 @@
 .content-scrollable {
   background: #f8f8f8;
 }
+
 .video {
   height: 35%;
   .vg-icon-play_arrow {
@@ -13,6 +14,30 @@
       margin-top: -0.8rem;
       left: 50%;
       margin-left: -0.4rem;
+    }
+  }
+}
+
+.weui-article {
+  background: #fff;
+}
+
+.weui-form-preview {
+  position: fixed;
+  width: 100%;
+  box-sizing: border-box;
+  bottom: 0;
+  left: 0;
+  box-shadow: 0px 0px 25px 15px #fff;
+  .weui-form-preview__hd {
+    &:after {
+      display: none;
+    }
+    .weui-form-preview__value {
+      img {
+        display: block;
+        height: 0.4rem;
+      }
     }
   }
 }

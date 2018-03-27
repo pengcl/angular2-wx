@@ -1,22 +1,8 @@
 <app-navbar [navBar]="navBarConfig"></app-navbar>
 
-<div class="content-scrollable">
-  <div class="video">
-    <vg-player *ngIf="course?.videourl">
-      <video [vgMedia]="media" #media id="singleVideo" preload="auto" controls>
-        <source src="http://static.videogular.com/assets/videos/videogular.mp4" type="video/mp4">
-      </video>
-    </vg-player>
-
-    <div class="title weui-cells">
-      <div class="weui-cell">
-        <div class="weui-cell__bd">
-          <p>{{course.serno}}.{{course.coursetitle}}</p>
-        </div>
-        <div class="weui-cell__ft">第{{course.serno}}节/共{{courseCatalog?.length}}节</div>
-      </div>
-    </div>
-    <!--<vg-player *ngIf="course?.videourl">
+<div #scrollable *ngIf="courseCatalog" (scroll)="onScroll()" class="content-scrollable">
+  <div *ngIf="course.videourl" class="video">
+    <vg-player *ngIf="course.videourl">
       <vg-overlay-play></vg-overlay-play>
       <vg-buffering></vg-buffering>
 
@@ -39,6 +25,28 @@
       <video [vgMedia]="media" #media id="singleVideo" preload="auto" crossorigin>
         <source src="http://static.videogular.com/assets/videos/videogular.mp4" type="video/mp4">
       </video>
-    </vg-player>-->
+    </vg-player>
+
+  </div>
+
+  <article *ngIf="!course.videourl" class="weui-article">
+    <section [innerHTML]="course.content | repairSrc"></section>
+  </article>
+</div>
+
+<div *ngIf="scrollStatus === 'down' || scrollStatus === 'default'" [@simAnim]="animationName" class="weui-form-preview">
+  <div *ngIf="courseCatalog" class="weui-form-preview__hd">
+    <label class="weui-form-preview__label">{{course.serno}}.{{course.coursetitle}}
+      (第{{course.serno}}节/共{{courseCatalog.length}}节)</label>
+    <em class="weui-form-preview__value">
+      <img *ngIf="!favorId" class="right" (click)="setMarked($event)" src="/assets/images/icons/like.png">
+      <img *ngIf="favorId" class="right" (click)="removeMark($event)" src="/assets/images/icons/like_fill.png">
+    </em>
+  </div>
+  <div class="weui-form-preview__ft">
+    <a [ngClass]="{'disabled':!prev}" (click)="onPrev()"
+       class="weui-form-preview__btn weui-form-preview__btn_default" [ngClass]="{'disabled':!prev}">上一节</a>
+    <a [ngClass]="{'disabled':!next}" (click)="onNext()"
+       class="weui-form-preview__btn weui-form-preview__btn_default" [ngClass]="{'disabled':!next}">下一节</a>
   </div>
 </div>

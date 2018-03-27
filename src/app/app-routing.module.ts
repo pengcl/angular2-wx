@@ -6,6 +6,7 @@ import {appWxRoutes} from './pages/wx/wx-routing.module';
 
 import {FrontComponent} from './pages/front/front.component';
 import {FrontIndexComponent} from './pages/front/index/index.component';
+import {FrontNewsComponent} from './pages/front/news/news.component';
 import {FrontEmployeesComponent} from './pages/front/employees/employees.component';
 import {FrontEmployeesEmployeeComponent} from './pages/front/employees/employee/employee.component';
 import {FrontEmployeesEmployeeRatesComponent} from './pages/front/employees/employee/rates/rates.component';
@@ -74,6 +75,9 @@ import {AdminEmployeeOrdersProtocolComponent} from './pages/admin/employee/order
 import {AdminEmployeeSchoolIndexComponent} from './pages/admin/employee/school/index/index.component';
 import {AdminEmployeeSchoolCurriculumCourseDetailsComponent} from './pages/admin/employee/school/curriculum/course/details/details.component';
 import {AdminEmployeeSchoolCurriculumCourseItemComponent} from './pages/admin/employee/school/curriculum/course/item/item.component';
+import {AdminEmployeeSchoolCurriculumCourseListComponent} from './pages/admin/employee/school/curriculum/course/list/list.component';
+import {AdminEmployeeSchoolCurriculumCourseSpcListComponent} from './pages/admin/employee/school/curriculum/course/spc/list/list.component';
+import {AdminEmployeeSchoolCurriculumCourseSpcDetailsComponent} from './pages/admin/employee/school/curriculum/course/spc/details/details.component';
 
 import {AdminUploaderAvatarComponent} from './pages/admin/uploader/avatar/avatar.component';
 import {AdminUploaderGalleryComponent} from './pages/admin/uploader/gallery/gallery.component';
@@ -133,6 +137,9 @@ const appAdminRoutes: Routes = [
   {path: 'employee/school/index', component: AdminEmployeeSchoolIndexComponent},
   {path: 'employee/school/curriculum/course/details/:id', component: AdminEmployeeSchoolCurriculumCourseDetailsComponent},
   {path: 'employee/school/curriculum/course/item/:id', component: AdminEmployeeSchoolCurriculumCourseItemComponent},
+  {path: 'employee/school/curriculum/course/list/:id', component: AdminEmployeeSchoolCurriculumCourseListComponent},
+  {path: 'employee/school/curriculum/course/spc/list', component: AdminEmployeeSchoolCurriculumCourseSpcListComponent},
+  {path: 'employee/school/curriculum/course/spc/details/:id', component: AdminEmployeeSchoolCurriculumCourseSpcDetailsComponent},
 
   {path: 'employer', component: AdminEmployerComponent},
   {path: 'employer/order/list', component: AdminEmployerOrderListComponent},
@@ -162,6 +169,7 @@ const appAdminRoutes: Routes = [
 
 const appFrontRoutes: Routes = [
   {path: 'index', component: FrontIndexComponent},
+  {path: 'news', component: FrontNewsComponent},
   {path: 'resume/post', component: FrontResumePostComponent},
   {path: 'resume/job', component: FrontResumeJobComponent},
   {path: 'employees', component: FrontEmployeesComponent},

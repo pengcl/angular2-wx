@@ -7,7 +7,8 @@ import {SchoolService} from '../../../../../../../services/school.service';
 import {Config} from '../../../../../../../config';
 import {ActivatedRoute} from '@angular/router';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {DialogService} from 'ngx-weui';
+import {DialogService, InfiniteLoaderComponent} from 'ngx-weui';
+import {Observable} from 'rxjs/Observable';
 
 @Component({
   selector: 'app-admin-employee-school-curriculum-course-details',
@@ -30,6 +31,11 @@ export class AdminEmployeeSchoolCurriculumCourseDetailsComponent implements OnIn
 
   joinForm: FormGroup;
   commentForm: FormGroup;
+
+  // 翻页
+  pageSize: number = 10;
+  currPage: number = 1;
+  currComments: any[];
 
   loading = false;
 
@@ -66,24 +72,52 @@ export class AdminEmployeeSchoolCurriculumCourseDetailsComponent implements OnIn
       }
     });
 
-    this.schoolSvc.getCourseCatalog(this.courseId).then(res => {
-      console.log(res);
+    this.schoolSvc.getCourseCatalog(this.courseId, this.user.id).then(res => {
       if (res.code === 0) {
-        this.courseCatalog = res.list;
-
+        const courseCatalog = [];
+        let i = 0;
+        res.list.forEach((item, index) => {
+          if (i === 0 && item.islearn === 0) {
+            i = 1;
+            item.islearn = 2;
+          }
+          courseCatalog.push(item);
+        });
+        this.courseCatalog = courseCatalog;
       }
     });
 
     this.schoolSvc.getComments(this.courseId).then(res => {
       if (res.code === 0) {
         this.comments = res.list;
+        this.currComments = this.comments.slice(0, this.pageSize * this.currPage);
       }
     });
   }
 
   joinCourse() {
     this.schoolSvc.joinCourse(this.joinForm.value).then(res => {
-      console.log(res);
+      this.dialog.show({
+        content: '你已成功加入学习！',
+        cancel: '',
+        confirm: '我知道了'
+      }).subscribe(data => {
+      });
+    });
+  }
+
+  onLoadMore(comp: InfiniteLoaderComponent) {
+    Observable.timer(500).subscribe(() => {
+
+      this.currPage = this.currPage + 1;
+      this.currComments = this.comments.slice(0, this.pageSize * this.currPage); // 获取当前页数据
+
+      if (this.currComments.length >= this.comments.length) {
+        comp.setFinished();
+        return;
+      }
+
+      comp.resolveLoading();
     });
   }
 
@@ -97,12 +131,18 @@ export class AdminEmployeeSchoolCurriculumCourseDetailsComponent implements OnIn
     this.schoolSvc.postComment(this.commentForm.value).then(res => {
       this.loading = false;
       if (res.code === 0) {
+        this.commentForm.get('content').setValue('');
         this.dialog.show({
           content: '你已成功发表评论！',
           cancel: '',
           confirm: '我知道了'
         }).subscribe(data => {
-          console.log(data);
+          this.schoolSvc.getComments(this.courseId).then(comments => {
+            if (comments.code === 0) {
+              this.comments = comments.list;
+              this.currComments = this.comments.slice(0, this.pageSize * this.currPage);
+            }
+          });
         });
       }
     });

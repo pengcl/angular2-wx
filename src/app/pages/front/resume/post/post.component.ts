@@ -611,7 +611,7 @@ export class FrontResumePostComponent implements OnInit {
 
       // 体能指标
       pushUp: new FormControl('', [Validators.required]),
-      standingLongJump: new FormControl('', [Validators.required, Validators.min(1), Validators.max(10)]),
+      standingLongJump: new FormControl('', [Validators.required, Validators.min(1), Validators.max(1000)]),
       pullUps: new FormControl('', [Validators.required]),
       sitUp: new FormControl('', [Validators.required]),
       hundredMDash: new FormControl('', [Validators.required]),

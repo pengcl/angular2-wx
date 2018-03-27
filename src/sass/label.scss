@@ -66,6 +66,11 @@
     background-color: #fbbd08 !important;
     border-color: #fbbd08 !important;
     color: #fff !important;
+    &.colors {
+      background-color: rgba(251, 167, 3, 0.20) !important;
+      color: #fbbd08 !important;
+      font-weight: normal !important;
+    }
     &.hollow {
       background-color: transparent !important;
       color: #fbbd08 !important;
@@ -139,6 +144,11 @@
     background-color: #767676 !important;
     border-color: #767676 !important;
     color: #fff !important;
+    &.colors {
+      background-color: rgba(118, 118, 118, 0.20) !important;
+      color: #767676 !important;
+      font-weight: normal !important;
+    }
   }
   &.black {
     background-color: #1b1c1d !important;
