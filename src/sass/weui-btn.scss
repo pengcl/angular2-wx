@@ -1,22 +1,23 @@
 .weui-btn {
+  color: #fff;
   &:after {
     display: none;
   }
   &.weui-btn_default {
     display: block;
+    background: #CA9F4D;
   }
   &.weui-btn_primary {
-    background: #FBA703;
+    background: #CA9F4D;
     &.box-shadow {
       box-shadow: 0 0 15px 0 rgba(251, 150, 3, 0.30);
     }
     &:active {
-      background: #FBA703;
+      background: #CA9F4D;
     }
   }
   &.weui-btn_disabled {
-    /*background: #f5f5f5;
-    color: #dcdcdc;*/
+    background: #ccc;
     &.box-shadow {
       box-shadow: none;
     }

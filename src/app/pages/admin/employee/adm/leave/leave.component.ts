@@ -79,7 +79,7 @@ export class AdminEmployeeADMLeaveComponent implements OnInit {
         });
         break;
       case 'data':
-        this.picker.show(this.leaveTypeList, '').subscribe((res: any) => {
+        this.picker.show(this.leaveTypeList, '', [0], {confirm: '确定'}).subscribe((res: any) => {
           this.eventForm.get(formControlName).setValue(res.value);
           this.eventForm.get('leaveType').setValue(this.leaveType[getIndex(this.leaveType, 'label', res.value)]);
         });
@@ -99,9 +99,9 @@ export class AdminEmployeeADMLeaveComponent implements OnInit {
     this.leave = leaveDate([this.eventForm.get('startDate').value, this.eventForm.get('endDate').value], ['08:30:00', '18:30:00']);
     this.dialog.show({
       title: '确认请假信息',
-      content: '您将于' + this.eventForm.get('startDate').value + '至' + this.eventForm.get('endDate').value + '请假，请假时长合共' + this.leave.days + '天' + this.leave.hours + '小时',
+      content: '您将于' + this.eventForm.get('startDate').value + '至' + this.eventForm.get('endDate').value + ' 请假，是否确定？',
     }).subscribe((res: any) => {
-      if (res === 'confirm') {
+      if (res.value) {
         this.onSubmit();
       }
     });

@@ -1,0 +1,82 @@
+<app-navbar [navBar]="navBarConfig"></app-navbar>
+<div class="content-scrollable has-footer">
+  <div class="result-status weui-panel">
+    <div class="weui-panel__hd">{{examInfo?.examname}} 考试结果</div>
+    <div class="weui-panel__bd">
+      <div class="weui-media-box">
+        <div class="canvas-content">
+          <canvas #canvas width="100" height="100"></canvas>
+          <div class="tag">
+            <em>{{examResults}}</em>
+            <span>分</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="weui-panel__ft">
+      <div class="weui-flex">
+        <div class="success weui-flex__item"><i></i><span>答对题目</span></div>
+        <div class="error weui-flex__item"><i></i><span>答错题目</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="exam-content">
+    <div *ngIf="examSingleQuestions" class="weui-panel">
+      <div class="weui-panel__hd">
+        单选题<span>（共{{examSingleQuestions.length}}题，合计{{examSingleQuestions.credits}}分）</span>
+      </div>
+      <div class="weui-panel__bd">
+        <div class="weui-media-box">
+          <div class="weui-grids">
+            <div *ngFor="let item of examSingleQuestions.list; let i = index" class="weui-grid">
+              <span [routerLink]="['/admin/employee/school/exam/on',examId]" [queryParams]="{idx:i,type:'single'}"
+                    [ngClass]="{'selected':item.optioned,'correct':getResults(item.optionList,item.optionids)}">{{i + 1}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--<div class="options weui-panel__ft">
+        <div (click)="setOption(option.optionid)"
+             [ngClass]="{'selected':examForm.get('optionId').value == option.optionid || (!examForm.get('optionId').value && examQuestion.optionids?.indexOf(option.optionid) !== -1)}"
+             *ngFor="let option of examQuestion.optionList" class="weui-cell">
+          <div class="weui-cell__hd">
+            <span>{{option.serno}}</span>
+          </div>
+          <div class="weui-cell__bd">{{option.optionname}}</div>
+        </div>
+      </div>-->
+    </div>
+
+    <div *ngIf="examMultiListQuestions" class="weui-panel">
+      <div class="weui-panel__hd">
+        多选题<span>（共{{examMultiListQuestions.length}}题，合计{{examMultiListQuestions.credits}}分）</span>
+      </div>
+      <div class="weui-panel__bd">
+        <div class="weui-media-box">
+          <div class="weui-grids">
+            <div *ngFor="let item of examMultiListQuestions.list; let i = index" class="weui-grid">
+              <span [routerLink]="['/admin/employee/school/exam/on',examId]" [queryParams]="{idx:i,type:'multi'}"
+                    [ngClass]="{'selected':item.optioned}">{{examSingleQuestions.list.length + i + 1}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--<div class="options weui-panel__ft">
+        <div (click)="setOption(option.optionid)"
+             [ngClass]="{'selected':examForm.get('optionId').value == option.optionid || (!examForm.get('optionId').value && examQuestion.optionids?.indexOf(option.optionid) !== -1)}"
+             *ngFor="let option of examQuestion.optionList" class="weui-cell">
+          <div class="weui-cell__hd">
+            <span>{{option.serno}}</span>
+          </div>
+          <div class="weui-cell__bd">{{option.optionname}}</div>
+        </div>
+      </div>-->
+    </div>
+  </div>
+
+  <div class="btns-group">
+    <div (click)="back()" class="btn active">返回</div>
+    <div (click)="submit()" class="btn active">试卷详细</div>
+  </div>
+</div>

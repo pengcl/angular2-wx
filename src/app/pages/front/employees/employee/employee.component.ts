@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 
 import 'rxjs/add/operator/switchMap';
@@ -11,6 +11,8 @@ import {ChartF2Service} from '../../../../modules/chart-f2';
 import {Config} from '../../../../config';
 
 import {RATES} from '../../../../../mockData/rates';
+import {getRate} from '../../../../utils/utils';
+import {RatingConfig} from 'ngx-weui';
 
 declare var $: any;
 declare var F2: any;
@@ -18,11 +20,18 @@ declare var F2: any;
 @Component({
   selector: 'app-front-employees-employee',
   templateUrl: './employee.component.html',
-  styleUrls: ['./employee.component.scss']
+  styleUrls: ['./employee.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class FrontEmployeesEmployeeComponent implements OnInit {
   tabBarConfig = PageConfig.tabBar;
   navBarConfig = PageConfig.navBar;
+
+  ratingConfig: RatingConfig = {
+    cls: 'rating',
+    stateOff: 'off',
+    stateOn: 'on'
+  };
 
   gh = '';
 
@@ -31,12 +40,12 @@ export class FrontEmployeesEmployeeComponent implements OnInit {
   show: boolean = false;
 
   images;
+  imagesLen = 4;
   galleryCurrent = 0;
 
   housekeeper: any;
 
-  rates = RATES;
-
+  rate = 0;
   score = {
     scores: [],
     count: 0
@@ -62,6 +71,7 @@ export class FrontEmployeesEmployeeComponent implements OnInit {
     this.gh = this.route.snapshot.queryParams['gh'];
     this.route.paramMap.switchMap((params: ParamMap) => this.employeeSvc.getHousekeeper(params.get('id'))).subscribe(res => {
       this.housekeeper = res.housekeeper;
+      console.log(this.housekeeper);
       const images = [];
       $.each(this.housekeeper.imageList, function (i, k) {
         images.push(k.imageurl);
@@ -72,16 +82,25 @@ export class FrontEmployeesEmployeeComponent implements OnInit {
         this.score.count = 0;
 
         scores.forEach(k => {
-          const item = {name: this.housekeeper.name, props: k.props, value: k.value / k.credit * 100, credit: k.credit};
+          const item = {
+            name: this.housekeeper.name,
+            props: k.props,
+            value: k.value / k.credit * 100,
+            rate: getRate(k.value / k.credit * 100)
+          };
           this.score.scores.push(item);
-          this.score.count = this.score.count + k.value;
+          this.score.count = this.score.count + item.value;
         });
+
+        console.log(this.score);
 
         if (this.score.count === 0) {
           return false;
         }
 
-        this.chartSvc.get().then(result => {
+        this.rate = getRate(this.score.count / scores.length);
+
+        /*this.chartSvc.get().then(result => {
           F2.Global.pixelRatio = window.devicePixelRatio;
           const data = this.score.scores;
 
@@ -119,15 +138,23 @@ export class FrontEmployeesEmployeeComponent implements OnInit {
             type: 'scalexy'
           });
           chart.render();
-        });
+        });*/
       });
     });
+  }
+
+  showMore() {
+    if (this.imagesLen === 100) {
+      this.imagesLen = 4;
+    } else {
+      this.imagesLen = 100;
+    }
   }
 
   reserve(canReserve) {
     if (!canReserve) {
     } else {
-      this.router.navigate(['/front/employees/employee/reserve', this.housekeeper.housekeeperid], {queryParams: {gh: this.gh}});
+      this.router.navigate(['/front/employees/employee/reserve', this.housekeeper.housekeeperid], {queryParamsHandling: 'merge'});
     }
   }
 

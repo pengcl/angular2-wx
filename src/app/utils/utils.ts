@@ -411,3 +411,7 @@ export function getNextOfArray(array, currIndex) {
     return currIndex + 1;
   }
 }
+
+export function getRate(score) {
+  return 5 * score / 100;
+}

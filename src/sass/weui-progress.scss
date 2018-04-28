@@ -1,0 +1,9 @@
+.weui-progress__bar {
+  background: rgba(202,159,77,0.20);
+  border-radius: 0.25rem;
+  height: 0.05rem;
+  overflow: hidden;
+  .weui-progress__inner-bar {
+    background-color: rgba(202,159,77,1);
+  }
+}

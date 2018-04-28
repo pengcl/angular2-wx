@@ -181,13 +181,13 @@
 
     <div class="check-armyServePlace check-enlistmentTime check-retirementTime check-armyType check-services check-militarySpecialty check-retiredOfficerRank weui-cells__title" *ngIf="resumeForm.get('registerType').value == '1'">部队信息</div>
     <div class="weui-cells weui-cells_form" *ngIf="resumeForm.get('registerType').value == '1'">
-      <div [ngClass]="{'weui-cell_warn':isSubmit && resumeForm.get('armyServePlace').invalid}"
+      <!--<div [ngClass]="{'weui-cell_warn':isSubmit && resumeForm.get('armyServePlace').invalid}"
            class="weui-cell">
         <div class="weui-cell__hd"><label class="weui-label">原服役部队</label></div>
         <div class="weui-cell__bd">
           <input formControlName="armyServePlace" class="weui-input" placeholder="请填写原部队单位名称" type="text">
         </div>
-      </div>
+      </div>-->
 
       <div (click)="onPickerShow('date-ym','enlistmentTime')"
            [ngClass]="{'weui-cell_warn':isSubmit && resumeForm.get('enlistmentTime').invalid}"
@@ -211,7 +211,7 @@
         <div class="weui-cell__ft"><i class="weui-icon-warn"></i></div>
       </div>
 
-      <div (click)="onServices('armyType')"
+      <!--<div (click)="onServices('armyType')"
            [ngClass]="{'weui-cell_warn':isSubmit && resumeForm.get('armyType').invalid}"
            class="weui-cell">
         <div class="weui-cell__hd"><label class="weui-label">军种</label></div>
@@ -221,9 +221,9 @@
         <div class="weui-cell__ft">
           <i class="weui-icon-warn"></i>
         </div>
-      </div>
+      </div>-->
 
-      <div (click)="onServices('services')"
+      <!--<div (click)="onServices('services')"
            [ngClass]="{'weui-cell_warn':isSubmit && resumeForm.get('services').invalid}"
            class="weui-cell">
         <div class="weui-cell__hd"><label class="weui-label">兵种</label></div>
@@ -233,23 +233,23 @@
         <div class="weui-cell__ft">
           <i class="weui-icon-warn"></i>
         </div>
-      </div>
+      </div>-->
 
-      <div [ngClass]="{'weui-cell_warn':isSubmit && resumeForm.get('militarySpecialty').invalid}"
+      <!--<div [ngClass]="{'weui-cell_warn':isSubmit && resumeForm.get('militarySpecialty').invalid}"
            class="weui-cell">
         <div class="weui-cell__hd"><label class="weui-label">部队专业</label></div>
         <div class="weui-cell__bd">
           <input formControlName="militarySpecialty" class="weui-input" placeholder="请填写部队专业名称" type="text">
         </div>
-      </div>
+      </div>-->
 
-      <div [ngClass]="{'weui-cell_warn':isSubmit && resumeForm.get('retiredOfficerRank').invalid}"
+      <!--<div [ngClass]="{'weui-cell_warn':isSubmit && resumeForm.get('retiredOfficerRank').invalid}"
            class="weui-cell">
         <div class="weui-cell__hd"><label class="weui-label">退伍军衔</label></div>
         <div class="weui-cell__bd">
           <input formControlName="retiredOfficerRank" class="weui-input" placeholder="请填写退伍时的军衔" type="text">
         </div>
-      </div>
+      </div>-->
     </div>
 
 

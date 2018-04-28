@@ -1,29 +1,30 @@
 <app-navbar [navBar]="navBarConfig"></app-navbar>
 
 <div class="content-scrollable">
-  <h1>第一步：选择所在城市</h1>
-  <h2>我们将为您提供专业的贴身管家服务</h2>
+  <div class="weui-cells">
+    <a class="weui-cell weui-cell_access" (click)="showPicker()">
+      <div class="weui-cell__bd">
+        <p>所在城市</p>
+      </div>
+      <div class="weui-cell__ft"><em>{{city ? city?.label : '请选择'}}</em></div>
+    </a>
+  </div>
 
-  <div class="serviceArea">
-    <div class="weui-grids">
-      <div class="weui-grid">
-        <span [routerLink]="['/front/guide/step2']" [queryParams]="{city: '北京'}" queryParamsHandling="merge" class="ui-label circle colors yellow">北京</span>
-      </div>
-      <div class="weui-grid">
-        <span [routerLink]="['/front/guide/step2']" [queryParams]="{city: '上海'}" queryParamsHandling="merge" class="ui-label circle colors yellow">上海</span>
-      </div>
-      <div class="weui-grid">
-        <span [routerLink]="['/front/guide/step2']" [queryParams]="{city: '杭州'}" queryParamsHandling="merge" class="ui-label circle colors yellow">杭州</span>
-      </div>
-      <div class="weui-grid">
-        <span [routerLink]="['/front/guide/step2']" [queryParams]="{city: '广州'}" queryParamsHandling="merge" class="ui-label circle colors yellow">广州</span>
-      </div>
-      <div class="weui-grid">
-        <span [routerLink]="['/front/guide/step2']" [queryParams]="{city: '深圳'}" queryParamsHandling="merge" class="ui-label circle colors yellow">深圳</span>
-      </div>
-      <div class="weui-grid">
-        <span [routerLink]="['/front/guide/step1/custom']" queryParamsHandling="merge" class="ui-label circle colors yellow">其它城市</span>
-      </div>
+  <div class="weui-cells__title">请选择管家级别</div>
+  <div class="weui-cells__tips">根据您的选择为您提供精准的服务</div>
+
+  <div *ngFor="let item of levels" class="weui-panel weui-panel_access">
+    <div class="weui-panel__bd">
+      <a [routerLink]="['/front/guide/step3']" [queryParams]="{city: city?.value,level:item.levelid}" queryParamsHandling="merge"
+         class="weui-media-box weui-media-box_appmsg">
+        <div class="weui-media-box__bd">
+          <h4 class="weui-media-box__title">{{item.levelname}}管家 <em>约￥{{item.price}}/月</em></h4>
+          <p class="weui-media-box__desc">{{item.content}}</p>
+        </div>
+        <div class="weui-media-box__hd">
+          <img class="weui-media-box__thumb" src="{{item.avatar}}" alt="">
+        </div>
+      </a>
     </div>
   </div>
 

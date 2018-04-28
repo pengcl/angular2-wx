@@ -1,12 +1,7 @@
 <app-navbar [navBar]="navBarConfig"></app-navbar>
 
 <div class="content-scrollable has-footer">
-  <div class="weui-panel weui-panel_access">
-    <div class="weui-panel__bd">
-      <app-profile *ngIf="housekeeper" [profile]="housekeeper"
-                   class="weui-media-box weui-media-box_appmsg"></app-profile>
-    </div>
-  </div>
+  <app-profile *ngIf="housekeeper" [profile]="housekeeper"></app-profile>
 
   <div *ngIf="housekeeper?.workexperience" class="weui-panel weui-panel_access">
     <div class="weui-panel__hd">

@@ -2,6 +2,30 @@
   background: #f8f8f8;
 }
 
+.weui-flex {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  box-shadow: 0px 0px 25px 15px #fff;
+  &:after {
+    content: ' ';
+    position: absolute;
+    bottom: 0;
+    height: 1px;
+    width: 100%;
+    border-bottom: 1px solid #e5e5e5;
+    -webkit-transform-origin: 0 0;
+    transform-origin: 0 0;
+    -webkit-transform: scaleY(.5);
+    transform: scaleY(.5);
+  }
+  .weui-flex__item {
+    text-align: center;
+    padding: 0.1rem 0;
+  }
+}
+
 .video {
   height: 35%;
   .vg-icon-play_arrow {
@@ -15,6 +39,14 @@
       left: 50%;
       margin-left: -0.4rem;
     }
+  }
+}
+
+.pdf {
+  height: 100%;
+  background: #fff;
+  canvas {
+    margin-top: 50px;
   }
 }
 

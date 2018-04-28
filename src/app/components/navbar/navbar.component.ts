@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Title} from '@angular/platform-browser';
+import {MenuService} from '../../modules/menu/menu.service';
 
 @Component({
   selector: 'app-navbar',
@@ -8,12 +9,19 @@ import {Title} from '@angular/platform-browser';
 })
 export class NavbarComponent implements OnInit {
   @Input() navBar;
+  @Input() show;
 
-  constructor(private titleService: Title) {
+  constructor(private titleService: Title,
+              private menuSvc: MenuService) {
   }
 
   ngOnInit() {
     this.titleService.setTitle(this.navBar.navigationBarTitleText);
+  }
+
+  menu() {
+    console.log('show');
+    this.menuSvc.show();
   }
 
 }

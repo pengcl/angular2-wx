@@ -23,6 +23,7 @@ import {FrontInvestigateWishComponent} from './investigate/wish/wish.component';
 import {FrontInvestigateSuccessComponent} from './investigate/success/success.component';
 
 import {FrontMsgSuccessComponent} from './msg/success/success.component';
+import {FrontMsgReserveComponent} from './msg/reserve/reserve.component';
 
 export const FRONT_PAGES_DECLARATIONS = [
   FrontComponent,
@@ -45,5 +46,6 @@ export const FRONT_PAGES_DECLARATIONS = [
   FrontInvestigateComponent,
   FrontInvestigateWishComponent,
   FrontInvestigateSuccessComponent,
-  FrontMsgSuccessComponent
+  FrontMsgSuccessComponent,
+  FrontMsgReserveComponent
 ];

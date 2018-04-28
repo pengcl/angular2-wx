@@ -1,3 +1,19 @@
+.weui-navbar__item {
+  padding: 0;
+  .weui-cell {
+    font-size: 15px;
+    padding: 13px 15px;
+    line-height: 1.6;
+    .weui-cell__ft:after {
+      transition: all 0.3s ease;
+    }
+    &.weui-cell_on {
+      .weui-cell__ft:after {
+        transform: rotate(135deg);
+      }
+    }
+  }
+}
 
 .butlers {
   margin: 0 0.1rem;

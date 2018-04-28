@@ -57,7 +57,7 @@ export const PageConfig = {
   'navBar': {
     'backgroundTextStyle': 'light',
     'navigationBarBackgroundColor': '#fff',
-    'navigationBarTitleText': '我的消息',
+    'navigationBarTitleText': '大牛管家-大牛课堂',
     'navigationBarTextStyle': 'black',
     'enablePullDownRefresh': false
   }

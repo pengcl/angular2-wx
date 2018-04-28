@@ -83,7 +83,7 @@ export class AdminEmployeeADMQuitComponent implements OnInit {
       title: '确认离职信息',
       content: '您提出将在 ' + this.datePipe.transform(this.eventForm.get('startDate').value, 'yyyy年MM月dd日') + ' 离职，是否确定？',
     }).subscribe((res: any) => {
-      if (res === 'confirm') {
+      if (res.value) {
         this.onSubmit();
       }
     });

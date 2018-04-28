@@ -85,7 +85,7 @@
                   <span *ngIf="item.progresstype === 1">已报名</span>
                   <span *ngIf="item.progresstype === 2">已录取</span>
                   <span *ngIf="item.progresstype === 3">已签约</span>
-                  <br>{{item.progresstime | date : 'yyyy-MM-dd'}}</span>
+                  <br>{{item.progresstime | repairDate | date : 'yyyy-MM-dd'}}</span>
               </div>
             </div>
           </div>

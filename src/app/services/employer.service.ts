@@ -50,6 +50,13 @@ export class EmployerService {
       .catch(this.handleError);
   }
 
+  getReserveOrders(id: string): Promise<any> {
+    return this.http.get(Config.prefix.wApi + '/interface/order/getIntentOrderList.ht?custId=' + id)
+      .toPromise()
+      .then(response => response)
+      .catch(this.handleError);
+  }
+
   getOrder(conId: string): Promise<any> {
     return this.http.get(Config.prefix.wApi + '/interface/order/getContInfo.ht?contId=' + conId)
       .toPromise()

@@ -23,15 +23,24 @@
       </vg-controls>
 
       <video [vgMedia]="media" #media id="singleVideo" preload="auto" crossorigin>
-        <source src="http://static.videogular.com/assets/videos/videogular.mp4" type="video/mp4">
+        <source src="{{config.prefix.wApi + course.videourl}}" type="video/mp4">
       </video>
     </vg-player>
 
   </div>
 
-  <article *ngIf="!course.videourl" class="weui-article">
+  <article *ngIf="!course.videourl && !course.pdfurl" class="weui-article">
     <section [innerHTML]="course.content | repairSrc"></section>
   </article>
+
+  <div *ngIf="course.pdfurl && !course.videourl" class="pdf">
+    <div *ngIf="scrollStatus === 'up' || scrollStatus === 'default'" class="weui-flex">
+      <span (click)="onPrevPage()" class="weui-flex__item" id="prev">上一页</span>
+      <span class="weui-flex__item"><span id="page_num">{{pageNum}}</span> / <span id="page_count">{{pdfDoc?.numPages}}</span></span>
+      <span (click)="onNextPage()" class="weui-flex__item" id="next">下一页</span>
+    </div>
+    <canvas id="the-canvas"></canvas>
+  </div>
 </div>
 
 <div *ngIf="scrollStatus === 'down' || scrollStatus === 'default'" [@simAnim]="animationName" class="weui-form-preview">

@@ -19,6 +19,7 @@ export class AdminEmployerOrderListComponent implements OnInit {
   user: any;
 
   orderList: any[];
+  reserveOrderList: any[];
 
   selectedIndex: number = 0;
 
@@ -48,6 +49,11 @@ export class AdminEmployerOrderListComponent implements OnInit {
       } else {
         this.orderList = [];
       }
+    });
+
+    this.employer.getReserveOrders(this.user.id).then(res => {
+      this.reserveOrderList = res.list;
+      console.log(this.reserveOrderList);
     });
   }
 

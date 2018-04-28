@@ -1,12 +1,7 @@
 <app-navbar [navBar]="navBarConfig"></app-navbar>
 
 <div class="content-scrollable">
-  <div class="weui-panel weui-panel_access">
-    <div class="weui-panel__bd">
-      <app-profile [routerLink]="['/admin/employer/employees/employee/profile',housekeeper.housekeeperid]" *ngIf="housekeeper" [profile]="housekeeper"
-                   class="weui-media-box weui-media-box_access weui-media-box_appmsg"></app-profile>
-    </div>
-  </div>
+  <app-profile [routerLink]="['/admin/employer/employees/employee/profile',housekeeper.housekeeperid]" *ngIf="housekeeper" [profile]="housekeeper"></app-profile>
 
   <div *ngIf="contact" class="weui-form-preview">
     <div class="weui-form-preview__hd">
@@ -19,7 +14,7 @@
     <div class="weui-form-preview__bd">
       <div class="weui-form-preview__item">
         <label class="weui-form-preview__label">服务日期</label>
-        <span class="weui-form-preview__value">{{contact.servicestartdate | date : 'yyyy.MM.dd'}} - {{contact.serviceenddate | date : 'yyyy.MM.dd'}}</span>
+        <span class="weui-form-preview__value">{{contact.servicestartdate | repairDate | date : 'yyyy.MM.dd'}} - {{contact.serviceenddate | repairDate | date : 'yyyy.MM.dd'}}</span>
       </div>
       <div class="weui-form-preview__item">
         <label class="weui-form-preview__label">服务时长</label>

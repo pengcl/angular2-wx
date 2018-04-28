@@ -42,24 +42,7 @@
   <div class="weui-panel weui-panel_access">
     <div class="weui-panel__hd">为您推荐管家</div>
     <div class="weui-panel__bd">
-      <app-profile [routerLink]="['/admin/details', item.housekeeperid]" [profile]="item" *ngFor="let item of butlers"
-                   class="weui-media-box weui-media-box_appmsg">
-        <!--<div class="weui-media-box__hd">
-          <img class="weui-media-box__thumb"
-               src="{{item.avatar}}"
-               alt="">
-        </div>
-        <div class="weui-media-box__bd">
-          <h4 class="weui-media-box__title">{{item.name}} <span class="ui-label yellow hollow horizontal">金牌管家</span>
-          </h4>
-          <p class="weui-media-box__desc">由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。</p>
-          <p class="weui-media-box__info">
-            <span class="ui-label red colors horizontal">金牌管家</span><span
-            class="ui-label blue colors horizontal">金牌管家</span><span
-            class="ui-label green colors horizontal">金牌管家</span>
-          </p>
-        </div>-->
-      </app-profile>
+      <app-profile-min [routerLink]="['/admin/details', item.housekeeperid]" [profile]="item" [last]="isLast" *ngFor="let item of butlers;let isLast=last;"></app-profile-min>
     </div>
     <div class="weui-panel__ft">
       <a href="javascript:void(0);" class="weui-cell weui-cell_access weui-cell_link">

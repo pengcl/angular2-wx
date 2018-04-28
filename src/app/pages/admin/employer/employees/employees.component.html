@@ -2,21 +2,17 @@
 
 <div class="content-scrollable">
 
-  <app-msg *ngIf="employees?.length === 0" [msg]='{title:"暂无\"管家\"记录",desc:"您可以关注\"大牛管家\"公众号，获取最新活动消息。",cancel:"返回"}'></app-msg>
+  <app-msg *ngIf="employees?.length === 0"
+           [msg]='{title:"暂无\"管家\"记录",desc:"您可以关注\"大牛管家\"公众号，获取最新活动消息。",cancel:"返回"}'></app-msg>
 
-  <div *ngIf="employees?.length > 0" class="weui-panel weui-panel_access">
-    <div class="weui-panel__bd">
-      <weui-infiniteloader (loadmore)="onLoadMore($event)" #comp>
-        <div [ngClass]="{'weui-grids':listType === 'grid'}">
-          <app-profile [routerLink]="['/admin/employer/employees/employee',item.housekeeperid]"
-                       [queryParams]="{contactId: item.conid}" [profile]="item"
-                       [moJsReady]="moJsReady"
-                       [listType]="listType"
-                       *ngFor="let item of employees"
-                       [ngClass]="{'weui-grid':listType === 'grid','weui-media-box weui-media-box_appmsg':listType !== 'grid'}"></app-profile>
-        </div>
-      </weui-infiniteloader>
-    </div>
-  </div>
+
+  <weui-infiniteloader *ngIf="employees?.length > 0" (loadmore)="onLoadMore($event)" #comp>
+    <app-profile [routerLink]="['/admin/employer/employees/employee',item.housekeeperid]"
+                 [queryParams]="{contactId: item.conid}" [profile]="item"
+                 [moJsReady]="moJsReady"
+                 [listType]="listType"
+                 *ngFor="let item of employees"></app-profile>
+  </weui-infiniteloader>
+
 
 </div>

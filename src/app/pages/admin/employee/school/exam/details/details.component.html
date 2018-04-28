@@ -1,0 +1,41 @@
+<app-navbar [navBar]="navBarConfig"></app-navbar>
+
+<div class="content-scrollable">
+  <div *ngIf="examInfo" class="banner"
+       [ngStyle]="{'background-image':'url(' + config.prefix.wApi + examInfo.examimage + ')'}">
+  </div>
+  <div *ngIf="examInfo" class="content">
+    <div class="weui-panel">
+      <div *ngIf="examTag" class="weui-panel__hd">
+        <span class="ui-label gold" [ngClass]="{'disabled':!examTag.result}">{{examTag.txt}}</span>
+      </div>
+      <div class="weui-panel__bd">
+        <div class="weui-media-box">
+          <div class="weui-media-box__title">{{examInfo.examname}}</div>
+          <div class="weui-media-box__desc">{{examInfo.desc}}</div>
+          <ul class="weui-media-box__info">
+            <li>考试时间：{{examInfo.begintime.split(' ')[0]}} 至 {{examInfo.endtime.split(' ')[0]}}</li>
+            <li>考试时长：60分钟</li>
+            <li class="gold">报考条件：{{examInfo.levelname ? examInfo.levelname : '所有'}}</li>
+          </ul>
+          <span *ngIf="signUp?.isopen === 2" class="score">
+            <span class="num">
+              <em>{{signUp.examresults}}</em><sub>分</sub>
+            </span>
+            <span class="lb">考试成绩</span>
+            <span class="tag">
+              {{signUp.examresults > 60 ? '合格' : '不合格'}}
+            </span>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="weui-btn-area">
+    <weui-button *ngIf="examTag" [weui-type]="'default'" [weui-loading]="loading" [disabled]="!examTag.result"
+                 (click)="onSubmit(examTag.buttonTxt)">
+      <span>{{examTag.buttonTxt}}</span>
+    </weui-button>
+  </div>
+</div>

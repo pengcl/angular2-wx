@@ -80,10 +80,12 @@ export class AdminEmployeeSchoolCurriculumCourseListComponent implements OnInit 
     if (this.catalogId === this.parentId) {
       this.schoolSvc.getTypeList(this.catalogId, this.user.id).then(res => {
         this.courses = res.list;
+        console.log(this.catalogId);
       });
     } else {
       this.schoolSvc.getCatalog(this.catalogId).then(res => {
         this.courses = res.list;
+        console.log(this.catalogId);
       });
     }
   }

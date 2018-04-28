@@ -1,0 +1,99 @@
+<app-navbar [navBar]="navBarConfig"></app-navbar>
+<div class="content-scrollable">
+
+  <div class="main weui-tab">
+    <div class="weui-navbar">
+      <div (click)="setMainTab(0)" [ngClass]="{'weui-bar__item_on':tabIndex == 0}" class="weui-navbar__item">
+        在线考试
+      </div>
+      <div (click)="setMainTab(1)" [ngClass]="{'weui-bar__item_on':tabIndex == 1}" class="weui-navbar__item">
+        我的考试
+      </div>
+    </div>
+    <div class="weui-tab__panel">
+
+      <div *ngIf="tabIndex == 0" class="sub weui-tab" style="display: block;">
+        <div class="swiper-container weui-navbar" [swiper]="swiperConfig">
+          <div class="swiper-wrapper">
+            <div (click)="setSubTab(0)" [ngClass]="{'weui-bar__item_on':courseId === 0}"
+                 class="swiper-slide weui-navbar__item">
+              近期考试
+            </div>
+            <div (click)="setSubTab(item.courseid)" [ngClass]="{'weui-bar__item_on':item.courseid === courseId}"
+                 *ngFor="let item of category" class="swiper-slide weui-navbar__item">
+              {{item.coursename}}
+            </div>
+          </div>
+        </div>
+        <div class="weui-tab__panel">
+          <div *ngIf="papers?.length === 0" class="pageTips">
+            <h2>该栏目暂无考试</h2>
+            <p>您可以关注"大牛管家"公众号，获取最新考试消息。</p>
+          </div>
+          <div *ngIf="papers?.length > 0" class="exams weui-panel weui-panel_access">
+            <div class="weui-panel__bd">
+              <div class="weui-media-box">
+                <div class="new weui-grids">
+                  <a *ngFor="let paper of papers"
+                     [routerLink]="['/admin/employee/school/exam/details',paper.examid]"
+                     class="weui-grid" [ngClass]="{'is-over':getTestTag(paper.endtime),'show':paper.categoryid === courseId || !courseId}">
+                    <div class="item-box">
+                      <div class="weui-grid__icon">
+                        <img src="{{config.prefix.wApi + paper.examimage}}" alt="">
+                        <label *ngIf="!(isTestStart(paper.begintime))" class="test-tag">即将开始</label>
+                        <label *ngIf="isTestOn(paper.begintime,paper.endtime)" class="test-tag on">正在进行</label>
+                        <label *ngIf="isTestEnd(paper.endtime)" class="test-tag">已经结束</label>
+                        <span class="test-time">60分钟</span>
+                      </div>
+                      <p class="weui-grid__label">{{paper.examname}}</p>
+                      <p class="weui-grid__desc"><img src="/assets/images/school/exam/clock.png"><span>结束日期：{{paper.endtime.split(' ')[0]}}</span>
+                      </p>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="tabIndex == 1" style="display: block;margin-top: 0.1rem">
+        <div *ngIf="myPapers?.length === 0" class="pageTips">
+          <h2>该栏目暂无我的考试</h2>
+          <p>您可以关注"大牛管家"公众号，获取最新考试消息。</p>
+        </div>
+        <div *ngIf="myPapers?.length > 0" class="weui-panel">
+          <div class="weui-panel__bd">
+            <a *ngFor="let paper of myPapers" [ngClass]="{'is-over':isTestEnd(paper.examendtime) || !paper.submitstatus}"
+               [routerLink]="['/admin/employee/school/exam/details',paper.examid]"
+               class="weui-media-box weui-media-box_appmsg">
+              <div class="weui-media-box__hd">
+                <img class="weui-media-box__thumb" src="{{config.prefix.wApi + paper.examimage}}" alt="">
+                <label *ngIf="!(isTestStart(paper.exambegintime))" class="test-tag">即将开始</label>
+                <label *ngIf="isTestOn(paper.exambegintime,paper.examendtime)" class="test-tag on">正在进行</label>
+                <label *ngIf="isTestEnd(paper.examendtime) && !paper.submitstatus" class="test-tag">已经结束</label>
+                <label *ngIf="paper.submitstatus" class="test-tag">已经完成</label>
+              </div>
+              <div class="weui-media-box__bd">
+                <h4 class="weui-media-box__title">{{paper.examname}}
+                  <span *ngIf="paper.isopen === 2" class="right">成绩：{{paper.examresults}}分</span>
+                  <span *ngIf="paper.isopen === 1 && paper.submitstatus" class="right on">待公布成绩</span>
+                </h4>
+                <div class="weui-media-box__desc">考试时长：60分钟</div>
+                <ul class="weui-media-box__info">
+                  <li class="weui-media-box__info__meta" style="display: block"><img
+                    src="/assets/images/school/exam/clock.png"><span>{{paper.exambegintime.split(' ')[0]}}</span></li>
+                </ul>
+              </div>
+              <div *ngIf="isTestOn(paper.exambegintime,paper.examendtime) && !paper.submitstatus" class="weui-media-box__ft">
+                <span class="ui-label circle hollow gold horizontal">进入考试</span>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>

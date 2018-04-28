@@ -103,7 +103,7 @@
           <div class="weui-cell__bd">
             <div class="weui-cell">
               <div class="weui-cell__bd">
-                <p><span class="ui-label green horizontal">考勤</span><span class="right">{{item.createtime | date : 'yyyy-MM-dd'}}</span>
+                <p><span class="ui-label green horizontal">考勤</span><span class="right">{{item.createtime | repairDate | date : 'yyyy-MM-dd'}}</span>
                 </p>
                 <p class="weui-media-box__desc">{{item.messagecontent}}</p>
               </div>

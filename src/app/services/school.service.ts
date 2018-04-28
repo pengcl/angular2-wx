@@ -98,6 +98,12 @@ export class SchoolService {
       .catch(this.handleError);
   }
 
+  removeLearn(id): Promise<any> {
+    return this.http.post(Config.prefix.wApi + '/interface/train/dellearn.ht?learnId=' + id, {}, {}).toPromise()
+      .then(response => response)
+      .catch(this.handleError);
+  }
+
   setMarked(body): Promise<any> {
     const prams = formDataToUrl(body);
     return this.http.post(Config.prefix.wApi + '/interface/train/addfavorite.ht' + prams, {}, {}).toPromise()

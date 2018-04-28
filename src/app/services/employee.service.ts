@@ -134,9 +134,31 @@ export class EmployeeService {
       .catch(this.handleError);
   }
 
-  reserveButler(body): Promise<any> {
+  getLevelList(): Promise<any> {
+    return this.http.get(Config.prefix.wApi + '/interface/housekeeper/getLevelList.ht')
+      .toPromise()
+      .then(response => response)
+      .catch(this.handleError);
+  }
+
+  getServiceAreaList(): Promise<any> {
+    return this.http.get(Config.prefix.wApi + '/interface/housekeeper/getServiceAreaList.ht')
+      .toPromise()
+      .then(response => response)
+      .catch(this.handleError);
+  }
+
+  /*reserveButler(body): Promise<any> {
     const prams = formDataToUrl(body);
     return this.http.post(Config.prefix.wApi + '/interface/order/submitOrder.ht' + prams, {}, {})
+      .toPromise()
+      .then(response => response)
+      .catch(this.handleError);
+  }*/
+
+  reserveButler(body): Promise<any> {
+    const prams = formDataToUrl(body);
+    return this.http.post(Config.prefix.wApi + '/interface/order/intentSubmitOrder.ht' + prams, {}, {})
       .toPromise()
       .then(response => response)
       .catch(this.handleError);

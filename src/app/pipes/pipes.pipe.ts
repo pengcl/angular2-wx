@@ -76,3 +76,14 @@ export class RepairSrcPipe implements PipeTransform {
     return html;
   }
 }
+
+@Pipe({
+  name: 'repairDate',
+  pure: false
+})
+export class RepairDatePipe implements PipeTransform {
+  transform(value): any {
+    value = value.replace(/\-/g, '/');
+    return value;
+  }
+}

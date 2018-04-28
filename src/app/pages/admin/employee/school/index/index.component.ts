@@ -5,7 +5,7 @@ import {WxService} from '../../../../../modules/wx';
 import {UserService} from '../../../../../services/user.service';
 import {SchoolService} from '../../../../../services/school.service';
 import {StorageService} from '../../../../../services/storage.service';
-import {InfiniteLoaderComponent} from 'ngx-weui';
+import {DialogService, InfiniteLoaderComponent} from 'ngx-weui';
 
 import {Config} from '../../../../../config';
 import {Observable} from 'rxjs/Observable';
@@ -47,6 +47,7 @@ export class AdminEmployeeSchoolIndexComponent implements OnInit {
   constructor(
     private storage: StorageService,
     private wx: WxService,
+    private dialog: DialogService,
     private userSvc: UserService,
     private schoolSvc: SchoolService) {
   }
@@ -88,6 +89,34 @@ export class AdminEmployeeSchoolIndexComponent implements OnInit {
 
   stopPropagation(e) {
     e.stopPropagation();
+  }
+
+  removeLearn(id, e) {
+    e.stopPropagation();
+    e.preventDefault();
+    this.schoolSvc.removeLearn(id).then(res => {
+      if (res.code === 0) {
+        this.schoolSvc.getLearnList(this.user.id).then(list => {
+          this.learnList = list.list;
+          this.currLearnList = this.learnList.slice(0, this.pageSize * this.currPage);
+        });
+        this.dialog.show({content: '删除成功', cancel: '', confirm: '我知道了'}).subscribe();
+      }
+    });
+  }
+
+  removeMark(id, e) {
+    e.stopPropagation();
+    e.preventDefault();
+    this.schoolSvc.removeMark(id).then(res => {
+      if (res.code === 0) {
+        this.schoolSvc.getMarkList(this.user.id).then(list => {
+          this.markList = list.list;
+          this.currMarkList = this.markList.slice(0, this.pageSize * this.currPage);
+        });
+        this.dialog.show({content: '删除成功', cancel: '', confirm: '我知道了'}).subscribe();
+      }
+    });
   }
 
   onLoadMarkMore(comp: InfiniteLoaderComponent) {

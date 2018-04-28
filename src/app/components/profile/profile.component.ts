@@ -25,6 +25,7 @@ export class ProfileComponent implements OnInit, OnChanges {
   @Input() profile;
   @Input() listType;
   @Input() moJsReady;
+  @Input() last;
   config: any = Config;
 
   mainCircle: any;
@@ -40,8 +41,11 @@ export class ProfileComponent implements OnInit, OnChanges {
 
   ngOnInit() {
     this.dateDifference = Math.ceil(getDateDifference(new Date(), this.profile.createtime) / 30);
-    this.avatar = this.profile.headimageurl ? this.config.prefix.wApi + this.profile.headimageurl : '/assets/images/logo.png';
+    this.avatar = this.profile.headimageurl ? this.config.prefix.wApi + this.profile.headimageurl : '/assets/images/avatar.jpg';
   }
+
+  // http://wap.danius.cn/wApi/housekeeperImage/2872dda2-da0c-461e-aba9-3670ecc0e2a1/headImage//1804041726496940.jpg;
+  // http://wap.danius.cn/wApi/housekeeperImage/b3944c84-d9b0-4486-b3e2-a1c7433a3b5f/headImage//1804031431099278.jpg
 
   ngOnChanges(changes: SimpleChanges) {
     if ('moJsReady' in changes && changes.moJsReady.currentValue) {

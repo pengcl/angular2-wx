@@ -37,10 +37,10 @@ export class AdminEmployeeSchoolCurriculumCourseSpcDetailsComponent implements O
       this.courses = res.list;
     });
 
-    this.schoolSvc.getCourse('', this.user.id).then(res => {
+    /*this.schoolSvc.getCourse('', this.user.id).then(res => {
       if (res.code === 0) {
       }
-    });
+    });*/
   }
 
 }

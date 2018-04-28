@@ -3,6 +3,7 @@ import {CommonModule} from '@angular/common';
 import {RouterModule, Routes} from '@angular/router';
 
 import {appWxRoutes} from './pages/wx/wx-routing.module';
+import {appAdminBackendRoutes} from './pages/admin/backend/backend-routing.module';
 
 import {FrontComponent} from './pages/front/front.component';
 import {FrontIndexComponent} from './pages/front/index/index.component';
@@ -26,11 +27,13 @@ import {FrontInvestigateComponent} from './pages/front/investigate/investigate.c
 import {FrontInvestigateWishComponent} from './pages/front/investigate/wish/wish.component';
 import {FrontInvestigateSuccessComponent} from './pages/front/investigate/success/success.component';
 import {FrontMsgSuccessComponent} from './pages/front/msg/success/success.component';
+import {FrontMsgReserveComponent} from './pages/front/msg/reserve/reserve.component';
 
 import {AdminComponent} from './pages/admin/admin.component';
 import {AdminLoginComponent} from './pages/admin/login/login.component';
 import {AdminRegisterRecruiterComponent} from './pages/admin/register/recruiter/recruiter.component';
 import {AdminIndexComponent} from './pages/admin/index/index.component';
+import {AdminHomeComponent} from './pages/admin/home/home.component';
 
 import {AdminEmployerComponent} from './pages/admin/employer/employer.component';
 import {AdminEmployerEmployeesComponent} from './pages/admin/employer/employees/employees.component';
@@ -78,6 +81,14 @@ import {AdminEmployeeSchoolCurriculumCourseItemComponent} from './pages/admin/em
 import {AdminEmployeeSchoolCurriculumCourseListComponent} from './pages/admin/employee/school/curriculum/course/list/list.component';
 import {AdminEmployeeSchoolCurriculumCourseSpcListComponent} from './pages/admin/employee/school/curriculum/course/spc/list/list.component';
 import {AdminEmployeeSchoolCurriculumCourseSpcDetailsComponent} from './pages/admin/employee/school/curriculum/course/spc/details/details.component';
+import {AdminEmployeeSchoolExamIndexComponent} from './pages/admin/employee/school/exam/index/index.component';
+import {AdminEmployeeSchoolExamDetailsComponent} from './pages/admin/employee/school/exam/details/details.component';
+import {AdminEmployeeSchoolExamOnComponent} from './pages/admin/employee/school/exam/on/on.component';
+import {AdminEmployeeSchoolExamPreviewComponent} from './pages/admin/employee/school/exam/preview/preview.component';
+import {AdminEmployeeSchoolExamResultComponent} from './pages/admin/employee/school/exam/result/result.component';
+import {AdminEmployeeSchoolExamMsgSuccessComponent} from './pages/admin/employee/school/exam/msg/success/success.component';
+
+import {AdminBackendComponent} from './pages/admin/backend/backend.component';
 
 import {AdminUploaderAvatarComponent} from './pages/admin/uploader/avatar/avatar.component';
 import {AdminUploaderGalleryComponent} from './pages/admin/uploader/gallery/gallery.component';
@@ -111,6 +122,7 @@ const appFrontRedRoutes: Routes = [
 
 const appAdminRoutes: Routes = [
   {path: 'index', component: AdminIndexComponent},
+  {path: 'home', component: AdminHomeComponent},
   {path: 'login', component: AdminLoginComponent},
   {path: 'register/recruiter', component: AdminRegisterRecruiterComponent},
   {path: 'employee', component: AdminEmployeeComponent},
@@ -140,6 +152,12 @@ const appAdminRoutes: Routes = [
   {path: 'employee/school/curriculum/course/list/:id', component: AdminEmployeeSchoolCurriculumCourseListComponent},
   {path: 'employee/school/curriculum/course/spc/list', component: AdminEmployeeSchoolCurriculumCourseSpcListComponent},
   {path: 'employee/school/curriculum/course/spc/details/:id', component: AdminEmployeeSchoolCurriculumCourseSpcDetailsComponent},
+  {path: 'employee/school/exam/index', component: AdminEmployeeSchoolExamIndexComponent},
+  {path: 'employee/school/exam/details/:id', component: AdminEmployeeSchoolExamDetailsComponent},
+  {path: 'employee/school/exam/on/:id', component: AdminEmployeeSchoolExamOnComponent},
+  {path: 'employee/school/exam/preview/:id', component: AdminEmployeeSchoolExamPreviewComponent},
+  {path: 'employee/school/exam/result/:id', component: AdminEmployeeSchoolExamResultComponent},
+  {path: 'employee/school/exam/msg/success/:id', component: AdminEmployeeSchoolExamMsgSuccessComponent},
 
   {path: 'employer', component: AdminEmployerComponent},
   {path: 'employer/order/list', component: AdminEmployerOrderListComponent},
@@ -162,6 +180,11 @@ const appAdminRoutes: Routes = [
   {path: 'employer/recruitment/records', component: AdminEmployerRecruitmentRecordsComponent},
   {path: 'uploader/avatar', component: AdminUploaderAvatarComponent},
   {path: 'uploader/gallery', component: AdminUploaderGalleryComponent},
+  {
+    path: 'backend',
+    component: AdminBackendComponent,
+    children: appAdminBackendRoutes
+  },
   {
     path: '**', redirectTo: 'index'
   }
@@ -186,6 +209,7 @@ const appFrontRoutes: Routes = [
   {path: 'investigate/wish/:id', component: FrontInvestigateWishComponent},
   {path: 'investigate/success', component: FrontInvestigateSuccessComponent},
   {path: 'msg/success', component: FrontMsgSuccessComponent},
+  {path: 'msg/reserve', component: FrontMsgReserveComponent},
   {
     path: 'red',
     component: FrontRedComponent,

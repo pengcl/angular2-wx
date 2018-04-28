@@ -1,0 +1,75 @@
+<app-navbar [navBar]="navBarConfig"></app-navbar>
+<div class="content-scrollable has-footer">
+  <!-- !isEnd 未交卷 -->
+  <div *ngIf="!isEnd && leftTime" class="exam-status weui-panel">
+    <div class="weui-panel__hd">倒计时
+      <countdown [config]="{leftTime: leftTime}" (finished)="onFinished($event)">$!h!:$!m!:$!s!</countdown>
+      <a [routerLink]="['/admin/employee/school/exam/preview',examId]" class="right"><span
+        class="ui-label horizontal hollow gold">查看全卷</span></a>
+    </div>
+    <div class="weui-panel__bd">
+      <div class="weui-media-box weui-media-box_appmsg">
+        <div class="weui-media-box__bd">
+          <weui-progress [value]="process" [canCancel]="false"></weui-progress>
+        </div>
+        <div class="weui-media-box__ft">进度</div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="isEnd" class="weui-cell">
+    <div class="weui-cell__bd">{{examInfo?.examname}}</div>
+    <div class="weui-cell__ft">
+      <a [routerLink]="['/admin/employee/school/exam/result',examId]" class="ui-label circle gold hollow horizontal">全卷概览</a>
+      <a [routerLink]="['/admin/employee/school/exam/index']" [queryParams]="{tab:'1'}"
+         class="ui-label circle gold hollow horizontal" style="margin-left: 0.1rem">我的考试</a></div>
+  </div>
+
+  <div class="exam-content" [ngClass]="{'is-end':isEnd}">
+    <div *ngIf="examQuestion" class="exam-subject weui-panel">
+      <div class="weui-panel__hd"><em>{{examQuestions.type === 'single' ? '单选题' : '多选题'}}</em><span>（共{{examQuestions.length}}题，合计{{examQuestions.credits}}分）</span>
+        <span class="right"><em>{{examQuestionsIdx + 1}}</em>/<span>{{examQuestions.length}}</span></span></div>
+      <div class="weui-panel__bd">
+        <div class="weui-media-box">
+          <div class="content">
+            <div class="title">{{examQuestion.title}}({{examQuestion.credits}}分)</div>
+          </div>
+        </div>
+        <div *ngIf="examQuestion.subtitle" class="weui-media-box">
+          <div class="content" [innerHTML]="examQuestion.subtitle.replace('/upload/',config.prefix.wApi + '/upload/')">
+          </div>
+        </div>
+      </div>
+
+      <div class="options weui-panel__ft">
+        <div (click)="setOption(option.optionid)"
+             [ngClass]="{'selected':examForm.get('optionId').value.indexOf(option.optionid) !== -1 || (!examForm.get('optionId').value && examQuestion.optionids?.length > 0 && examQuestion.optionids?.indexOf(option.optionid) !== -1),'answer':signUp?.submitstatus && option.isanswers}"
+             *ngFor="let option of examQuestion.optionList" class="weui-cell">
+          <div class="weui-cell__hd">
+            <span>{{option.serno}}</span>
+          </div>
+          <div class="weui-cell__bd">{{option.optionname}}</div>
+        </div>
+      </div>
+      <div *ngIf="isEnd" class="weui-panel__ft">
+        <div class="weui-cell weui-cell_link">
+          <div class="weui-cell__bd">正确答案是<span class="success"
+                                                *ngFor="let item of getAnswers(examQuestion.optionList)">{{item}}</span>，您的答案是<span
+            class="error"
+            *ngFor="let item of getSelected(examQuestion.optionList,examQuestion.optionids)">{{item}}</span>，回答{{getResult(examQuestion.optionList,examQuestion.optionids)}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="!isEnd" class="btns-group">
+    <div (click)="prev()" class="btn" [ngClass]="{'disabled':examQuestionsIdx === 0 && questionsType === 'single'}">上一题</div>
+    <div (click)="next()" class="btn active">{{isLast ? '提交试卷' : '下一题'}}</div>
+  </div>
+
+  <div *ngIf="isEnd" class="btns-group">
+    <div (click)="prev()" class="btn" [ngClass]="{'disabled':isEnd && examQuestionsIdx === 0 && questionsType === 'single'}">上一题</div>
+    <div (click)="next()" class="btn active" [ngClass]="{'disabled':isEnd && isLast}">下一题</div>
+  </div>
+</div>

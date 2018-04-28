@@ -20,7 +20,7 @@
       </div>
       <div class="weui-form-preview__item">
         <label class="weui-form-preview__label">合同周期</label>
-        <span class="weui-form-preview__value">{{order.meta.startAt | date : 'yyyy-MM-dd'}} ~ {{order.meta.startAt | date : 'yyyy-MM-dd'}}</span>
+        <span class="weui-form-preview__value">{{order.meta.startAt | repairDate | date : 'yyyy-MM-dd'}} ~ {{order.meta.startAt | repairDate | date : 'yyyy-MM-dd'}}</span>
       </div>
       <div class="weui-form-preview__item">
         <label class="weui-form-preview__label">管家人员</label>

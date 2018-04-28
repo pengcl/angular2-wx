@@ -51,7 +51,7 @@ export class AdminEmployeeSchoolCurriculumCourseItemComponent implements OnInit 
 
   @ViewChild('scrollable') private container: any;
   scrollTop = 0;
-  scrollStatus:String = 'default';
+  scrollStatus: String = 'default';
 
   animationName = 'stretch';
 
@@ -60,6 +60,14 @@ export class AdminEmployeeSchoolCurriculumCourseItemComponent implements OnInit 
   timeline: any;
   timer;
   favorId;
+
+  // pdf
+  canvas: any;
+  ctx;
+  pdfDoc = null;
+  pageRendering;
+  pageNumPending = null;
+  pageNum: number = 1;
 
   constructor(private activatedRoute: ActivatedRoute,
               private router: Router,
@@ -80,6 +88,29 @@ export class AdminEmployeeSchoolCurriculumCourseItemComponent implements OnInit 
 
     this.activatedRoute.paramMap.switchMap((params: ParamMap) => this.schoolSvc.getCourseItem(params.get('id'), this.user.id)).subscribe(res => {
       this.course = res.course;
+      // this.course.pdfurl = '//cdn.mozilla.net/pdfjs/tracemonkey.pdf';
+      if (!this.course.videourl && this.course.pdfurl) {
+        // If absolute URL from the remote server is provided, configure the CORS
+        // header on that server.
+        this.pageNum = 1;
+        const url = Config.prefix.wApi + this.course.pdfurl;
+
+        // Loaded via <script> tag, create shortcut to access PDF.js exports.
+        const pdfjsLib = window['pdfjs-dist/build/pdf'];
+
+        // The workerSrc property shall be specified.
+        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdn.bootcss.com/pdf.js/2.0.466/pdf.worker.min.js';
+
+        // Asynchronous download of PDF
+        const loadingTask = pdfjsLib.getDocument(url);
+        loadingTask.promise.then((pdf) => {
+          this.pdfDoc = pdf;
+          // Fetch the first page
+          this.canvas = document.getElementById('the-canvas');
+          this.ctx = this.canvas.getContext('2d');
+          this.renderPage(this.pageNum);
+        });
+      }
       this.favorId = res.course.favoriteId;
       this.courseForm.get('custId').setValue(this.user.id);
       this.courseForm.get('courseId').setValue(this.course.courseid);
@@ -90,10 +121,11 @@ export class AdminEmployeeSchoolCurriculumCourseItemComponent implements OnInit 
       this.schoolSvc.getCourseCatalog(this.course.coursecatalogid, this.user.id).then(data => {
         if (res.code === 0) {
           this.courseCatalog = data.list;
+          console.log(data);
           const currIndex = getIndex(this.courseCatalog, 'serno', this.course.serno);
           const _prev = getPrevOfArray(this.courseCatalog, currIndex);
           const _next = getNextOfArray(this.courseCatalog, currIndex);
-          this.prev = _prev ? this.courseCatalog[_prev].courseid : '';
+          this.prev = _prev || _prev === 0 ? this.courseCatalog[_prev].courseid : '';
           this.next = _next ? this.courseCatalog[_next].courseid : '';
         }
       });
@@ -197,8 +229,60 @@ export class AdminEmployeeSchoolCurriculumCourseItemComponent implements OnInit 
     }, 1000);
   }
 
+  renderPage(num) {
+    this.pageRendering = true;
+    // Using promise to fetch the page
+    this.pdfDoc.getPage(num).then((page) => {
+      if (!page) {
+        return false;
+      }
+      const viewport = page.getViewport(this.container.nativeElement.clientWidth / page.view[2]);
+      this.canvas.height = this.container.nativeElement.clientHeight - 50;
+      this.canvas.width = this.container.nativeElement.clientWidth;
 
-  onSubmit() {
+      // Render PDF page into canvas context
+      const renderContext = {
+        canvasContext: this.ctx,
+        viewport: viewport
+      };
+      const renderTask = page.render(renderContext);
+
+      // Wait for rendering to finish
+      renderTask.promise.then(() => {
+        this.pageRendering = false;
+        if (this.pageNumPending !== null) {
+          // New page rendering is pending
+          this.renderPage(this.pageNumPending);
+          this.pageNumPending = null;
+        }
+      });
+    });
+
+    // Update page counters
+  }
+
+  queueRenderPage(num) {
+    if (this.pageRendering) {
+      this.pageNumPending = num;
+    } else {
+      this.renderPage(num);
+    }
+  }
+
+  onPrevPage() {
+    if (this.pageNum <= 1) {
+      return;
+    }
+    this.pageNum--;
+    this.queueRenderPage(this.pageNum);
+  }
+
+  onNextPage() {
+    if (this.pageNum >= this.pdfDoc.numPages) {
+      return;
+    }
+    this.pageNum++;
+    this.queueRenderPage(this.pageNum);
   }
 
 }

@@ -91,6 +91,7 @@
 
 .title {
   line-height: 1;
+  font-weight: bold;
   .weui-cell {
     padding: 0.2rem 0.15rem;
     .weui-cell__ft {
@@ -143,7 +144,7 @@
 }
 
 .post-comment {
-  position: absolute;
+  position: fixed;
   bottom: 0;
   left: 0;
   width: 100%;

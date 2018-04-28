@@ -1,0 +1,89 @@
+.banner {
+  position: relative;
+  height: 35%;
+  text-align: center;
+  background: #fff;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center center;
+  .ratio {
+    position: absolute;
+    right: 0;
+    top: 10%;
+    background: rgba(0, 0, 0, 0.4);
+    color: #fff;
+    padding: 0.05rem 0.1rem;
+    border-top-left-radius: 0.5rem;
+    border-bottom-left-radius: 0.5rem;
+
+  }
+}
+
+.content {
+  margin: -0.15rem 0.15rem 0.15rem;
+  border-radius: 0.04rem;
+  overflow: hidden;
+  box-shadow: 0 0.03rem 0.06rem 0 rgba(245, 245, 245, 0.40);
+  .ui-label.gold {
+    background: #CA9F4D;
+    color: #fff;
+    font-size: 0.14rem;
+    padding: 0.05rem 0.24rem;
+    font-weight: normal;
+  }
+  .weui-media-box__desc {
+    margin-top: 0.15rem;
+    color: #999;
+    overflow: visible;
+    display: block;
+    line-height: 1.5;
+  }
+  .weui-media-box__info {
+    margin-top: 0.2rem;
+    li {
+      margin: 0.1rem 0;
+      color: #666;
+      &.gold {
+        color: #CA9F4D;
+      }
+    }
+  }
+  .score {
+    position: absolute;
+    right: 0.15rem;
+    bottom: 0.4rem;
+    width: 0.64rem;
+    height: 0.64rem;
+    display: block;
+    border-radius: 0.64rem;
+    background: #CA9F4D;
+    color: #fff;
+    .num, .lb {
+      display: block;
+      text-align: center;
+    }
+    .num {
+      margin-top: 0.15rem;
+      line-height: 0.2rem;
+      em {
+        font-size: 0.17rem;
+        line-height: 0.2rem;
+        font-weight: normal;
+        font-style: normal;
+      }
+    }
+    .lb {
+      font-size: 0.1rem;
+      line-height: 1;
+      font-weight: 300;
+    }
+    .tag {
+      position: absolute;
+      width: 100%;
+      text-align: center;
+      bottom: -0.2rem;
+      color: #C6302B;
+      font-size: 0.12rem;
+    }
+  }
+}

@@ -20,7 +20,7 @@
   <div class="calendar weui-panel">
     <div class="weui-panel__hd">
       <span (click)="getPrevMonth()" class="left">上一月</span>
-      <span>{{currDateItem.now | date : 'yyyy年MM月dd日'}}</span>
+      <span>{{currDateItem.now | repairDate | date : 'yyyy年MM月dd日'}}</span>
       <span (click)="getNextMonth()" class="right">下一月</span></div>
     <div class="weui-panel__bd">
       <div class="weui-grids">
@@ -67,7 +67,7 @@
     <div class="weui-panel__bd">
       <div *ngIf="signInfo?.actualcheckintime" class="process-item weui-media-box weui-media-box_appmsg">
         <div class="weui-media-box__bd">
-          <h4 class="weui-media-box__title">上班打卡 {{signInfo.actualcheckintime | date: 'HH:mm'}}</h4>
+          <h4 class="weui-media-box__title">上班打卡 {{signInfo.actualcheckintime | repairDate | date: 'HH:mm'}}</h4>
           <p class="weui-media-box__desc"><i class="fa fa-map-marker fa-fw"></i> {{signInfo.startaddress}}</p>
         </div>
       </div>
@@ -79,7 +79,7 @@
       </div>
       <div *ngIf="signInfo?.actualcheckouttime" class="process-item weui-media-box weui-media-box_appmsg">
         <div class="weui-media-box__bd">
-          <h4 class="weui-media-box__title">下班打卡 {{signInfo.actualcheckouttime | date: 'HH:mm'}}</h4>
+          <h4 class="weui-media-box__title">下班打卡 {{signInfo.actualcheckouttime | repairDate | date: 'HH:mm'}}</h4>
           <p class="weui-media-box__desc"><i class="fa fa-map-marker fa-fw"></i> {{signInfo.endaddress}}</p>
         </div>
       </div>

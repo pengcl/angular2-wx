@@ -20,6 +20,8 @@ export class RecruitmentLoginComponent implements OnInit {
 
   loginForm: FormGroup;
   // user: any;
+  unionid;
+  openid;
 
   activeText = '获取验证码';
   activeClass = true;
@@ -51,16 +53,20 @@ export class RecruitmentLoginComponent implements OnInit {
     this.loginForm = new FormGroup({
       mobile: new FormControl('', [Validators.required, Validators.minLength(11), Validators.maxLength(11)]),
       code: new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(4)]),
+      unionid: new FormControl('', []),
       openid: new FormControl('', []),
       refereeId: new FormControl('', []),
       gh: new FormControl('', []),
     });
 
-    this.loginForm.get('openid').setValue(this.activatedRoute.snapshot.queryParams['openid']);
+    this.unionid = this.activatedRoute.snapshot.queryParams['unionid'] ? this.activatedRoute.snapshot.queryParams['unionid'] : '';
+    this.openid = this.activatedRoute.snapshot.queryParams['openid'] ? this.activatedRoute.snapshot.queryParams['openid'] : '';
+
+    this.loginForm.get('unionid').setValue(this.unionid);
+    this.loginForm.get('openid').setValue(this.openid);
     this.loginForm.get('refereeId').setValue(this.activatedRoute.snapshot.queryParams['refereeId']);
     this.loginForm.get('gh').setValue(this.activatedRoute.snapshot.queryParams['gh']);
 
-    console.log(this.loginForm.get('refereeId').value);
   }
 
   getCode(e, mobile) {

@@ -48,6 +48,17 @@ export class FrontGuideStep4Component implements OnInit {
   }
 
   ngOnInit() {
+    this.wx.config({
+      title: '大牛管家服务预订',
+      desc: '专注提供贴心的高级管家服务，包括安全防护、科学运动、驾驶出行三大类日常综合管家服务！',
+      link: 'http://wap.danius.cn/front/guide',
+      imgUrl: 'http://wap.danius.cn/assets/images/front/guide/share-icon.jpg'
+    }).then(() => {
+      // 其它操作，可以确保注册成功以后才有效
+      console.log('注册成功');
+    }).catch((err: string) => {
+      console.log(`注册失败，原因：${err}`);
+    });
     this.subscribeForm = new FormGroup({
       customerName: new FormControl('', [Validators.required]),
       customerMobile: new FormControl('', [Validators.required, Validators.minLength(11), Validators.maxLength(11)]),

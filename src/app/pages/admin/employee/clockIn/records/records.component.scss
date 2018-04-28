@@ -33,12 +33,25 @@
     }
   }
   &.now {
+    position: relative;
+    p::before {
+      content: '今天';
+      position: absolute;
+      font-size: 0.1rem;
+      color: rgb(251, 167, 3);
+      bottom: -0.12rem;
+      left: 0;
+      display: block;
+      text-align: center;
+      width: 100%;
+    }
     .weui-grid__label {
-      background-color: rgb(251, 167, 3);
+      color: rgb(251, 167, 3);
     }
   }
   &.selected {
     .weui-grid__label {
+      color: #fff;
       background-color: rgba(251, 167, 3, 0.8);
     }
   }

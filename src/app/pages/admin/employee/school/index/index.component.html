@@ -3,13 +3,16 @@
 
   <div class="main weui-tab">
     <div class="weui-navbar">
-      <div (click)="setTab({main:0,sub:tab.sub})" class="weui-navbar__item" [ngClass]="{'weui-bar__item_on':tab.main === 0}">
+      <div (click)="setTab({main:0,sub:tab.sub})" class="weui-navbar__item"
+           [ngClass]="{'weui-bar__item_on':tab.main === 0}">
         首页
       </div>
-      <div (click)="setTab({main:1,sub:tab.sub})" class="weui-navbar__item" [ngClass]="{'weui-bar__item_on':tab.main === 1}">
+      <div (click)="setTab({main:1,sub:tab.sub})" class="weui-navbar__item"
+           [ngClass]="{'weui-bar__item_on':tab.main === 1}">
         课程分类
       </div>
-      <div (click)="setTab({main:2,sub:tab.sub})" class="weui-navbar__item" [ngClass]="{'weui-bar__item_on':tab.main === 2}">
+      <div (click)="setTab({main:2,sub:tab.sub})" class="weui-navbar__item"
+           [ngClass]="{'weui-bar__item_on':tab.main === 2}">
         我的收藏
       </div>
     </div>
@@ -90,7 +93,8 @@
           </div>
         </div>
         <div class="weui-panel__ft">
-          <a [routerLink]="['/admin/employee/school/curriculum/course/spc/list']" class="weui-cell weui-cell_access weui-cell_link">
+          <a [routerLink]="['/admin/employee/school/curriculum/course/spc/list']"
+             class="weui-cell weui-cell_access weui-cell_link">
             <div class="weui-cell__bd">查看更多</div>
             <span class="weui-cell__ft"></span>
           </a>
@@ -110,7 +114,7 @@
             <div class="button-sp-area">
               <a [routerLink]="['/admin/employee/school/curriculum/course/list',_item.parentid]"
                  (click)="stopPropagation($event)"
-                 [queryParams]="{catalogId:item.coursecatalogid}"
+                 [queryParams]="{catalogId:_item.coursecatalogid}"
                  *ngFor="let _item of item.list" href="javascript:;" class="ui-label horizontal colors grey">{{_item.coursecatalogname}}</a>
             </div>
           </div>
@@ -119,12 +123,14 @@
     </div>
     <div *ngIf="tab.main === 2" class="weui-tab__panel">
 
-      <div class="sub weui-tab">
+      <div class="sub weui-tab" style="display: block;">
         <div class="weui-navbar">
-          <div (click)="setTab({main:tab.main,sub:0})" class="weui-navbar__item" [ngClass]="{'weui-bar__item_on':tab.sub === 0}">
+          <div (click)="setTab({main:tab.main,sub:0})" class="weui-navbar__item"
+               [ngClass]="{'weui-bar__item_on':tab.sub === 0}">
             我的学习
           </div>
-          <div (click)="setTab({main:tab.main,sub:1})" class="weui-navbar__item" [ngClass]="{'weui-bar__item_on':tab.sub === 1}">
+          <div (click)="setTab({main:tab.main,sub:1})" class="weui-navbar__item"
+               [ngClass]="{'weui-bar__item_on':tab.sub === 1}">
             我的收藏
           </div>
         </div>
@@ -150,7 +156,7 @@
                       <ul class="weui-media-box__info">
                         <li class="weui-media-box__info__meta" style="display: block">{{item.createtime.split(' ')[0]}}
                         </li>
-                        <li class="right">删除记录</li>
+                        <li (click)="removeLearn(item.learnid,$event)" class="right">删除记录</li>
                       </ul>
                     </div>
                   </a>
@@ -181,7 +187,7 @@
                       <ul class="weui-media-box__info">
                         <li class="weui-media-box__info__meta" style="display: block">{{item.createtime.split(' ')[0]}}
                         </li>
-                        <li class="right">取消收藏</li>
+                        <li (click)="removeMark(item.favoriteid,$event)" class="right">取消收藏</li>
                       </ul>
                     </div>
                   </a>

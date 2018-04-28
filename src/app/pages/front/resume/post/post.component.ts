@@ -594,14 +594,14 @@ export class FrontResumePostComponent implements OnInit {
       graduationTime: new FormControl('', [Validators.required]), // registerType === 0
       movementType: new FormControl('', [Validators.required]), // registerType === 0
       // major: new FormControl('', []),
-      armyServePlace: new FormControl('', [Validators.required]), // registerType === 1
+      // armyServePlace: new FormControl('', [Validators.required]), // registerType === 1
       enlistmentTime: new FormControl('', [Validators.required]), // registerType === 1
       retirementTime: new FormControl('', [Validators.required]), // registerType === 1
-      armyType: new FormControl('', [Validators.required]), // registerType === 1
-      services: new FormControl('', [Validators.required]), // registerType === 1
+      // armyType: new FormControl('', [Validators.required]), // registerType === 1
+      // services: new FormControl('', [Validators.required]), // registerType === 1
       // isSpecialArms: new FormControl('', [Validators.required]), // registerType === 1
-      militarySpecialty: new FormControl('', [Validators.required]), // registerType === 1
-      retiredOfficerRank: new FormControl('', [Validators.required]), // registerType === 1
+      // militarySpecialty: new FormControl('', [Validators.required]), // registerType === 1
+      // retiredOfficerRank: new FormControl('', [Validators.required]), // registerType === 1
       drivingLicence: new FormControl('', [Validators.required, Validators.maxLength(2)]),
       driversAge: new FormControl('', [Validators.required, Validators.pattern(/^[0-9]*$/), Validators.maxLength(2)]),
       drivingMileage: new FormControl('', [Validators.required, Validators.min(0), Validators.max(999999)]),
@@ -651,13 +651,13 @@ export class FrontResumePostComponent implements OnInit {
 
     this.resumeForm.get('registerType').valueChanges.subscribe(data => {
       if (data === '1') {
-        this.resumeForm.get('armyServePlace').enable();
+        // this.resumeForm.get('armyServePlace').enable();
         this.resumeForm.get('enlistmentTime').enable();
         this.resumeForm.get('retirementTime').enable();
-        this.resumeForm.get('services').enable();
-        this.resumeForm.get('armyType').enable();
-        this.resumeForm.get('militarySpecialty').enable();
-        this.resumeForm.get('retiredOfficerRank').enable();
+        // this.resumeForm.get('services').enable();
+        // this.resumeForm.get('armyType').enable();
+        // this.resumeForm.get('militarySpecialty').enable();
+        // this.resumeForm.get('retiredOfficerRank').enable();
         // this.resumeForm.get('isSpecialArms').enable();
 
         this.resumeForm.get('graduationPlace').disable();
@@ -668,13 +668,13 @@ export class FrontResumePostComponent implements OnInit {
         this.resumeForm.get('graduationTime').enable();
         this.resumeForm.get('movementType').enable();
 
-        this.resumeForm.get('armyServePlace').disable();
+        // this.resumeForm.get('armyServePlace').disable();
         this.resumeForm.get('enlistmentTime').disable();
         this.resumeForm.get('retirementTime').disable();
-        this.resumeForm.get('services').disable();
-        this.resumeForm.get('armyType').disable();
-        this.resumeForm.get('militarySpecialty').disable();
-        this.resumeForm.get('retiredOfficerRank').disable();
+        // this.resumeForm.get('services').disable();
+        // this.resumeForm.get('armyType').disable();
+        // this.resumeForm.get('militarySpecialty').disable();
+        // this.resumeForm.get('retiredOfficerRank').disable();
         // this.resumeForm.get('isSpecialArms').disable();
       }
       this.resumeForm.updateValueAndValidity();

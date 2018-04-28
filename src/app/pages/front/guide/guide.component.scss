@@ -1,14 +1,36 @@
-.content-scrollable {
-  background-image: url("/assets/images/front/guide/guide.png");
+.bg {
+  background-image: url("/assets/images/front/guide/index/bg.jpg");
+  background-repeat: no-repeat;
   background-size: 100% 100%;
+  overflow: hidden;
+}
+
+.logo {
+  width: 30%;
+  position: absolute;
+  left: 0.15rem;
+  top: 0.1rem;
+  img {
+    display: block;
+    width: 100%;
+  }
+}
+
+.banner {
+  margin: 0.55rem 0.4rem 0.4rem 0.5rem;
+  img {
+    width: 100%;
+    display: block;
+  }
 }
 
 h1 {
-  font-size: 0.24rem;
+  font-size: 0.28rem;
   line-height: 0.33rem;
   text-align: center;
-  margin-top: 0.4rem;
+  margin-top: 0.55rem;
   font-weight: 400;
+  color: #fff;
 }
 
 h2 {
@@ -17,14 +39,54 @@ h2 {
   margin-top: 0.05rem;
   text-align: center;
   font-weight: normal;
-  color: #999;
+  color: #dbb56b;
   font-weight: 300;
 }
 
 .btn {
-  position: absolute;
-  bottom: 0.5rem;
-  width: 80%;
-  left: 10%;
+  position: static;
   font-size: 0.18rem;
+  background-color: #dbb56b;
+  color: #000;
+  margin: 0.1rem 0.2rem 0.2rem;
+  width: auto;
+  border-radius: 0.04rem;
+}
+
+.img-container {
+  .img-box {
+    margin-top: -0.2rem;
+  }
+}
+
+.weui-flex__item .placeholder {
+  position: relative;
+  margin: 0 0.05rem;
+  padding: 0;
+  text-align: center;
+  color: #000;
+  .title {
+    margin-top: 0.1rem;
+    color: #e4be72;
+    font-size: 0.13rem;
+    font-weight: 300;
+  }
+  .tag {
+    background: #dbb56b;
+    position: absolute;
+    bottom: 0.1rem;
+    padding: 0.05rem 0.15rem;
+    line-height: 1;
+    &.l {
+      left: -0.1rem;
+    }
+    &.r {
+      right: -0.1rem;
+    }
+  }
+  img {
+    display: block;
+    width: 100%;
+    border-radius: 0.04rem;
+  }
 }

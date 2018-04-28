@@ -41,7 +41,18 @@
 
 .weui-media-box__title {
   font-size: 0.15rem;
-  color: #162F4D;
+  color: #0F0F0F;
+  .label {
+    font-size: 0.12rem;
+    display: inline-block;
+    color: #666;
+    .icons, span {
+      display: inline-block;
+      height: 0.2rem;
+      line-height: 0.2rem;
+      vertical-align: middle;
+    }
+  }
 }
 
 .weui-media-box__info {
@@ -64,16 +75,35 @@
 
 .attr {
   font-size: 0.12rem;
-  line-height: 1.6;
+  line-height: 1.8;
   color: #999;
+  margin-top: 0.08rem;
   sub {
     font-size: 0.12rem;
   }
+  &:last-child {
+    margin-top: 0.22rem;
+    .weui-flex__item {
+      align-self: center;
+      em {
+        color: #CA9F4D;
+      }
+    }
+  }
+}
+
+em {
+  font-style: normal;
+}
+
+.ui-label.yellow.hollow {
+  border-color: #CA9F4D !important;
+  color: #CA9F4D !important;
 }
 
 .price {
   font-size: 0.18rem;
-  color: #FBA703;
+  color: #CA9F4D !important;
 }
 
 .weui-grid-box {
@@ -113,5 +143,16 @@
         }
       }
     }
+  }
+}
+
+.weui-panel__ft {
+  padding: 0 0.15rem 0.15rem;
+  .ui-label {
+    padding: 0.2em 0.4em;
+    background: #F5F5F5;
+    color: #666;
+    font-size: 0.1rem;
+    font-weight: 300;
   }
 }

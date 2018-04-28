@@ -1,3 +1,4 @@
+import {GlobalService} from './global.service';
 import {StorageService} from './storage.service';
 import {GeoService} from './geo.service';
 import {DateService} from './date.service';
@@ -15,8 +16,11 @@ import {LogService} from './log.service';
 import {RecruitService} from './recruit.service';
 import {UaService} from './ua.service';
 import {SchoolService} from './school.service';
+import {ExamService} from './exam.service ';
+import {TraineeService} from './backend/trainee.service';
 
 export const SERVICES_DECLARATIONS = [
+  GlobalService,
   StorageService,
   GeoService,
   DateService,
@@ -33,5 +37,7 @@ export const SERVICES_DECLARATIONS = [
   LogService,
   RecruitService,
   UaService,
-  SchoolService
+  SchoolService,
+  ExamService,
+  TraineeService
 ];

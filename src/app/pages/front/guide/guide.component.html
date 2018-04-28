@@ -1,8 +1,26 @@
 <app-navbar [navBar]="navBarConfig"></app-navbar>
 
 <div class="content-scrollable">
-  <h1>欢迎使用大牛管家</h1>
-  <h2>我们将为您提供专业的贴身管家服务</h2>
+  <div class="bg">
+    <div class="logo">
+      <img src="/assets/images/front/guide/index/logo.png">
+    </div>
+    <div class="banner">
+      <img src="/assets/images/front/guide/index/banner.png">
+    </div>
 
-  <a routerLink="/front/guide/step1" queryParamsHandling="merge" class="btn circle yellow">开始寻找管家</a>
+    <div class="img-container">
+      <div class="img-box">
+        <img src="/assets/images/front/guide/index/1.png">
+      </div>
+      <div class="img-box">
+        <img src="/assets/images/front/guide/index/2.png">
+      </div>
+      <div class="img-box">
+        <img src="/assets/images/front/guide/index/3.png">
+      </div>
+    </div>
+
+    <a routerLink="/front/guide/step1" queryParamsHandling="merge" class="btn circle yellow">开始寻找管家</a>
+  </div>
 </div>

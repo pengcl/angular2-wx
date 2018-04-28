@@ -37,9 +37,9 @@
       }
       &.weui-bar__item_on {
         background: none;
-        color: #FBA703;
+        color: #CA9F4D;
         &:after {
-          border-bottom: 4px solid #FBA703;
+          border-bottom: 4px solid #CA9F4D;
         }
       }
     }
@@ -66,17 +66,18 @@
       flex: 1;
     }
     .weui-navbar__item {
-      text-decoration: underline;
       padding-left: 0.15rem;
       padding-right: 0.15rem;
       color: #999;
       flex: none;
+      font-size: 0.14rem;
+      font-weight: 300;
       &:after {
         display: none !important;
       }
       &.weui-bar__item_on {
         background: none;
-        color: #FBA703;
+        color: #CA9F4D;
       }
     }
   }

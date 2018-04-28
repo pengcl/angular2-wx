@@ -1,0 +1,43 @@
+.position {
+  margin-top: 0.45rem;
+}
+
+.filter-nav {
+  margin: 0.05rem 0.15rem;
+  .weui-flex__item {
+    text-align: center;
+  }
+}
+
+.trainee {
+  text-align: center;
+  margin: 0 0.15rem;
+  &.odd {
+    background: #f5f5f5;
+  }
+  .weui-flex__item {
+    position: relative;
+    padding: 0.05rem 0;
+    font-size: 0.12rem;
+    color: #666;
+    &:after {
+      content: ' ';
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+      width: 1px;
+      border-right: 1px solid #ccc;
+      transform: scaleX(0.5);
+    }
+    &:last-child {
+      &:after {
+        display: none;
+      }
+    }
+    &.name {
+      color: rgb(63, 81, 181);
+      text-decoration: underline;
+    }
+  }
+}

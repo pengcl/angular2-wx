@@ -1,0 +1,29 @@
+<app-navbar [navBar]="navBarConfig"></app-navbar>
+
+<div class="content-scrollable">
+  <div *ngIf="examInfo" class="banner"
+       [ngStyle]="{'background-image':'url(' + config.prefix.wApi + examInfo.examimage + ')'}">
+  </div>
+  <div *ngIf="examInfo" class="content">
+    <div class="weui-panel">
+      <div *ngIf="examTag" class="weui-panel__hd">
+        <span class="ui-label gold" [ngClass]="{'disabled':!examTag.result}">{{examTag.txt}}</span>
+      </div>
+      <div class="weui-panel__bd">
+        <div class="weui-media-box">
+          <div class="weui-media-box__title">试卷提交成功</div>
+          <div class="weui-media-box__desc">请耐心等候成绩公布，成绩公布后，将有消息通知<br>
+            您也可以在“我的考试”页面查看成绩，<br>
+            <em>成绩公布：{{examInfo.opentime.split(' ')[0]}}</em>
+          </div>
+
+          <div class="weui-btn-area">
+            <weui-button [weui-type]="'default'" (click)="back()">
+              返回
+            </weui-button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

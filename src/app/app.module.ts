@@ -1,11 +1,14 @@
 // modules
 import {BrowserModule} from '@angular/platform-browser';
-import {NgModule, ModuleWithProviders, ErrorHandler} from '@angular/core';
+import {NgModule, ErrorHandler} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {AppRoutingModule} from './app-routing.module';
 import {ChartF2Module} from './modules/chart-f2';
+import {CountdownModule} from 'ngx-countdown';
+import {MenuModule} from './modules/menu/menu.module';
+
 import {
   CellModule,
   DialogModule,
@@ -16,7 +19,8 @@ import {
   RatingModule,
   UploaderModule,
   TabModule,
-  ToastModule
+  ToastModule,
+  ProgressModule
 } from 'ngx-weui';
 import {WxModule} from './modules/wx';
 
@@ -28,7 +32,7 @@ import {VgBufferingModule} from 'videogular2/buffering';
 // pipes
 import {EmployeesPipe} from './pipes/employees.pipe';
 import {RenamePipe} from './pipes/rename.pipe';
-import {WeekPipe, CallbackPipe, RepairSrcPipe} from './pipes/pipes.pipe';
+import {WeekPipe, CallbackPipe, RepairSrcPipe, RepairDatePipe} from './pipes/pipes.pipe';
 
 // services
 import {SERVICES_DECLARATIONS} from './services';
@@ -65,6 +69,7 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     RenamePipe,
     WeekPipe,
     RepairSrcPipe,
+    RepairDatePipe,
     CallbackPipe,
     AppComponent,
     AppPayComponent,
@@ -89,16 +94,19 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     ChartF2Module,
     RatingModule.forRoot(),
     WxModule,
+    CountdownModule,
     InfiniteLoaderModule.forRoot(),
     DialogModule.forRoot(),
     ButtonModule.forRoot(),
     UploaderModule.forRoot(),
     TabModule.forRoot(),
     ToastModule.forRoot(),
+    ProgressModule.forRoot(),
     VgCoreModule,
     VgControlsModule,
     VgOverlayPlayModule,
-    VgBufferingModule
+    VgBufferingModule,
+    MenuModule.forRoot()
   ],
   providers: [
     ...SERVICES_DECLARATIONS,
@@ -106,6 +114,7 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     WeekPipe,
     CallbackPipe,
     RepairSrcPipe,
+    RepairDatePipe,
     {
       provide: SWIPER_CONFIG,
       useValue: DEFAULT_SWIPER_CONFIG

@@ -21,8 +21,8 @@ export class FrontNewsComponent implements OnInit {
     this.wx.config({
       title: '“大牛管家”开训了！！！',
       desc: '花城三月，春意盎然。“大牛管家第一期学员培训隆重开班，“牛群一号”正式启动！',
-      link: 'http://wap.danius.cn/front/resume/job',
-      imgUrl: 'http://wap.danius.cn/assets/images/front/resume/share-icon.png'
+      link: 'http://wap.danius.cn/front/news',
+      imgUrl: 'http://wap.danius.cn/assets/images/logo.png'
     }).then(() => {
       console.log(true);
       // 其它操作，可以确保注册成功以后才有效

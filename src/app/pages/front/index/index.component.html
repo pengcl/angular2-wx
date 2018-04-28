@@ -42,15 +42,16 @@
     </div>
   </div>
 
-  <div class="weui-panel weui-panel_access">
-    <div class="weui-panel__hd">为您推荐管家 <a class="right" routerLink="/front/employees">查看更多</a></div>
-    <div class="weui-panel__bd">
-      <app-profile [routerLink]="['/front/employees/employee', employee.housekeeperid]" [profile]="employee"
-                   *ngFor="let employee of employees?.slice(0,3)"
-                   class="weui-media-box weui-media-box_appmsg">
-      </app-profile>
-    </div>
+  <div style="margin-top: 0.05rem">
+    <app-profile-min [routerLink]="['/front/employees/employee', employee.housekeeperid]" queryParamsHandling="merge"
+                     [profile]="employee"
+                     *ngFor="let employee of employees?.slice(0,3)" class="weui-panel"></app-profile-min>
   </div>
+
+<!--  <app-profile [routerLink]="['/front/employees/employee', employee.housekeeperid]" [profile]="employee"
+               *ngFor="let employee of employees?.slice(0,3)"
+               class="weui-media-box weui-media-box_appmsg">
+  </app-profile>-->
 
   <div class="promise weui-panel">
     <div class="weui-panel__hd">服务承诺</div>

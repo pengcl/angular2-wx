@@ -53,7 +53,7 @@
         </div>
         <div class="weui-form-preview__item">
           <label class="weui-form-preview__label">服务时间</label>
-          <span class="weui-form-preview__value">{{employer.servicestartdate | date : 'yyyy.MM.dd'}} - {{employer.serviceenddate | date : 'yyyy.MM.dd'}}</span>
+          <span class="weui-form-preview__value">{{employer.servicestartdate | repairDate | date : 'yyyy.MM.dd'}} - {{employer.serviceenddate | repairDate | date : 'yyyy.MM.dd'}}</span>
         </div>
       </div>
     </div>

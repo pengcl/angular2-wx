@@ -1,0 +1,19 @@
+<app-navbar [show]="true" [navBar]="navBarConfig"></app-navbar>
+<weui-infiniteloader (loadmore)="onLoadMore($event)" #comp>
+  <div class="position">1</div>
+  <div class="filter-nav weui-flex">
+    <div class="weui-flex__item">姓名</div>
+    <div class="weui-flex__item">年龄</div>
+    <div class="weui-flex__item">身高</div>
+    <div class="weui-flex__item">驾照</div>
+    <div class="weui-flex__item">驾龄</div>
+  </div>
+  <div *ngFor="let item of trainees;let i = index" class="trainee weui-flex" [ngClass]="{'odd':i%2 === 0}">
+    <div class="name weui-flex__item">{{item.name}}</div>
+    <div class="weui-flex__item">{{item.age}}</div>
+    <div class="weui-flex__item">{{item.height}}</div>
+    <div class="weui-flex__item">{{item.drivinglicence}}</div>
+    <div class="weui-flex__item">{{item.driversage}}</div>
+  </div>
+</weui-infiniteloader>
+

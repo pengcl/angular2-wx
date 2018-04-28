@@ -25,6 +25,12 @@ import {AdminEmployeeSchoolCurriculumCourseItemComponent} from './school/curricu
 import {AdminEmployeeSchoolCurriculumCourseListComponent} from './school/curriculum/course/list/list.component';
 import {AdminEmployeeSchoolCurriculumCourseSpcListComponent} from './school/curriculum/course/spc/list/list.component';
 import {AdminEmployeeSchoolCurriculumCourseSpcDetailsComponent} from './school/curriculum/course/spc/details/details.component';
+import {AdminEmployeeSchoolExamIndexComponent} from './school/exam/index/index.component';
+import {AdminEmployeeSchoolExamDetailsComponent} from './school/exam/details/details.component';
+import {AdminEmployeeSchoolExamOnComponent} from './school/exam/on/on.component';
+import {AdminEmployeeSchoolExamPreviewComponent} from './school/exam/preview/preview.component';
+import {AdminEmployeeSchoolExamResultComponent} from './school/exam/result/result.component';
+import {AdminEmployeeSchoolExamMsgSuccessComponent} from './school/exam/msg/success/success.component';
 
 export const ADMIN_PAGES_EMPLOYEE_DECLARATIONS = [
   AdminEmployeeComponent,
@@ -52,5 +58,11 @@ export const ADMIN_PAGES_EMPLOYEE_DECLARATIONS = [
   AdminEmployeeSchoolCurriculumCourseItemComponent,
   AdminEmployeeSchoolCurriculumCourseListComponent,
   AdminEmployeeSchoolCurriculumCourseSpcListComponent,
-  AdminEmployeeSchoolCurriculumCourseSpcDetailsComponent
+  AdminEmployeeSchoolCurriculumCourseSpcDetailsComponent,
+  AdminEmployeeSchoolExamIndexComponent,
+  AdminEmployeeSchoolExamDetailsComponent,
+  AdminEmployeeSchoolExamOnComponent,
+  AdminEmployeeSchoolExamPreviewComponent,
+  AdminEmployeeSchoolExamResultComponent,
+  AdminEmployeeSchoolExamMsgSuccessComponent
 ];

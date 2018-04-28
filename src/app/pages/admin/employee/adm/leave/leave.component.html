@@ -28,7 +28,7 @@
          [ngClass]="{'weui-cell_warn':isSubmit && eventForm.get('startDate').invalid}"
          (click)="onPickerShow('date','startDate')" href="javascript:;">
         <div class="weui-cell__bd">
-          <input formControlName="startDate" class="weui-input" type="hidden" value="">
+          <input formControlName="startDate" weui-required class="weui-input" type="hidden" value="">
           <p>开始时间</p>
         </div>
         <div class="weui-cell__ft">{{eventForm.get('startDate').value ?
@@ -40,7 +40,7 @@
          [ngClass]="{'weui-cell_warn':isSubmit && eventForm.get('endDate').invalid}"
          (click)="onPickerShow('date','endDate')" href="javascript:;">
         <div class="weui-cell__bd">
-          <input formControlName="endDate" class="weui-input" type="hidden" value="">
+          <input formControlName="endDate" weui-required class="weui-input" type="hidden" value="">
           <p>结束时间</p>
         </div>
         <div class="weui-cell__ft">{{eventForm.get('endDate').value ?
@@ -54,7 +54,7 @@
     <div class="weui-cells weui-cells_form">
       <div class="weui-cell">
         <div class="weui-cell__bd">
-          <textarea formControlName="eventTitle" class="weui-textarea" placeholder="请输入您的请假事由"
+          <textarea formControlName="eventTitle" weui-required class="weui-textarea" placeholder="请输入您的请假事由"
                     rows="3"></textarea>
           <div class="weui-textarea-counter"><span>{{eventForm.value.eventTitle.length ? eventForm.value.eventTitle.length : 0}}</span>/200
           </div>
@@ -66,7 +66,7 @@
     <div class="weui-cells weui-cells_form">
       <div class="weui-cell">
         <div class="weui-cell__bd">
-          <textarea formControlName="remark" class="weui-textarea" placeholder="可不填写,请输入您的请假备注(不少于10个字)"
+          <textarea formControlName="remark" weui-required class="weui-textarea" placeholder="可不填写,请输入您的请假备注(不少于10个字)"
                     rows="3"></textarea>
           <div class="weui-textarea-counter"><span>{{eventForm.value.remark.length ? eventForm.value.remark.length : 0}}</span>/200
           </div>
@@ -78,7 +78,7 @@
       <div class="rule-tit">温馨提示</div>
       <dl class="rule-txt cf">
         <dt>1、</dt>
-        <dd><p class="txt">请假前务必先与客户沟通，并至少提前1天提交申请，(特殊情况除外)提交申请后，请通知客户登录审批，并选择是否需要由其他管家代工</p></dd>
+        <dd><p class="txt">请假前务必先与客户沟通，并至少提前1天提交申请，(特殊情况除外)</p></dd>
       </dl>
       <dl class="rule-txt cf">
         <dt>2、</dt>
@@ -89,7 +89,7 @@
     </div>
 
     <div class="weui-btn-area">
-      <button type="button" (click)="makeSure()" class="weui-btn weui-btn_primary" [disabled]="eventForm.invalid">
+      <button type="button" (click)="makeSure()" class="weui-btn weui-btn_primary">
         提交申请
       </button>
     </div>

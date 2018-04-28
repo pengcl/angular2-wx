@@ -55,7 +55,7 @@ router.route('/post').post(function (req, res, next) {
   var deferred = Q.defer();
 
   var _date = new Date();
-  var dir = numToStr(_date.getFullYear()) + numToStr(_date.getMonth()) + numToStr(_date.getDate());
+  var dir = numToStr(_date.getFullYear()) + numToStr(_date.getMonth() + 1) + numToStr(_date.getDate());
   var filename = numToStr(_date.getHours()) + numToStr(_date.getMinutes()) + numToStr(_date.getSeconds());
   var path = '../data/log/' + req.query.path + '/' + dir;
 

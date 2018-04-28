@@ -25,7 +25,7 @@
                 {{order.leadername}}
                 <span *ngIf="order.constatus === 2" class="ui-label hollow horizontal circle">正在服务</span>
               </h4>
-              <p class="weui-media-box__desc">服务时间：{{order.servicestartdate | date : 'yyyy.MM.dd'}} - {{order.serviceenddate | date : 'yyyy.MM.dd'}}</p>
+              <p class="weui-media-box__desc">服务时间：{{order.servicestartdate | repairDate | date : 'yyyy.MM.dd'}} - {{order.serviceenddate | repairDate | date : 'yyyy.MM.dd'}}</p>
               <p class="weui-media-box__desc">服务周期：{{order.serviceperiod}}个月</p>
             </div>
             <div class="weui-media-box__ft"></div>
@@ -47,7 +47,7 @@
                 {{order.leadername}}
                 <span *ngIf="order.constatus === 2" class="ui-label hollow horizontal circle">正在服务</span>
               </h4>
-              <p class="weui-media-box__desc">服务时间：{{order.servicestartdate | date : 'yyyy.MM.dd'}} - {{order.serviceenddate | date : 'yyyy.MM.dd'}}</p>
+              <p class="weui-media-box__desc">服务时间：{{order.servicestartdate | repairDate | date : 'yyyy.MM.dd'}} - {{order.serviceenddate | repairDate | date : 'yyyy.MM.dd'}}</p>
               <p class="weui-media-box__desc">服务周期：{{order.serviceperiod}}个月</p>
             </div>
             <div class="weui-media-box__ft"></div>

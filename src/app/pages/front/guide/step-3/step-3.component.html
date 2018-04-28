@@ -2,16 +2,38 @@
 
 <div class="content-scrollable">
 
-  <app-msg *ngIf="currLists?.length === 0" [msg]='{title:"暂无\"管家\"记录",desc:"您可以关注\"大牛管家\"公众号，获取最新活动消息。",cancel:"返回"}'></app-msg>
-
-  <weui-infiniteloader (loadmore)="onLoadMore($event)" #comp>
-    <div class="weui-panel weui-panel_access">
-      <div class="weui-panel__bd">
-        <app-profile [routerLink]="['/front/employees/employee', item.housekeeperid]" [queryParams]="{gh: gh}" [profile]="item"
-                     *ngFor="let item of currLists"
-                     class="weui-media-box weui-media-box_appmsg"></app-profile>
+  <div class="weui-tab">
+    <div class="weui-navbar">
+      <div class="weui-navbar__item">
+        <a class="weui-cell weui-cell_access" [ngClass]="{'weui-cell_on' : show?.level}"
+           (click)="onPickerShow('level')">
+          <div class="weui-cell__bd">
+            <p>{{level?.label}}管家</p>
+          </div>
+          <div class="weui-cell__ft">
+          </div>
+        </a>
+      </div>
+      <div class="weui-navbar__item">
+        <a class="weui-cell weui-cell_access" [ngClass]="{'weui-cell_on' : show?.score}"
+           (click)="onPickerShow('score')">
+          <div class="weui-cell__bd">
+            <p>{{synthetical.label}}</p>
+          </div>
+          <div class="weui-cell__ft">
+          </div>
+        </a>
       </div>
     </div>
-  </weui-infiniteloader>
-  <a *ngIf="isLast" [routerLink]="['/front/guide/step4']" [queryParams]="{gh: gh}" class="btn circle" href="javascript:;">还没选到，帮我安排吧</a>
+    <div class="weui-tab__panel">
+      <app-msg *ngIf="currLists?.length === 0"
+               [msg]='{title:"暂无\"管家\"记录",desc:"您可以关注\"大牛管家\"公众号，获取最新活动消息。",cancel:"返回"}'></app-msg>
+
+      <weui-infiniteloader (loadmore)="onLoadMore($event)" #comp>
+        <app-profile-min [routerLink]="['/front/employees/employee', item.housekeeperid]" queryParamsHandling="merge"
+                         [profile]="item"
+                         *ngFor="let item of currLists" class="weui-panel"></app-profile-min>
+      </weui-infiniteloader>
+    </div>
+  </div>
 </div>

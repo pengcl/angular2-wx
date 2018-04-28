@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {DatePipe} from '@angular/common';
 import {PageConfig} from './page.config';
 import {DateService} from '../../../../services/date.service';
@@ -8,7 +9,7 @@ import {MoService} from '../../../../services/mo.service';
 import {GeoService} from '../../../../services/geo.service';
 
 import {EmployeeService} from '../../../../services/employee.service';
-import {DialogService} from 'ngx-weui';
+import {DialogConfig, DialogService} from 'ngx-weui';
 
 declare var mojs: any;
 declare var $: any;
@@ -32,6 +33,19 @@ interface DateItem {
 export class AdminEmployeeClockInComponent implements OnInit {
   tabBarConfig = PageConfig.tabBar;
   navBarConfig = PageConfig.navBar;
+
+  private DEFCONFIG: DialogConfig = <DialogConfig>{
+    title: '请填写好友的手机号码',
+    content: '成功后，好友的手机号就是登录账号了。他也可以参与荐才行动，一起推荐拿补贴！',
+    cancel: '取消',
+    confirm: '确定',
+    inputPlaceholder: '请填写好友的手机号码',
+    inputError: '请填写正确的手机号码',
+    inputRequired: true
+  };
+
+  clockForm: FormGroup;
+
   clocked: boolean = false;
   clocking: boolean = false;
   clockInType: number; // 0:无打卡,1:正常,2:迟到,3:请假,4:旷工
@@ -66,6 +80,15 @@ export class AdminEmployeeClockInComponent implements OnInit {
   ngOnInit() {
     this.user = this.userSvc.isLogin();
 
+    this.clockForm = new FormGroup({
+      housekeeperId: new FormControl('', [Validators.required]),
+      location: new FormControl('', [Validators.required]),
+      address: new FormControl('', [Validators.required]),
+      signRemark: new FormControl('', [])
+    });
+
+    this.clockForm.get('housekeeperId').setValue(this.user.housekeeperId);
+
     this.employeeSvc.getSignInfo(this.user.housekeeperId).then(res => {
       if (res.code === 0) {
         this.signInfo = res.housekeeperSign;
@@ -82,73 +105,67 @@ export class AdminEmployeeClockInComponent implements OnInit {
         document.getElementById('markPage').src = markUrl;*/
 
         this.location.location = position.lat + ',' + position.lng;
+        this.clockForm.get('location').setValue(position.lat + ',' + position.lng);
 
         this.geo.getPosition(this.location.location).then((result) => {
           this.location.address = result.result.address;
+          this.clockForm.get('address').setValue(result.result.address);
         });
       });
     });
+  }
 
-    /*this.moSvc.get().then((res) => {
-
-      const location = document.getElementById('location');
-
-      const cx = location.offsetWidth / 2;
-      const cy = location.offsetHeight / 2;
-
-      const circleBig = new mojs.Shape({
-        left: cx, top: cy,
-        radius: 100,
-        stroke: '#ccc',
-        fill: 'none',
-        strokeWidth: {10: 0, easing: 'cubic.out'},
-        strokeLinecap: 'round',
-        scale: {0: 3},
-        duration: 600,
-        easing: 'quad.out'
+  submit(e) {
+    setTimeout(() => {
+      const cog = Object.assign({}, this.DEFCONFIG, <DialogConfig>{
+        title: '备注',
+        content: '',
+        cancel: '取消',
+        confirm: '打卡',
+        inputPlaceholder: '请输入您本次打卡的备注',
+        inputError: '请填写正确的备注',
+        inputRequired: false,
+        skin: 'auto',
+        type: 'prompt',
+        input: 'textarea',
+        inputValue: undefined
       });
 
-      const timeline = new mojs.Timeline;
-
-      timeline.add(circleBig);
-
-      location.addEventListener('click', function (e) {
-        timeline.play();
+      this.dialog.show(cog).subscribe((data: any) => {
+        console.log(data);
+        if (data.value) {
+          if (data.result) {
+            this.clockForm.get('signRemark').setValue(data.result);
+          }
+          this.clockIn(e);
+        }
       });
-
-    });*/
+    });
   }
 
   clockIn(e): void {
     this.clocking = true;
     this.clocked = true;
-    this.employeeSvc.clockIn({
-      housekeeperId: this.user.housekeeperId,
-      location: this.location.location,
-      address: this.location.address,
-      signRemark: ''
-    }).then(result => {
+    this.employeeSvc.clockIn(this.clockForm.value).then(result => {
       if (result.code === 0) {
         this.employeeSvc.getSignInfo(this.user.housekeeperId).then(res => {
           if (res.code === 0) {
             this.signInfo = res.housekeeperSign;
           }
-        });
-
-        this.employeeSvc.getMonthSignInfo({
-          housekeeperId: this.user.housekeeperId,
-          year: this.currDateItem.year,
-          month: this.currDateItem.month
-        }).then(res => {
-        });
-
-        this.dialog.show({
-          title: '打卡成功',
-          content: '<p>开始上班 ' + this.datePipe.transform(this.dateNow, 'HH:mm:ss') + '</p><p>新的一天开始了，加油哦！</p>'
-        }).subscribe(res => {
-          if (res === 'confirm') {
-            // this.onSubmit();
+        }).then(() => {
+          let content = '<p>开始上班 ' + this.datePipe.transform(this.dateNow, 'HH:mm:ss') + '</p><p>新的一天开始了，加油哦！</p>';
+          if (this.signInfo.actualcheckintime) {
+            content = '<p>下班时间 ' + this.datePipe.transform(this.dateNow, 'HH:mm:ss') + '！</p>';
           }
+
+          this.dialog.show({
+            title: '打卡成功',
+            content: content
+          }).subscribe(res => {
+            if (res === 'confirm') {
+              // this.onSubmit();
+            }
+          });
         });
       } else {
         this.dialog.show({

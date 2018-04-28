@@ -10,7 +10,7 @@
   &.weui-panel__title {
     padding-left: 0.35rem;
     font-size: 0.17rem;
-    color: #162F4D;
+    color: #0F0F0F;
     font-weight: 500;
     &:before {
       content: ' ';
@@ -28,6 +28,12 @@
 
 .weui-media-box {
   padding: 0.15rem;
+  .content {
+    img {
+      max-width: 100%;
+      display: block;
+    }
+  }
 }
 
 .weui-media-box_small-appmsg {

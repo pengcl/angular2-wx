@@ -7,11 +7,12 @@
     <p>您可以关注"大牛管家"公众号，获取最新活动消息。</p>
   </div>-->
 
-  <app-msg *ngIf="orderList?.length === 0" [msg]='{title:"暂无\"订单\"记录",desc:"您可以关注\"大牛管家\"公众号，获取最新活动消息。",cancel:"返回"}'></app-msg>
+  <app-msg *ngIf="orderList?.length === 0 && reserveOrderList?.length === 0"
+           [msg]='{title:"暂无\"订单\"记录",desc:"您可以关注\"大牛管家\"公众号，获取最新活动消息。",cancel:"返回"}'></app-msg>
 
   <div *ngFor="let item of orderList;let i = index" class="order-item weui-panel weui-panel_access">
     <div class="weui-panel__hd">大牛管家服务月费 <sub>共{{item.payState.periods.length}}个月</sub> <sub><a
-      [routerLink]="['/admin/employer/order/protocol', item.id]">查看协议</a></sub> <span class="right">{{item.meta.createAt | date : 'yyyy-MM-dd'}}</span>
+      [routerLink]="['/admin/employer/order/protocol', item.id]">查看协议</a></sub> <span class="right">{{item.meta.createAt | repairDate | date : 'yyyy-MM-dd'}}</span>
     </div>
     <div class="weui-panel__bd">
       <div *ngFor="let prod of item.employees" class="weui-media-box weui-media-box_appmsg">
@@ -69,6 +70,29 @@
           总金额：<sub>￥</sub><em>{{item.payState.amount}}</em><sub>.00</sub></div>
         <span class="weui-cell__ft">展开</span>
       </a>
+    </div>
+  </div>
+
+  <div *ngFor="let item of reserveOrderList" class="order-item weui-panel weui-panel_access">
+    <div class="weui-panel__hd">大牛管家订金
+      <span class="right">状态：
+        <span *ngIf="item.paystatus === 1">未支付</span>
+        <span *ngIf="item.paystatus === 2">已支付</span>
+        <span *ngIf="item.paystatus === 3">部分支付</span>
+      </span>
+    </div>
+    <div class="weui-panel__bd">
+      <div class="weui-media-box weui-media-box_appmsg">
+        <div class="weui-media-box__bd">
+          <p class="weui-media-box__desc">订单编号：{{item.orderno}}</p>
+          <p class="weui-media-box__desc">预订人员：{{item.housekeepername}} (工号：{{item.housekeeperno}})</p>
+        </div>
+      </div>
+    </div>
+    <div class="weui-panel__ft">
+      <div class="weui-cell weui-cell_access weui-cell_link">
+        <div class="weui-cell__bd">支付金额：<sub>￥</sub><em>{{item.orderamount}}</em></div>
+      </div>
     </div>
   </div>
 </div>

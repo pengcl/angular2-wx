@@ -17,6 +17,8 @@ export class AdminLoginComponent implements OnInit {
   tabBarConfig = PageConfig.tabBar;
   navBarConfig = PageConfig.navBar;
 
+  unionid;
+  openid;
   loginForm: FormGroup;
   // user: any;
 
@@ -40,8 +42,15 @@ export class AdminLoginComponent implements OnInit {
     this.loginForm = new FormGroup({
       mobile: new FormControl('', [Validators.required, Validators.minLength(11), Validators.maxLength(11)]),
       code: new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(4)]),
+      unionid: new FormControl('', []),
       openid: new FormControl('', [])
     });
+
+    this.unionid = this.activatedRoute.snapshot.queryParams['unionid'] ? this.activatedRoute.snapshot.queryParams['unionid'] : '';
+    this.openid = this.activatedRoute.snapshot.queryParams['openid'] ? this.activatedRoute.snapshot.queryParams['openid'] : '';
+
+    this.loginForm.get('unionid').setValue(this.unionid);
+    this.loginForm.get('openid').setValue(this.openid);
   }
 
   getCode(mobile) {
@@ -83,7 +92,8 @@ export class AdminLoginComponent implements OnInit {
     if (this.loginForm.valid) {
       this.userSvc.login(this.loginForm.value).then(res => {
         if (res.code === 0) {
-          const user = {id: res.custId, housekeeperId: ''};
+          console.log(res);
+          const user = {id: res.custId, housekeeperId: '', admin: res.isUser};
           let callbackUrl = '/admin/employer';
           if (res.housekeeperId) {
             user.housekeeperId = res.housekeeperId;
