@@ -15,5 +15,5 @@ export const COMPONENTS_DECLARATIONS = [
   ProfileGraphicComponent,
   ProfileMinComponent,
   RateComponent,
-  MsgComponent,
+  MsgComponent
 ];

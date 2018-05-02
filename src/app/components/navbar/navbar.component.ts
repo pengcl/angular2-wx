@@ -10,6 +10,7 @@ import {MenuService} from '../../modules/menu/menu.service';
 export class NavbarComponent implements OnInit {
   @Input() navBar;
   @Input() show;
+  @Input() title;
 
   constructor(private titleService: Title,
               private menuSvc: MenuService) {

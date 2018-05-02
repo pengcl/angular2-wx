@@ -1,0 +1,66 @@
+.position {
+  margin-top: 0.45rem;
+}
+
+.date-filter {
+  .weui-cell__hd {
+    align-self: center;
+    height: 0.25rem;
+    line-height: 0.25rem;
+    margin-right: 0.08rem;
+    span {
+      line-height: 0.2rem;
+      height: 0.2rem;
+      width: 0.2rem;
+      font-size: 0.2rem;
+      vertical-align: middle;
+    }
+  }
+  .weui-cell__bd {
+    color: #999;
+  }
+}
+
+.statistics {
+  .weui-flex {
+    margin: 0 -0.05rem;
+  }
+  .weui-flex__item {
+    text-align: center;
+    margin: 0.05rem;
+    padding: 0.1rem;
+    color: #fff;
+    &.green {
+      background: #1F9E55;
+    }
+    &.yellow {
+      background: #EE9129;
+    }
+    &.blue {
+      background: #0076ff;
+    }
+    &.dblue {
+      background: #1E96BB;
+    }
+    &.dyellow {
+      background: #BE7421;
+    }
+    &.dgreen {
+      background: #197E44;
+    }
+    &.dred {
+      background: #AA322D;
+    }
+    &.empty {
+      background: none;
+    }
+    em, span {
+      display: block;
+    }
+    em {
+      font-size: 0.24rem;
+      font-style: normal;
+      color: #fff;
+    }
+  }
+}

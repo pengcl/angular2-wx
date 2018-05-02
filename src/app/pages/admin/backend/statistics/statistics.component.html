@@ -1,0 +1,132 @@
+<app-navbar *ngIf="employer" [title]="'欢迎您，' + employer.cust_name" [show]="true" [navBar]="navBarConfig"></app-navbar>
+
+<div class="content-scrollable has-nav">
+  <div class="weui-cells__title">Home  >  招聘管理  >  报名统计</div>
+  <div class="date-filter weui-cells weui-flex">
+    <div (click)="onPickerShow('start')" class="weui-flex__item">
+      <div class="weui-cell">
+        <div class="weui-cell__hd"><span class="icon-doc-chart"></span></div>
+        <div class="weui-cell__bd">
+          {{pickerDate.start ? pickerDate.start : '请选择起始时间'}}
+        </div>
+      </div>
+    </div>
+    <div (click)="onPickerShow('end')" class="weui-flex__item">
+      <div class="weui-cell">
+        <div class="weui-cell__hd">至</div>
+        <div class="weui-cell__bd">
+          {{pickerDate.end ? pickerDate.end : '请选择结束时间'}}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="statistics" class="statistics weui-panel">
+    <div class="weui-panel__hd">报名概况</div>
+    <div class="weui-panel__bd">
+      <div class="weui-media-box">
+        <div class="weui-flex">
+          <div class="green weui-flex__item">
+            <em>{{statistics.twb}}</em>
+            <span>退伍士兵</span>
+          </div>
+          <div class="yellow weui-flex__item">
+            <em>{{statistics.tys}}</em>
+            <span>体育特长生</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="weui-media-box">
+      <div class="weui-flex">
+        <div class="blue weui-flex__item">
+          <em>{{statistics.beAuditedCount[0].num}}</em>
+          <span>待审核</span>
+        </div>
+        <div class="dblue  weui-flex__item">
+          <em>{{statistics.firstAuditedCount[0].num}}</em>
+          <span>初审通过</span>
+        </div>
+        <div class="dyellow weui-flex__item">
+          <em>{{statistics.secondAuditedCount[0].num}}</em>
+          <span>复审通过</span>
+        </div>
+      </div>
+      <div class="weui-flex">
+        <div class="dgreen weui-flex__item">
+          <em>{{statistics.threeAuditedCount[0].num}}</em>
+          <span>面试通过</span>
+        </div>
+        <div class="dred weui-flex__item">
+          <em>{{statistics.notAuditedCount[0].num}}</em>
+          <span>未通过</span>
+        </div>
+        <div class="empty weui-flex__item"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="weui-panel">
+    <div class="weui-panel__hd">所在地</div>
+    <div class="weui-panel__bd">
+      <canvas id="addressCount"></canvas>
+    </div>
+  </div>
+
+  <div class="weui-panel">
+    <div class="weui-panel__hd">意向城市</div>
+    <div class="weui-panel__bd">
+      <canvas id="allintentionalCityCount"></canvas>
+    </div>
+  </div>
+
+  <div class="weui-panel">
+    <div class="weui-panel__hd">学历</div>
+    <div class="weui-panel__bd">
+      <canvas id="educationCount"></canvas>
+    </div>
+  </div>
+
+  <div class="weui-panel">
+    <div class="weui-panel__hd">年龄</div>
+    <div class="weui-panel__bd">
+      <canvas id="ageCount"></canvas>
+    </div>
+  </div>
+
+  <div class="weui-panel">
+    <div class="weui-panel__hd">兵龄</div>
+    <div class="weui-panel__bd">
+      <canvas id="soldierAgeCount"></canvas>
+    </div>
+  </div>
+
+  <div class="weui-panel">
+    <div class="weui-panel__hd">驾照</div>
+    <div class="weui-panel__bd">
+      <canvas id="drivingLicenceCount"></canvas>
+    </div>
+  </div>
+
+  <div class="weui-panel">
+    <div class="weui-panel__hd">驾龄</div>
+    <div class="weui-panel__bd">
+      <canvas id="driversAgeCount"></canvas>
+    </div>
+  </div>
+
+  <div class="weui-panel">
+    <div class="weui-panel__hd">身高(cm)</div>
+    <div class="weui-panel__bd">
+      <canvas id="heightCount"></canvas>
+    </div>
+  </div>
+
+  <div class="weui-panel">
+    <div class="weui-panel__hd">体重(kg)</div>
+    <div class="weui-panel__bd">
+      <canvas id="weightCount"></canvas>
+    </div>
+  </div>
+</div>
+

@@ -27,4 +27,7 @@ export class AdminBackendTraineeListComponent implements OnInit {
       }
     });
   }
+
+  onLoadMore(e) {
+  }
 }

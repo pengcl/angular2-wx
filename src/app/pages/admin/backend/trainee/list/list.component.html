@@ -2,6 +2,22 @@
 <weui-infiniteloader (loadmore)="onLoadMore($event)" #comp>
   <div class="position">1</div>
   <div class="filter-nav weui-flex">
+    <div class="curr weui-flex__item">待审核</div>
+    <div class="weui-flex__item">初审通过</div>
+    <div class="weui-flex__item">复审通过</div>
+    <div class="weui-flex__item">面试通过</div>
+    <div class="weui-flex__item">未通过</div>
+  </div>
+
+  <div class="weui-cells weui-cells_form">
+    <div class="weui-cell">
+      <div class="weui-cell__hd"><span class="icon-search"></span></div>
+      <div class="weui-cell__bd"><input class="weui-input" type="number" pattern="[0-9]*" placeholder="请输入qq号"></div>
+      <div class="weui-cell__ft"></div>
+    </div>
+  </div>
+
+  <div class="trainee weui-flex">
     <div class="weui-flex__item">姓名</div>
     <div class="weui-flex__item">年龄</div>
     <div class="weui-flex__item">身高</div>
@@ -13,7 +29,7 @@
     <div class="weui-flex__item">{{item.age}}</div>
     <div class="weui-flex__item">{{item.height}}</div>
     <div class="weui-flex__item">{{item.drivinglicence}}</div>
-    <div class="weui-flex__item">{{item.driversage}}</div>
+    <div class="weui-flex__item">{{item.driversage ? item.driversage : 0}}</div>
   </div>
 </weui-infiniteloader>
 

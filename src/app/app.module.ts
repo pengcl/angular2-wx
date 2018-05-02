@@ -20,7 +20,8 @@ import {
   UploaderModule,
   TabModule,
   ToastModule,
-  ProgressModule
+  ProgressModule,
+  ChartG2Module
 } from 'ngx-weui';
 import {WxModule} from './modules/wx';
 
@@ -106,7 +107,8 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     VgControlsModule,
     VgOverlayPlayModule,
     VgBufferingModule,
-    MenuModule.forRoot()
+    MenuModule.forRoot(),
+    ChartG2Module.forRoot()
   ],
   providers: [
     ...SERVICES_DECLARATIONS,
