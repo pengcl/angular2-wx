@@ -1,6 +1,8 @@
 import {genImageUrl} from './browser';
 import {Config} from '../config';
 
+declare var _MEIQIA: any;
+
 export interface GalleryItem {
   /**
    * 远程网址
@@ -36,6 +38,34 @@ const isCn = function (str) {
   return true;
 };
 
+// 美恰在线客服
+export function getMeiqia() {
+  (function (m, ei, q, i, a, j, s) {
+    m[i] = m[i] || function () {
+      (m[i].a = m[i].a || []).push(arguments);
+    };
+    j = ei.createElement(q),
+      s = ei.getElementsByTagName(q)[0];
+    j.async = true;
+    j.charset = 'UTF-8';
+    j.src = 'https://static.meiqia.com/dist/meiqia.js?_=t';
+    s.parentNode.insertBefore(j, s);
+  })(window, document, 'script', '_MEIQIA');
+  _MEIQIA('entId', 27864);
+  _MEIQIA('fallback', 1);
+  _MEIQIA('withoutBtn');
+}
+
+export function formData(body: object): FormData {
+  const _formData: FormData = new FormData();
+  for (const kn in body) {
+    if (body) {
+      _formData.append(kn, body[kn] === undefined ? '' : body[kn]);
+    }
+  }
+  return _formData;
+}
+
 export function formDataToUrl(body: object): string {
   let str = '';
   for (const keyName in body) {
@@ -49,11 +79,65 @@ export function formDataToUrl(body: object): string {
 }
 
 export function getIndex(jsonArray, keyName, value) {
+  console.log(jsonArray, keyName, value);
   for (let i = 0; i < jsonArray.length; i++) {
     if (jsonArray[i][keyName] === value) {
       return i;
     }
   }
+}
+
+export function getCnNum(num) {
+  num = '' + num;
+  const cnNumArr = ['零', '一', '二', '三', '四', '五', '六', '七', '八', '九'];
+  const unit_a = ['', '十', '百', '千'];
+  const unit_b = ['', '万', '亿', '兆'];
+
+  const numArr = num.split('');
+  const _numArr = [];
+
+  for (let i = numArr.length - 1; i >= 0; i--) {
+    _numArr.push(numArr[i]);
+  }
+
+
+  let zero = '';
+  let result = '';
+  let i4 = -1;
+  _numArr.forEach(function (n, i) {
+    if (i % 4 === 0) {// 首先判断万级单位，每隔四个字符就让万级单位数组索引号递增
+      i4++;
+      result = unit_b[i4] + result; // 将万级单位存入该字符的读法中去，它肯定是放在当前字符读法的末尾，所以首先将它叠加入$r中，
+      zero = ''; // 在万级单位位置的“0”肯定是不用的读的，所以设置零的读法为空
+    }
+
+    // 关于0的处理与判断。
+    if (_numArr[i] === '0') {// 如果读出的字符是“0”，执行如下判断这个“0”是否读作“零”
+      switch (i % 4) {
+        case 0:
+          break;
+        // 如果位置索引能被4整除，表示它所处位置是万级单位位置，这个位置的0的读法在前面就已经设置好了，所以这里直接跳过
+        case 1:
+        case 2:
+        case 3:
+          if (_numArr[i - 1] !== '0') {
+            zero = '零';
+          }// 如果不被4整除，那么都执行这段判断代码：如果它的下一位数字（针对当前字符串来说是上一个字符，因为之前执行了反转）也是0，那么跳过，否则读作“零”
+          break;
+
+      }
+
+      result = zero + result;
+      zero = '';
+    } else {// 如果不是“0”
+      result = cnNumArr[parseInt(_numArr[i], 10)] + unit_a[i % 4] + result; // 就将该当字符转换成数值型,并作为数组cnNumArr的索引号,以得到与之对应的中文读法，其后再跟上它的的一级单位（空、十、百还是千）最后再加上前面已存入的读法内容。
+    }
+  });
+  if (result.indexOf('零') === 0) {
+    result = result.substr(1);
+  }// 处理前面的0
+
+  return result;
 }
 
 export function parseImgs(images) {
@@ -301,14 +385,41 @@ export function formatOrder(item) {
   const order = {
     id: item.conid,
     no: item.conno,
+    protocol: item.protocolcontent,
     amount: item.conamount,
     paid: item.paidamount,
     payState: {
       amount: item.conamount,
       paid: item.paidamount,
       type: 0,
+      confirmPay: item.confirmpay,
+      currPeriod: (function (lists) {
+        if (lists.length === 0) {
+          return null;
+        }
+        for (let i = 0; i < lists.length; i++) {
+          const period = lists[i];
+          if (period.paidamount !== period.amount) {
+            return {
+              paid: period.paidamount,
+              amount: period.amount,
+              index: period.serviceperiod,
+              name: period.periodmonth,
+              meta: {
+                createAt: period.createtime,
+                paidAt: period.paidtime,
+                expireAt: 1515400329000
+              }
+            };
+          }
+        }
+        return null;
+      })(item.periodList),
       periods: (function (lists) {
         const _list = [];
+        if (lists.length === 0) {
+          return _list;
+        }
         lists.forEach(period => {
           const _period = {
             paid: period.paidamount,

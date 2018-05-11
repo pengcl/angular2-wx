@@ -1,0 +1,66 @@
+<app-navbar [show]="true" [navBar]="navBarConfig"></app-navbar>
+<weui-infiniteloader (loadmore)="onLoadMore($event)" #comp>
+  <div class="weui-cells__title">Home > 培训管理 > 学员信息</div>
+  <div class="filter-nav weui-flex">
+    <div (click)="setType(1)" [ngClass]="{'curr' : params.applyToHousekeeper === 1}" class="weui-flex__item">待审核</div>
+    <div (click)="setType(2)" [ngClass]="{'curr' : params.applyToHousekeeper === 2}" class="weui-flex__item">已通过</div>
+    <div (click)="setType(3)" [ngClass]="{'curr' : params.applyToHousekeeper === 3}" class="weui-flex__item">未通过</div>
+  </div>
+
+  <div class="filter-date weui-cells weui-cells_form">
+    <div class="weui-flex">
+      <div class="search weui-flex__item">
+        <div class="weui-cell">
+          <div class="weui-cell__hd"><span class="icon-search"></span></div>
+          <div class="weui-cell__bd">
+            <input class="weui-input" [(ngModel)]="params.traineename" (ngModelChange)="inputChange(params.traineename)" type="text" name="Q_name_S" placeholder="查找姓名"></div>
+        </div>
+      </div>
+      <div class="date weui-flex__item">
+        <div class="weui-flex">
+          <div (click)="showPicker('Q_begincreatetime_DL')" class="weui-flex__item">
+            <div class="weui-cell">
+              <div class="weui-cell__hd"><span class="icon-doc-chart"></span></div>
+              <div class="weui-cell__bd">{{params.Q_begincreatetime_DL ? params.Q_begincreatetime_DL : '起始日期'}}</div>
+            </div>
+          </div>
+          <div (click)="showPicker('Q_endcreatetime_DG')" class="weui-flex__item">
+            <div class="weui-cell">
+              <div class="weui-cell__hd">至</div>
+              <div class="weui-cell__bd">{{params.Q_endcreatetime_DG ? params.Q_endcreatetime_DG : '结束日期'}}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="table-content">
+    <table class="result ui celled table">
+      <thead>
+      <tr>
+        <th>姓名</th>
+        <th>编号</th>
+        <th>学期</th>
+        <th>来源</th>
+        <th>考试成绩</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngIf="params.totalPage === 0">
+        <td colspan="5" style="text-align: center">
+          没有数据
+        </td>
+      </tr>
+      <tr [routerLink]="['/admin/backend/trainee/verify/item',item.traineeid]" *ngFor="let item of trainees;let i = index">
+        <td>{{item.name}}</td>
+        <td>{{item.traineeno}}</td>
+        <td>{{item.termname}}</td>
+        <td>{{item.traineetype === 0 ? '退伍士兵' : '体育生'}}</td>
+        <td>{{item.totalPoints ? item.totalPoints : '未进行'}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</weui-infiniteloader>
+

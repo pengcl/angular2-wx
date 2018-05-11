@@ -112,9 +112,15 @@ export class AdminBackendStatisticsComponent implements OnInit {
       const map = {};
 
       _data.forEach(item => {
-        const obj = {name: item.name, percent: item.percent / total, a: '1'};
-        __data.push(obj);
-        map[item.name] = (item.percent / total * 100).toFixed(2) + '%';
+        if (total === 0) {
+          const obj = {name: item.name, percent: 0, a: '1'};
+          __data.push(obj);
+          map[item.name] = 0 + '%';
+        } else {
+          const obj = {name: item.name, percent: item.percent / total, a: '1'};
+          __data.push(obj);
+          map[item.name] = (item.percent / total * 100).toFixed(2) + '%';
+        }
       });
 
 
@@ -138,7 +144,7 @@ export class AdminBackendStatisticsComponent implements OnInit {
           return val + '  ' + map[val];
         }
       });
-      chart.tooltip(false);
+      chart.tooltip(true);
       chart.coord('polar', {
         transposed: true,
         radius: 0.85
@@ -185,7 +191,7 @@ export class AdminBackendStatisticsComponent implements OnInit {
       // 绘制文本
       data.map(obj => {
         chart.guide().text({
-          position: [ obj.education, obj.num ],
+          position: [obj.education, obj.num],
           content: obj.num,
           style: {
             textAlign: 'center',
@@ -217,7 +223,7 @@ export class AdminBackendStatisticsComponent implements OnInit {
       // 绘制文本
       data.map(obj => {
         chart.guide().text({
-          position: [ obj.age, obj.num ],
+          position: [obj.age, obj.num],
           content: obj.num,
           style: {
             textAlign: 'center',
@@ -249,7 +255,7 @@ export class AdminBackendStatisticsComponent implements OnInit {
       // 绘制文本
       data.map(obj => {
         chart.guide().text({
-          position: [ obj.soldierAge, obj.num ],
+          position: [obj.soldierAge, obj.num],
           content: obj.num,
           style: {
             textAlign: 'center',
@@ -281,7 +287,7 @@ export class AdminBackendStatisticsComponent implements OnInit {
       // 绘制文本
       data.map(obj => {
         chart.guide().text({
-          position: [ obj.drivingLicence, obj.num ],
+          position: [obj.drivingLicence, obj.num],
           content: obj.num,
           style: {
             textAlign: 'center',
@@ -308,9 +314,15 @@ export class AdminBackendStatisticsComponent implements OnInit {
       const map = {};
 
       _data.forEach(item => {
-        const obj = {name: item.name, percent: item.percent / total, a: '1'};
-        __data.push(obj);
-        map[item.name] = (item.percent / total * 100).toFixed(2) + '%';
+        if (total === 0) {
+          const obj = {name: item.name, percent: 0, a: '1'};
+          __data.push(obj);
+          map[item.name] = 0 + '%';
+        } else {
+          const obj = {name: item.name, percent: item.percent / total, a: '1'};
+          __data.push(obj);
+          map[item.name] = (item.percent / total * 100).toFixed(2) + '%';
+        }
       });
 
       const data = __data;
@@ -379,7 +391,7 @@ export class AdminBackendStatisticsComponent implements OnInit {
       // 绘制文本
       data.map(obj => {
         chart.guide().text({
-          position: [ obj.height, obj.num ],
+          position: [obj.height, obj.num],
           content: obj.num,
           style: {
             textAlign: 'center',
@@ -411,7 +423,7 @@ export class AdminBackendStatisticsComponent implements OnInit {
       // 绘制文本
       data.map(obj => {
         chart.guide().text({
-          position: [ obj.weight, obj.num ],
+          position: [obj.weight, obj.num],
           content: obj.num,
           style: {
             textAlign: 'center',

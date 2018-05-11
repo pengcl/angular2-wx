@@ -1,23 +1,18 @@
-.position {
-  margin-top: 0.45rem;
-}
-
-.date-filter {
-  .weui-cell__hd {
-    align-self: center;
-    height: 0.25rem;
-    line-height: 0.25rem;
-    margin-right: 0.08rem;
-    span {
-      line-height: 0.2rem;
-      height: 0.2rem;
-      width: 0.2rem;
-      font-size: 0.2rem;
-      vertical-align: middle;
-    }
+.content-scrollable {
+  &.has-nav {
+    padding-top: 1.35rem;
   }
-  .weui-cell__bd {
-    color: #999;
+}
+.action-panel {
+  position: fixed;
+  margin-top: 0;
+  top: 0.45rem;
+  z-index: 11;
+  width: 100%;
+  font-size: 0.13rem;
+  line-height: 0.25rem;
+  .weui-cell__hd {
+    margin-right: 0.08rem;
   }
 }
 

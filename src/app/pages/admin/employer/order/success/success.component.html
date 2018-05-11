@@ -1,0 +1,27 @@
+<app-navbar [navBar]="navBarConfig"></app-navbar>
+<div class="content-scrollable">
+
+  <div class="weui-panel weui-panel_access">
+    <div class="weui-panel__hd">您的转账信息</div>
+    <div class="weui-panel__bd">
+      <div class="weui-media-box">
+        <div class="weui-cells">
+          <div *ngIf="account" class="weui-cell">
+            <div class="weui-cell__bd">银行账号后四位</div>
+            <div class="weui-cell__ft">{{account.accountno.slice(account.accountno.length -4)}}</div>
+          </div>
+          <div *ngIf="order" class="weui-cell">
+            <div class="weui-cell__bd">服务期余下全款</div>
+            <div class="weui-cell__ft">￥{{order.amount - order.paid}}</div>
+          </div>
+        </div>
+        <div class="weui-cells__tips">我们稍后将核查您的余款转账信息，并会通过客服人员与您电话确认，请留意！</div>
+        <div class="contact weui-cells__tips">如有问题，请联系客服。感谢您的支持！</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="weui-btn-area">
+    <a routerLink="/admin/employer/order/list" class="weui-btn weui-btn_primary">返回我的订单</a>
+  </div>
+</div>

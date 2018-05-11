@@ -1,0 +1,55 @@
+.content-scrollable {
+  &.has-nav {
+    padding-top: 1.35rem;
+  }
+}
+
+.action-panel {
+  position: fixed;
+  margin-top: 0;
+  top: 0.45rem;
+  z-index: 11;
+  width: 100%;
+  font-size: 0.13rem;
+  line-height: 0.25rem;
+  .ui-label {
+    display: block;
+    border-radius: .028571429rem;
+    padding: 0.06rem 0.12rem;
+    &:after {
+      border-radius: .028571429rem * 2;
+    }
+  }
+}
+
+.trainee-info {
+  margin: 0.1rem 0.15rem 0;
+  table {
+    tr {
+      td {
+        font-size: 0.9em;
+        text-align: center;
+        &.label {
+          width: 4em;
+        }
+        &.value {
+          &.red {
+            color: #db2828;
+          }
+        }
+      }
+    }
+    &.result {
+      tr {
+        td {
+          &.value {
+            text-align: left;
+          }
+        }
+      }
+    }
+  }
+  .label {
+    background: #f9fafb;
+  }
+}

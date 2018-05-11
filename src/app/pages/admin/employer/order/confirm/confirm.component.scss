@@ -1,0 +1,50 @@
+.content-scrollable {
+  background: #fff;
+  .weui-panel__hd {
+    font-size: 0.15rem;
+    color: #0F0F0F;
+    padding: 0.2rem 0.15rem 0.15rem;
+  }
+  .weui-btn-area {
+    .weui-flex {
+      margin: 0 -0.075rem;
+      .weui-flex__item {
+        margin: 0 0.075rem;
+      }
+    }
+
+    .weui-btn_default {
+      background: #D7D7D7;
+    }
+  }
+
+  .bank {
+    .weui-icon-success {
+      font-size: 0.18rem;
+      color: #ccc;
+      &.curr {
+        color: #CA9F4D;
+      }
+    }
+    .weui-cell__hd {
+      color: #999;
+    }
+    .weui-cell__bd {
+      text-align: right;
+      padding-right: 0.05rem;
+    }
+  }
+
+  .account {
+    background: #F5F5F5;
+    border-radius: 0.04rem;
+    input::-webkit-input-placeholder {
+      color: #ccc;
+    }
+    &.weui-cell_warn {
+      input::-webkit-input-placeholder {
+        color: #ff0000;
+      }
+    }
+  }
+}

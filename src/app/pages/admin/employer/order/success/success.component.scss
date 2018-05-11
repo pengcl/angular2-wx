@@ -1,0 +1,45 @@
+.content-scrollable {
+  background: #fff;
+  .weui-panel {
+    &:after {
+      display: none;
+    }
+  }
+  .weui-panel__hd {
+    font-size: 0.15rem;
+    color: #0F0F0F;
+    padding: 0.2rem 0.15rem 0.15rem;
+    &:after {
+      display: none;
+    }
+  }
+  .weui-media-box {
+    padding: 0 0.15rem 0.15rem;
+    .weui-cells {
+      background: #F5F5F5;
+      border-radius: 0.04rem;
+      font-size: 0.12rem;
+      margin-top: 0;
+      &:before {
+        display: none;
+      }
+      .weui-cell__ft {
+        color: #CA9F4D;
+      }
+    }
+    .weui-cells__tips {
+      margin-top: 0.2rem;
+      font-size: 0.12rem;
+      color: #999;
+      &.contact {
+        color: #4CA6FF;
+        margin-top: 0.1rem;
+      }
+    }
+  }
+
+  .account {
+    background: #F5F5F5;
+    border-radius: 0.04rem;
+  }
+}

@@ -1,6 +1,6 @@
 <app-navbar [navBar]="navBarConfig"></app-navbar>
 
-<div class="content-scrollable">
+<div *ngIf="currLists" class="content-scrollable">
 
   <div class="weui-tab">
     <div class="weui-navbar">
@@ -26,10 +26,10 @@
       </div>
     </div>
     <div class="weui-tab__panel">
-      <app-msg *ngIf="currLists?.length === 0"
+      <app-msg *ngIf="currLists.length === 0"
                [msg]='{title:"暂无\"管家\"记录",desc:"您可以关注\"大牛管家\"公众号，获取最新活动消息。",cancel:"返回"}'></app-msg>
 
-      <weui-infiniteloader (loadmore)="onLoadMore($event)" #comp>
+      <weui-infiniteloader *ngIf="currLists.length > 0" (loadmore)="onLoadMore($event)" #comp>
         <app-profile-min [routerLink]="['/front/employees/employee', item.housekeeperid]" queryParamsHandling="merge"
                          [profile]="item"
                          *ngFor="let item of currLists" class="weui-panel"></app-profile-min>

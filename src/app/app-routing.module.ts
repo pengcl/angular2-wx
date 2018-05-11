@@ -47,6 +47,10 @@ import {AdminEmployerApprovalsLeavesLeaveComponent} from './pages/admin/employer
 import {AdminEmployerOrderListComponent} from './pages/admin/employer/order/list/list.component';
 import {AdminEmployerOrderDetailsComponent} from './pages/admin/employer/order/details/details.component';
 import {AdminEmployerOrderProtocolsComponent} from './pages/admin/employer/order/protocols/protocols.component';
+import {AdminEmployerOrderUnderlineComponent} from './pages/admin/employer/order/underline/underline.component';
+import {AdminEmployerOrderConfirmComponent} from './pages/admin/employer/order/confirm/confirm.component';
+import {AdminEmployerOrderSuccessComponent} from './pages/admin/employer/order/success/success.component';
+import {AdminEmployerOrderFqaComponent} from './pages/admin/employer/order/fqa/fqa.component';
 import {AdminEmployerRateListComponent} from './pages/admin/employer/rate/list/list.component';
 import {AdminEmployerRateAddComponent} from './pages/admin/employer/rate/add/add.component';
 import {AdminEmployerRateDetailsComponent} from './pages/admin/employer/rate/details/details.component';
@@ -163,6 +167,10 @@ const appAdminRoutes: Routes = [
   {path: 'employer/order/list', component: AdminEmployerOrderListComponent},
   {path: 'employer/order/details/:conId', component: AdminEmployerOrderDetailsComponent},
   {path: 'employer/order/protocol/:id', component: AdminEmployerOrderProtocolsComponent},
+  {path: 'employer/order/underline/:id', component: AdminEmployerOrderUnderlineComponent},
+  {path: 'employer/order/confirm/:id', component: AdminEmployerOrderConfirmComponent},
+  {path: 'employer/order/success/:id', component: AdminEmployerOrderSuccessComponent},
+  {path: 'employer/order/fqa', component: AdminEmployerOrderFqaComponent},
   {path: 'employer/employees', component: AdminEmployerEmployeesComponent},
   {path: 'employer/employees/employee/:id', component: AdminEmployerEmployeesEmployeeComponent},
   {path: 'employer/employees/employee/profile/:id', component: AdminEmployerEmployeesEmployeeProfileComponent},

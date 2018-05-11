@@ -1,0 +1,28 @@
+<app-navbar [show]="true" [navBar]="navBarConfig"></app-navbar>
+
+<div class="content-scrollable has-nav">
+  <div class="weui-cells__title">转为学员</div>
+  <div class="weui-cells">
+    <div class="weui-cell">
+      <div class="weui-cell__bd">姓名</div>
+      <div class="weui-cell__ft">{{trainee?.name}}</div>
+    </div>
+    <div (click)="showPicker('course')" [ngClass]="{'weui-cell_warn':turnForm.get('trcoursetypeid').invalid && isSubmit}" class="weui-cell weui-cell_access">
+      <div class="weui-cell__hd">选择课程类型</div>
+      <div class="weui-cell__bd"></div>
+      <div class="weui-cell__ft">{{pickerData.course.selected}}</div>
+    </div>
+    <div (click)="showPicker('term')" [ngClass]="{'weui-cell_warn':turnForm.get('termid').invalid && isSubmit}" class="weui-cell weui-cell_access">
+      <div class="weui-cell__hd">学员学期</div>
+      <div class="weui-cell__bd"></div>
+      <div class="weui-cell__ft">{{pickerData.term.selected}}</div>
+    </div>
+    <div *ngIf="turnForm.get('studentNumber').value" class="weui-cell">
+      <div class="weui-cell__bd">学员工号</div>
+      <div class="weui-cell__ft">{{turnForm.get('studentNumber').value}}</div>
+    </div>
+  </div>
+  <div class="weui-btn-area">
+    <a (click)="submit()" class="weui-btn weui-btn_primary" id="showTooltips">转为学员</a>
+  </div>
+</div>

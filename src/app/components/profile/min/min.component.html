@@ -3,9 +3,11 @@
     <div class="weui-media-box weui-media-box_appmsg">
       <div class="weui-media-box__hd">
         <div class="avatar-box" [ngStyle]="{'background-image':'url(' + avatar + ')'}">
-          <div class="state" [ngClass]="{'on':profile.workstatus === 2,'off':profile.workstatus !== 2}">
-            {{profile.workstatus
-            === 2 ? '服务中':'空闲'}}
+          <!-- 0-未预约(已毕业，未预约待业状态)，1-已预约（已预约非待业状态），2-可预约(未毕业，必须在到岗时间才能上岗) -->
+          <div class="state" [ngClass]="{'on':profile.issubscribe === 1,'off':profile.issubscribe !== 1}">
+            <span *ngIf="profile.issubscribe === 0">未预约</span>
+            <span *ngIf="profile.issubscribe === 1">已预约</span>
+            <span *ngIf="profile.issubscribe === 2">可预约</span>
           </div>
         </div>
       </div>
@@ -27,14 +29,14 @@
           </div>
           <div class="weui-flex" style="color: #666">
             <div class="weui-flex__item">
-              <span class="label">服务地：{{profile.serviceareanames}}</span>
+              <span *ngFor="let item of profile.expertisenames.split(',').slice(0,4)" class="ui-label colors horizontal">{{item}}</span>
             </div>
           </div>
         </div>
         <div class="attr">
           <div class="weui-flex">
             <div class="weui-flex__item">
-              <span class="label">经验：<em>{{profile.servicetime}}个月</em></span>
+              <span class="label" style="font-size: 0.1rem">最快到岗时间：<em><span *ngIf="profile.issubscribe === 0">立即到岗</span><span *ngIf="profile.issubscribe === 2">{{profile.worktime.split(' ')[0].split('-')[1]}}-{{profile.worktime.split(' ')[0].split('-')[2]}}</span></em></span>
             </div>
             <div class="price weui-flex__item">
               <sub>￥</sub><em>{{profile.commissionamount}}</em><sub>/月</sub>

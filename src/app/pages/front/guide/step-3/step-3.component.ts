@@ -85,7 +85,10 @@ export class FrontGuideStep3Component implements OnInit {
       console.log(`注册失败，原因：${err}`);
     });
     this.employeeSvc.getLevelList().then(res => {
-      const levels = [];
+      const levels = [{
+        label: '全部',
+        value: ''
+      }];
       res.list.forEach(item => {
         const level = {
           label: '',
@@ -106,6 +109,7 @@ export class FrontGuideStep3Component implements OnInit {
       };
       this.employeeSvc.getHousekeepers(body).then(res => {
         this.employees = res.list;
+        console.log(this.employees);
         this.lists = res.list;
         this.currLists = res.list.slice(0, this.pageSize);
       });

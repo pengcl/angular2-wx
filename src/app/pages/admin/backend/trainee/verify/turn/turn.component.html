@@ -1,0 +1,133 @@
+<app-navbar [show]="true" [navBar]="navBarConfig"></app-navbar>
+
+<div *ngIf="trainee" class="content-scrollable has-nav has-footer">
+  <form novalidate [formGroup]="turnForm">
+    <div class="weui-cells">
+      <div class="weui-cell">
+        <div class="weui-cell__bd">
+          <p>学员姓名</p>
+        </div>
+        <div class="weui-cell__ft">{{trainee.name}}</div>
+      </div>
+    </div>
+
+    <div class="weui-cells__title">申请管家审批</div>
+    <div class="weui-cells weui-cells_form weui-cells_radio">
+      <label class="weui-cell weui-check__label" for="x11"
+             [ngClass]="{'weui-cell_warn':turnForm.get('toApply').invalid && isSubmit}">
+        <div class="weui-cell__bd">
+          <p>通过</p>
+        </div>
+        <div class="weui-cell__ft">
+          <input type="radio" class="weui-check" formControlName="toApply" value="2" id="x11">
+          <span class="weui-icon-checked"></span>
+        </div>
+      </label>
+      <label class="weui-cell weui-check__label" for="x12"
+             [ngClass]="{'weui-cell_warn':turnForm.get('toApply').invalid && isSubmit}">
+        <div class="weui-cell__bd">
+          <p>不通过</p>
+        </div>
+        <div class="weui-cell__ft">
+          <input type="radio" formControlName="toApply" class="weui-check" value="3" id="x12">
+          <span class="weui-icon-checked"></span>
+        </div>
+      </label>
+    </div>
+
+    <div *ngIf="turnForm.get('toApply').value === '3'" class="fields-content">
+      <div class="weui-cells weui-cells_form">
+        <div class="weui-cell" [ngClass]="{'weui-cell_warn':turnForm.get('remark').invalid && isSubmit}">
+          <div class="weui-cell__bd">
+            <textarea class="weui-textarea" formControlName="remark" placeholder="请输入不通过原因" rows="3"></textarea>
+            <div class="weui-textarea-counter"><span>{{turnForm.get('remark').value.length}}</span>/200</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="turnForm.get('toApply').value === '2'" class="fields-content">
+      <div class="weui-cells weui-cells_form">
+        <a (click)="pickerShow()" class="weui-cell weui-cell_access"
+           [ngClass]="{'weui-cell_warn':turnForm.get('levelName').invalid && isSubmit}" href="javascript:;">
+          <div class="weui-cell__hd">
+            <span class="weui-label">管家等级</span>
+          </div>
+          <div class="weui-cell__bd">
+            <p>{{turnForm.get('levelName').value ? turnForm.get('levelName').value : '请选择管家等级'}}</p>
+          </div>
+          <div class="weui-cell__ft">
+          </div>
+        </a>
+        <div class="weui-cell" [ngClass]="{'weui-cell_warn':turnForm.get('servicetime').invalid && isSubmit}">
+          <div class="weui-cell__hd">
+            <span class="weui-label">工作经验</span>
+          </div>
+          <div class="weui-cell__bd">
+            <input class="weui-input" formControlName="servicetime" type="number" pattern="[0-9]*"
+                   placeholder="工作经验，单位月">
+          </div>
+          <div class="weui-cell__ft">个月</div>
+        </div>
+      </div>
+
+      <div class="weui-panel weui-panel_access"
+           [ngClass]="{'weui-panel_warn':turnForm.get('expertiseIds').invalid && isSubmit}">
+        <div class="weui-panel__hd">管家专长</div>
+        <div class="weui-panel__bd">
+          <div class="weui-media-box weui-media-box_appmsg">
+            <div class="button-sp-area">
+              <a (click)="onSelected('expertise',i)" *ngFor="let item of expertises;let i = index" href="javascript:;"
+                 class="ui-label horizontal colors" [ngClass]="{'blue':item.selected}">{{item.expertisename}}</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="weui-panel weui-panel_access"
+           [ngClass]="{'weui-panel_warn':turnForm.get('serviceAreaIds').invalid && isSubmit}">
+        <div class="weui-panel__hd">服务地区</div>
+        <div class="weui-panel__bd">
+          <div class="weui-media-box weui-media-box_appmsg">
+            <div class="button-sp-area">
+              <a (click)="onSelected('serviceArea',i)" *ngFor="let item of serviceAreas;let i = index"
+                 href="javascript:;"
+                 class="ui-label horizontal colors" [ngClass]="{'blue':item.selected}">{{item.areaname}}</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="weui-cells weui-cells_form">
+        <div class="weui-cell" [ngClass]="{'weui-cell_warn':turnForm.get('monthlypay').invalid && isSubmit}">
+          <div class="weui-cell__hd"><label class="weui-label">月薪</label></div>
+          <div class="weui-cell__bd">
+            <input class="weui-input" formControlName="monthlypay" type="number" pattern="[0-9]*" placeholder="管家工资">
+          </div>
+          <div class="weui-cell__ft">
+            <i class="weui-icon-warn"></i>
+          </div>
+        </div>
+        <div class="weui-cell" [ngClass]="{'weui-cell_warn':turnForm.get('commissionamount').invalid && isSubmit}">
+          <div class="weui-cell__hd"><label class="weui-label">佣金</label></div>
+          <div class="weui-cell__bd">
+            <input class="weui-input" formControlName="commissionamount" type="number" pattern="[0-9]*"
+                   placeholder="对客户展示的佣金">
+          </div>
+          <div class="weui-cell__ft">
+            <i class="weui-icon-warn"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </form>
+</div>
+
+<div class="btns-group">
+  <a class="btn-secondary no-state">返回</a>
+  <a (click)="turn()" class="btn-secondary">确定</a>
+</div>
+
+
+

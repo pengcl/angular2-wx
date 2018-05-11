@@ -69,7 +69,7 @@ export class UserService {
   }
 
   getCode(mobile) {
-    return this.http.get(Config.prefix.wApi + '/interface/user/getSystemMobileCode.ht?custMoblie=' + mobile)
+    return this.http.get(Config.prefix.wApi + '/interface/user/getSystemCode.ht?custMoblie=' + mobile)
       .toPromise()
       .then(response => {
         return response;
@@ -78,7 +78,7 @@ export class UserService {
   }
 
   checkCode(mobile, code) {
-    return this.http.get(Config.prefix.wApi + '/interface/user/checkMobileCode.ht?custMoblie=' + mobile + '&code=' + code)
+    return this.http.get(Config.prefix.wApi + '/interface/user/checkCode.ht?custMoblie=' + mobile + '&code=' + code)
       .toPromise()
       .then(response => {
         return response;

@@ -17,6 +17,7 @@ export class AdminEmployerComponent implements OnInit, OnDestroy {
   employer;
   employees;
   contractList;
+  admin;
   count = {
     msg: 0,
     rate: 0
@@ -52,7 +53,8 @@ export class AdminEmployerComponent implements OnInit, OnDestroy {
     this.employerSvc.getEmployer(this.user.id).then(res => {
       if (res.code === 0) {
         this.employer = res.cust;
-        console.log(this.employer);
+        this.admin = res.isUser;
+        console.log(res);
       }
     });
     this.employerSvc.getMyEmployees(this.user.id).then(res => {

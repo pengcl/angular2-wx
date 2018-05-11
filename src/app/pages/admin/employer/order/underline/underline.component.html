@@ -1,0 +1,49 @@
+<app-navbar [navBar]="navBarConfig"></app-navbar>
+<div *ngIf="order" class="content-scrollable">
+  <div class="weui-form-preview">
+    <div class="weui-form-preview__hd">
+      <div class="weui-form-preview__item">
+        <label class="weui-form-preview__label">服务期余下全款</label>
+        <em class="weui-form-preview__value">¥{{order.amount - order.paid}}</em>
+      </div>
+    </div>
+    <div class="weui-form-preview__bd">
+      <div class="weui-form-preview__item">
+        <label class="weui-form-preview__label">服务期</label>
+        <span class="weui-form-preview__value">{{order.payState.periods[0].name}} -
+          {{order.payState.periods[order.payState.periods.length - 1].name}} ({{order.payState.periods.length}}个月)</span>
+      </div>
+      <div class="weui-form-preview__item">
+        <label class="weui-form-preview__label">总费用</label>
+        <span class="weui-form-preview__value">￥{{order.amount}}</span>
+      </div>
+      <div class="weui-form-preview__item">
+        <label class="weui-form-preview__label">已支付</label>
+        <span class="weui-form-preview__value">￥{{order.paid}}</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="weui-panel weui-panel_access">
+    <div class="weui-panel__hd">余款金额请通过银行账号或支付宝转账给大牛管家的指定账号，转账时请备注“支付大牛管家余款”，以便我们客服进行核对，相关账号如下：</div>
+    <div class="weui-panel__bd">
+      <div class="weui-media-box weui-media-box_appmsg">
+        <div class="weui-media-box__bd">
+          <h4 class="weui-media-box__title">银行账号：广州猎金网络科技有限公司</h4>
+          <p class="weui-media-box__desc">开户行：中国农业银行股份有限公司广州体育西路支行</p>
+          <p class="weui-media-box__desc">账号：44058301040010020</p>
+        </div>
+      </div>
+      <div class="weui-media-box weui-media-box_appmsg">
+        <div class="weui-media-box__bd">
+          <h4 class="weui-media-box__title">支付宝账号：大牛管家</h4>
+          <p class="weui-media-box__desc">choosefly1@163.com</p>
+        </div>
+      </div>
+    </div>
+    <div class="weui-form-preview__ft">
+      <a class="weui-form-preview__btn weui-form-preview__btn_default" href="javascript:">返回</a>
+      <a [routerLink]="['/admin/employer/order/confirm', order.id]" class="weui-form-preview__btn weui-form-preview__btn_primary">我已完成转账</a>
+    </div>
+  </div>
+</div>

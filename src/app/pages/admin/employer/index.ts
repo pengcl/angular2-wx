@@ -10,6 +10,10 @@ import {AdminEmployerApprovalsLeavesLeaveComponent} from './approvals/leaves/lea
 import {AdminEmployerOrderListComponent} from './order/list/list.component';
 import {AdminEmployerOrderDetailsComponent} from './order/details/details.component';
 import {AdminEmployerOrderProtocolsComponent} from './order/protocols/protocols.component';
+import {AdminEmployerOrderUnderlineComponent} from './order/underline/underline.component';
+import {AdminEmployerOrderConfirmComponent} from './order/confirm/confirm.component';
+import {AdminEmployerOrderSuccessComponent} from './order/success/success.component';
+import {AdminEmployerOrderFqaComponent} from './order/fqa/fqa.component';
 import {AdminEmployerRateAddComponent} from './rate/add/add.component';
 import {AdminEmployerRateListComponent} from './rate/list/list.component';
 import {AdminEmployerRateDetailsComponent} from './rate/details/details.component';
@@ -31,6 +35,10 @@ export const ADMIN_PAGES_EMPLOYER_DECLARATIONS = [
   AdminEmployerOrderListComponent,
   AdminEmployerOrderDetailsComponent,
   AdminEmployerOrderProtocolsComponent,
+  AdminEmployerOrderUnderlineComponent,
+  AdminEmployerOrderConfirmComponent,
+  AdminEmployerOrderSuccessComponent,
+  AdminEmployerOrderFqaComponent,
   AdminEmployerRateAddComponent,
   AdminEmployerRateListComponent,
   AdminEmployerRateDetailsComponent,

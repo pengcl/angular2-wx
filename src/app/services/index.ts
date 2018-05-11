@@ -18,6 +18,8 @@ import {UaService} from './ua.service';
 import {SchoolService} from './school.service';
 import {ExamService} from './exam.service ';
 import {TraineeService} from './backend/trainee.service';
+import {TermService} from './backend/term.service';
+import {MeiqiaService} from './meiqia.service';
 
 export const SERVICES_DECLARATIONS = [
   GlobalService,
@@ -39,5 +41,7 @@ export const SERVICES_DECLARATIONS = [
   UaService,
   SchoolService,
   ExamService,
-  TraineeService
+  TraineeService,
+  TermService,
+  MeiqiaService
 ];

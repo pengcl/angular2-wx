@@ -1,5 +1,10 @@
 .weui-panel {
   margin-top: 0.1rem;
+  &.weui-panel_warn {
+    .weui-panel__hd {
+      color: #e64340;
+    }
+  }
 }
 
 .weui-panel:first-of-type {

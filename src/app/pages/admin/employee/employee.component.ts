@@ -4,6 +4,7 @@ import {WxService} from '../../../modules/wx';
 import {UserService} from '../../../services/user.service';
 import {EmployeeService} from '../../../services/employee.service';
 import {Config} from '../../../config';
+import {MeiqiaService} from '../../../services/meiqia.service';
 
 @Component({
   selector: 'app-admin-employee',
@@ -14,6 +15,7 @@ export class AdminEmployeeComponent implements OnInit {
   tabBarConfig = PageConfig.tabBar;
   navBarConfig = PageConfig.navBar;
   user: any;
+  admin;
   userInfo;
   employers;
   config = Config;
@@ -23,7 +25,8 @@ export class AdminEmployeeComponent implements OnInit {
 
   constructor(private wx: WxService,
               private userSvc: UserService,
-              private employee: EmployeeService) {
+              private employee: EmployeeService,
+              private contactSvc: MeiqiaService) {
   }
 
   ngOnInit() {
@@ -49,6 +52,7 @@ export class AdminEmployeeComponent implements OnInit {
     this.user = this.userSvc.isLogin();
     this.employee.getHousekeeper(this.user.housekeeperId).then(res => {
       this.userInfo = res.housekeeper;
+      this.admin = res.isUser;
     });
     this.employee.getEmployer(this.user.housekeeperId, 2).then(res => {
       this.employers = res.list;
@@ -56,5 +60,9 @@ export class AdminEmployeeComponent implements OnInit {
     this.employee.getCount(this.user.id).then(res => {
       this.count.msg = res.msgCount;
     });
+  }
+
+  contact() {
+    this.contactSvc.show();
   }
 }

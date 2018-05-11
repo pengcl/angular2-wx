@@ -3,7 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import 'rxjs/add/operator/toPromise';
 
 import {Config} from '../config';
-import {formDataToUrl} from '../utils/utils';
+import {formData, formDataToUrl} from '../utils/utils';
 
 @Injectable()
 export class OrderService {
@@ -25,8 +25,30 @@ export class OrderService {
       .catch(this.handleError);
   }
 
+  getOrder(id: string): Promise<any> {
+    return this.http.get(Config.prefix.wApi + '/interface/order/getContInfo.ht?contId=' + id)
+      .toPromise()
+      .then(response => response)
+      .catch(this.handleError);
+  }
+
+  getSurplusInfo(id: string): Promise<any> {
+    return this.http.get(Config.prefix.wApi + '/interface/order/getSurplusInfo.ht?contId=' + id)
+      .toPromise()
+      .then(response => response)
+      .catch(this.handleError);
+  }
+
   getReserveOrders(id: string): Promise<any> {
     return this.http.get(Config.prefix.wApi + '/interface/order/getIntentOrderList.ht?custId=' + id)
+      .toPromise()
+      .then(response => response)
+      .catch(this.handleError);
+  }
+
+  confirmPay(body): Promise<any> {
+    body = formData(body);
+    return this.http.post(Config.prefix.wApi + '/interface/order/confirmPay.ht', body)
       .toPromise()
       .then(response => response)
       .catch(this.handleError);

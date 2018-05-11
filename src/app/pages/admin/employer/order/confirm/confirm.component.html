@@ -1,0 +1,39 @@
+<app-navbar [navBar]="navBarConfig"></app-navbar>
+<div [formGroup]="confirmForm" class="content-scrollable">
+
+  <div class="weui-panel weui-panel_access">
+    <div class="weui-panel__hd">请填写您的转账信息，以便核查</div>
+    <div class="weui-panel__bd">
+      <div class="weui-media-box">
+        <div class="bank weui-cell">
+          <div class="weui-cell__hd">转账方式</div>
+          <div class="weui-cell__bd" (click)="setType('bank')"><i
+            [ngClass]="{'curr' : confirmForm.get('custPayType').value === 'bank'}" class="weui-icon-success"></i> 银行转账
+          </div>
+          <div class="weui-cell__ft" (click)="setType('zfb')"><i
+            [ngClass]="{'curr' : confirmForm.get('custPayType').value === 'zfb'}" class="weui-icon-success"></i> 支付宝
+          </div>
+        </div>
+      </div>
+      <div class="weui-media-box">
+        <div class="account weui-cell" [ngClass]="{'weui-cell_warn':confirmForm.get('accountNo').invalid && isSubmit}">
+          <div class="weui-cell__bd">
+            <input class="weui-input" formControlName="accountNo"
+                   placeholder="请输入你的{{confirmForm.get('custPayType').value === 'zfb' ? '支付宝' : '银行'}}账号">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="weui-btn-area">
+    <div class="weui-flex">
+      <div class="weui-flex__item">
+        <a class="weui-btn weui-btn_default" href="javascript:">返回</a>
+      </div>
+      <div class="weui-flex__item">
+        <a (click)="submit()" class="weui-btn weui-btn_primary" href="javascript:">提交</a>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,29 @@
+<app-navbar [show]="true" [navBar]="navBarConfig"></app-navbar>
+
+<div *ngIf="trainee" class="content-scrollable has-nav">
+  <form novalidate [formGroup]="checkForm">
+    <div class="weui-cells__title">考核反馈</div>
+    <div class="weui-cells">
+      <div class="weui-cell">
+        <div class="weui-cell__hd">姓名</div>
+        <div class="weui-cell__bd"></div>
+        <div class="weui-cell__ft">{{trainee.name}}</div>
+      </div>
+      <div (click)="showPicker('status')" [ngClass]="{'weui-cell_warn':checkForm.get('status').invalid && isSubmit}"
+           class="weui-cell weui-cell_access">
+        <div class="weui-cell__hd">考核结果</div>
+        <div class="weui-cell__bd"></div>
+        <div class="weui-cell__ft">{{pickerData['status'].selected}}</div>
+      </div>
+      <div class="weui-cell" [ngClass]="{'weui-cell_warn':checkForm.get('reason').value.length > 200}">
+        <div class="weui-cell__bd">
+          <textarea formControlName="reason" class="weui-textarea" placeholder="本次考核的备注" rows="3"></textarea>
+          <div class="weui-textarea-counter"><span>{{checkForm.get('reason').value.length}}</span>/200</div>
+        </div>
+      </div>
+    </div>
+    <div class="weui-btn-area">
+      <a (click)="turn()" class="weui-btn weui-btn_primary">确定</a>
+    </div>
+  </form>
+</div>

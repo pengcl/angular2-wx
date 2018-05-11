@@ -1,0 +1,201 @@
+<app-navbar [show]="true" [navBar]="navBarConfig"></app-navbar>
+
+<div *ngIf="trainee" class="content-scrollable has-nav has-footer">
+  <div class="action-panel weui-cells">
+    <div class="weui-cell">
+      <div class="weui-cell__bd">Home > 招聘管理 > 退伍士兵 > 待审核</div>
+    </div>
+    <div class="weui-cell">
+      <div class="weui-cell__hd"><span (click)="back()" class="ui-label hollow radius">返回列表</span></div>
+      <div class="actions weui-cell__bd"></div>
+      <div class="weui-cell__ft"><span [routerLink]="['/admin/backend/trainee/verify/turn',params.id]" class="ui-label radius colors blue">审批</span></div>
+    </div>
+  </div>
+
+  <div class="trainee-info weui-grids">
+
+    <table class="resume ui celled table">
+      <tbody>
+      <tr>
+        <td class="label">姓名</td>
+        <td class="value">{{trainee.name}}</td>
+        <td class="label">学员期数</td>
+        <td class="value">{{trainee.termname}}</td>
+      </tr>
+      <tr>
+        <td class="label">编号</td>
+        <td class="value">{{trainee.traineeno}}</td>
+        <td class="label">学员来源</td>
+        <td class="value">{{trainee.traineetype === 0 ? '退伍兵' : '体育生'}}</td>
+      </tr>
+      </tbody>
+    </table>
+
+    <table *ngIf="scores" class="resume ui celled table">
+      <tbody>
+      <tr>
+        <td class="label">总分</td>
+        <td class="value" colspan="3">{{scores.resultSum}}</td>
+      </tr>
+      <tr>
+        <ng-template ngFor let-score [ngForOf]="scores.list.slice(0,2)" let-i="index">
+          <td class="label">{{score.coursename}}</td>
+          <td class="value" [ngClass]="{'red' : !score.finished || score.examresults / score.credit < 0.6}">{{score.finished ? score.examresults : '未考'}}</td>
+        </ng-template>
+      </tr>
+      <tr>
+        <ng-template ngFor let-score [ngForOf]="scores.list.slice(2,4)" let-i="index">
+          <td class="label">{{score.coursename}}</td>
+          <td class="value" [ngClass]="{'red' : !score.finished || score.examresults / score.credit < 0.6}">{{score.finished ? score.examresults : '未考'}}</td>
+        </ng-template>
+      </tr>
+      <tr>
+        <ng-template ngFor let-score [ngForOf]="scores.list.slice(4,6)" let-i="index">
+          <td class="label">{{score.coursename}}</td>
+          <td class="value" [ngClass]="{'red' : !score.finished || score.examresults / score.credit < 0.6}">{{score.finished ? score.examresults : '未考'}}</td>
+        </ng-template>
+      </tr>
+      <tr>
+        <ng-template ngFor let-score [ngForOf]="scores.list.slice(6,8)" let-i="index">
+          <td class="label">{{score.coursename}}</td>
+          <td class="value" [ngClass]="{'red' : !score.finished || score.examresults / score.credit < 0.6}">{{score.finished ? score.examresults : '未考'}}</td>
+        </ng-template>
+      </tr>
+      </tbody>
+    </table>
+
+    <table class="resume ui celled table">
+      <tbody>
+      <tr>
+        <td class="label">姓名</td>
+        <td class="value">{{trainee.isMarried ? trainee.isMarried : '未知'}}</td>
+        <td class="label">身高(cm)</td>
+        <td class="value" [ngClass]="{'red' : trainee.height < 168}">{{trainee.height}}</td>
+      </tr>
+      <tr>
+        <td class="label">手机号</td>
+        <td class="value">{{trainee.mobile}}</td>
+        <td class="label">体重(kg)</td>
+        <td class="value" [ngClass]="{'red' : trainee.weight < 50}">{{trainee.weight}}</td>
+      </tr>
+      <tr>
+        <td class="label">年龄</td>
+        <td class="value" [ngClass]="{'red' : trainee.age < 23 || trainee.age > 32}">{{trainee.age}}</td>
+        <td class="label">出生年月</td>
+        <td class="value">{{trainee.birthDay}}</td>
+      </tr>
+      <tr>
+        <td class="label">性别</td>
+        <td class="value" [ngClass]="{'red' : trainee.sex === '女'}">{{trainee.sex}}</td>
+        <td class="label">驾照类型</td>
+        <td class="value" [ngClass]="{'red' : trainee.drivinglicence === 'C2' || trainee.drivinglicence === '无'}">
+          {{trainee.drivinglicence}}
+        </td>
+      </tr>
+      <tr>
+        <td class="label">驾龄</td>
+        <td class="value" [ngClass]="{'red' : trainee.driversAge === 0}">{{trainee.driversAge}}</td>
+        <td class="label">驾驶里程(km)</td>
+        <td class="value" [ngClass]="{'red' : trainee.drivingMileage < 1000}">{{trainee.drivingMileage}}</td>
+      </tr>
+      <tr>
+        <td class="label">籍贯</td>
+        <td class="value">{{trainee.placeOfOrigin}}</td>
+        <td class="label">户籍地</td>
+        <td class="value">{{trainee.birthplace}}</td>
+      </tr>
+      <tr>
+        <td class="label">户籍性质</td>
+        <td class="value">{{trainee.birthplacetype}}</td>
+        <td class="label">现居地</td>
+        <td class="value"></td>
+      </tr>
+      <tr>
+        <td class="label">政治面貌</td>
+        <td class="value">{{trainee.politicalclimate}}</td>
+        <td class="label">民族</td>
+        <td class="value">{{trainee.nation}}</td>
+      </tr>
+      <tr>
+        <td class="label">学历</td>
+        <td class="value" [ngClass]="{'red' : trainee.education === '初中' || trainee.education === '其他'}">
+          {{trainee.education}}
+        </td>
+        <td class="label">毕业时间</td>
+        <td class="value">{{trainee.graduationTime}}</td>
+      </tr>
+      <tr>
+        <td class="label">毕业院校</td>
+        <td class="value">{{trainee.graduationplace}}</td>
+        <td class="label">原服役部队</td>
+        <td class="value">{{trainee.armyserveplace}}</td>
+      </tr>
+      <tr>
+        <td class="label">部队专业</td>
+        <td class="value">{{trainee.militarySpecialty}}</td>
+        <td class="label">退伍军衔</td>
+        <td class="value">{{trainee.retiredOfficerRank}}</td>
+      </tr>
+      <tr>
+        <td class="label">入伍年月</td>
+        <td class="value">{{trainee.enlistmentTime}}</td>
+        <td class="label">退伍年月</td>
+        <td class="value">{{trainee.retirementtime}}</td>
+      </tr>
+      <tr>
+        <td class="label">军种</td>
+        <td class="value">{{trainee.armyType}}</td>
+        <td class="label">兵种</td>
+        <td class="value">{{trainee.services}}</td>
+      </tr>
+      <tr>
+        <td class="label">俯卧撑</td>
+        <td class="value">{{trainee.pushup}}</td>
+        <td class="label">引体向上</td>
+        <td class="value">{{trainee.pullups}}</td>
+      </tr>
+      <tr>
+        <td class="label">仰卧起坐</td>
+        <td class="value">{{trainee.situp}}</td>
+        <td class="label">立定跳远</td>
+        <td class="value">{{trainee.standingLongJump}}</td>
+      </tr>
+      <tr>
+        <td class="label">100米(秒)</td>
+        <td class="value">{{trainee.hundredmdash}}</td>
+        <td class="label">3000米</td>
+        <td class="value">{{trainee.thousandmdash}}</td>
+      </tr>
+      <tr>
+        <td class="label">重大疾病史</td>
+        <td colspan="3" class="value" [ngClass]="{'red' : trainee.infections === '有传染性、心脏或精神性疾病'}">
+          {{trainee.infections}}
+        </td>
+      </tr>
+      <tr>
+        <td class="label">荣誉证书</td>
+        <td colspan="3" class="value">{{trainee.certificate}}</td>
+      </tr>
+      <tr>
+        <td class="label">有何特长</td>
+        <td colspan="3" class="value">{{trainee.specialty}}</td>
+      </tr>
+      <tr>
+        <td class="label">工作经历</td>
+        <td colspan="3" class="value">{{trainee.workExperience}}</td>
+      </tr>
+      <tr>
+        <td class="label">意向城市</td>
+        <td colspan="3" class="value">{{trainee.intentionalCity}}</td>
+      </tr>
+      <tr>
+        <td class="label">转学员时间</td>
+        <td colspan="3" class="value">{{trainee.createtime}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+

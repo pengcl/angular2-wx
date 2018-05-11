@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 
 import {PageConfig} from './page.config';
 import {ActivatedRoute, ParamMap} from '@angular/router';
@@ -20,6 +21,9 @@ export class AdminEmployerOrderProtocolsComponent implements OnInit {
   user: any;
   protocol;
 
+  agreeForm: FormGroup;
+  no;
+
   constructor(private activatedRoute: ActivatedRoute,
               private wx: WxService,
               private userSvc: UserService,
@@ -28,10 +32,21 @@ export class AdminEmployerOrderProtocolsComponent implements OnInit {
 
   ngOnInit() {
     this.user = this.userSvc.isLogin();
+
+    this.no = this.activatedRoute.snapshot.queryParams['no'];
+
+    this.agreeForm = new FormGroup({
+      agree: new FormControl('', [Validators.required, Validators.requiredTrue]),
+    });
+
     this.activatedRoute.paramMap.switchMap((params: ParamMap) => this.employer.getProtocol(params.get('id'))).subscribe(res => {
       if (res.code === 0) {
         this.protocol = res.protocolContent;
       }
     });
+  }
+
+  submit() {
+    window.location.href = 'http://pay.danius.cn/interface/payment/gotoPay.ht?orderNo=' + this.no;
   }
 }

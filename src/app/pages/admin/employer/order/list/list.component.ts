@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
 
 import {PageConfig} from './page.config';
 import {WxService} from '../../../../../modules/wx';
@@ -23,6 +24,8 @@ export class AdminEmployerOrderListComponent implements OnInit {
 
   selectedIndex: number = 0;
 
+  protocolShow = false;
+
   onSelected(index) {
     if (this.selectedIndex === index) {
       this.selectedIndex = -1;
@@ -31,7 +34,8 @@ export class AdminEmployerOrderListComponent implements OnInit {
     }
   }
 
-  constructor(private wx: WxService,
+  constructor(private router: Router,
+              private wx: WxService,
               private userSvc: UserService,
               private employer: EmployerService) {
   }
@@ -40,6 +44,7 @@ export class AdminEmployerOrderListComponent implements OnInit {
     this.user = this.userSvc.isLogin();
 
     this.employer.getOrders(this.user.id).then(res => {
+      console.log(res);
       const list = [];
       if (res.code === 0) {
         res.list.forEach(k => {
@@ -49,6 +54,7 @@ export class AdminEmployerOrderListComponent implements OnInit {
       } else {
         this.orderList = [];
       }
+      console.log(this.orderList);
     });
 
     this.employer.getReserveOrders(this.user.id).then(res => {
@@ -61,5 +67,17 @@ export class AdminEmployerOrderListComponent implements OnInit {
     if (e === 'cancel') {
       // window.history.back();
     }
+  }
+
+  gotoPay(i, id, no) {
+    if (i === 0) {
+      this.router.navigate(['/admin/employer/order/protocol', id], {queryParams: {no: no}});
+    } else {
+      window.location.href = 'http://pay.danius.cn/interface/payment/gotoPay.ht?orderNo=' + no;
+    }
+  }
+
+  payAll(id) {
+    this.router.navigate(['/admin/employer/order/underline', id]);
   }
 }

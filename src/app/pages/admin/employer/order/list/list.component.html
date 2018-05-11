@@ -2,74 +2,60 @@
 
 <div class="content-scrollable">
 
-  <!--<div *ngIf="orderList?.length === 0" class="pageTips">
-    <h2>暂无"订单"记录</h2>
-    <p>您可以关注"大牛管家"公众号，获取最新活动消息。</p>
-  </div>-->
-
   <app-msg *ngIf="orderList?.length === 0 && reserveOrderList?.length === 0"
            [msg]='{title:"暂无\"订单\"记录",desc:"您可以关注\"大牛管家\"公众号，获取最新活动消息。",cancel:"返回"}'></app-msg>
 
   <div *ngFor="let item of orderList;let i = index" class="order-item weui-panel weui-panel_access">
-    <div class="weui-panel__hd">大牛管家服务月费 <sub>共{{item.payState.periods.length}}个月</sub> <sub><a
-      [routerLink]="['/admin/employer/order/protocol', item.id]">查看协议</a></sub> <span class="right">{{item.meta.createAt | repairDate | date : 'yyyy-MM-dd'}}</span>
+    <div class="weui-panel__hd">大牛管家服务费 <span *ngIf="item.payState.periods.length > 0">(预付{{item.payState.currPeriod.name}})</span> <span *ngIf="item.payState.periods.length > 0" class="right">{{item.payState.currPeriod.paid === item.payState.currPeriod.amount ? '已支付' : '未支付'}}</span>
     </div>
     <div class="weui-panel__bd">
       <div *ngFor="let prod of item.employees" class="weui-media-box weui-media-box_appmsg">
-        <div class="weui-media-box__hd">
-          <img class="weui-media-box__thumb" src="{{prod.avatar}}" alt="">
-        </div>
         <div class="weui-media-box__bd">
-          <h4 class="weui-media-box__title">{{prod.type.name}}</h4>
-          <p class="weui-media-box__desc">管家：{{prod.name}}, 工号：{{prod.no}}</p>
-          <p class="weui-media-box__desc">{{prod.age}}岁,{{prod.height}}CM,{{prod.weight}}KG</p>
+          <p class="weui-media-box__desc">合同编号：{{item.no}} <span *ngIf="item.payState.currPeriod.no !== item.payState.periods[0].no">查看协议</span></p>
+          <p class="weui-media-box__desc">订单时间：{{item.meta.startAt}}</p>
+          <p class="weui-media-box__desc">预定人员：{{prod.name.split('')[0]}}管家, 工号：{{prod.no}}</p>
+          <p *ngIf="item.payState.periods.length > 0" class="weui-media-box__desc">管家月费：￥{{item.payState.currPeriod.amount - item.payState.currPeriod.paid}} <span routerLink="/admin/employer/order/fqa" class="right">关于支付限额？</span></p>
         </div>
       </div>
       <div class="periods" [ngClass]="{'slide-down':selectedIndex === i}">
         <div class="weui-cells_radio">
-          <label *ngFor="let period of item.payState.periods" class="weui-cell weui-check__label">
+          <label *ngFor="let period of item.payState.periods;let i = index" class="weui-cell weui-check__label">
             <div class="weui-cell__bd">
-              <p>{{period.meta.createAt.split(' ')[0].split('-')[0]}}年
-                {{period.meta.createAt.split('')[0].split('-')[1]}}月费用 <sub
-                  [ngClass]="{'paid':period.paid === period.amount,'unpaid':period.paid !== period.amount}">
-                  ({{period.paid=== period.amount ? '已支付' : '未支付'}})</sub></p>
+              <p>{{period.name}}费用
+                <sub [ngClass]="{'paid':period.paid === period.amount,'unpaid':period.paid !== period.amount}">
+                  <span *ngIf="period.paid === period.amount">已支付</span>
+                  <span *ngIf="period.paid !== period.amount && period.paid !== 0">已支付订金</span>
+                  <span *ngIf="period.paid !== period.amount && period.paid === 0">未支付</span>
+                </sub>
+              </p>
             </div>
             <div class="weui-cell__ft">
               <input type="radio" class="weui-check" [checked]="period.paid === period.amount">
-              <a href="http://pay.danius.cn/interface/payment/gotoPay.ht?orderNo={{item.no}}"
-                 *ngIf="period.paid !== period.amount" class="">立即支付</a>
+              <a (click)="gotoPay(i,item.id,item.no)" *ngIf="period.paid !== period.amount" class="">立即支付</a>
               <span class="weui-icon-checked" *ngIf="period.paid === period.amount"></span>
             </div>
           </label>
-          <!--<label class="weui-cell weui-check__label">
-            <div class="weui-cell__bd">
-              <p>2018年2月费用 <sub>(请于2月前完成支付)</sub></p>
-            </div>
-            <div class="weui-cell__ft">
-              <input type="radio" class="weui-check">
-              <span class="">立即支付</span>
-              <span class="weui-icon-checked"></span>
-            </div>
-          </label>
-          <label class="weui-cell weui-check__label">
-            <div class="weui-cell__bd">
-              <p>2018年3月费用 <sub>(请于3月前完成支付)</sub></p>
-            </div>
-            <div class="weui-cell__ft">
-              <input type="radio" class="weui-check">
-              <span class="">立即支付</span>
-              <span class="weui-icon-checked"></span>
-            </div>
-          </label>-->
         </div>
       </div>
     </div>
-    <div class="weui-panel__ft">
-      <a href="javascript:void(0);" (click)="onSelected(i)" class="weui-cell weui-cell_access weui-cell_link">
-        <div class="weui-cell__bd">已经付：<sub>￥</sub><em>{{item.payState.paid}}</em><sub>.00</sub> |
-          总金额：<sub>￥</sub><em>{{item.payState.amount}}</em><sub>.00</sub></div>
-        <span class="weui-cell__ft">展开</span>
-      </a>
+    <div *ngIf="item.payState.periods.length > 0" class="status weui-panel__ft">
+      <div class="weui-cell">
+        <div class="weui-cell__bd">服务期：{{item.payState.periods[0].name}} -
+          {{item.payState.periods[item.payState.periods.length - 1].name}} ({{item.payState.periods.length}}个月)
+        </div>
+      </div>
+      <div class="weui-cell">
+        <div class="weui-cell__bd">总费用：<sub>￥</sub><em>{{item.payState.amount}}</em> (已支付：<sub>￥</sub><em>{{item.payState.paid}}</em>)
+        </div>
+      </div>
+      <div class="weui-cell">
+        <div class="weui-cell__bd">您可以一次性付清余下全额 <sub>￥</sub><em>{{(item.payState.amount -
+          item.payState.paid).toFixed(2)}}</em></div>
+        <span class="weui-cell__ft">
+          <span *ngIf="!item.payState.confirmPay" (click)="payAll(item.id)" class="ui-label colors radius gold">付清余下全额</span>
+          <span *ngIf="item.payState.confirmPay === 1">余款核对中</span>
+        </span>
+      </div>
     </div>
   </div>
 

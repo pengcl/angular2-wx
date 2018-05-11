@@ -2,7 +2,18 @@
 
 <article class="weui-article">
   <!--<h1>大标题</h1>-->
-  <section *ngIf="protocol" [innerHTML]="protocol">
-
-  </section>
+  <section *ngIf="protocol" [innerHTML]="protocol"></section>
 </article>
+
+<div class="agree" [formGroup]="agreeForm" *ngIf="no">
+  <label for="weuiAgree" class="weui-agree">
+    <input id="weuiAgree" formControlName="agree" type="checkbox" class="weui-agree__checkbox">
+    <span class="weui-agree__text">
+                阅读并同意<a href="javascript:void(0);">《相关条款》</a>
+            </span>
+  </label>
+
+  <div class="weui-btn-area">
+    <a (click)="submit()" class="weui-btn weui-btn_primary" [ngClass]="{'weui-btn_disabled' : agreeForm.invalid}" href="javascript:" id="showTooltips">确定</a>
+  </div>
+</div>

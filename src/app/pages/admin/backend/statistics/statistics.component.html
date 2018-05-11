@@ -1,22 +1,18 @@
 <app-navbar *ngIf="employer" [title]="'欢迎您，' + employer.cust_name" [show]="true" [navBar]="navBarConfig"></app-navbar>
 
 <div class="content-scrollable has-nav">
-  <div class="weui-cells__title">Home  >  招聘管理  >  报名统计</div>
-  <div class="date-filter weui-cells weui-flex">
-    <div (click)="onPickerShow('start')" class="weui-flex__item">
-      <div class="weui-cell">
-        <div class="weui-cell__hd"><span class="icon-doc-chart"></span></div>
-        <div class="weui-cell__bd">
-          {{pickerDate.start ? pickerDate.start : '请选择起始时间'}}
-        </div>
-      </div>
+  <div class="action-panel weui-cells">
+    <div class="weui-cell">
+      <div class="weui-cell__bd">Home  >  招聘管理  >  报名统计</div>
     </div>
-    <div (click)="onPickerShow('end')" class="weui-flex__item">
-      <div class="weui-cell">
-        <div class="weui-cell__hd">至</div>
-        <div class="weui-cell__bd">
-          {{pickerDate.end ? pickerDate.end : '请选择结束时间'}}
-        </div>
+    <div class="weui-cell">
+      <div (click)="onPickerShow('start')" class="weui-cell__hd"><span class="icon-doc-chart"></span></div>
+      <div (click)="onPickerShow('start')" class="weui-cell__bd">
+        {{pickerDate.start ? pickerDate.start : '请选择起始时间'}}
+      </div>
+      <div (click)="onPickerShow('end')" class="weui-cell__hd">至</div>
+      <div (click)="onPickerShow('end')" class="weui-cell__bd">
+        {{pickerDate.end ? pickerDate.end : '请选择结束时间'}}
       </div>
     </div>
   </div>

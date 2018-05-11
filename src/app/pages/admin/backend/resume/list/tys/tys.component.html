@@ -1,0 +1,68 @@
+<app-navbar [show]="true" [navBar]="navBarConfig"></app-navbar>
+<weui-infiniteloader (loadmore)="onLoadMore($event)" #comp>
+  <div class="weui-cells__title">Home > 招聘管理 > 退伍士兵 > 待审核</div>
+  <div class="filter-nav weui-flex">
+    <div (click)="setType(1)" [ngClass]="{'curr' : params.type === 1}" class="weui-flex__item">待审核</div>
+    <div (click)="setType(2)" [ngClass]="{'curr' : params.type === 2}" class="weui-flex__item">初审通过</div>
+    <div (click)="setType(3)" [ngClass]="{'curr' : params.type === 3}" class="weui-flex__item">复审通过</div>
+    <div (click)="setType(4)" [ngClass]="{'curr' : params.type === 4}" class="weui-flex__item">面试通过</div>
+    <div (click)="setType(0)" [ngClass]="{'curr' : params.type === 0}" class="weui-flex__item">未通过</div>
+  </div>
+
+  <div class="filter-date weui-cells weui-cells_form">
+    <div class="weui-flex">
+      <div class="search weui-flex__item">
+        <div class="weui-cell">
+          <div class="weui-cell__hd"><span class="icon-search"></span></div>
+          <div class="weui-cell__bd">
+            <input class="weui-input" [(ngModel)]="params.Q_name_S" (ngModelChange)="inputChange(params.Q_name_S)" type="text" name="Q_name_S" placeholder="查找姓名"></div>
+        </div>
+      </div>
+      <div class="date weui-flex__item">
+        <div class="weui-flex">
+          <div (click)="showPicker('Q_begincreatetime_DL')" class="weui-flex__item">
+            <div class="weui-cell">
+              <div class="weui-cell__hd"><span class="icon-doc-chart"></span></div>
+              <div class="weui-cell__bd">{{params.Q_begincreatetime_DL ? params.Q_begincreatetime_DL : '起始日期'}}</div>
+            </div>
+          </div>
+          <div (click)="showPicker('Q_endcreatetime_DG')" class="weui-flex__item">
+            <div class="weui-cell">
+              <div class="weui-cell__hd">至</div>
+              <div class="weui-cell__bd">{{params.Q_begincreatetime_DL ? params.Q_begincreatetime_DL : '结束日期'}}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="table-content">
+    <table class="result ui celled table">
+      <thead>
+      <tr>
+        <th>姓名</th>
+        <th>年龄</th>
+        <th>身高</th>
+        <th>驾照</th>
+        <th>驾龄</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngIf="params.totalPage === 0">
+        <td colspan="5" style="text-align: center">
+          没有数据
+        </td>
+      </tr>
+      <tr [routerLink]="['/admin/backend/resume/item/tys',item.id]" *ngFor="let item of trainees;let i = index">
+        <td>{{item.name}}</td>
+        <td>{{item.age}}</td>
+        <td>{{item.height}}</td>
+        <td>{{item.drivinglicence}}</td>
+        <td>{{item.driversage ? item.driversage : 0}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</weui-infiniteloader>
+

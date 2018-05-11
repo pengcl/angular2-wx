@@ -112,7 +112,7 @@
               </div>
             </div>
           </a>
-          <a *ngIf="user.admin" [routerLink]="['/admin/backend']" class="weui-grid">
+          <a *ngIf="admin" [routerLink]="['/admin/backend/statistics']" class="weui-grid">
             <div class="item-box">
               <div class="img green">
                 <img src="/assets/images/icons/white/we_fill_light.png">
@@ -130,5 +130,5 @@
 </div>
 <div class="btns-group">
   <div routerLink="/admin/employee/feedback" class="btn-secondary no-state">意见反馈</div>
-  <div class="btn-secondary">联系客服</div>
+  <div (click)="contact()" class="btn-secondary">联系客服</div>
 </div>

@@ -1,0 +1,172 @@
+<app-navbar [show]="true" [navBar]="navBarConfig"></app-navbar>
+
+<div *ngIf="trainee" class="content-scrollable has-nav">
+  <div class="action-panel weui-cells">
+    <div class="weui-cell">
+      <div class="weui-cell__bd">Home > 招聘管理 > 退伍士兵 > 待审核</div>
+    </div>
+    <div class="weui-cell">
+      <div class="weui-cell__hd"><span (click)="back()" class="ui-label hollow radius">返回列表</span></div>
+      <div class="weui-cell__bd"></div>
+      <div class="weui-cell__ft"><span *ngIf="trainee.threeStatus === 'mstg'" [routerLink]="['/admin/backend/resume/check',trainee.id]"
+                                       [queryParams]="{type:1}"
+                                       class="ui-label radius colors blue">审核反馈</span></div>
+    </div>
+  </div>
+
+  <div class="trainee-info weui-grids">
+
+    <table class="resume ui celled table">
+      <thead>
+      <tr>
+        <th colspan="4">个人简历</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td class="label">姓名</td>
+        <td class="value">{{trainee.name}}</td>
+        <td class="label">身高(cm)</td>
+        <td class="value" [ngClass]="{'red' : trainee.height < 168}">{{trainee.height}}</td>
+      </tr>
+      <tr>
+        <td class="label">手机号</td>
+        <td class="value">{{trainee.mobile}}</td>
+        <td class="label">体重(kg)</td>
+        <td class="value" [ngClass]="{'red' : trainee.weight < 50}">{{trainee.weight}}</td>
+      </tr>
+      <tr>
+        <td class="label">年龄</td>
+        <td class="value" [ngClass]="{'red' : trainee.age < 23 || trainee.age > 32}">{{trainee.age}}</td>
+        <td class="label">出生年月</td>
+        <td class="value">{{trainee.birthDay}}</td>
+      </tr>
+      <tr>
+        <td class="label">性别</td>
+        <td class="value" [ngClass]="{'red' : trainee.sex === '女'}">{{trainee.sex}}</td>
+        <td class="label">驾照类型</td>
+        <td class="value" [ngClass]="{'red' : trainee.drivinglicence === 'C2' || trainee.drivinglicence === '无'}">
+          {{trainee.drivinglicence}}
+        </td>
+      </tr>
+      <tr>
+        <td class="label">驾龄</td>
+        <td class="value" [ngClass]="{'red' : trainee.driversAge === 0}">{{trainee.driversAge}}</td>
+        <td class="label">驾驶里程(km)</td>
+        <td class="value" [ngClass]="{'red' : trainee.drivingMileage < 1000}">{{trainee.drivingMileage}}</td>
+      </tr>
+      <tr>
+        <td class="label">籍贯</td>
+        <td class="value">{{trainee.placeOfOrigin}}</td>
+        <td class="label">户籍地</td>
+        <td class="value">{{trainee.birthplace}}</td>
+      </tr>
+      <tr>
+        <td class="label">户籍性质</td>
+        <td class="value">{{trainee.birthplacetype}}</td>
+        <td class="label">现居地</td>
+        <td class="value"></td>
+      </tr>
+      <tr>
+        <td class="label">政治面貌</td>
+        <td class="value">{{trainee.politicalclimate}}</td>
+        <td class="label">民族</td>
+        <td class="value">{{trainee.nation}}</td>
+      </tr>
+      <tr>
+        <td class="label">学历</td>
+        <td class="value" [ngClass]="{'red' : trainee.education === '初中' || trainee.education === '其他'}">
+          {{trainee.education}}
+        </td>
+        <td class="label">毕业时间</td>
+        <td class="value">{{trainee.graduationTime}}</td>
+      </tr>
+      <tr>
+        <td class="label">毕业院校</td>
+        <td class="value">{{trainee.graduationplace}}</td>
+        <td class="label">专业类型</td>
+        <td class="value">{{trainee.movementType}}</td>
+      </tr>
+      <tr>
+        <td class="label">俯卧撑</td>
+        <td class="value">{{trainee.pushup}}</td>
+        <td class="label">引体向上</td>
+        <td class="value">{{trainee.pullups}}</td>
+      </tr>
+      <tr>
+        <td class="label">仰卧起坐</td>
+        <td class="value">{{trainee.situp}}</td>
+        <td class="label">立定跳远</td>
+        <td class="value">{{trainee.standingLongJump}}</td>
+      </tr>
+      <tr>
+        <td class="label">100米(秒)</td>
+        <td class="value">{{trainee.hundredmdash}}</td>
+        <td class="label">3000米</td>
+        <td class="value">{{trainee.thousandmdash}}</td>
+      </tr>
+      <tr>
+        <td class="label">重大疾病史</td>
+        <td colspan="3" class="value" [ngClass]="{'red' : trainee.infections === '有传染性、心脏或精神性疾病'}">
+          {{trainee.infections}}
+        </td>
+      </tr>
+      <tr>
+        <td class="label">荣誉证书</td>
+        <td colspan="3" class="value">{{trainee.certificate}}</td>
+      </tr>
+      <tr>
+        <td class="label">有何特长</td>
+        <td colspan="3" class="value">{{trainee.specialty}}</td>
+      </tr>
+      <tr>
+        <td class="label">工作经历</td>
+        <td colspan="3" class="value">{{trainee.workExperience}}</td>
+      </tr>
+      <tr>
+        <td class="label">意向城市</td>
+        <td colspan="3" class="value">{{trainee.intentionalCity}}</td>
+      </tr>
+      <tr>
+        <td class="label">填表时间</td>
+        <td colspan="3" class="value">{{trainee.createtime}}</td>
+      </tr>
+      </tbody>
+    </table>
+
+    <table class="result ui celled table">
+      <thead>
+      <tr>
+        <th style="width: 2em"></th>
+        <th style="width: 2em">结果</th>
+        <th>备注</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td class="label">初审</td>
+        <td><i *ngIf="trainee.firstStatus === 'cstg'" class="weui-icon-success"></i><i *ngIf="trainee.firstStatus === 'csbtg'" class="weui-icon-cancel"></i></td>
+        <td class="value">{{trainee.firstReason}}</td>
+      </tr>
+      <tr>
+        <td class="label">复审</td>
+        <td><i *ngIf="trainee.secondStatus === 'fstg'" class="weui-icon-success"></i><i *ngIf="trainee.secondStatus === 'fsbtg'" class="weui-icon-cancel"></i></td>
+        <td class="value">{{trainee.secondReason}}</td>
+      </tr>
+      <tr>
+        <td class="label">面试</td>
+        <td><i *ngIf="trainee.threeStatus === 'mstg'" class="weui-icon-success"></i><i *ngIf="trainee.threeStatus === 'msbtg' || trainee.threeStatus === 'blms'" class="weui-icon-cancel"></i></td>
+        <td class="value">{{trainee.threeReason}}</td>
+      </tr>
+      <tr>
+        <td class="label">考核</td>
+        <td><i *ngIf="trainee.fourStatus === 'khtgzcxy'" class="weui-icon-success"></i><i *ngIf="trainee.fourStatus === 'khbtg'" class="weui-icon-cancel"></i></td>
+        <td class="value">{{trainee.fourReason}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+
