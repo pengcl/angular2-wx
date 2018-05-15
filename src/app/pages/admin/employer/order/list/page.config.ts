@@ -57,7 +57,7 @@ export const PageConfig = {
   'navBar': {
     'backgroundTextStyle': 'light',
     'navigationBarBackgroundColor': '#fff',
-    'navigationBarTitleText': '订单列表',
+    'navigationBarTitleText': '我的订单',
     'navigationBarTextStyle': 'black',
     'enablePullDownRefresh': false
   }

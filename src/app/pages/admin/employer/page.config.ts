@@ -57,7 +57,7 @@ export const PageConfig = {
   'navBar': {
     'backgroundTextStyle': 'light',
     'navigationBarBackgroundColor': '#fff',
-    'navigationBarTitleText': '我的账户',
+    'navigationBarTitleText': '个人中心',
     'navigationBarTextStyle': 'black',
     'enablePullDownRefresh': false
   }

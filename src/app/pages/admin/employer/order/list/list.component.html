@@ -2,8 +2,30 @@
 
 <div class="content-scrollable">
 
-  <app-msg *ngIf="orderList?.length === 0 && reserveOrderList?.length === 0"
-           [msg]='{title:"暂无\"订单\"记录",desc:"您可以关注\"大牛管家\"公众号，获取最新活动消息。",cancel:"返回"}'></app-msg>
+  <div *ngIf="orderList?.length === 0 && reserveOrderList?.length === 0" class="weui-msg">
+    <div class="weui-msg__icon-area">
+      <div class="weui-icon_msg">
+        <img src="/assets/images/icons/form.png">
+      </div>
+    </div>
+    <div class="weui-msg__text-area">
+      <h2 class="weui-msg__title">暂无"订单"信息</h2>
+      <p class="weui-msg__desc">前往“<a routerLink="/guide/step1">预订管家</a>”，成功后，可以看到相关的订单信息。</p>
+    </div>
+    <div class="weui-msg__opr-area">
+      <p class="weui-btn-area">
+        <a href="javascript:history.back();" class="weui-btn weui-btn_default">返回</a>
+      </p>
+    </div>
+    <div class="weui-msg__extra-area">
+      <div class="weui-footer">
+        <p class="weui-footer__links">
+          <a href="javascript:void(0);" class="weui-footer__link">大牛管家</a>
+        </p>
+        <p class="weui-footer__text">Copyright © 2008-2018 danius.cn</p>
+      </div>
+    </div>
+  </div>
 
   <div *ngFor="let item of orderList;let i = index" class="order-item weui-panel weui-panel_access">
     <div class="weui-panel__hd">大牛管家服务费 <span *ngIf="item.payState.periods.length > 0">(预付{{item.payState.currPeriod.name}})</span> <span *ngIf="item.payState.periods.length > 0" class="right">{{item.payState.currPeriod.paid === item.payState.currPeriod.amount ? '已支付' : '未支付'}}</span>
@@ -71,13 +93,14 @@
       <div class="weui-media-box weui-media-box_appmsg">
         <div class="weui-media-box__bd">
           <p class="weui-media-box__desc">订单编号：{{item.orderno}}</p>
-          <p class="weui-media-box__desc">预订人员：{{item.housekeepername}} (工号：{{item.housekeeperno}})</p>
+          <p *ngIf="item.housekeeperid" class="weui-media-box__desc">预订人员：{{item.housekeepername}} <span>(工号：{{item.housekeeperno}})</span></p>
         </div>
       </div>
     </div>
     <div class="weui-panel__ft">
-      <div class="weui-cell weui-cell_access weui-cell_link">
+      <div class="weui-cell weui-cell_link">
         <div class="weui-cell__bd">支付金额：<sub>￥</sub><em>{{item.orderamount}}</em></div>
+        <!--<div class="weui-cell__ft"><span class="ui-label radius colors gold" [routerLink]="['/guide/step4']" [queryParams]="{orderNo:item.orderno}" *ngIf="item.ispass !== 2 && item.paystatus === 2">去选管家</span></div>-->
       </div>
     </div>
   </div>

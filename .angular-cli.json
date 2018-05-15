@@ -22,7 +22,12 @@
         "../node_modules/videogular2/fonts/videogular.css",
         "styles.scss"
       ],
-      "scripts": [],
+      "scripts": [
+        "assets/js/jquery.slim.min.js",
+        "assets/js/owl.carousel.min.js",
+        "assets/js/pdf.min.js",
+        "assets/js/f2.min.js"
+      ],
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",

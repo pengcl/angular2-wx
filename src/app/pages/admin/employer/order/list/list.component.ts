@@ -44,7 +44,6 @@ export class AdminEmployerOrderListComponent implements OnInit {
     this.user = this.userSvc.isLogin();
 
     this.employer.getOrders(this.user.id).then(res => {
-      console.log(res);
       const list = [];
       if (res.code === 0) {
         res.list.forEach(k => {
@@ -54,12 +53,10 @@ export class AdminEmployerOrderListComponent implements OnInit {
       } else {
         this.orderList = [];
       }
-      console.log(this.orderList);
     });
 
     this.employer.getReserveOrders(this.user.id).then(res => {
       this.reserveOrderList = res.list;
-      console.log(this.reserveOrderList);
     });
   }
 

@@ -54,7 +54,6 @@ export class AdminEmployerRateListComponent implements OnInit {
     this.user = this.userSvc.isLogin();
     this.employer.getMyRates(this.user.id).then(res => {
       this.items = res.list;
-      console.log(this.items);
     });
   }
 

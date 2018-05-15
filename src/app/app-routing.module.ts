@@ -4,6 +4,7 @@ import {RouterModule, Routes} from '@angular/router';
 
 import {appWxRoutes} from './pages/wx/wx-routing.module';
 import {appAdminBackendRoutes} from './pages/admin/backend/backend-routing.module';
+import {appGuideRoutes} from './pages/guide/guide-routing.module';
 
 import {FrontComponent} from './pages/front/front.component';
 import {FrontIndexComponent} from './pages/front/index/index.component';
@@ -116,6 +117,8 @@ import {RecruitmentRecruitersComponent} from './pages/recruitment/recruiters/rec
 
 import {AppPayComponent} from './pages/pay/pay.component';
 import {WxComponent} from './pages/wx/wx.component';
+
+import {GuideComponent} from './pages/guide/guide.component';
 
 const appFrontRedRoutes: Routes = [
   {path: 'get', component: FrontRedGetComponent},
@@ -259,6 +262,11 @@ export const routes: Routes = [
     path: 'admin',
     component: AdminComponent,
     children: appAdminRoutes
+  },
+  {
+    path: 'guide',
+    component: GuideComponent,
+    children: appGuideRoutes
   },
   {
     path: 'recruitment',

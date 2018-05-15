@@ -1,0 +1,102 @@
+<app-navbar [navBar]="navBarConfig"></app-navbar>
+
+<div class="employee-box content-scrollable has-footer">
+  <app-profile *ngIf="housekeeper" [profile]="housekeeper"></app-profile>
+
+  <div class="weui-panel weui-panel_access" style="margin-top: 0.1rem">
+    <div class="weui-panel__hd">
+      <a href="javascript:void(0);" class="weui-cell weui-cell_access">
+        <div class="weui-cell__title weui-cell__bd">培训综合评分</div>
+      </a>
+    </div>
+    <div class="weui-panel__bd">
+      <div class="rate-box weui-media-box">
+        <weui-rating [(ngModel)]="rate" [config]="ratingConfig" [readonly]="true"></weui-rating>
+      </div>
+    </div>
+  </div>
+
+  <div class="weui-panel weui-panel_access">
+    <div class="weui-panel__hd">
+      <a href="javascript:void(0);" class="weui-cell weui-cell_access">
+        <div class="weui-cell__title weui-cell__bd">各项培训得分</div>
+      </a>
+    </div>
+    <div class="weui-panel__bd">
+      <div class="rates-box weui-grids">
+        <div *ngFor="let item of score.scores" class="weui-grid">
+          <span>{{item.props}}</span>
+          <weui-rating [(ngModel)]="item.rate" [config]="ratingConfig" [readonly]="true"></weui-rating>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="display: none" class="skills weui-panel weui-panel_access">
+    <div class="weui-panel__hd">
+      <a href="javascript:void(0);" class="weui-cell weui-cell_access">
+        <div class="weui-cell__title weui-cell__bd">技能图谱</div>
+      </a>
+    </div>
+    <div class="weui-panel__bd">
+      <div class="weui-media-box weui-media-box_appmsg">
+        <div class="score">
+
+          <div class="score-rate">
+            <em>{{this.score.count}}</em><sub>分</sub>
+          </div>
+
+          <div class="score-label">综合评分</div>
+        </div>
+      </div>
+      <div class="weui-media-box">
+        <canvas id="mountNode" style="width:100%;height:200px;"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="images?.length > 0" class="weui-panel weui-panel_access">
+    <div class="weui-panel__hd">
+      <a (click)="showMore()" class="weui-cell weui-cell_access">
+        <div class="weui-cell__title weui-cell__bd">照片</div>
+        <span class="weui-cell__ft">查看更多</span>
+      </a>
+    </div>
+    <div class="weui-panel__bd">
+
+      <div class="weui-grids">
+        <div *ngFor="let img of (images ? images.slice(0,imagesLen): []);let i = index;" class="weui-grid">
+          <div (click)="showGallery(i)" class="photo"
+               [ngStyle]="{'background-image':'url(' + config.prefix.wApi + img + ')'}">
+
+          </div>
+        </div>
+      </div>
+      <app-gallery [(show)]="show" [current]="galleryCurrent" (delete)="onDelete($event)" [canDelete]="false"
+                   [slides]="images"></app-gallery>
+    </div>
+
+  </div>
+
+  <div *ngIf="housekeeper?.workexperience" class="weui-panel weui-panel_access">
+    <div class="weui-panel__hd">
+      <a href="javascript:void(0);" class="weui-cell weui-cell_access">
+        <div class="weui-cell__title weui-cell__bd">管家简介</div>
+      </a>
+    </div>
+    <div class="weui-panel__bd">
+      <div class="weui-media-box weui-media-box_appmsg">
+        <div class="weui-media-box__bd">
+          <p class="weui-media-box__desc">{{housekeeper.introduction}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="weui-btn-area">
+    <a *ngIf="housekeeper" [routerLink]="['/guide/step6',housekeeper.housekeeperid]" [queryParams]="{orderNo:orderNo}"
+       [userTrack]="'reserve'"
+       class="weui-btn weui-btn_primary">雇佣他</a>
+  </div>
+
+</div>

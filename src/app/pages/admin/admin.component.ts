@@ -10,6 +10,5 @@ import {Component, ViewEncapsulation} from '@angular/core';
 
 export class AdminComponent {
 
-  constructor() {
-  }
+  constructor() {}
 }

@@ -1,0 +1,300 @@
+.content-scrollable {
+  background: #fff;
+  &:after {
+    height: 0.8rem;
+  }
+}
+
+.title {
+  margin-top: 0.35rem;
+  line-height: 1;
+  font-weight: bold;
+  .txt {
+    font-size: 0.22rem;
+    text-align: center;
+    em {
+      color: #cfab66;
+      font-style: normal;
+    }
+  }
+  .line {
+    width: 50%;
+    margin: 0.1rem auto;
+    img {
+      display: block;
+      width: 100%;
+    }
+  }
+}
+
+.sub-title {
+  font-size: 0.13rem;
+  margin-top: 0.2rem;
+  color: #666;
+  text-align: center;
+}
+
+.services {
+  margin-top: 0.2rem;
+  .weui-flex {
+    margin: 0.1rem;
+
+    .weui-flex__item.txt {
+      flex: 0.4;
+      align-self: center;
+      padding: 0.1rem 0.1rem 0.1rem 0.3rem;
+      .txt-num {
+        background: #cfab66;
+        font-size: 0.18rem;
+        text-align: center;
+        color: #fff;
+        line-height: 0.28rem;
+        width: 0.28rem;
+        font-weight: normal;
+        display: block;
+        position: relative;
+        &:after {
+          content: ' ';
+          position: absolute;
+          display: block;
+          right: -0.08rem;
+          bottom: 0.06rem;
+          width: 0.08rem;
+          height: 0.08rem;
+          border-top: 0.04rem solid transparent;
+          border-bottom: 0.04rem solid transparent;
+          border-left: 0.04rem solid #cfab66;
+          box-sizing: border-box;
+        }
+      }
+      .txt-title {
+        font-size: 0.17rem;
+        line-height: 1;
+        color: #000;
+        margin-top: 0.1rem;
+      }
+      .txt-content {
+        font-size: 0.15rem;
+        color: #666;
+        margin-top: 0.15rem;
+        line-height: 0.24rem;
+      }
+    }
+    .weui-flex__item.img {
+      flex: 0.6;
+      background-size: cover;
+    }
+  }
+}
+
+.sub-service {
+  padding: 0.05rem 0.05rem;
+  .weui-flex__item {
+    margin: 0.05rem;
+    position: relative;
+    .title {
+      background: rgba(0, 0, 0, 0.8);
+      position: absolute;
+      bottom: 0;
+      line-height: 1;
+      font-size: 0.14rem;
+      text-align: center;
+      width: 100%;
+      padding: 0.1rem 0;
+      color: #cfab66;
+    }
+  }
+}
+
+.solders {
+  .weui-flex {
+    margin: 0.1rem;
+    .weui-flex__item {
+      &.txt {
+        flex: 0.56;
+        padding: 0.15rem 0.15rem 0.1rem 0.15rem;
+        position: relative;
+        .title {
+          margin-top: 0.05rem;
+          font-size: 0.19rem;
+          color: #fff;
+          font-weight: bold;
+          span, em {
+            display: inline-block;
+            vertical-align: middle;
+          }
+          em {
+            background: #fff;
+            color: #cfab66;
+            font-size: 0.12rem;
+            line-height: 0.16rem;
+            padding: 0 0.05rem;
+            margin-left: 0.1rem;
+            font-style: normal;
+            font-weight: normal;
+          }
+        }
+        ul {
+          padding-left: 0.13rem;
+          margin-top: 0.15rem;
+          li {
+            font-size: 0.13rem;
+            line-height: 1.4;
+          }
+        }
+      }
+      &.img {
+        flex: 0.44;
+      }
+    }
+    &:nth-child(1) {
+      background-image: url('/assets/images/guide/start/solder-1.png');
+      background-size: cover;
+      background-position: right top;
+    }
+    &:nth-child(2) {
+      background-image: url('/assets/images/guide/start/solder-2.jpg');
+      background-size: cover;
+      background-position: right top;
+    }
+    &:nth-child(3) {
+      background-image: url('/assets/images/guide/start/solder-3.png');
+      background-size: cover;
+      background-position: right top;
+    }
+    &:nth-child(4) {
+      background-image: url('/assets/images/guide/start/solder-4.png');
+      background-size: cover;
+      background-position: right top;
+      .txt {
+        padding: 0.15rem 0.15rem 0.28rem 0.15rem;
+      }
+    }
+  }
+}
+
+.teams, .teams-sub {
+  .weui-flex {
+    margin: 0.1rem;
+    border: 1px solid #cfab66;
+    background-color: #cfab66;
+    .weui-flex__item {
+      font-size: 0.12rem;
+      line-height: 1;
+      padding: 0.1rem;
+      background: transparent;
+      &.label {
+        align-self: center;
+        color: #000;
+        flex: 0.32;
+        font-weight: bold;
+      }
+      &.value {
+        background-color: #fff;
+        flex: 0.68;
+      }
+    }
+  }
+}
+
+.teams-title {
+  margin: 0.2rem 0.1rem;
+  .weui-flex {
+    .weui-flex__item {
+      font-size: 0.18rem;
+      line-height: 1;
+      &.value {
+        flex: 0.26;
+        background: #c67b51;
+        color: #fff;
+        padding: 0.05rem 0.15rem;
+        position: relative;
+        &:after {
+          content: ' ';
+          position: absolute;
+          display: block;
+          right: -0.08rem;
+          bottom: 0.06rem;
+          width: 0.08rem;
+          height: 0.08rem;
+          border-top: 0.04rem solid transparent;
+          border-bottom: 0.04rem solid transparent;
+          border-left: 0.04rem solid #c67b51;
+          box-sizing: border-box;
+        }
+      }
+      &.label {
+        flex: 0.37;
+      }
+    }
+  }
+}
+
+.teams-sub-title {
+  margin: 0.2rem 0.1rem;
+  .weui-flex {
+    .weui-flex__item {
+      font-size: 0.18rem;
+      line-height: 1;
+      &.value {
+        flex: 0.26;
+        background: #c67b51;
+        color: #fff;
+        padding: 0.05rem 0.15rem;
+        position: relative;
+        &:after {
+          content: ' ';
+          position: absolute;
+          display: block;
+          right: -0.08rem;
+          bottom: 0.06rem;
+          width: 0.08rem;
+          height: 0.08rem;
+          border-top: 0.04rem solid transparent;
+          border-bottom: 0.04rem solid transparent;
+          border-left: 0.04rem solid #c67b51;
+          box-sizing: border-box;
+        }
+      }
+      &.label {
+        flex: 0.37;
+      }
+    }
+  }
+}
+
+.btn-primary {
+  font-size: 0.17rem;
+  padding: 0.17rem 0 0.15rem;
+  line-height: 1 !important;
+  font-weight: normal;
+}
+
+.about {
+  position: fixed;
+  bottom: 0.7rem;
+  right: 0.1rem;
+  width: 0.35rem;
+  height: 0.35rem;
+  display: block;
+  img {
+    display: block;
+    width: 100%;
+  }
+}
+
+.weui-btn-area {
+  a {
+    width: 35%;
+    display: block;
+    line-height: 1;
+    font-size: 0.14rem;
+    color: #999;
+    padding: 0.1rem 0.3rem;
+    background: none;
+    &:after {
+      display: block;
+
+    }
+  }
+}

@@ -41,7 +41,6 @@ export class AdminBackendStatisticsComponent implements OnInit {
 
     this.employerSvc.getEmployer(this.user.id).then(res => {
       this.employer = res.cust;
-      console.log(res);
     });
   }
 

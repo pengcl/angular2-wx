@@ -154,6 +154,9 @@ export class FrontEmployeesEmployeeComponent implements OnInit {
   reserve(canReserve) {
     if (!canReserve) {
     } else {
+      if (this.route.snapshot.queryParams['v'] === 2) {
+        this.router.navigate(['/guide/step5', this.housekeeper.housekeeperid], {queryParamsHandling: 'merge'});
+      }
       this.router.navigate(['/front/employees/employee/reserve', this.housekeeper.housekeeperid], {queryParamsHandling: 'merge'});
     }
   }

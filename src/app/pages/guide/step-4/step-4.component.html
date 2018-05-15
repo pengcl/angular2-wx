@@ -1,0 +1,6 @@
+<weui-infiniteloader *ngIf="currLists?.length > 0" (loadmore)="onLoadMore($event)" #comp>
+  <app-profile-min [routerLink]="['/guide/step5', item.housekeeperid]" [queryParams]="{orderNo:orderNo}"
+                   queryParamsHandling="merge"
+                   [profile]="item"
+                   *ngFor="let item of currLists"></app-profile-min>
+</weui-infiniteloader>

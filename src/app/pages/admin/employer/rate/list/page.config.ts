@@ -57,7 +57,7 @@ export const PageConfig = {
   'navBar': {
     'backgroundTextStyle': 'light',
     'navigationBarBackgroundColor': '#fff',
-    'navigationBarTitleText': '我的评价',
+    'navigationBarTitleText': '人员评价',
     'navigationBarTextStyle': 'black',
     'enablePullDownRefresh': false
   }

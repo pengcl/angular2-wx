@@ -1,6 +1,9 @@
 import {Component, ViewEncapsulation, ErrorHandler} from '@angular/core';
+import {Location} from '@angular/common';
 import {LogService} from './services/log.service';
 import {UaService} from './services/ua.service';
+
+declare var wx: any;
 
 @Component({
   selector: 'app-root',
@@ -10,11 +13,17 @@ import {UaService} from './services/ua.service';
 })
 export class AppComponent implements ErrorHandler {
 
-  constructor(private ua: UaService, private logSvc: LogService) {
+  constructor(private locationSvc: Location,
+              private ua: UaService,
+              private logSvc: LogService) {
+    locationSvc.subscribe(res => {
+      if (res.type === 'popstate' && res.url === '/admin/home') {
+        wx.closeWindow();
+      }
+    });
   }
 
   handleError(error: any): void {
-    console.log(error);
     const _error = {
       platform: this.ua.getPlatform(),
       isWx: this.ua.isWx(),
@@ -24,12 +33,10 @@ export class AppComponent implements ErrorHandler {
       error: error.toString()
     };
     this.logSvc._log('error', _error).then(res => {
-      console.log(res);
     });
   }
 
   getState(outlet) {
-    console.log(outlet);
     return outlet.activatedRouteData.state;
   }
 }

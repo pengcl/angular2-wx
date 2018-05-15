@@ -1,0 +1,91 @@
+<div #scrollMe [formGroup]="subscribeForm" class="content-scrollable">
+  <div class="top img-box">
+    <img src="/assets/images/guide/top.jpg">
+  </div>
+
+  <div class="weui-cells__title">服务保障 <a routerLink="/guide/knowledge" class="right">大牛管家服务手册</a></div>
+  <div class="tips-content">
+    <ul>
+      <li>名额限量，请抢先预定，享优先选择；</li>
+      <li>如无合适，请联系客服，可全额退款；</li>
+      <li>如支付订金后90天，无管家可选，承诺三倍退预金；</li>
+      <li>其余款项可在管家按约到岗后，48小时内支付。</li>
+    </ul>
+  </div>
+  <div class="weui-cells__tips"><a href="https://mp.weixin.qq.com/s/OOzH9G3URmezgjxJg3YrHA">关于大牛管家</a></div>
+
+  <div class="check-customerName check-customerMobile weui-cells__title"
+       [ngClass]="{'warn':(subscribeForm.get('customerName').invalid && isSubmit) || (subscribeForm.get('customerMobile').invalid && isSubmit)}">
+    请您留下联系方式，以便我们登记安排管家
+    <p>大牛管家向您承诺，您所有资料均会严格保密，请放心填写。</p>
+  </div>
+  <div class="input-area weui-cells weui-cells_form">
+    <div class="weui-cell" [ngClass]="{'weui-cell_warn':subscribeForm.get('customerName').invalid && isSubmit}">
+      <div class="weui-cell__hd"><span class="weui-label">您的称呼</span></div>
+      <div class="weui-cell__bd">
+        <input formControlName="customerName" class="weui-input" placeholder="如：李先生/李女士">
+      </div>
+      <div class="weui-cell__ft"><i class="weui-icon-warn"></i></div>
+    </div>
+    <div class="weui-cell" [ngClass]="{'weui-cell_warn':subscribeForm.get('customerMobile').invalid && isSubmit}">
+      <div class="weui-cell__hd"><span class="weui-label">联系电话</span></div>
+      <div class="weui-cell__bd">
+        <input formControlName="customerMobile" maxlength="11" class="weui-input" placeholder="请输入手机号码">
+      </div>
+      <div class="weui-cell__ft"><i class="weui-icon-warn"></i></div>
+    </div>
+  </div>
+
+  <div class="check-serviceAreaId check-serviceAreaName weui-cells__title"
+       [ngClass]="{'warn':subscribeForm.get('serviceAreaId').invalid && isSubmit}">您所在的城市是？
+  </div>
+  <div class="item-list weui-grids">
+    <div (click)="setCity(item)" class="list-item weui-grid" *ngFor="let item of citys">
+      <div class="item-box" [ngClass]="{'curr':subscribeForm.get('serviceAreaId').value === item.value}">
+        {{item.label}}
+        <span class="tag"><img src="/assets/images/guide/checked.png"></span>
+      </div>
+    </div>
+  </div>
+  <div class="check-levelId check-levelName weui-cells__title"
+       [ngClass]="{'warn':subscribeForm.get('levelId').invalid && isSubmit}">您需要管家的级别是？
+  </div>
+  <div class="levels weui-panel">
+    <div class="weui-panel__bd">
+      <div (click)="setLevel(level)" *ngFor="let level of levels"
+           [ngClass]="{'curr':subscribeForm.get('levelId').value === level.levelid}"
+           class="weui-media-box weui-media-box_appmsg">
+        <div class="weui-media-box__hd">
+          <img class="weui-media-box__thumb" src="{{level.avatar}}">
+        </div>
+        <div class="weui-media-box__bd">
+          <h4 class="weui-media-box__title"><span>{{level.levelname}}</span> <span>￥{{level.price}}</span></h4>
+          <p class="weui-media-box__desc">{{level.tag}}、{{level.content}}</p>
+        </div>
+        <span class="tag"><img src="/assets/images/guide/checked.png"></span>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="subscribeForm.get('serviceAreaId').valid" class="check-accommodation weui-cells__title"
+       [ngClass]="{'warn':subscribeForm.get('accommodation').invalid && isSubmit}">3.是否能提供管家住宿？
+    <p *ngIf="subscribeForm.get('accommodation').value === '不提供'">管家到岗后，如不方便提供住宿，每月需额外补贴管家￥
+      <span *ngIf="subscribeForm.get('serviceAreaName').value === '北京' || subscribeForm.get('serviceAreaName').value === '上海'">600</span>
+      <span *ngIf="subscribeForm.get('serviceAreaName').value === '广州' || subscribeForm.get('serviceAreaName').value === '深圳' || subscribeForm.get('serviceAreaName').value === '杭州'">300</span>
+      元</p>
+  </div>
+  <div *ngIf="subscribeForm.get('serviceAreaId').valid" class="item-list weui-grids">
+    <div class="list-item weui-grid" *ngFor="let accommodation of accommodations">
+      <div class="item-box" (click)="setAccommodation(accommodation)"
+           [ngClass]="{'curr':subscribeForm.get('accommodation').value === accommodation.value}">
+        {{accommodation.label}}
+        <span class="tag"><img src="/assets/images/guide/checked.png"></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="weui-btn-area">
+    <weui-button [userTrack]="'reserve'" (click)="submit()" [weui-loading]="loading" class="weui-btn weui-btn_primary">提交预订 (支付￥300)</weui-button>
+  </div>
+
+</div>

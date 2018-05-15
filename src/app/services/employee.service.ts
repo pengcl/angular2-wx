@@ -19,6 +19,14 @@ export class EmployeeService {
       .catch(this.handleError);
   }
 
+  getIntentList(body?): Promise<any> {
+    const prams = formDataToUrl(body);
+    return this.http.get(Config.prefix.wApi + '/interface/housekeeper/getIntentList.ht' + prams)
+      .toPromise()
+      .then(response => response)
+      .catch(this.handleError);
+  }
+
   getHousekeeper(housekeeperId): Promise<any> {
     return this.http.get(Config.prefix.wApi + '/interface/housekeeper/getHousekeeper.ht?housekeeperId=' + housekeeperId)
       .toPromise()
@@ -141,6 +149,13 @@ export class EmployeeService {
       .catch(this.handleError);
   }
 
+  getPlanList(): Promise<any> {
+    return this.http.get(Config.prefix.wApi + '/interface/order/getPlanList.ht')
+      .toPromise()
+      .then(response => response)
+      .catch(this.handleError);
+  }
+
   getServiceAreaList(): Promise<any> {
     return this.http.get(Config.prefix.wApi + '/interface/housekeeper/getServiceAreaList.ht')
       .toPromise()
@@ -155,6 +170,8 @@ export class EmployeeService {
       .then(response => response)
       .catch(this.handleError);
   }*/
+
+
 
   reserveButler(body): Promise<any> {
     const prams = formDataToUrl(body);

@@ -2,7 +2,7 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule, ErrorHandler} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {HttpClientModule} from '@angular/common/http';
+import {HttpClientModule, HttpClientJsonpModule} from '@angular/common/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {AppRoutingModule} from './app-routing.module';
 import {ChartF2Module} from './modules/chart-f2';
@@ -45,6 +45,7 @@ import {COMPONENTS_DECLARATIONS} from './components';
 import {FRONT_PAGES_DECLARATIONS} from './pages/front';
 import {ADMIN_PAGES_DECLARATIONS} from './pages/admin';
 import {RECRUITMENT_PAGES_DECLARATIONS} from './pages/recruitment';
+import {GUIDE_PAGES_DECLARATIONS} from './pages/guide';
 import {WX_PAGES_DECLARATIONS} from './pages/wx';
 
 // directives
@@ -78,6 +79,7 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     ...FRONT_PAGES_DECLARATIONS,
     ...ADMIN_PAGES_DECLARATIONS,
     ...RECRUITMENT_PAGES_DECLARATIONS,
+    ...GUIDE_PAGES_DECLARATIONS,
     ...WX_PAGES_DECLARATIONS,
     ...DIRECTIVES_DECLARATIONS
   ],
@@ -87,6 +89,7 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     ReactiveFormsModule,
     AppRoutingModule,
     HttpClientModule,
+    HttpClientJsonpModule,
     BrowserAnimationsModule,
     CellModule.forRoot(),
     SwiperModule,

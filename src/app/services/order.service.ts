@@ -32,6 +32,28 @@ export class OrderService {
       .catch(this.handleError);
   }
 
+  getIntentServiceOrder(no: string): Promise<any> {
+    return this.http.get(Config.prefix.wApi + '/interface/order/getIntentServiceOrder.ht?orderNo=' + no)
+      .toPromise()
+      .then(response => response)
+      .catch(this.handleError);
+  }
+
+  relHousekeeperForIntent(body): Promise<any> {
+    body = formData(body);
+    return this.http.post(Config.prefix.wApi + '/interface/order/relHousekeeperForIntent.ht', body)
+      .toPromise()
+      .then(response => response)
+      .catch(this.handleError);
+  }
+
+  getContentByIntentOrderId(oid: string, hid): Promise<any> {
+    return this.http.get(Config.prefix.wApi + '/interface/order/getContentByIntentOrderId.ht?intentServiceOrderId=' + oid + '&housekeeperId=' + hid)
+      .toPromise()
+      .then(response => response)
+      .catch(this.handleError);
+  }
+
   getSurplusInfo(id: string): Promise<any> {
     return this.http.get(Config.prefix.wApi + '/interface/order/getSurplusInfo.ht?contId=' + id)
       .toPromise()

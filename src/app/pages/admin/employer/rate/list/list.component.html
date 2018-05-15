@@ -2,7 +2,30 @@
 
 <div class="content-scrollable">
 
-  <app-msg *ngIf="items?.length === 0" [msg]='{title:"暂无\"评价\"记录",desc:"您可以关注\"大牛管家\"公众号，获取最新活动消息。",cancel:"返回"}'></app-msg>
+  <div *ngIf="items?.length === 0" class="weui-msg">
+    <div class="weui-msg__icon-area">
+      <div class="weui-icon_msg">
+        <img src="/assets/images/icons/form.png">
+      </div>
+    </div>
+    <div class="weui-msg__text-area">
+      <h2 class="weui-msg__title">暂无需要处理的管家评价</h2>
+      <p class="weui-msg__desc">如果您已经雇佣了管家，请在下个月的1-5日进行评价</p>
+    </div>
+    <div class="weui-msg__opr-area">
+      <p class="weui-btn-area">
+        <a href="javascript:history.back();" class="weui-btn weui-btn_default">返回</a>
+      </p>
+    </div>
+    <div class="weui-msg__extra-area">
+      <div class="weui-footer">
+        <p class="weui-footer__links">
+          <a href="javascript:void(0);" class="weui-footer__link">大牛管家</a>
+        </p>
+        <p class="weui-footer__text">Copyright © 2008-2018 danius.cn</p>
+      </div>
+    </div>
+  </div>
 
   <div *ngFor="let item of items" class="weui-panel weui-panel_access">
     <div class="weui-panel__hd">订单编号：{{item.payno}} <span class="right">{{item.periodmonth}}</span></div>

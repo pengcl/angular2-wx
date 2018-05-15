@@ -1,13 +1,15 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, JsonpClientBackend} from '@angular/common/http';
 import 'rxjs/add/operator/toPromise';
 
 import {Config} from '../config';
+import {formData} from '../utils/utils';
 
 @Injectable()
 export class LogService {
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient,
+              private jsonp: JsonpClientBackend) {
   }
 
   _log(path, body): Promise<any> {
@@ -15,6 +17,14 @@ export class LogService {
       .toPromise()
       .then(response => response)
       .catch(this.handleError);
+  }
+
+  __log(operation) {
+    this.http.jsonp('http://m.yfq.cn/record/writeLog.html?loc=' + window.location.href + '&operation=' + operation, 'jsonpCallback').toPromise().then();
+  }
+
+  pageLoad(page) {
+    this.http.jsonp('http://m.yfq.cn/record/writeLog.html?loc=' + window.location.href + '&operation=' + 'load' + page, 'jsonpCallback').toPromise().then();
   }
 
   private handleError(error: any): Promise<any> {

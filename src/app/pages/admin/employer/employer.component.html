@@ -38,7 +38,7 @@
     </div>
 
     <div class="dashboard weui-panel">
-      <div class="weui-panel__title weui-panel__hd">我的事务</div>
+      <div class="weui-panel__title weui-panel__hd">个人中心</div>
       <div class="weui-panel__bd">
         <div class="weui-grids">
           <a [routerLink]="['/admin/employer/order/list']" class="weui-grid">
@@ -95,7 +95,7 @@
               </div>
             </div>
           </a>
-          <a [routerLink]="['/recruitment/index']" [queryParams]="{referee:employer?.mobile}" class="weui-grid">
+          <!--<a [routerLink]="['/recruitment/index']" [queryParams]="{referee:employer?.mobile}" class="weui-grid">
             <div class="item-box">
               <div class="img red">
                 <img src="/assets/images/icons/white/hire.png">
@@ -104,7 +104,7 @@
                 <div class="weui-grid__label">我的招募</div>
               </div>
             </div>
-          </a>
+          </a>-->
           <a (click)="onShare()" class="weui-grid">
             <div class="item-box">
               <div class="img green">
@@ -117,8 +117,8 @@
           </a>
           <a *ngIf="admin" [routerLink]="['/admin/backend/statistics']" class="weui-grid">
             <div class="item-box">
-              <div class="img green">
-                <img src="/assets/images/icons/white/we_fill_light.png">
+              <div class="img blue">
+                <img src="/assets/images/icons/white/ziliao.png">
               </div>
               <div class="txt">
                 <div class="weui-grid__label">信息管理</div>
@@ -133,5 +133,5 @@
 
 <div class="btns-group">
   <div routerLink="/admin/employer/feedback" class="btn-secondary no-state">意见反馈</div>
-  <div class="btn-secondary">联系客服</div>
+  <div (click)="contact()" class="btn-secondary">联系客服</div>
 </div>

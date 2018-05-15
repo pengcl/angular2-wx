@@ -1,9 +1,15 @@
 import {Component, OnInit, OnDestroy} from '@angular/core';
+import {Router, ActivatedRoute} from '@angular/router';
+import {Location, PlatformLocation} from '@angular/common';
 import {PageConfig} from './page.config';
 import {WxService} from '../../../modules/wx';
 import {UserService} from '../../../services/user.service';
 import {EmployerService} from '../../../services/employer.service';
 import {OrderService} from '../../../services/order.service';
+import {MeiqiaService} from '../../../services/meiqia.service';
+import {Config} from '../../../config';
+
+declare var wx: any;
 
 @Component({
   selector: 'app-admin-employer',
@@ -23,26 +29,23 @@ export class AdminEmployerComponent implements OnInit, OnDestroy {
     rate: 0
   };
 
-  constructor(private wx: WxService,
+  constructor(private router: Router,
+              private route: ActivatedRoute,
+              private wxSvc: WxService,
               private userSvc: UserService,
               private employerSvc: EmployerService,
-              private orderSvc: OrderService) {
+              private orderSvc: OrderService,
+              private meiqiaSvc: MeiqiaService) {
   }
 
   ngOnInit() {
     this.user = this.userSvc.isLogin();
 
-    this.wx.config({
-      title: '大牛管家诚聘优才',
-      desc: '欢迎广大有志于高端管家助理服务的退伍军人，体育专业毕业生踊跃报名！',
-      link: 'http://wap.danius.cn/front/resume/job',
-      imgUrl: 'http://wap.danius.cn/assets/images/front/resume/share-icon.png',
-      success: function () {
-        console.log('success');
-      },
-      cancel: function () {
-        console.log('cancel');
-      }
+    this.wxSvc.config({
+      title: '大牛管家, 只为牛人服务',
+      desc: '我们禀承“忠诚、安全、健康、舒心”的服务理念，旨在为全国高端商务人士及其家庭提供“安全防护、驾驶出行、科学运动”三大类日常综合管家服务。',
+      link: Config.webHost + '/assets/html/start.html',
+      imgUrl: Config.webHost + '/assets/images/guide/share.jpg'
     }).then(() => {
       // 其它操作，可以确保注册成功以后才有效
       console.log('注册成功');
@@ -54,14 +57,12 @@ export class AdminEmployerComponent implements OnInit, OnDestroy {
       if (res.code === 0) {
         this.employer = res.cust;
         this.admin = res.isUser;
-        console.log(res);
       }
     });
     this.employerSvc.getMyEmployees(this.user.id).then(res => {
       if (res.code === 0) {
         this.employees = res.list;
       } else {
-        console.log(res.msg);
       }
     });
 
@@ -80,12 +81,15 @@ export class AdminEmployerComponent implements OnInit, OnDestroy {
   }
 
   onShare() {
-    this.wx.show({}).subscribe(res => {
+    this.wxSvc.show({}).subscribe(res => {
     });
   }
 
+  contact() {
+    this.meiqiaSvc.show();
+  }
+
   ngOnDestroy() {
-    console.log('ngOnDestroy');
-    this.wx.destroyAll();
+    this.wxSvc.destroyAll();
   }
 }

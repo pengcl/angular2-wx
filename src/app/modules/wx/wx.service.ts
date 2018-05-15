@@ -14,10 +14,10 @@ const ua = navigator.userAgent.toLowerCase(); // window.navigator 对象包含�
 export class WxService extends BaseService {
 
   private static DEFAULTSHARE: any = {
-    title: '大牛管家',
-    desc: '专注于为中高端商务人士及其家庭提供安全防护、科学运动、驾驶出行等综合管家服务，致力于提高职场“大牛”工作效率、提升个人生活品质，打造“高效工作、美好生活”。',
-    link: 'http://wap.danius.cn/front/guide',
-    imgUrl: 'http://wap.danius.cn/assets/images/logo.png'
+    title: '大牛管家, 只为牛人服务',
+    desc: '我们禀承“忠诚、安全、健康、舒心”的服务理念，旨在为全国高端商务人士及其家庭提供“安全防护、驾驶出行、科学运动”三大类日常综合管家服务。',
+    link: Config.webHost + '/assets/html/start.html',
+    imgUrl: Config.webHost + '/assets/images/guide/share.jpg'
   };
 
   private openid: string;
