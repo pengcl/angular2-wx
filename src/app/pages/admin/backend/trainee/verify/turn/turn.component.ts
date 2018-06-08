@@ -62,8 +62,8 @@ export class AdminBackendTraineeVerifyTurnComponent implements OnInit {
       levelName: new FormControl('', [Validators.required]),
       expertiseIds: new FormControl('', [Validators.required]),
       expertiseNames: new FormControl('', [Validators.required]),
-      serviceAreaIds: new FormControl('', [Validators.required]),
-      serviceAreaNames: new FormControl('', [Validators.required]),
+      /*serviceAreaIds: new FormControl('', [Validators.required]),
+      serviceAreaNames: new FormControl('', [Validators.required]),*/
       commissionamount: new FormControl('', [Validators.required]),
       monthlypay: new FormControl('', [Validators.required]),
       servicetime: new FormControl('', [Validators.required])
@@ -79,8 +79,8 @@ export class AdminBackendTraineeVerifyTurnComponent implements OnInit {
         this.turnForm.get('levelName').disable();
         this.turnForm.get('expertiseIds').disable();
         this.turnForm.get('expertiseNames').disable();
-        this.turnForm.get('serviceAreaIds').disable();
-        this.turnForm.get('serviceAreaNames').disable();
+        /*this.turnForm.get('serviceAreaIds').disable();
+        this.turnForm.get('serviceAreaNames').disable();*/
         this.turnForm.get('commissionamount').disable();
         this.turnForm.get('monthlypay').disable();
         this.turnForm.get('servicetime').disable();
@@ -91,8 +91,8 @@ export class AdminBackendTraineeVerifyTurnComponent implements OnInit {
         this.turnForm.get('levelName').enable();
         this.turnForm.get('expertiseIds').enable();
         this.turnForm.get('expertiseNames').enable();
-        this.turnForm.get('serviceAreaIds').enable();
-        this.turnForm.get('serviceAreaNames').enable();
+        /*this.turnForm.get('serviceAreaIds').enable();
+        this.turnForm.get('serviceAreaNames').enable();*/
         this.turnForm.get('commissionamount').enable();
         this.turnForm.get('monthlypay').enable();
         this.turnForm.get('servicetime').enable();
@@ -174,7 +174,9 @@ export class AdminBackendTraineeVerifyTurnComponent implements OnInit {
     }
 
     this.traineeSvc.toHousekeeper(this.turnForm.value).then(res => {
-      console.log(res);
+      if (res.code === 0) {
+        window.history.back();
+      }
     });
 
 
@@ -201,5 +203,9 @@ export class AdminBackendTraineeVerifyTurnComponent implements OnInit {
         });
       }
     });*/
+  }
+
+  back() {
+    window.history.back();
   }
 }

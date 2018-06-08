@@ -88,20 +88,16 @@ export class AdminBackendTraineeListComponent implements OnInit {
   onLoadMore(comp: InfiniteLoaderComponent) {
     Observable.timer(500).subscribe(() => {
 
-      if (this.params.page < this.params.totalPage) {
-        this.params.page = this.params.page + 1;
-        this.traineeSvc.getCommons(this.params).then(res => {
-          if (res.code === 0) {
-            this.params.totalPage = res.totalPage;
-            this.trainees = this.trainees.concat(res.list);
+      this.params.page = this.params.page + 1;
+      this.traineeSvc.getTrainees(this.params).then(res => {
+        if (res.code === 0) {
+          this.trainees = this.trainees.concat(res.list);
+          if (res.page >= res.totalPage) {
+            comp.setFinished();
+            return;
           }
-        });
-      }
-
-      if (this.params.page === this.params.totalPage) {
-        comp.setFinished();
-        return;
-      }
+        }
+      });
 
       comp.resolveLoading();
     });

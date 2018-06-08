@@ -99,4 +99,8 @@ export class AdminBackendTraineeScoreComponent implements OnInit {
       }
     });
   }
+
+  back() {
+    window.history.back();
+  }
 }

@@ -19,7 +19,13 @@ import {SchoolService} from './school.service';
 import {ExamService} from './exam.service ';
 import {TraineeService} from './backend/trainee.service';
 import {TermService} from './backend/term.service';
+import {HousekeeperService} from './backend/housekeeper.service';
 import {MeiqiaService} from './meiqia.service';
+import {WorkService} from './work.service';
+import {BackendOrderService} from './backend/order.service';
+import {BackendLeaveService} from './backend/leave.service';
+
+import {SalesService} from './sales.service';
 
 export const SERVICES_DECLARATIONS = [
   GlobalService,
@@ -43,5 +49,10 @@ export const SERVICES_DECLARATIONS = [
   ExamService,
   TraineeService,
   TermService,
-  MeiqiaService
+  HousekeeperService,
+  MeiqiaService,
+  WorkService,
+  BackendOrderService,
+  BackendLeaveService,
+  SalesService
 ];

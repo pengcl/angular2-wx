@@ -11,7 +11,7 @@
             <input class="weui-input" [(ngModel)]="params.traineename" (ngModelChange)="inputChange(params.traineename)" type="text" name="Q_name_S" placeholder="查找姓名"></div>
         </div>
       </div>
-      <div class="date weui-flex__item">
+      <!--<div class="date weui-flex__item">
         <div class="weui-flex">
           <div (click)="showPicker('Q_begincreatetime_DL')" class="weui-flex__item">
             <div class="weui-cell">
@@ -26,7 +26,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </div>-->
     </div>
   </div>
 
@@ -51,7 +51,10 @@
         <td>{{item.name}}</td>
         <td>{{item.traineeno}}</td>
         <td>{{item.termname}}</td>
-        <td>{{item.traineetype === 0 ? '退伍士兵' : '体育生'}}</td>
+        <td>
+          <span *ngIf="item.traineetype === 1 || item.traineetype === 2">退伍士兵</span>
+          <span *ngIf="item.traineetype === 3">体育生</span>
+        </td>
         <td>{{item.totalPoints ? item.totalPoints : '未进行'}}</td>
       </tr>
       </tbody>

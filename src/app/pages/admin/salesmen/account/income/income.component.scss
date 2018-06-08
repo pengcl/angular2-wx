@@ -1,0 +1,26 @@
+.income-status {
+  background: #fff;
+  .weui-grid {
+    .weui-grid__num {
+      display: block;
+      text-align: center;
+    }
+  }
+  & + .weui-cell {
+    background: #fff;
+  }
+}
+
+.incomes {
+  .weui-media-box {
+    .weui-media-box__title {
+      margin-bottom: 0;
+    }
+    .weui-cell {
+      margin: 0 -0.15rem;
+      &:before {
+        display: none;
+      }
+    }
+  }
+}

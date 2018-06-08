@@ -3,7 +3,8 @@
 <div class="content-scrollable has-footer">
   <form novalidate [formGroup]="eventForm" (ngSubmit)="onSubmit()">
     <div class="weui-cells weui-cells_form">
-      <a (click)="onPickerShow('data','leaveTypeName')" class="weui-cell weui-cell_access" href="javascript:;">
+      <a (click)="onPickerShow('data','leaveTypeName')" class="weui-cell weui-cell_access"
+         [ngClass]="{'weui-cell_warn':isSubmit && eventForm.get('leaveTypeName').invalid}" href="javascript:;">
         <div class="weui-cell__bd">
           <p>请假类型</p>
         </div>
@@ -48,6 +49,18 @@
           <i class="weui-icon-warn"></i>
         </div>
       </a>
+      <div class="weui-cell" [ngClass]="{'weui-cell_warn':isSubmit && eventForm.get('leaveDay').invalid}">
+        <div class="weui-cell__hd">
+          <span class="weui-label">请假天数</span>
+        </div>
+        <div class="weui-cell__bd">
+          <input formControlName="leaveDay" weui-required class="weui-input" placeholder="请输入请假天数" value="">
+        </div>
+        <div class="weui-cell__ft">
+          天
+          <i class="weui-icon-warn"></i>
+        </div>
+      </div>
     </div>
 
     <div class="weui-cells__title">请假事由</div>
@@ -68,7 +81,8 @@
         <div class="weui-cell__bd">
           <textarea formControlName="remark" weui-required class="weui-textarea" placeholder="可不填写,请输入您的请假备注(不少于10个字)"
                     rows="3"></textarea>
-          <div class="weui-textarea-counter"><span>{{eventForm.value.remark.length ? eventForm.value.remark.length : 0}}</span>/200
+          <div class="weui-textarea-counter">
+            <span>{{eventForm.value.remark.length ? eventForm.value.remark.length : 0}}</span>/200
           </div>
         </div>
       </div>

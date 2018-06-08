@@ -111,7 +111,9 @@ export class AdminEmployeeClockInComponent implements OnInit {
           this.location.address = result.result.address;
           this.clockForm.get('address').setValue(result.result.address);
         });
-      });
+      }, (err) => {
+        this.dialog.show({content: '请打开授权或打开定位开关', cancel: '', confirm: '我知道了'}).subscribe();
+      }, {failTipFlag: true});
     });
   }
 

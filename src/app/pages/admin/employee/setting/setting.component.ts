@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {Router, ActivatedRoute} from '@angular/router';
 
 import 'rxjs/add/operator/switchMap';
 
@@ -7,6 +7,7 @@ import {PageConfig} from './page.config';
 import {WxService} from '../../../../modules/wx';
 import {UserService} from '../../../../services/user.service';
 import {EmployeeService} from '../../../../services/employee.service';
+import {StorageService} from '../../../../services/storage.service';
 import {Config} from '../../../../config';
 
 declare var $: any;
@@ -29,7 +30,9 @@ export class AdminEmployeeSettingComponent implements OnInit {
 
   housekeeper: any;
 
-  constructor(private route: ActivatedRoute,
+  constructor(private router: Router,
+              private route: ActivatedRoute,
+              private storageSvc: StorageService,
               private wx: WxService,
               private userSvc: UserService,
               private employeeSvc: EmployeeService) {
@@ -51,12 +54,18 @@ export class AdminEmployeeSettingComponent implements OnInit {
     this.user = this.userSvc.isLogin();
     this.employeeSvc.getHousekeeper(this.user.housekeeperId).then(res => {
       this.housekeeper = res.housekeeper;
+      console.log(this.housekeeper);
       const images = [];
       $.each(this.housekeeper.imageList, function (i, k) {
         images.push(k.imageurl);
       });
       this.images = images;
     });
+  }
+
+  logout() {
+    this.storageSvc.clear();
+    this.router.navigate(['/admin/login']);
   }
 
 }

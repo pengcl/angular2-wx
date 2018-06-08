@@ -420,6 +420,115 @@
     .space {
       height: 0.8rem;
     }
+
+    .weui-cells__title {
+      font-size: 0.15rem;
+      font-weight: bold;
+      color: #0F0F0F;
+    }
+
+    .weui-cells__title .right {
+      color: #4AA1DB;
+      font-size: 0.13rem;
+    }
+
+    .weui-cells__title p {
+      font-size: 0.12rem;
+      color: #CA9F4D;
+    }
+
+    .weui-cells__title.warn {
+      color: #EA5A2B;
+    }
+
+    .weui-cells.input-area:before, .weui-cells.input-area:after {
+      display: none;
+    }
+
+    .weui-cells.input-area .weui-cell {
+      font-size: 0.13rem;
+      margin: 0.15rem;
+      margin-left: 0;
+    }
+
+    .weui-cells.input-area .weui-cell:before {
+      display: none;
+    }
+
+    .weui-cells.input-area .weui-cell:after {
+      content: " ";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      height: 1px;
+      border-top: 1px solid #e5e5e5;
+      color: #e5e5e5;
+      -webkit-transform-origin: 0 0;
+      transform-origin: 0 0;
+      -webkit-transform: scaleY(0.5);
+      transform: scaleY(0.5);
+      left: 15px;
+      z-index: 2;
+    }
+
+    .weui-cells.input-area .weui-cell input, .weui-cells.input-area .weui-cell .weui-label {
+      height: 0.25rem;
+      line-height: 0.25rem;
+    }
+
+    .weui-grids:before, .weui-grids:after {
+      display: none;
+    }
+
+    .weui-grid:before, .weui-grid:after {
+      display: none;
+    }
+
+    .item-list {
+      margin: 0 0.075rem;
+    }
+
+    .item-list .list-item {
+      padding: 0;
+    }
+
+    .item-list .list-item .item-box {
+      margin: 0.075rem;
+      background: #F3F3F3;
+      border-radius: 0.04rem;
+      text-align: center;
+      line-height: 1;
+      font-size: 0.13rem;
+      padding: 0.1rem 0;
+      position: relative;
+    }
+
+    .item-list .list-item .item-box.curr {
+      background: #CA9F4D;
+      color: #fff;
+    }
+
+    .item-list .list-item .item-box .curr .tag {
+      display: block;
+    }
+
+    .item-list .list-item .item-box .tag {
+      position: absolute;
+      bottom: 0.05rem;
+      right: 0.05rem;
+      width: 0.14rem;
+      display: none;
+    }
+
+    .item-list .list-item .item-box .tag img {
+      display: block;
+      width: 100%;
+    }
+
+    .weui-btn-area {
+      margin: 0.15rem 0.15rem 0.3rem;
+    }
   </style>
 </head>
 <body>
@@ -490,6 +599,19 @@
   </div>
 
   <div class="title">
+    <div class="txt"><em>服务优势</em></div>
+    <div class="line">
+      <img src="/assets/images/guide/start/line.png">
+    </div>
+  </div>
+
+  <div class="good">
+    <div class="img-box">
+      <img src="/assets/images/guide/start/good-1.jpg">
+    </div>
+  </div>
+
+  <div class="title">
     <div class="txt"><em>服务等级</em></div>
     <div class="line">
       <img src="/assets/images/guide/start/line.png">
@@ -548,107 +670,67 @@
     </div>
   </div>
 
-  <div class="title">
-    <div class="txt"><em>服务优势</em></div>
+  <div id="reserve" class="title">
+    <div class="txt"><em>马上预约管家服务</em></div>
     <div class="line">
       <img src="/assets/images/guide/start/line.png">
     </div>
   </div>
-
-  <div class="good">
-    <div class="img-box">
-      <img src="/assets/images/guide/start/good-1.jpg">
+  <div class="check-customerName check-customerMobile weui-cells__title"
+       [ngClass]="{'warn':(subscribeForm.get('customerName').invalid && isSubmit) || (subscribeForm.get('customerMobile').invalid && isSubmit)}">
+    请您留下联系方式，以便我们登记安排管家
+    <p>大牛管家向您承诺，您所有资料均会严格保密，请放心填写。</p>
+  </div>
+  <div class="input-area weui-cells weui-cells_form">
+    <div id="iCustomerName" class="weui-cell">
+      <div class="weui-cell__hd"><span class="weui-label">您的称呼</span></div>
+      <div class="weui-cell__bd">
+        <input id="customerName" autocomplete="off" maxlength="4" minlength="2" required class="weui-input"
+               placeholder="如：李先生/李女士">
+      </div>
+      <div class="weui-cell__ft"><i class="weui-icon-warn"></i></div>
+    </div>
+    <div id="iCustomerMobile" class="weui-cell">
+      <div class="weui-cell__hd"><span class="weui-label">联系电话</span></div>
+      <div class="weui-cell__bd">
+        <input id="customerMobile" autocomplete="off" maxlength="11" minlength="11" required class="weui-input"
+               placeholder="请输入手机号码">
+      </div>
+      <div class="weui-cell__ft"><i class="weui-icon-warn"></i></div>
     </div>
   </div>
 
-  <!--<div class="title">
-    <div class="txt"><em>培训团队</em></div>
-    <div class="line">
-      <img src="/assets/images/guide/start/line.png">
-    </div>
-  </div>-->
-
-  <div class="teams-title">
-    <div class="weui-flex">
-      <div class="label weui-flex__item"></div>
-      <div class="value weui-flex__item">技能提高</div>
-      <div class="label weui-flex__item"></div>
-    </div>
+  <div class="check-serviceAreaId check-serviceAreaName weui-cells__title"
+       [ngClass]="{'warn':subscribeForm.get('serviceAreaId').invalid && isSubmit}">您所在的城市是？
   </div>
-
-  <div class="teams">
-    <div class="weui-flex">
-      <div class="label weui-flex__item">防卫教练 侯王军</div>
-      <div class="value weui-flex__item">武警“雪豹突击队”退役中校，资深防卫专家</div>
-    </div>
-    <div class="weui-flex">
-      <div class="label weui-flex__item">格斗教练 欧华成</div>
-      <div class="value weui-flex__item">曾获多省市职业搏击赛60公斤级冠军</div>
-    </div>
-    <div class="weui-flex">
-      <div class="label weui-flex__item">格斗教练 陈官龙</div>
-      <div class="value weui-flex__item">曾获多省市散打比赛60公斤、65公斤级冠军</div>
-    </div>
-    <div class="weui-flex">
-      <div class="label weui-flex__item">运动教练 郑洁纯</div>
-      <div class="value weui-flex__item">广州大学运动训练专业硕士，高级教师</div>
-    </div>
-    <div class="weui-flex">
-      <div class="label weui-flex__item">运动教练 欧&#12288;威</div>
-      <div class="value weui-flex__item">广东工业大学教师、运动防护师 、康复治疗师、体能训练师</div>
-    </div>
-    <div class="weui-flex">
-      <div class="label weui-flex__item">驾驶教练 吴晓锋</div>
-      <div class="value weui-flex__item">广州市交通运输职业学校，资深技师</div>
-    </div>
-  </div>
-
-  <div class="teams-sub-title">
-    <div class="weui-flex">
-      <div class="label weui-flex__item"></div>
-      <div class="value weui-flex__item">素质教育</div>
-      <div class="label weui-flex__item"></div>
-    </div>
-  </div>
-
-  <div class="teams-sub">
-    <div class="weui-flex">
-      <div class="label weui-flex__item">心理老师 刘志虎</div>
-      <div class="value weui-flex__item">陆军退役中校，南京陆军指挥学院硕士，原陆军特种作战学院副教授</div>
-    </div>
-    <div class="weui-flex">
-      <div class="label weui-flex__item">法律老师 李&#12288;江</div>
-      <div class="value weui-flex__item">中山大学法学学士、刑法学硕士</div>
-    </div>
-    <div class="weui-flex">
-      <div class="label weui-flex__item">礼仪老师 朱丽莉</div>
-      <div class="value weui-flex__item">高级礼仪培训师，国家中级化妆师</div>
-    </div>
-  </div>
-
-  <!--<div class="weui-btn-area" style="margin-bottom: 80px">
-    <a href="https://mp.weixin.qq.com/s/OOzH9G3URmezgjxJg3YrHA" class="weui-btn weui-btn_default">关于我们</a>
-  </div>-->
+  <div id="areas" class="item-list weui-grids"></div>
 
   <div class="space"></div>
-  e
   <div class="btns-group">
-    <a id="invite" class="btn-primary" href="/guide/step1">限量专属特权，特邀您体验!</a>
+    <a id="invite" class="btn-primary" onclick="submit()">马上提交预约</a>
   </div>
 
 </div>
 <script src="https://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
-<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
 <script src="/assets/js/extand.js"></script>
 <script>
   var $html = document.getElementsByTagName('html');
   var $body = document.getElementsByTagName('body');
   $html[0].style.fontSize = $body[0].clientWidth / 375 * 100 + 'px';
 
+  var gh = (function () {
+    var _gh = '';
+    if (localStorage.getItem("user")) {
+      _gh = JSON.parse(localStorage.getItem("user")).gh;
+    }
+    return _gh;
+  })();
+
   function _log(operation) {
     $.ajax({
       type: "get",
-      url: 'http://m.yfq.cn/record/writeLog.html?loc=' + window.location.href + '&operation=' + operation,
+      url: 'http://m.yfq.cn/record/writeLog.html?loc=' + window.location.href + '&operation=' + operation + '&gh=' + gh,
       dataType: "jsonp",
       jsonp: "callback",
       jsonpCallback: "callback",
@@ -666,6 +748,107 @@
   $('#invite').click(function () {
     _log('invite');
   });
+
+  /*areaid:10000098830758
+  areaname:"上海"*/
+
+  /*customerName: new FormControl('', [Validators.required]),
+    customerMobile: new FormControl('', [Validators.required, Validators.min(10000000000), Validators.max(19999999999), Validators.pattern(/^[0-9]*$/)]),
+    serviceAreaId: new FormControl('', [Validators.required]),
+    serviceAreaName: new FormControl('', [Validators.required]),*/
+  var customerName = '', customerMobile = '', serviceAreaId, serviceAreaName, _areas;
+
+  function getIndex(jsonArray, keyName, value) {
+    console.log(jsonArray, keyName, value);
+    for (var i = 0; i < jsonArray.length; i++) {
+      if (jsonArray[i][keyName] == value) {
+        return i;
+      }
+    }
+  }
+
+  function setArea(id) {
+    serviceAreaId = id;
+    var index = getIndex(_areas, 'areaid', id);
+    serviceAreaName = _areas[index].areaname;
+
+    $("#areas").find(".list-item").find('.item-box').removeClass('curr');
+    $("#areas").find(".list-item").eq(index).find('.item-box').addClass('curr');
+  }
+
+  $.ajax({
+    type: "get",
+    url: '/wApi/interface/housekeeper/getServiceAreaList.ht',
+    success: function (json) {
+      _areas = json.list;
+      var areas = '';
+      json.list.forEach(function (area) {
+        areas = areas + '<div onclick="setArea(' + area.areaid + ')" class="list-item weui-grid"><div class="item-box">' + area.areaname + '<span class="tag"><img src="/assets/images/guide/checked.png"></span></div></div>';
+        $("#areas").html(areas);
+      });
+    },
+    error: function () {
+
+    }
+  });
+
+
+  $('#customerName').bind('input propertychange', function () {
+    customerName = $(this).val();
+    if (!customerName || customerName.length < 2) {
+      $("#iCustomerName").addClass('weui-cell_warn');
+    } else {
+      $("#iCustomerName").removeClass('weui-cell_warn');
+    }
+  });
+
+  $('#customerMobile').bind('input propertychange', function () {
+    customerMobile = $(this).val();
+    if (!customerMobile || customerMobile.length !== 11) {
+      $("#iCustomerMobile").addClass('weui-cell_warn');
+    } else {
+      $("#iCustomerMobile").removeClass('weui-cell_warn');
+    }
+  });
+
+
+  function submit() {
+
+    $("html,body").animate({"scrollTop":10000});
+
+    if (!customerName || customerName.length < 2) {
+      $("#iCustomerName").addClass('weui-cell_warn');
+      return false;
+    }
+    if (!customerMobile || customerMobile.length !== 11) {
+      $("#iCustomerMobile").addClass('weui-cell_warn');
+      return false
+    }
+
+    console.log(serviceAreaId);
+
+    if (!serviceAreaId) {
+      alert('您的所在城市未填写');
+      return false;
+    }
+
+    $.ajax({
+      type: "get",
+      url: '/wApi/interface/order/intentSubmitOrder.ht?customerName=' + encodeURI(encodeURI(customerName)) + '&customerMobile=' + customerMobile + '&serviceAreaId=' + serviceAreaId + '&serviceAreaName=' + encodeURI(encodeURI(serviceAreaName)),
+      success: function (res) {
+        console.log(res);
+        if (res.code === 0) {
+          window.location.href = '/guide/step4?orderNo=' + res.orderNo;
+        } else {
+          alert(res.msg);
+        }
+      },
+      error: function () {
+
+      }
+    });
+    body = {}
+  }
 
   wx.ready(function (res) {
     wx.onMenuShareAppMessage({

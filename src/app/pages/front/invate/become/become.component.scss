@@ -1,0 +1,34 @@
+.content-scrollable {
+  background: #fff;
+  .banner {
+    margin: 0.2rem 0.15rem;
+    img {
+      display: block;
+      width: 100%;
+    }
+  }
+
+  .desc {
+    font-size: 0.15rem;
+    margin: 0.15rem;
+  }
+
+  .weui-cells {
+    font-size: 0.15rem;
+    &:before {
+      display: none;
+    }
+    .weui-label {
+      color: #999;
+    }
+  }
+  .weui-cells__tips {
+    color: #E6B85C;
+    font-size: 0.12rem;
+    margin-top: 0.15rem;
+  }
+
+  .weui-btn-area {
+    margin-bottom: 0.4rem;
+  }
+}

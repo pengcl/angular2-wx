@@ -1,0 +1,30 @@
+.customers {
+  .weui-media-box {
+    .weui-media-box__hd {
+      width: 0.5rem;
+      height: 0.5rem;
+      align-self: start;
+    }
+    .weui-media-box__bd {
+      .weui-media-box__title {
+        font-size: 0.14rem;
+      }
+      .weui-media-box__desc {
+        font-size: 0.12rem;
+      }
+      .weui-media-box__info {
+        font-size: 0.12rem;
+        .ui-label {
+          font-size: 0.12rem;
+          font-weight: normal;
+        }
+      }
+    }
+  }
+}
+
+table {
+  td {
+    text-align: center;
+  }
+}

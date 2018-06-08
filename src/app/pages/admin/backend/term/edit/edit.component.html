@@ -1,0 +1,46 @@
+<app-navbar [show]="true" [navBar]="navBarConfig"></app-navbar>
+
+<div class="content-scrollable has-nav">
+  <form [formGroup]="termForm">
+    <div class="weui-cells weui-cells_form">
+      <div class="weui-cell" [ngClass]="{'weui-cell_warn' : termForm.get('termName').errors && isSubmit}">
+        <div class="weui-cell__hd"><label class="weui-label">学期名称</label></div>
+        <div class="weui-cell__bd">
+          <input class="weui-input" formControlName="termName" type="text" placeholder="学期名称">
+        </div>
+        <div class="weui-cell__ft">
+          <i class="weui-icon-warn"></i>
+        </div>
+      </div>
+
+      <div class="weui-cell" [ngClass]="{'weui-cell_warn' : termForm.get('termNo').errors && isSubmit}">
+        <div class="weui-cell__hd"><label class="weui-label">学期编号</label></div>
+        <div class="weui-cell__bd">
+          <input class="weui-input" readonly formControlName="termNo" type="text" placeholder="学期编号">
+        </div>
+        <div class="weui-cell__ft">
+          <i class="weui-icon-warn"></i>
+        </div>
+      </div>
+
+      <div (click)="showPicker('startTime')" [ngClass]="{'weui-cell_warn' : termForm.get('startTime').errors && isSubmit}" class="weui-cell weui-cell_access">
+        <div class="weui-cell__hd"><label class="weui-label">开始时间</label></div>
+        <div class="weui-cell__bd">{{termForm.get('startTime').value ? termForm.get('startTime').value : '请选择开始时间'}}
+        </div>
+        <div class="weui-cell__ft"></div>
+      </div>
+
+      <div (click)="showPicker('endTime')" [ngClass]="{'weui-cell_warn' : termForm.get('endTime').errors && isSubmit}" class="weui-cell weui-cell_access">
+        <div class="weui-cell__hd"><label class="weui-label">结束时间</label></div>
+        <div class="weui-cell__bd">{{termForm.get('endTime').value ? termForm.get('endTime').value : '请选择结束时间'}}</div>
+        <div class="weui-cell__ft"></div>
+      </div>
+    </div>
+  </form>
+</div>
+
+<div class="btns-group">
+  <div (click)="back()" class="btn btn-secondary no-state">取消</div>
+  <div (click)="onSubmit()" class="btn btn-secondary no-state">确定</div>
+</div>
+

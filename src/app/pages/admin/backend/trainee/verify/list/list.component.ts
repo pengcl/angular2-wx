@@ -61,7 +61,6 @@ export class AdminBackendTraineeVerifyListComponent implements OnInit {
 
   inputChange(e) {
     this.params.page = 1;
-    this.trainees = [];
     this.getTrainees();
   }
 
@@ -69,7 +68,6 @@ export class AdminBackendTraineeVerifyListComponent implements OnInit {
     this.picker.showDateTime('date').subscribe((res: any) => {
       this.params[target] = res.formatValue;
       this.params.page = 1;
-      this.trainees = [];
       this.getTrainees();
     });
   }
@@ -77,20 +75,16 @@ export class AdminBackendTraineeVerifyListComponent implements OnInit {
   onLoadMore(comp: InfiniteLoaderComponent) {
     Observable.timer(500).subscribe(() => {
 
-      if (this.params.page < this.params.totalPage) {
-        this.params.page = this.params.page + 1;
-        this.traineeSvc.getCommons(this.params).then(res => {
-          if (res.code === 0) {
-            this.params.totalPage = res.totalPage;
-            this.trainees = this.trainees.concat(res.list);
+      this.params.page = this.params.page + 1;
+      this.traineeSvc.getCommons(this.params).then(res => {
+        if (res.code === 0) {
+          if (res.page >= res.totalPage) {
+            comp.setFinished();
+            return;
           }
-        });
-      }
-
-      if (this.params.page === this.params.totalPage) {
-        comp.setFinished();
-        return;
-      }
+          this.trainees = this.trainees.concat(res.list);
+        }
+      });
 
       comp.resolveLoading();
     });

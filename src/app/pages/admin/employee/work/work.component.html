@@ -1,0 +1,183 @@
+<app-navbar [navBar]="navBarConfig"></app-navbar>
+
+<weui-navbar class="work main">
+  <weui-tab heading="写周报">
+    <form [formGroup]="workForm">
+      <div class="weui-cells__title">工作周期 <em>({{theWeek.first | date : 'yyyy'}}年第{{theWeek.week}}周)</em></div>
+      <div class="weui-cells">
+        <div class="weui-cell" href="javascript:;">
+          <div class="weui-cell__bd">
+            <p>开始时间</p>
+          </div>
+          <div style="color: #999" class="weui-cell__ft">{{theWeek.first | date : 'yyyy-MM-dd'}}</div>
+        </div>
+        <div class="weui-cell" href="javascript:;">
+          <div class="weui-cell__bd">
+            <p>结束时间</p>
+          </div>
+          <div style="color: #999" class="weui-cell__ft">{{theWeek.last | date : 'yyyy-MM-dd'}}</div>
+        </div>
+      </div>
+      <div class="weui-cells__tips">请记录本周工作情况，可随时保存，每周日24点自动提交，请注意及时填写！</div>
+
+      <div class="weui-cells__title">*本周工作时间 <em>(周日前必须填写)</em></div>
+      <div class="weui-cells">
+        <a (click)="pickerShow('workDays')" class="weui-cell weui-cell_access">
+          <div class="weui-cell__bd">
+            <p>上班天数</p>
+          </div>
+          <div class="weui-cell__ft">{{workForm.get('workDays').value ? workForm.get('workDays').value + '天' : '请选择'}}
+          </div>
+        </a>
+        <a (click)="hoursPickerShow('workHours')" class="weui-cell weui-cell_access">
+          <div class="weui-cell__bd">
+            <p>上班小时数</p>
+          </div>
+          <div class="weui-cell__ft">{{workForm.get('workHours').value ? workForm.get('workHours').value :
+            '请选择'}}
+          </div>
+        </a>
+      </div>
+
+      <div class="weui-cells__title">*本周工作内容 <em>(周日前必须填写)</em></div>
+      <div class="weui-cells weui-cells_form nb">
+        <div class="weui-cell">
+          <div class="weui-cell__bd">
+            <textarea formControlName="content" class="weui-textarea" placeholder="例如： 1.驾驶：出车次数，行驶里程；2.日常接待次数、人数；3.陪同运动次数及内容；4.陪同出差次数和天数；5.接送孩子、陪同老人等情况。" rows="3"></textarea>
+          </div>
+        </div>
+      </div>
+
+      <div class="weui-cells__title">本周工作失误</div>
+      <div class="weui-cells weui-cells_form nb">
+        <div class="weui-cell">
+          <div class="weui-cell__bd">
+            <textarea formControlName="workMistake" class="weui-textarea" placeholder="简单描述，比如损坏物品、违反交规、误时误事等，务必如实填写，便于公司早做准备充分应对，避免客户投诉而公司不知情造成更多麻烦和更大损失。如无可不填。" rows="3"></textarea>
+          </div>
+        </div>
+      </div>
+
+      <div class="weui-cells__title">本周工作体会 <em>(周日前必须填写)</em></div>
+      <div class="weui-cells weui-cells_form nb">
+        <div class="weui-cell">
+          <div class="weui-cell__bd">
+            <textarea formControlName="workExperience" class="weui-textarea" placeholder="主要包括感受、经验、教训等，督促个人总结提高，供公司参考借鉴。"
+                      rows="3"></textarea>
+          </div>
+        </div>
+      </div>
+
+      <div class="weui-cells__title">意见和建议</div>
+      <div class="weui-cells weui-cells_form nb">
+        <div class="weui-cell">
+          <div class="weui-cell__bd">
+            <textarea formControlName="workOpinion" class="weui-textarea" placeholder="主要围绕“改进管理、改进培训、拓宽市场”，向公司提一些个人想法。如无可不填" rows="3"></textarea>
+          </div>
+        </div>
+      </div>
+
+      <div class="weui-btn-area">
+        <div class="weui-flex">
+          <div class="weui-flex__item">
+            <a weui-button [weui-loading]="loading" (click)="submit()" class="weui-btn weui-btn_primary">保存</a>
+          </div>
+          <div class="weui-flex__item">
+            <a (click)="back()" class="weui-btn weui-btn_default">退出</a>
+          </div>
+        </div>
+      </div>
+    </form>
+  </weui-tab>
+  <weui-tab heading="看周报" (select)="onSelect()">
+    <!--auditfeedback: "总结的不错，请继续努力！",
+    auditor: 1,
+    auditstatus: 1,
+    audittime: "2018-05-30 16:35:24",
+    begintime: "2018-05-21 00:00:00",
+    content: "主要接送领导和客户，周三帮领导开车去洗车，领导说以后每周三都要洗一次。另外替领导订了酒店周五晚上招待领导的客人，订金由我先付，但由于太匆忙，导致后来忘了订单弄丢了，后来和酒店沟通了，确定没有问题可以拿到位置。",
+    createBy: null,
+    createtime: "2018-05-26 00:00:00",
+    endtime: "2018-05-27 00:00:00",
+    housekeeperName: "Art3mis",
+    housekeeperid: "b3944c84-d9b0-4486-b3e2-a1c7433a3b5f",
+    iscomplete: null,
+    theweek: 48,
+    theyear: 2018,
+    title: "测试周报内容",
+    updateBy: null,
+    updatetime: null,
+    userName: "admin",
+    viewstatus: 0,
+    weeklyid: "1",
+    workdays: "5",
+    workexperience: "下次有类似垫付的情况，要第一时间把单据交给领导，避免出现尴尬情况",
+    workhours: "40",
+    workmistake: "订酒店的钱是我垫付的，但收据忘放哪里了，幸好及时和酒店沟通，拿到位置，但担心没收据不好给领导报销",
+    workopinion: "212121"-->
+    <div *ngFor="let week of weeks" class="weeks weui-panel">
+      <div class="weui-panel__hd">周期 {{week.theyear}}年第{{week.theweek}}周 {{week.begintime | repairDate | date :
+        'MM月dd日'}}~{{week.endtime | repairDate | date : 'MM月dd日'}}
+      </div>
+      <div class="weui-panel__bd">
+        <div class="weui-media-box weui-media-box_small-appmsg">
+          <div class="weui-cells">
+            <div class="weui-cell">
+              <div class="weui-cell__hd">
+                <div class="weui-label">工作时间</div>
+              </div>
+              <div class="weui-cell__bd weui-cell_primary">
+                <p>上班{{week.workdays}}天 共{{week.workhours}}小时</p>
+              </div>
+            </div>
+            <div class="weui-cell">
+              <div class="weui-cell__hd">
+                <div class="weui-label">工作内容</div>
+              </div>
+              <div class="weui-cell__bd weui-cell_primary">
+                <p>{{week.content || '无填写'}}</p>
+              </div>
+            </div>
+            <div class="weui-cell">
+              <div class="weui-cell__hd">
+                <div class="weui-label">工作失误</div>
+              </div>
+              <div class="weui-cell__bd weui-cell_primary">
+                <p>{{week.workmistake}}</p>
+              </div>
+            </div>
+            <div class="weui-cell">
+              <div class="weui-cell__hd">
+                <div class="weui-label">工作体会</div>
+              </div>
+              <div class="weui-cell__bd weui-cell_primary">
+                <p>{{week.workexperience || '无填写'}}</p>
+              </div>
+            </div>
+            <div class="weui-cell">
+              <div class="weui-cell__hd">
+                <div class="weui-label">意见和建议</div>
+              </div>
+              <div class="weui-cell__bd weui-cell_primary">
+                <p>{{week.workopinion}}</p>
+              </div>
+            </div>
+            <div class="feedback weui-cell">
+              <div class="weui-cell__hd">
+                <div class="weui-label">批复意见</div>
+              </div>
+              <div class="weui-cell__bd weui-cell_primary">
+                <p>{{week.auditfeedback}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="weui-panel__ft">
+        <a [routerLink]="['/admin/employee/work/item',week.weeklyid]" class="weui-cell weui-cell_access">
+          <div class="weui-cell__bd">查看详细</div>
+          <span class="weui-cell__ft"></span>
+        </a>
+      </div>
+    </div>
+  </weui-tab>
+</weui-navbar>

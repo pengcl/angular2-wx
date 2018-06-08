@@ -58,13 +58,24 @@
           </div>
           <div class="weui-uploader__bd">
             <ul class="weui-uploader__files" id="uploaderFiles">
-              <li *ngFor="let item of images;let i = index;" (click)="showGallery(i)" class="weui-uploader__file"
-                  [ngStyle]="{'background-image':'url(' + config.prefix.wApi + item + ')'}"></li>
+              <li *ngFor="let item of housekeeper?.imageList;let i = index;" (click)="showGallery(i)" class="weui-uploader__file"
+                  [ngClass]="{'weui-uploader__file_status': item.isapproval === 0 || item.isapproval === 2}"
+                  [ngStyle]="{'background-image':'url(' + config.prefix.wApi + item.imageurl + ')'}">
+                <div class="weui-uploader__file-content" *ngIf="item.isapproval === 0">审核中</div>
+                <div class="weui-uploader__file-content" *ngIf="item.isapproval === 2">审核不通过</div>
+              </li>
             </ul>
             <div routerLink="/admin/uploader/gallery" class="weui-uploader__input-box"></div>
           </div>
         </div>
       </div>
+    </div>
+  </div>
+
+  <div class="weui-cells">
+    <div (click)="logout()" class="weui-cell weui-cell_access">
+      <div class="weui-cell__bd">退出登录</div>
+      <div class="weui-cell__ft"></div>
     </div>
   </div>
 </div>

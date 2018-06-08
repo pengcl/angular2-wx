@@ -4,11 +4,11 @@
       <div class="weui-media-box__hd">
         <div class="avatar-box" [ngStyle]="{'background-image':'url(' + avatar + ')'}">
           <!-- 0-未预约(已毕业，未预约待业状态)，1-已预约（已预约非待业状态），2-可预约(未毕业，必须在到岗时间才能上岗) -->
-          <div class="state" [ngClass]="{'on':profile.issubscribe === 1,'off':profile.issubscribe !== 1}">
+          <!--<div class="state" [ngClass]="{'on':profile.issubscribe === 1,'off':profile.issubscribe !== 1}">
             <span *ngIf="profile.issubscribe === 0">未预约</span>
             <span *ngIf="profile.issubscribe === 1">已预约</span>
             <span *ngIf="profile.issubscribe === 2">可预约</span>
-          </div>
+          </div>-->
         </div>
       </div>
       <div class="weui-media-box__bd">

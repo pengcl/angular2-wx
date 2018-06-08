@@ -3,6 +3,7 @@ import {Router, ActivatedRoute} from '@angular/router';
 import {Location, PlatformLocation} from '@angular/common';
 import {PageConfig} from './page.config';
 import {WxService} from '../../../modules/wx';
+import {StorageService} from '../../../services/storage.service';
 import {UserService} from '../../../services/user.service';
 import {EmployerService} from '../../../services/employer.service';
 import {OrderService} from '../../../services/order.service';
@@ -29,7 +30,8 @@ export class AdminEmployerComponent implements OnInit, OnDestroy {
     rate: 0
   };
 
-  constructor(private router: Router,
+  constructor(private storageSvc: StorageService,
+              private router: Router,
               private route: ActivatedRoute,
               private wxSvc: WxService,
               private userSvc: UserService,
@@ -87,6 +89,11 @@ export class AdminEmployerComponent implements OnInit, OnDestroy {
 
   contact() {
     this.meiqiaSvc.show();
+  }
+
+  logout() {
+    this.storageSvc.clear();
+    this.router.navigate(['/admin/login']);
   }
 
   ngOnDestroy() {

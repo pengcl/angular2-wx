@@ -10,7 +10,8 @@ import {OrderService} from '../../../services/order.service';
 import {Config} from '../../../config';
 
 import {getRate} from '../../../utils/utils';
-import {RatingConfig} from 'ngx-weui';
+import {RatingConfig, DialogService} from 'ngx-weui';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-guide-step5',
@@ -39,6 +40,7 @@ export class GuideStep5Component implements OnInit {
   galleryCurrent = 0;
 
   housekeeper: any;
+  housekeeperId;
 
   rate = 0;
   score = {
@@ -48,9 +50,16 @@ export class GuideStep5Component implements OnInit {
 
   orderNo;
   order;
+  orderId;
+
+  contentForm: FormGroup;
+
+  isSubmit = false;
+  loading = false;
 
   constructor(private router: Router,
               private route: ActivatedRoute,
+              private dialogSvc: DialogService,
               private wx: WxService,
               private userSvc: UserService,
               private employeeSvc: EmployeeService,
@@ -65,16 +74,33 @@ export class GuideStep5Component implements OnInit {
   ngOnInit() {
     this.gh = this.route.snapshot.queryParams['gh'];
     this.orderNo = this.route.snapshot.queryParams['orderNo'];
+    this.housekeeperId = this.route.snapshot.params['id'];
+
     this.orderSvc.getIntentServiceOrder(this.orderNo).then(res => {
       this.order = res.intentServiceOrder;
-      console.log(res.intentServiceOrder.serviceorderid);
     });
+
+    this.contentForm = new FormGroup({
+      intentServiceOrderId: new FormControl('', [Validators.required]),
+      housekeeperId: new FormControl('', [Validators.required])
+    });
+
+    this.contentForm.get('housekeeperId').setValue(this.housekeeperId);
+
+    this.orderSvc.getIntentServiceOrder(this.orderNo)
+      .then(res => this.orderId = res.intentServiceOrder.serviceorderid)
+      .then(orderId => {
+        this.contentForm.get('intentServiceOrderId').setValue(orderId);
+      });
+
     this.route.paramMap.switchMap((params: ParamMap) => this.employeeSvc.getHousekeeper(params.get('id'))).subscribe(res => {
       this.housekeeper = res.housekeeper;
       const images = [];
 
       this.housekeeper.imageList.forEach(item => {
-        images.push(item.imageurl);
+        if (item.isapproval === 1) {
+          images.push(item.imageurl);
+        }
       });
 
       this.images = images;
@@ -108,5 +134,23 @@ export class GuideStep5Component implements OnInit {
     } else {
       this.imagesLen = 100;
     }
+  }
+
+  reserve() {
+    console.log(this.contentForm.value);
+    this.isSubmit = true;
+    if (this.loading || this.contentForm.invalid) {
+      return false;
+    }
+    this.loading = true;
+    this.orderSvc.relHousekeeperForIntent(this.contentForm.value).then(res => {
+      this.loading = false;
+      if (res.code === 0) {
+        this.router.navigate(['/guide/step7']);
+      } else {
+        this.dialogSvc.show({content: res.msg, cancel: '', confirm: '我知道了！'}).subscribe();
+      }
+      console.log(res);
+    });
   }
 }

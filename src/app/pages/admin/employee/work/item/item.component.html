@@ -1,0 +1,36 @@
+<app-navbar [navBar]="navBarConfig"></app-navbar>
+<div *ngIf="week" class="content-scrollable">
+  <div class="weui-panel">
+    <div class="weui-panel__hd">周期 {{week.theyear}}年第{{week.theweek}}周 {{week.begintime | repairDate | date :
+      'MM月dd日'}}~{{week.begintime | repairDate | date : 'MM月dd日'}}
+    </div>
+    <div class="weui-panel__bd">
+      <div class="weui-media-box weui-media-box_text">
+        <h4 class="weui-media-box__title">工作时间</h4>
+        <div class="weui-media-box__content">
+          <span *ngIf="week.workdays">上班{{week.workdays}}天 </span>
+          <span *ngIf="week.workhours">共{{week.workhours}}小时</span></div>
+      </div>
+      <div class="weui-media-box weui-media-box_text">
+        <h4 class="weui-media-box__title">工作内容</h4>
+        <div class="weui-media-box__content" [ngClass]="{'red':!week.content}">{{week.content || '无填写'}}</div>
+      </div>
+      <div class="weui-media-box weui-media-box_text">
+        <h4 class="weui-media-box__title">工作失误</h4>
+        <div class="weui-media-box__content">{{week.workmistake || '无填写'}}</div>
+      </div>
+      <div class="weui-media-box weui-media-box_text">
+        <h4 class="weui-media-box__title">工作体会</h4>
+        <div class="weui-media-box__content" [ngClass]="{'red':!week.workopinion}">{{week.workexperience || '无填写'}}</div>
+      </div>
+      <div class="weui-media-box weui-media-box_text">
+        <h4 class="weui-media-box__title">意见和建议</h4>
+        <div class="weui-media-box__content">{{week.workopinion || '无填写'}}</div>
+      </div>
+      <div class="weui-media-box weui-media-box_text">
+        <h4 class="weui-media-box__title">批复意见</h4>
+        <div class="feedback weui-media-box__content">{{week.auditfeedback || '无填写'}}</div>
+      </div>
+    </div>
+  </div>
+</div>

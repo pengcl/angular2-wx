@@ -58,4 +58,8 @@ export class AdminBackendTermAddComponent implements OnInit {
       window.history.back();
     });
   }
+
+  back() {
+    window.history.back();
+  }
 }

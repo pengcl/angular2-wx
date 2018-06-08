@@ -27,13 +27,14 @@
     </div>
   </div>
 
-  <div *ngFor="let item of orderList;let i = index" class="order-item weui-panel weui-panel_access">
+  {{item.payState.periods?.length}}
+  <div *ngFor="let item of orderList;let i = index" [ngClass]="{'hide' : item.payState.periods?.length > 0}" class="order-item weui-panel weui-panel_access">
     <div class="weui-panel__hd">大牛管家服务费 <span *ngIf="item.payState.periods.length > 0">(预付{{item.payState.currPeriod.name}})</span> <span *ngIf="item.payState.periods.length > 0" class="right">{{item.payState.currPeriod.paid === item.payState.currPeriod.amount ? '已支付' : '未支付'}}</span>
     </div>
     <div class="weui-panel__bd">
       <div *ngFor="let prod of item.employees" class="weui-media-box weui-media-box_appmsg">
         <div class="weui-media-box__bd">
-          <p class="weui-media-box__desc">合同编号：{{item.no}} <span *ngIf="item.payState.currPeriod.no !== item.payState.periods[0].no">查看协议</span></p>
+          <p class="weui-media-box__desc">合同编号：{{item.no}} <span *ngIf="item.payState.currPeriod?.no !== item.payState.periods[0]?.no">查看协议</span></p>
           <p class="weui-media-box__desc">订单时间：{{item.meta.startAt}}</p>
           <p class="weui-media-box__desc">预定人员：{{prod.name.split('')[0]}}管家, 工号：{{prod.no}}</p>
           <p *ngIf="item.payState.periods.length > 0" class="weui-media-box__desc">管家月费：￥{{item.payState.currPeriod.amount - item.payState.currPeriod.paid}} <span routerLink="/admin/employer/order/fqa" class="right">关于支付限额？</span></p>
@@ -100,7 +101,7 @@
     <div class="weui-panel__ft">
       <div class="weui-cell weui-cell_link">
         <div class="weui-cell__bd">支付金额：<sub>￥</sub><em>{{item.orderamount}}</em></div>
-        <!--<div class="weui-cell__ft"><span class="ui-label radius colors gold" [routerLink]="['/guide/step4']" [queryParams]="{orderNo:item.orderno}" *ngIf="item.ispass !== 2 && item.paystatus === 2">去选管家</span></div>-->
+        <div class="weui-cell__ft"><span (click)="reservePay(item.orderno)" class="ui-label radius colors gold" *ngIf="item.paystatus === 1">去支付</span><!--<span class="ui-label radius colors gold" [routerLink]="['/guide/step4']" [queryParams]="{orderNo:item.orderno}" *ngIf="item.ispass !== 2 && item.paystatus === 2">去选管家</span>--></div>
       </div>
     </div>
   </div>

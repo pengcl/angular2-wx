@@ -1,10 +1,10 @@
 <app-navbar [navBar]="navBarConfig"></app-navbar>
 
-<div class="content-scrollable">
+<div *ngIf="user" class="content-scrollable">
 
   <div class="user-info weui-panel">
     <div class="weui-panel__bd">
-      <div href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg">
+      <div class="weui-media-box weui-media-box_appmsg">
         <div class="weui-media-box__hd">
           <img class="avatar weui-media-box__thumb"
                src="{{employer?.headimageurl ? employer.headimageurl : '/assets/images/logo.png'}}"
@@ -14,6 +14,7 @@
           <h4 class="weui-media-box__title">{{employer?.cust_name}}</h4>
           <p class="weui-media-box__desc">广东 广州</p>
         </div>
+        <div (click)="logout()" class="weui-media-box__ft">退出</div>
       </div>
     </div>
   </div>
@@ -41,42 +42,42 @@
       <div class="weui-panel__title weui-panel__hd">个人中心</div>
       <div class="weui-panel__bd">
         <div class="weui-grids">
-          <a [routerLink]="['/admin/employer/order/list']" class="weui-grid">
+          <a *ngIf="!admin" [routerLink]="['/admin/employer/order/list']" class="weui-grid">
             <div class="item-box">
               <div class="img red">
-                <img src="/assets/images/icons/white/form_fill_light.png">
+                <img src="/assets/images/icons/employer/form.png">
               </div>
               <div class="txt">
                 <div class="weui-grid__label">我的订单</div>
               </div>
             </div>
           </a>
-          <a [routerLink]="['/admin/employer/employees']" class="weui-grid">
+          <a *ngIf="!admin" [routerLink]="['/admin/employer/employees']" class="weui-grid">
             <div class="item-box">
               <div class="img green">
-                <img src="/assets/images/icons/white/friend_fill.png">
+                <img src="/assets/images/icons/employer/employee.png">
               </div>
               <div class="txt">
                 <div class="weui-grid__label">我的管家</div>
               </div>
             </div>
           </a>
-          <a *ngIf="contractList?.length > 0"
+          <a *ngIf="contractList?.length > 0 && !admin"
              [routerLink]="['/admin/employer/employees/employee/attendance',contractList[0]?.housekeeperid]"
              class="weui-grid">
             <div class="item-box">
               <div class="img yellow">
-                <img src="/assets/images/icons/white/exit.png">
+                <img src="/assets/images/icons/employer/signs.png">
               </div>
               <div class="txt">
                 <div class="weui-grid__label">管家考勤</div>
               </div>
             </div>
           </a>
-          <a [routerLink]="['/admin/employer/rate/list']" class="weui-grid">
+          <a *ngIf="!admin" [routerLink]="['/admin/employer/rate/list']" class="weui-grid">
             <div class="item-box">
               <div class="img yellow">
-                <img src="/assets/images/icons/white/favor_fill_light.png">
+                <img src="/assets/images/icons/employer/favor.png">
                 <span *ngIf="count.rate > 0" class="weui-badge">{{count.rate}}</span>
               </div>
               <div class="txt">
@@ -87,7 +88,7 @@
           <a [routerLink]="['/admin/employer/message']" class="weui-grid">
             <div class="item-box">
               <div class="img blue">
-                <img src="/assets/images/icons/white/community_fill_light.png">
+                <img src="/assets/images/icons/employer/community.png">
                 <span *ngIf="count.msg > 0" class="weui-badge">{{count.msg}}</span>
               </div>
               <div class="txt">
@@ -108,20 +109,40 @@
           <a (click)="onShare()" class="weui-grid">
             <div class="item-box">
               <div class="img green">
-                <img src="/assets/images/icons/white/we_fill_light.png">
+                <img src="/assets/images/icons/employer/invite.png">
               </div>
               <div class="txt">
                 <div class="weui-grid__label">推荐好友</div>
               </div>
             </div>
           </a>
+          <a *ngIf="admin" routerLink="/admin/employee/school/index" class="weui-grid">
+            <div class="item-box">
+              <div class="img blue">
+                <img src="/assets/images/icons/employee/school.png">
+              </div>
+              <div class="txt">
+                <div class="weui-grid__label">大牛课堂</div>
+              </div>
+            </div>
+          </a>
           <a *ngIf="admin" [routerLink]="['/admin/backend/statistics']" class="weui-grid">
             <div class="item-box">
               <div class="img blue">
-                <img src="/assets/images/icons/white/ziliao.png">
+                <img src="/assets/images/icons/employer/ziliao.png">
               </div>
               <div class="txt">
                 <div class="weui-grid__label">信息管理</div>
+              </div>
+            </div>
+          </a>
+          <a *ngIf="admin" [routerLink]="['/admin/article/list']" class="weui-grid">
+            <div class="item-box">
+              <div class="img blue">
+                <img src="/assets/images/icons/employer/book.png">
+              </div>
+              <div class="txt">
+                <div class="weui-grid__label">资料库</div>
               </div>
             </div>
           </a>

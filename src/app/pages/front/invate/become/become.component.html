@@ -1,0 +1,69 @@
+<div class="content-scrollable">
+  <div class="banner">
+    <img src="/assets/images/front/invite/banner.png">
+  </div>
+  <p class="desc">{{userInfo?.cust_name}}诚意邀请您成为大牛管家渠道推广员！成为渠道推广员后，您可以向客户推销大牛管家服务，每成功销售一位客户（支付月费），您将获得xxx元佣金！</p>
+  <form [formGroup]="becomeForm">
+    <div class="weui-cells">
+      <div class="weui-cell" [ngClass]="{'weui-cell_warn':becomeForm.get('name').invalid && isSubmit}">
+        <div class="weui-cell__hd"><label class="weui-label">申请人</label></div>
+        <div class="weui-cell__bd">
+          <input formControlName="name" class="weui-input" type="text" placeholder="请输入申请人名称">
+        </div>
+        <div *ngIf="becomeForm.get('name').invalid && isSubmit" class="weui-cell__ft">
+          <i class="weui-icon-warn"></i>
+        </div>
+      </div>
+      <div class="weui-cell" [ngClass]="{'weui-cell_warn':becomeForm.get('mobile').invalid && isSubmit}">
+        <div class="weui-cell__hd"><label class="weui-label">联系手机</label></div>
+        <div class="weui-cell__bd">
+          <input formControlName="mobile" class="weui-input" type="tel" placeholder="请输入联系手机号码">
+        </div>
+        <div *ngIf="becomeForm.get('mobile').invalid && isSubmit" class="weui-cell__ft">
+          <i class="weui-icon-warn"></i>
+        </div>
+      </div>
+      <div class="weui-cell" [ngClass]="{'weui-cell_warn':becomeForm.get('idcard').invalid && isSubmit}">
+        <div class="weui-cell__hd"><label class="weui-label">身份证号</label></div>
+        <div class="weui-cell__bd">
+          <input formControlName="idcard" class="weui-input" type="tel" placeholder="请输入身份证号码">
+        </div>
+        <div *ngIf="becomeForm.get('idcard').invalid && isSubmit" class="weui-cell__ft">
+          <i class="weui-icon-warn"></i>
+        </div>
+      </div>
+      <div class="weui-cell" [ngClass]="{'weui-cell_warn':becomeForm.get('bankName').invalid && isSubmit}">
+        <div class="weui-cell__hd"><label class="weui-label">开户行</label></div>
+        <div class="weui-cell__bd">
+          <input formControlName="bankName" class="weui-input" type="text" placeholder="请输入银行账号">
+        </div>
+        <div *ngIf="becomeForm.get('bankName').invalid && isSubmit" class="weui-cell__ft">
+          <i class="weui-icon-warn"></i>
+        </div>
+      </div>
+      <div class="weui-cell" [ngClass]="{'weui-cell_warn':becomeForm.get('accountNo').invalid && isSubmit}">
+        <div class="weui-cell__hd"><label class="weui-label">银行账号</label></div>
+        <div class="weui-cell__bd">
+          <input formControlName="accountNo" class="weui-input" type="tel" placeholder="请输入银行账号">
+        </div>
+        <div *ngIf="becomeForm.get('accountNo').invalid && isSubmit" class="weui-cell__ft">
+          <i class="weui-icon-warn"></i>
+        </div>
+      </div>
+      <div class="weui-cell" [ngClass]="{'weui-cell_warn':becomeForm.get('accountName').invalid && isSubmit}">
+        <div class="weui-cell__hd"><label class="weui-label">账户名</label></div>
+        <div class="weui-cell__bd">
+          <input formControlName="accountName" class="weui-input" type="text" placeholder="请输入账户名">
+        </div>
+        <div *ngIf="becomeForm.get('accountName').invalid && isSubmit" class="weui-cell__ft">
+          <i class="weui-icon-warn"></i>
+        </div>
+      </div>
+    </div>
+    <div class="weui-cells__tips">*以上资料大牛管家承诺只作渠道人员身份验证及佣金发放时使用，不会对外使用及泄露，请放心填写。</div>
+    <div class="weui-btn-area">
+      <a weui-button (click)="submit()" [weui-loading]="loading" class="weui-btn weui-btn_primary">确定</a>
+    </div>
+  </form>
+</div>
+

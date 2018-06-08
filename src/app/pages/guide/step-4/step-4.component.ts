@@ -18,9 +18,13 @@ export class GuideStep4Component implements OnInit {
   navBarConfig = PageConfig.navBar;
 
   lists;
-  currLists;
-  page = 1;
-  pageSize = 10;
+
+  params = {
+    serviceAreaId: '',
+    levelId: '',
+    synthetical: '',
+    page: 1
+  };
 
   /*inConfig: InfiniteLoaderConfig = {
     finished: `<div class="weui-btn-area"><a weui-button [weui-loading]="loading" class="weui-btn weui-btn_primary">支付订金￥300</a></div>`
@@ -51,29 +55,24 @@ export class GuideStep4Component implements OnInit {
 
     this.orderNo = this.route.snapshot.queryParams['orderNo'];
 
-    const body = {
-      serviceAreaId: '',
-      levelId: '',
-      synthetical: ''
-    };
-
-    this.employeeSvc.getIntentList(body).then(res => {
-      console.log(res);
+    this.employeeSvc.getIntentList(this.params).then(res => {
       this.lists = res.list;
-      this.currLists = res.list.slice(0, this.pageSize);
     });
   }
 
   onLoadMore(comp: InfiniteLoaderComponent) {
-    Observable.timer(1000).subscribe(() => {
+    Observable.timer(1500).subscribe(() => {
 
-      this.page = this.page + 1;
-      this.currLists = this.lists.slice(0, this.pageSize * this.page); // 获取当前页数据
-
-      if (this.currLists.length >= this.lists.length) {
-        comp.setFinished();
-        return;
-      }
+      this.params.page = this.params.page + 1;
+      this.employeeSvc.getIntentList(this.params).then(res => {
+        this.lists = this.lists.concat(res.list);
+        console.log(res.page, res.totalPage);
+        if (res.page >= res.totalPage) {
+          console.log('finished');
+          comp.setFinished();
+          return;
+        }
+      });
 
       comp.resolveLoading();
     });

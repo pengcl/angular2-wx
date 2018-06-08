@@ -1,0 +1,46 @@
+<div class="content-scrollable">
+  <div *ngIf="reseller" class="customers">
+    <div class="weui-panel">
+      <div class="weui-panel__bd">
+        <a class="weui-media-box weui-media-box_appmsg">
+          <div class="weui-media-box__bd">
+            <h4 class="weui-media-box__title">{{reseller.cust_name}}（{{reseller.mobile}}） <span class="right">{{reseller.createtime.split(' ')[0]}}</span>
+            </h4>
+            <p class="weui-media-box__desc">备注：{{reseller.refereeremark || '无'}}<span (click)="showUpdateChannel(reseller)" class="right">修改备注</span></p>
+            <ul class="weui-media-box__info">
+              <li class="weui-media-box__info__meta">预订单数：{{intentOrderCount || 0}}</li>
+              <li class="weui-media-box__info__meta">有效合同数：{{contOrderCount || 0}}</li>
+              <!--<li class="weui-media-box__info__meta weui-media-box__info__meta_extra">总佣金：￥1200</li>-->
+            </ul>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="weui-panel">
+    <div class="weui-panel__bd">
+      <div class="weui-media-box">
+        <table class="ui celled table">
+          <thead>
+          <tr>
+            <th>时间</th>
+            <th>预订单数</th>
+            <th>有效合同数</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngIf="statistics?.length === 0">
+            <td colspan="3">没有数据</td>
+          </tr>
+          <tr *ngFor="let item of statistics">
+            <td>{{item.month}}</td>
+            <td>{{item.intentCount}}</td>
+            <td>{{item.contCount}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

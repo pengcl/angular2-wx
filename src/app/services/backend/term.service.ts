@@ -32,6 +32,13 @@ export class TermService {
       .catch(this.handleError);
   }
 
+  getTerm(id): Promise<any> {// 获取学期列表
+    return this.http.get(Config.prefix.wApi + '/interface/backgroup/getTerm.ht?termId=' + id)
+      .toPromise()
+      .then(response => response)
+      .catch(this.handleError);
+  }
+
   saveTerm(body): Promise<any> {// 获取学期列表
     body = formData(body);
     return this.http.post(Config.prefix.wApi + '/interface/backgroup/saveTerm.ht', body)

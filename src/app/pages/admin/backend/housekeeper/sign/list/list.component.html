@@ -1,0 +1,91 @@
+<app-navbar [show]="true" [navBar]="navBarConfig"></app-navbar>
+<weui-infiniteloader (loadmore)="onLoadMore($event)" #comp>
+  <div class="weui-cells__title">Home > 管家管理 > 管家考勤</div>
+  <div class="filter-date weui-cells weui-cells_form">
+    <div class="weui-flex">
+      <div class="search weui-flex__item">
+        <div class="weui-cell">
+          <div class="weui-cell__hd"><span class="icon-search"></span></div>
+          <div class="weui-cell__bd">
+            <input class="weui-input" [(ngModel)]="params.name" (ngModelChange)="inputChange(params.name)"
+                   type="text" name="name" placeholder="查找姓名"></div>
+        </div>
+      </div>
+      <div class="level weui-flex__item">
+        <div (click)="showPicker()" class="weui-cell">
+          <div class="weui-cell__bd">
+
+            <div class="weui-cell__ft">{{workState.label}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="weui-flex">
+      <div (click)="showPickerDate('Q_begincreatetime_DL')" class="weui-flex__item">
+        <div class="weui-cell">
+          <div class="weui-cell__hd"><span class="icon-doc-chart"></span></div>
+          <div class="weui-cell__bd">{{params.Q_begincreatetime_DL ? params.Q_begincreatetime_DL : '起始日期'}}</div>
+        </div>
+      </div>
+      <div (click)="showPickerDate('Q_endcreatetime_DG')" class="weui-flex__item">
+        <div class="weui-cell">
+          <div class="weui-cell__hd">至</div>
+          <div class="weui-cell__bd">{{params.Q_endcreatetime_DG ? params.Q_endcreatetime_DG : '结束日期'}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--actualcheckintime : "2018-05-24 12:08:27"
+  actualcheckouttime : null
+  checkintime : null
+  checkouttime : null
+  createBy : null
+  createtime : "2018-05-24 12:08:27"
+  endaddress : null
+  endcoordinate : null
+  errcount : 0
+  housekeeperid : "b3944c84-d9b0-4486-b3e2-a1c7433a3b5f"
+  housekeepername : "Art3mis"
+  housekeeperno : "GJ201804030038"
+  ifOnduty : null
+  locationstate : null
+  mobile : null
+  signcount : 1
+  signid : 64
+  signremark : "没有备注可不可以？"
+  signstate : 1
+  signstateremark : null
+  startaddress : "广东省广州市天河区天府路1号"
+  startcoordinate : "23.12463,113.36199"
+  updateBy : null
+  updatetime : null-->
+
+  <div *ngIf="signs" class="table-content">
+    <table class="result ui celled table">
+      <thead>
+      <tr>
+        <th>管家<br/>姓名</th>
+        <th>编号</th>
+        <th>等级</th>
+        <th>打卡<br/>天数</th>
+        <th>异常<br/>天数</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngIf="signs.length === 0">
+        <td colspan="5" style="text-align: center">
+          没有数据
+        </td>
+      </tr>
+      <tr [routerLink]="['/admin/backend/housekeeper/sign/item',item.housekeeperid]" *ngFor="let item of signs">
+        <td>{{item.housekeepername}}</td>
+        <td>{{item.housekeeperno}}</td>
+        <td>{{item.levelname}}</td>
+        <td>{{item.signcount}}</td>
+        <td>{{item.errcount}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</weui-infiniteloader>

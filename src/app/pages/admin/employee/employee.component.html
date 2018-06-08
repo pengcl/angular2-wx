@@ -1,6 +1,6 @@
 <app-navbar [navBar]="navBarConfig"></app-navbar>
 
-<div class="content-scrollable has-footer">
+<div *ngIf="user" class="content-scrollable has-footer">
 
   <div class="user-info weui-panel weui-panel_access" *ngIf="userInfo">
     <div class="weui-panel__bd">
@@ -44,27 +44,28 @@
           <a routerLink="/admin/employee/clockIn" class="weui-grid">
             <div class="item-box">
               <div class="img red">
-                <img src="/assets/images/icons/white/location_fill.png">
+                <img src="/assets/images/icons/employee/location.png">
               </div>
               <div class="txt">
                 <div class="weui-grid__label">打卡</div>
               </div>
             </div>
           </a>
-          <a routerLink="/admin/employee/setting" class="weui-grid">
+          <a routerLink="/admin/employee/work" class="weui-grid">
             <div class="item-box">
-              <div class="img green">
-                <img src="/assets/images/icons/white/profile_fill.png">
+              <div class="img blue">
+                <img src="/assets/images/icons/employee/work.png">
               </div>
               <div class="txt">
-                <div class="weui-grid__label">个人资料</div>
+                <div class="weui-grid__label">我的周报</div>
               </div>
             </div>
           </a>
+
           <a routerLink="/admin/employee/message" class="weui-grid">
             <div class="item-box">
               <div class="img yellow">
-                <img src="/assets/images/icons/white/community_fill_light.png">
+                <img src="/assets/images/icons/employee/community.png">
                 <span *ngIf="count.msg > 0" class="weui-badge">{{count.msg}}</span>
               </div>
               <div class="txt">
@@ -75,7 +76,7 @@
           <a routerLink="/admin/employee/service" class="weui-grid">
             <div class="item-box">
               <div class="img yellow">
-                <img src="/assets/images/icons/white/repair_fill.png">
+                <img src="/assets/images/icons/employee/repair.png">
               </div>
               <div class="txt">
                 <div class="weui-grid__label">我的服务</div>
@@ -85,7 +86,7 @@
           <a routerLink="/admin/employee/school/index" class="weui-grid">
             <div class="item-box">
               <div class="img blue">
-                <img src="/assets/images/icons/white/selection_fill.png">
+                <img src="/assets/images/icons/employee/school.png">
               </div>
               <div class="txt">
                 <div class="weui-grid__label">大牛课堂</div>
@@ -95,27 +96,40 @@
           <a routerLink="/admin/employee/school/exam/index" class="weui-grid">
             <div class="item-box">
               <div class="img blue">
-                <img src="/assets/images/icons/white/selection_fill.png">
+                <img src="/assets/images/icons/employee/exam.png">
               </div>
               <div class="txt">
                 <div class="weui-grid__label">在线考试</div>
               </div>
             </div>
           </a>
+
           <a routerLink="/admin/employee/ADM" class="weui-grid">
             <div class="item-box">
               <div class="img green">
-                <img src="/assets/images/icons/white/edit.png">
+                <img src="/assets/images/icons/employee/edit.png">
               </div>
               <div class="txt">
                 <div class="weui-grid__label">行政</div>
               </div>
             </div>
           </a>
+
+          <a [routerLink]="['/admin/article/list']" class="weui-grid">
+            <div class="item-box">
+              <div class="img blue">
+                <img src="/assets/images/icons/employer/book.png">
+              </div>
+              <div class="txt">
+                <div class="weui-grid__label">资料库</div>
+              </div>
+            </div>
+          </a>
+
           <a *ngIf="admin" [routerLink]="['/admin/backend/statistics']" class="weui-grid">
             <div class="item-box">
               <div class="img green">
-                <img src="/assets/images/icons/white/we_fill_light.png">
+                <img src="/assets/images/icons/employer/ziliao.png">
               </div>
               <div class="txt">
                 <div class="weui-grid__label">信息管理</div>

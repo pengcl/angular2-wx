@@ -1,5 +1,84 @@
-<section *ngIf="show" id="menu" class="overthrow">
-  <a href="javascript:;" class="">
+<section id="menu" class="overthrow">
+  <weui-accordion [collapsible]="false">
+    <weui-accordion-panel [disabled]="false" class="weui-accordion-panel">
+      <div class="heading" heading>
+        <a class="weui-cell weui-cell_access" href="javascript:;">
+          <div class="weui-cell__bd">报名管理</div>
+        </a>
+      </div>
+      <div class="content">
+        <div class="weui-cells">
+          <a class="weui-cell" routerLink="/admin/backend/resume/list/twb">
+            <div class="weui-cell__bd">退伍士兵</div>
+          </a>
+          <!--<a class="weui-cell" routerLink="/admin/backend/resume/list/tys">
+            <div class="weui-cell__bd">体育专业生</div>
+          </a>-->
+          <a class="weui-cell" routerLink="/admin/backend/statistics">
+            <div class="weui-cell__bd">报名数据统计</div>
+          </a>
+        </div>
+      </div>
+    </weui-accordion-panel>
+    <weui-accordion-panel [disabled]="false" class="weui-accordion-panel">
+      <div class="heading" heading>
+        <a class="weui-cell weui-cell_access" href="javascript:;">
+          <div class="weui-cell__bd">培训管理</div>
+        </a>
+      </div>
+      <div class="content">
+        <div class="weui-cells">
+          <a class="weui-cell" routerLink="/admin/backend/trainee/list">
+            <div class="weui-cell__bd">学员信息</div>
+          </a>
+          <a class="weui-cell" routerLink="/admin/backend/term/list">
+            <div class="weui-cell__bd">学期管理</div>
+          </a>
+        </div>
+      </div>
+    </weui-accordion-panel>
+    <weui-accordion-panel [disabled]="false" class="weui-accordion-panel">
+      <div class="heading" heading>
+        <a class="weui-cell weui-cell_access" href="javascript:;">
+          <div class="weui-cell__bd">管家管理</div>
+        </a>
+      </div>
+      <div class="content">
+        <div class="weui-cells">
+          <a class="weui-cell" routerLink="/admin/backend/trainee/verify/list">
+            <div class="weui-cell__bd">转管家审核</div>
+          </a>
+          <a class="weui-cell" routerLink="/admin/backend/housekeeper/list">
+            <div class="weui-cell__bd">管家信息</div>
+          </a>
+          <a class="weui-cell" routerLink="/admin/backend/housekeeper/leave/list">
+            <div class="weui-cell__bd">管家请假审核</div>
+          </a>
+          <a class="weui-cell" routerLink="/admin/backend/housekeeper/sign/list">
+            <div class="weui-cell__bd">管家考勤</div>
+          </a>
+          <a class="weui-cell" routerLink="/admin/backend/housekeeper/week/list">
+            <div class="weui-cell__bd">管家周报</div>
+          </a>
+        </div>
+      </div>
+    </weui-accordion-panel>
+    <weui-accordion-panel [disabled]="false" class="weui-accordion-panel">
+      <div class="heading" heading>
+        <a class="weui-cell weui-cell_access" href="javascript:;">
+          <div class="weui-cell__bd">客户管理</div>
+        </a>
+      </div>
+      <div class="content">
+        <div class="weui-cells">
+          <a class="weui-cell" routerLink="/admin/backend/order/list">
+            <div class="weui-cell__bd">订单信息</div>
+          </a>
+        </div>
+      </div>
+    </weui-accordion-panel>
+  </weui-accordion>
+  <!--<a href="javascript:;" class="">
         <span class="wrapper-menu-item">
           <span class="icon-profile"></span>
           <span class="title-menu">报名<br>管理</span>
@@ -28,5 +107,5 @@
           <span class="icon-user"></span>
           <span class="title-menu">首页</span>
         </span>
-  </a>
+  </a>-->
 </section>

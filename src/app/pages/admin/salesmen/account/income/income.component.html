@@ -1,0 +1,34 @@
+<div class="content-scrollable">
+  <div class="income-status weui-grids">
+    <div class="weui-grid">
+      <div class="weui-grid__num">￥{{incomeCount?.monthAmount || 0}}</div>
+      <div class="weui-grid__label">本月佣金收入</div>
+    </div>
+    <div class="weui-grid">
+      <div class="weui-grid__num">￥{{incomeCount?.allAmount || 0}}</div>
+      <div class="weui-grid__label">佣金累计收入</div>
+    </div>
+    <div class="weui-grid">
+      <div class="weui-grid__num">￥{{incomeCount?.lockAmount || 0}}</div>
+      <div class="weui-grid__label">提现中佣金</div>
+    </div>
+  </div>
+  <div class="weui-cell weui-cell_access">
+    <div class="weui-cell__bd">当前佣金：￥{{userInfo?.balance || 0}}</div>
+    <div routerLink="/admin/salesmen/account/withdraw" class="weui-cell__ft">提现</div>
+  </div>
+
+  <div class="incomes weui-panel">
+    <div class="weui-panel__hd">佣金明细</div>
+    <div class="weui-panel__bd">
+      <div *ngFor="let income of incomeList" class="weui-media-box weui-media-box_text">
+        <h4 class="weui-media-box__title">{{income.type === 1 ? '客户雇佣管家' : '佣金提取'}} <span class="right">{{income.createtime.split(' ')[0]}}</span></h4>
+        <div class="weui-cell">
+          <div class="weui-cell__bd"><span *ngIf="income.type === 1">客户：{{income.custName}}</span></div>
+          <div class="weui-cell__bd"><span *ngIf="income.type === 1">管家级别：{{income.levelName}}</span></div>
+          <div class="weui-cell__ft">佣金：{{income.type === 1 ? '+' : '-'}}￥{{income.commision}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

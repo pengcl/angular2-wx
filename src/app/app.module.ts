@@ -21,7 +21,11 @@ import {
   TabModule,
   ToastModule,
   ProgressModule,
-  ChartG2Module
+  ChartG2Module,
+  AccordionModule,
+  GalleryModule,
+  SearchBarModule,
+  FormModule
 } from 'ngx-weui';
 import {WxModule} from './modules/wx';
 
@@ -33,7 +37,7 @@ import {VgBufferingModule} from 'videogular2/buffering';
 // pipes
 import {EmployeesPipe} from './pipes/employees.pipe';
 import {RenamePipe} from './pipes/rename.pipe';
-import {WeekPipe, CallbackPipe, RepairSrcPipe, RepairDatePipe} from './pipes/pipes.pipe';
+import {WeekPipe, CallbackPipe, RepairSrcPipe, RepairDatePipe, FollowCountPipe} from './pipes/pipes.pipe';
 
 // services
 import {SERVICES_DECLARATIONS} from './services';
@@ -73,6 +77,7 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     RepairSrcPipe,
     RepairDatePipe,
     CallbackPipe,
+    FollowCountPipe,
     AppComponent,
     AppPayComponent,
     ...COMPONENTS_DECLARATIONS,
@@ -97,7 +102,7 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     PickerModule.forRoot(),
     ChartF2Module,
     RatingModule.forRoot(),
-    WxModule,
+    WxModule.forRoot(),
     CountdownModule,
     InfiniteLoaderModule.forRoot(),
     DialogModule.forRoot(),
@@ -111,7 +116,11 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     VgOverlayPlayModule,
     VgBufferingModule,
     MenuModule.forRoot(),
-    ChartG2Module.forRoot()
+    ChartG2Module.forRoot(),
+    AccordionModule.forRoot(),
+    GalleryModule.forRoot(),
+    SearchBarModule.forRoot(),
+    FormModule.forRoot()
   ],
   providers: [
     ...SERVICES_DECLARATIONS,
@@ -120,6 +129,7 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     CallbackPipe,
     RepairSrcPipe,
     RepairDatePipe,
+    FollowCountPipe,
     {
       provide: SWIPER_CONFIG,
       useValue: DEFAULT_SWIPER_CONFIG

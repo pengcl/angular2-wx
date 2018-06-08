@@ -1,0 +1,50 @@
+<app-navbar [navBar]="navBarConfig"></app-navbar>
+<div *ngIf="week" class="content-scrollable">
+  <div class="weui-panel">
+    <div class="weui-panel__hd">周期 {{week.theyear}}年第{{week.theweek}}周 {{week.begintime | repairDate | date :
+      'MM月dd日'}}~{{week.endtime | repairDate | date : 'MM月dd日'}}
+    </div>
+    <div class="weui-panel__bd">
+      <div class="weui-media-box weui-media-box_text">
+        <h4 class="weui-media-box__title">工作时间</h4>
+        <div class="weui-media-box__content" [ngClass]="{'red' : !week.content}">上班{{week.workdays}}天 共{{week.workhours}}小时</div>
+      </div>
+      <div class="weui-media-box weui-media-box_text">
+        <h4 class="weui-media-box__title">工作内容</h4>
+        <div class="weui-media-box__content" [ngClass]="{'red' : !week.content}">{{week.content ? week.content : '无填写'}}</div>
+      </div>
+      <div class="weui-media-box weui-media-box_text">
+        <h4 class="weui-media-box__title">工作失误</h4>
+        <div class="weui-media-box__content">{{week.workmistake ? week.workmistake : '无'}}</div>
+      </div>
+      <div class="weui-media-box weui-media-box_text">
+        <h4 class="weui-media-box__title">工作体会</h4>
+        <div class="weui-media-box__content" [ngClass]="{'red' : !week.workexperience}">{{week.workexperience ? week.workexperience : '无填写'}}</div>
+      </div>
+      <div class="weui-media-box weui-media-box_text">
+        <h4 class="weui-media-box__title">意见和建议</h4>
+        <div class="weui-media-box__content">{{week.workopinion ? week.workopinion : '无'}}</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="weui-cells__title">批复意见 <span *ngIf="week.auditstatus !== 1">(未批复)</span></div>
+  <div [formGroup]="auditForm" class="weui-cells weui-cells_form">
+    <a (click)="onPickerShow()" class="weui-cell weui-cell_access">
+      <div class="weui-cell__bd">
+        <p>快捷批复</p>
+      </div>
+      <div class="weui-cell__ft">{{auditForm.get('auditFeedback').value ? auditForm.get('auditFeedback').value : '请选择快捷批复内容'}}</div>
+    </a>
+    <div class="weui-cell" [ngClass]="{'weui-cell_warn' : auditForm.get('auditFeedback').invalid && isSubmit}">
+      <div class="weui-cell__bd">
+        <!--readonly="week.auditstatus !== 1"-->
+        <textarea readonly="week.auditstatus === 1" formControlName="auditFeedback" class="weui-textarea" placeholder="您的批复内容" rows="3"></textarea>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="week.auditstatus !== 1" class="weui-btn-area">
+    <a (click)="submit()" weui-button [weui-loading]="loading" class="weui-btn weui-btn_primary">批复</a>
+  </div>
+</div>

@@ -78,7 +78,7 @@
 
   </div>
 
-  <div *ngIf="housekeeper?.workexperience" class="weui-panel weui-panel_access">
+  <div *ngIf="housekeeper?.introduction" class="weui-panel weui-panel_access">
     <div class="weui-panel__hd">
       <a href="javascript:void(0);" class="weui-cell weui-cell_access">
         <div class="weui-cell__title weui-cell__bd">管家简介</div>
@@ -87,16 +87,24 @@
     <div class="weui-panel__bd">
       <div class="weui-media-box weui-media-box_appmsg">
         <div class="weui-media-box__bd">
-          <p class="weui-media-box__desc">{{housekeeper.introduction}}</p>
+          <p class="housekeeper_desc weui-media-box__desc">{{housekeeper.introduction}}</p>
         </div>
       </div>
     </div>
   </div>
 
   <div class="weui-btn-area">
-    <a *ngIf="housekeeper" [routerLink]="['/guide/step6',housekeeper.housekeeperid]" [queryParams]="{orderNo:orderNo}"
-       [userTrack]="'reserve'"
-       class="weui-btn weui-btn_primary">雇佣他</a>
+    <div class="weui-flex">
+      <div class="reserve weui-flex__item">
+        <a *ngIf="housekeeper" (click)="reserve()" [userTrack]="'reserve'"
+           class="weui-btn weui-btn_primary">预约他</a>
+      </div>
+      <div class="other weui-flex__item">
+        <a *ngIf="housekeeper" [routerLink]="['/guide/step4']" [queryParams]="{orderNo:orderNo}"
+           [userTrack]="'reserve'"
+           class="weui-btn weui-btn_default">看看其他</a>
+      </div>
+    </div>
   </div>
 
 </div>

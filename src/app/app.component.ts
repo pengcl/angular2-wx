@@ -24,6 +24,7 @@ export class AppComponent implements ErrorHandler {
   }
 
   handleError(error: any): void {
+    console.log(error);
     const _error = {
       platform: this.ua.getPlatform(),
       isWx: this.ua.isWx(),

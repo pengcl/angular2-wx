@@ -1,0 +1,56 @@
+.weeks.weui-panel {
+  margin-top: 0;
+  &:before, &:after {
+    display: none;
+  }
+  &:before {
+    display: block;
+  }
+  .weui-panel__hd {
+    font-size: 0.14rem;
+    color: #CA9F4D;
+    &:after {
+      display: none;
+    }
+  }
+  .weui-panel__ft {
+    .weui-cell {
+      .weui-cell__bd {
+        text-align: right;
+        color: #666;
+      }
+    }
+  }
+  .weui-media-box_small-appmsg {
+    .weui-cells {
+      font-size: 0.14rem;
+      &:before, &:after {
+        display: none;
+      }
+      .weui-cell {
+        &:before, &:after {
+          display: none;
+        }
+        .weui-cell__hd {
+          color: #999;
+        }
+        .weui-cell__bd {
+          color: #0F0F0F;
+          p {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2;
+          }
+        }
+
+        &.feedback {
+          .weui-cell__bd {
+            color: #CA9F4D;
+          }
+        }
+      }
+    }
+  }
+}

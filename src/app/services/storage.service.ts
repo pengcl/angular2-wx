@@ -1,4 +1,3 @@
-
 export class StorageService {
 
   public localStorage: any;
@@ -28,5 +27,9 @@ export class StorageService {
 
   public remove(key: string): any {
     this.localStorage.removeItem(key);
+  }
+
+  public clear(): any {
+    this.localStorage.clear();
   }
 }

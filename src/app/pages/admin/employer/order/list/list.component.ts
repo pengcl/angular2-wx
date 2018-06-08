@@ -74,6 +74,10 @@ export class AdminEmployerOrderListComponent implements OnInit {
     }
   }
 
+  reservePay(no) {
+    window.location.href = 'http://pay.danius.cn/interface/payment/gotoPay.ht?orderNo=' + no;
+  }
+
   payAll(id) {
     this.router.navigate(['/admin/employer/order/underline', id]);
   }

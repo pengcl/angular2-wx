@@ -139,3 +139,29 @@
     }
   }
 }
+
+table {
+  tr {
+    td {
+      font-size: 0.9em;
+      text-align: center;
+      &.label {
+        width: 4em;
+      }
+      &.value {
+        &.red {
+          color: #db2828;
+        }
+      }
+    }
+  }
+  &.result {
+    tr {
+      td {
+        &.value {
+          text-align: left;
+        }
+      }
+    }
+  }
+}

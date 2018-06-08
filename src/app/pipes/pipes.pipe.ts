@@ -87,3 +87,20 @@ export class RepairDatePipe implements PipeTransform {
     return value;
   }
 }
+
+@Pipe({
+  name: 'followCount',
+  pure: false
+})
+export class FollowCountPipe implements PipeTransform {
+  transform(items: any[]): any {
+    const data: any[] = [];
+    if (!items) {
+      return [];
+    }
+
+    return items.filter(item => {
+      return item['followCount'] === 1;
+    });
+  }
+}

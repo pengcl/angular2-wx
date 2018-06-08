@@ -10,8 +10,8 @@ export class MessagesService {
   constructor(private http: HttpClient) {
   }
 
-  getMessages(customerId, type) {
-    return this.http.get(Config.prefix.wApi + '/interface/message/getList.ht?custId=' + customerId + '&type=' + type)
+  getMessages(customerId) {
+    return this.http.get(Config.prefix.wApi + '/interface/message/getList.ht?custId=' + customerId)
       .toPromise()
       .then(response => response)
       .catch(this.handleError);

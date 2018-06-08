@@ -1,0 +1,121 @@
+<app-navbar [show]="true" [navBar]="navBarConfig"></app-navbar>
+
+<div class="action-panel weui-cells">
+  <div class="weui-cell">
+    <div class="weui-cell__bd">Home > 客户管理 > 订单管理 > {{type === '0' ? '意向订单' : '佣金订单'}}</div>
+  </div>
+  <div class="weui-cell weui-cell_access">
+    <div class="weui-cell__hd"><span (click)="back()" class="ui-label hollow radius">返回列表</span></div>
+    <div class="weui-cell__bd"></div>
+  </div>
+</div>
+<div class="content-scrollable has-nav">
+
+  <div class="trainee-info">
+
+    <div class="weui-cells__title">客户订单信息</div>
+    <div *ngIf="order">
+      <table *ngIf="type === '0'" class="resume ui celled table">
+        <tbody>
+        <tr>
+          <td class="label">客户姓名</td>
+          <td class="value">{{order.customername}}</td>
+          <td class="label">客户手机号</td>
+          <td class="value">{{order.customermobile}}</td>
+        </tr>
+        <tr>
+          <td class="label">订单号</td>
+          <td class="value">{{order.orderno}}</td>
+          <td class="label">订单类型</td>
+          <td class="value">{{type === '0' ? '意向订单' : '佣金订单'}}</td>
+        </tr>
+        <tr>
+          <td class="label">下单时间</td>
+          <td colspan="3" class="value">{{order.createtime}}</td>
+        </tr>
+        <tr>
+          <td class="label">订单金额</td>
+          <td class="value">￥{{order.orderamount}}</td>
+          <td class="label">订单状态</td>
+          <td class="value">
+            <span *ngIf="order.paystatus === 1">未支付</span>
+            <span *ngIf="order.paystatus === 2">已支付</span>
+            <span *ngIf="order.paystatus === 3">部分支付</span>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+
+      <table *ngIf="type === '1'" class="resume ui celled table">
+        <tbody>
+        <tr>
+          <td class="label">客户姓名</td>
+          <td class="value">{{order.customername}}</td>
+          <td class="label">客户手机号</td>
+          <td class="value">{{order.customermobile}}</td>
+        </tr>
+        <tr>
+          <td class="label">订单号</td>
+          <td class="value">{{order.orderno}}</td>
+          <td class="label">订单类型</td>
+          <td class="value">{{type === '0' ? '意向订单' : '佣金订单'}}</td>
+        </tr>
+        <tr>
+          <td class="label">订单内容</td>
+          <td colspan="3" class="value">{{order.createtime}}</td>
+        </tr>
+        <tr>
+          <td class="label">订单生成时间</td>
+          <td colspan="3" class="value">{{order.createtime}}</td>
+        </tr>
+        <tr>
+          <td class="label">订单金额</td>
+          <td class="value">￥{{order.orderamount}}</td>
+          <td class="label">订单状态</td>
+          <td class="value">
+            <span *ngIf="order.paystatus === 1">未支付</span>
+            <span *ngIf="order.paystatus === 2">已支付</span>
+            <span *ngIf="order.paystatus === 3">部分支付</span>
+          </td>
+        </tr>
+        <tr>
+          <td class="label">订单备注</td>
+          <td colspan="3" class="value">{{order.createtime}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="weui-cells__title">客户订单信息</div>
+    <table *ngIf="housekeeper" class="resume ui celled table">
+      <tbody>
+      <tr>
+        <td class="label">姓名</td>
+        <td class="value">{{housekeeper.name}}</td>
+        <td class="label">编号</td>
+        <td class="value">{{housekeeper.housekeeperno}}</td>
+      </tr>
+      <tr>
+        <td class="label">手机号</td>
+        <td class="value">{{housekeeper.mobile}}</td>
+        <td class="label">级别</td>
+        <td class="value">{{housekeeper.levelname}}</td>
+      </tr>
+      <tr>
+        <td class="label">月薪</td>
+        <td class="value">{{housekeeper.commissionamount}}</td>
+        <td class="label">佣金</td>
+        <td class="value">{{housekeeper.monthlypay}}</td>
+      </tr>
+      <tr>
+        <td class="label">服务城市</td>
+        <td colspan="3" class="value">{{housekeeper.serviceareanames}}</td>
+      </tr>
+      <tr>
+        <td class="label">成为管家时间</td>
+        <td colspan="3" class="value">{{housekeeper.createtime.split(' ')[0]}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

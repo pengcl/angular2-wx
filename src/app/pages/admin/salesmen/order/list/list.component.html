@@ -1,0 +1,79 @@
+<app-navbar [navBar]="navBarConfig"></app-navbar>
+<weui-navbar>
+  <weui-tab heading="客户订单" (select)="setAgentType(2)">
+
+    <div class="filter-nav weui-flex">
+      <div (click)="setOrderType('order')" [ngClass]="{'curr':orderType === 'order'}" class="weui-flex__item">合同</div>
+      <div (click)="setOrderType('intent')" [ngClass]="{'curr':orderType === 'intent'}" class="weui-flex__item">预定</div>
+    </div>
+    <div class="filter-filters">
+      <div class="weui-cell weui-cell_access">
+        <div class="weui-cell__bd"><span *ngIf="!filterMonth">所有：{{orders?.length}}</span><span *ngIf="filterMonth">本月：{{orders?.length}}</span></div>
+        <div (click)="pickerShow()" class="weui-cell__ft">
+          <span *ngIf="!filterPay && filterPay !== ''">筛选</span>
+          <span *ngIf="filterPay || filterPay === ''">
+            <span *ngIf="filterPay === ''">全部</span>
+            <span *ngIf="filterPay === '1'">未支付</span>
+            <span *ngIf="filterPay === '2'">已支付</span>
+          </span>
+        </div>
+        <div (click)="pickerDateShow()" class="weui-cell__ft">{{filterMonth || '时间'}}</div>
+      </div>
+    </div>
+    <div class="orders weui-panel">
+      <div class="weui-panel__bd">
+        <a *ngFor="let order of orders" href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg">
+          <div *ngIf="orderType === 'order'" class="weui-media-box__bd">
+            <h4 class="weui-media-box__title">{{order.custname}}（{{order.mobile}}） <span class="right">{{order.createtime.split(' ')[0]}}</span>
+            </h4>
+            <p class="weui-media-box__desc">备注：{{order.refereeremark || '无'}} <span class="right"><span
+              *ngIf="order.paystatus === 1">未支付</span><span *ngIf="order.paystatus === 2">已支付</span><span
+              *ngIf="order.paystatus === 3">部分支付</span></span></p>
+            <p class="weui-media-box__desc">合同编号：{{order.conno}} <span class="right">管家：{{order.housekeepername}}</span>
+            </p>
+            <p class="weui-media-box__desc">月费：￥{{order.monthamount || 0}} <span class="right">佣金：<span
+              *ngIf="order.commision">￥{{order.commision}}</span><span *ngIf="!order.commision">未结算</span></span></p>
+          </div>
+          <div *ngIf="orderType === 'intent'" class="weui-media-box__bd">
+            <h4 class="weui-media-box__title">{{order.customername}}（{{order.customermobile}}） <span class="right">{{order.createtime.split(' ')[0]}}</span>
+            </h4>
+            <p class="weui-media-box__desc">备注：{{order.refereeremark || '无'}} <span class="right">支付预订金：300</span></p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </weui-tab>
+  <weui-tab *ngIf="userInfo?.distributor_type === 1" heading="渠道订单" (select)="setAgentType(1)">
+    <div class="filter-filters">
+      <div class="weui-cell weui-cell_access">
+        <div class="weui-cell__bd"><span *ngIf="!filterMonth">所有：{{orders?.length}}</span><span *ngIf="filterMonth">本月：{{orders?.length}}</span></div>
+        <div (click)="pickerShow()" class="weui-cell__ft">筛选</div>
+        <div (click)="pickerDateShow()" class="weui-cell__ft">时间</div>
+      </div>
+    </div>
+    <weui-searchbar (search)="onSearch($event)" (cancel)="onCancel()" (clear)="onClear()"
+                    (submit)="onSubmit($event)"></weui-searchbar>
+    <div class="orders weui-panel">
+      <div class="weui-panel__bd">
+        <a *ngFor="let order of orders" href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg">
+          <div *ngIf="orderType === 'order'" class="weui-media-box__bd">
+            <h4 class="weui-media-box__title">{{order.custname}}（{{order.mobile}}） <span class="right">{{order.createtime.split(' ')[0]}}</span>
+            </h4>
+            <p class="weui-media-box__desc">备注：{{order.refereeremark}} <span class="right"><span
+              *ngIf="order.paystatus === 1">未支付</span><span *ngIf="order.paystatus === 2">已支付</span><span
+              *ngIf="order.paystatus === 3">部分支付</span></span></p>
+            <p class="weui-media-box__desc">合同编号：{{order.conno}} <span class="right">管家：{{order.housekeepername}}</span>
+            </p>
+            <p class="weui-media-box__desc">月费：￥{{order.monthamount || 0}} <span class="right">佣金：<span
+              *ngIf="order.commision">￥{{order.commision}}</span><span *ngIf="!order.commision">未结算</span></span></p>
+          </div>
+          <div *ngIf="orderType === 'intent'" class="weui-media-box__bd">
+            <h4 class="weui-media-box__title">{{order.customername}}（{{order.customermobile}}） <span class="right">{{order.createtime.split(' ')[0]}}</span>
+            </h4>
+            <p class="weui-media-box__desc">备注：{{order.refereeremark || '无'}} <span class="right">支付预订金：300</span></p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </weui-tab>
+</weui-navbar>

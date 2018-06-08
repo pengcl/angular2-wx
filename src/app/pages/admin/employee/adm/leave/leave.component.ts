@@ -49,6 +49,7 @@ export class AdminEmployeeADMLeaveComponent implements OnInit {
       isNeedHousekeeper: new FormControl('', []),
       startDate: new FormControl('', [Validators.required]),
       endDate: new FormControl('', [Validators.required]),
+      leaveDay: new FormControl('', [Validators.required, Validators.min(0), Validators.max(30)]),
       eventTitle: new FormControl('', [Validators.required, Validators.minLength(1), Validators.maxLength(200)]),
       remark: new FormControl('', [Validators.minLength(1), Validators.maxLength(200)])
     });
@@ -81,7 +82,7 @@ export class AdminEmployeeADMLeaveComponent implements OnInit {
       case 'data':
         this.picker.show(this.leaveTypeList, '', [0], {confirm: '确定'}).subscribe((res: any) => {
           this.eventForm.get(formControlName).setValue(res.value);
-          this.eventForm.get('leaveType').setValue(this.leaveType[getIndex(this.leaveType, 'label', res.value)]);
+          this.eventForm.get('leaveType').setValue(this.leaveType[getIndex(this.leaveType, 'label', res.value)].value);
         });
         break;
     }
@@ -96,36 +97,38 @@ export class AdminEmployeeADMLeaveComponent implements OnInit {
   }
 
   makeSure() {
-    this.leave = leaveDate([this.eventForm.get('startDate').value, this.eventForm.get('endDate').value], ['08:30:00', '18:30:00']);
-    this.dialog.show({
-      title: '确认请假信息',
-      content: '您将于' + this.eventForm.get('startDate').value + '至' + this.eventForm.get('endDate').value + ' 请假，是否确定？',
-    }).subscribe((res: any) => {
-      if (res.value) {
-        this.onSubmit();
-      }
-    });
-    return false;
+    this.isSubmit = true;
+    if (this.eventForm.valid) {
+      this.leave = leaveDate([this.eventForm.get('startDate').value, this.eventForm.get('endDate').value], ['08:30:00', '18:30:00']);
+      this.dialog.show({
+        title: '确认请假信息',
+        content: '您将于' + this.eventForm.get('startDate').value + '至' + this.eventForm.get('endDate').value + ' 请假，是否确定？',
+      }).subscribe((res: any) => {
+        if (res.value) {
+          this.onSubmit();
+        }
+      });
+      return false;
+    }
   }
 
   onSubmit() {
-    this.isSubmit = true;
-    if (this.eventForm.valid) {
-      this.eventSvc.addEvent(this.eventForm.value).then(res => {
-        if (res.code === 1) {
-          this.dialog.show({
-            title: '系统提示',
-            content: res.msg,
-          });
-        } else {
-          this.dialog.show({
-            title: '请假申请提交成功',
-            content: '<p>请注意与客户做好请假的沟通工作，并提醒客户确认您的请假申请。</p><p>如有问题，可与客服人员联系。</p>',
-          }).subscribe((data: any) => {
-          });
-        }
-      });
-    }
+
+    this.eventSvc.addEvent(this.eventForm.value).then(res => {
+      if (res.code === 1) {
+        this.dialog.show({
+          title: '系统提示',
+          content: res.msg,
+        });
+      } else {
+        this.dialog.show({
+          title: '请假申请提交成功',
+          content: '<p>请注意与客户做好请假的沟通工作，并提醒客户确认您的请假申请。</p><p>如有问题，可与客服人员联系。</p>',
+        }).subscribe((data: any) => {
+        });
+      }
+    });
+
   }
 
 }

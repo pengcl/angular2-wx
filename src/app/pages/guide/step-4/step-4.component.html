@@ -1,6 +1,13 @@
-<weui-infiniteloader *ngIf="currLists?.length > 0" (loadmore)="onLoadMore($event)" #comp>
+<weui-infiniteloader *ngIf="lists?.length > 0" (loadmore)="onLoadMore($event)" #comp>
+  <div class="img-box">
+    <img src="/assets/images/guide/top1.png">
+  </div>
   <app-profile-min [routerLink]="['/guide/step5', item.housekeeperid]" [queryParams]="{orderNo:orderNo}"
                    queryParamsHandling="merge"
                    [profile]="item"
-                   *ngFor="let item of currLists"></app-profile-min>
+                   *ngFor="let item of lists"></app-profile-min>
+
+  <div class="weui-btn-area">
+    <a routerLink="/guide/step7" class="weui-btn weui-btn_primary">暂不挑选，联系后再确定</a>
+  </div>
 </weui-infiniteloader>

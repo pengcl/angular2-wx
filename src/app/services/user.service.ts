@@ -40,7 +40,11 @@ export class UserService {
             housekeeperId: this.activatedRoute.snapshot.queryParams['housekeeperId'] ? this.activatedRoute.snapshot.queryParams['housekeeperId'] : '',
             unionid: this.activatedRoute.snapshot.queryParams['unionid'],
             openid: this.activatedRoute.snapshot.queryParams['openid'],
-            referee: this.activatedRoute.snapshot.queryParams['refereeId']
+            admin: this.activatedRoute.snapshot.queryParams['isUser'],
+            referee: this.activatedRoute.snapshot.queryParams['refereeId'],
+            gh: this.activatedRoute.snapshot.queryParams['gh'],
+            custType: parseInt(this.activatedRoute.snapshot.queryParams['custType'], 10),
+            agentAuditStatus: this.activatedRoute.snapshot.queryParams['agentAuditStatus']
           };
           this.storageService.set('user', JSON.stringify(user)); // 把userId存入localStorage
           if (JSON.parse(this.storageService.get('user')).id !== '') {
@@ -48,6 +52,28 @@ export class UserService {
           } else {
             window.location.href = loginUrl + '?unionid=' + user.unionid + '&openid=' + user.openid + '&refereeId=' + user.referee + '&callbackUrl=' + this.router.url;
           }
+        } else {// 如果地址栏参数不存在userId
+          window.location.href = Config.prefix.wApi + '/interface/comm/auth.ht?callBackUrl=' + encodeURI(window.location.href);
+        }
+      } else {// 非微信环境,跳转至登录页;
+        window.location.href = loginUrl + '?callbackUrl=' + this.router.url;
+      }
+    }
+  }
+
+  getOpenid() {
+    const loginUrl = Config.webHost + '/admin/login';
+    if (JSON.parse(this.storageService.get('user')).openid) {// 如果localStorage中存在userId;
+      this.user = JSON.parse(this.storageService.get('user'));
+      return this.user;
+    } else {// 如果localStorage中不存在userId;
+      // window.location.href = Config.prefix.admin + '/login?callbackUrl=' + this.router.url;
+      if (this.wxService.isWx()) {// 微信环境,查找地址栏参数中是否存在userId;
+        if (this.activatedRoute.snapshot.queryParams['openid']) {// 如果地址栏参数存在userId;
+          const user = {
+            unionid: this.activatedRoute.snapshot.queryParams['unionid'],
+            openid: this.activatedRoute.snapshot.queryParams['openid']
+          };
         } else {// 如果地址栏参数不存在userId
           window.location.href = Config.prefix.wApi + '/interface/comm/auth.ht?callBackUrl=' + encodeURI(window.location.href);
         }

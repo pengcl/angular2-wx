@@ -146,4 +146,24 @@
   .weui-btn.weui-btn_primary {
     background: #CA9F4D;
   }
+
+  .weui-btn.weui-btn_default {
+    background: #1AAD19;
+    &:visited {
+      color: #fff;
+    }
+  }
+
+  .housekeeper_desc {
+    overflow: unset;
+    -webkit-line-clamp: 100;
+    line-clamp: 100;
+  }
+
+  .weui-btn-area {
+    .other {
+      flex: unset;
+      margin-left: 0.1rem;
+    }
+  }
 }

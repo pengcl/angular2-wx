@@ -32,6 +32,9 @@ import {AdminEmployeeSchoolExamPreviewComponent} from './school/exam/preview/pre
 import {AdminEmployeeSchoolExamResultComponent} from './school/exam/result/result.component';
 import {AdminEmployeeSchoolExamMsgSuccessComponent} from './school/exam/msg/success/success.component';
 
+import {AdminEmployeeWorkComponent} from './work/work.component';
+import {AdminEmployeeWorkItemComponent} from './work/item/item.component';
+
 export const ADMIN_PAGES_EMPLOYEE_DECLARATIONS = [
   AdminEmployeeComponent,
   AdminEmployeeClockInComponent,
@@ -64,5 +67,7 @@ export const ADMIN_PAGES_EMPLOYEE_DECLARATIONS = [
   AdminEmployeeSchoolExamOnComponent,
   AdminEmployeeSchoolExamPreviewComponent,
   AdminEmployeeSchoolExamResultComponent,
-  AdminEmployeeSchoolExamMsgSuccessComponent
+  AdminEmployeeSchoolExamMsgSuccessComponent,
+  AdminEmployeeWorkComponent,
+  AdminEmployeeWorkItemComponent
 ];

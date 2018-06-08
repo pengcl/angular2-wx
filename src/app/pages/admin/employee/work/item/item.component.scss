@@ -1,0 +1,48 @@
+.content-scrollable {
+  background: #fff;
+  .red {
+    color: #db2828;
+  }
+}
+
+.weui-panel {
+  &:before, &:after {
+    display: none;
+  }
+  .weui-panel__hd {
+    font-size: 0.14rem;
+    color: #CA9F4D;
+    &:before, &:after {
+      display: none;
+    }
+  }
+  .weui-media-box {
+    &:before, &:after {
+      display: none;
+    }
+    .weui-media-box__title {
+      font-size: 0.14rem;
+      color: #999;
+    }
+    .weui-media-box__content {
+      font-size: 0.14rem;
+      &.feedback {
+        color: #CA9F4D;
+      }
+    }
+    .weui-cells {
+      font-size: 0.14rem;
+      &:before, &:after {
+        display: none;
+      }
+      .weui-cell {
+        &:before, &:after {
+          display: none;
+        }
+        .weui-label {
+          color: #999;
+        }
+      }
+    }
+  }
+}

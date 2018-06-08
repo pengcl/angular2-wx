@@ -1,0 +1,265 @@
+<app-navbar [show]="true" [navBar]="navBarConfig"></app-navbar>
+
+<div *ngIf="housekeeper" class="action-panel weui-cells">
+  <div class="weui-cell">
+    <div class="weui-cell__bd">Home > 管家管理 > 管家信息 > {{housekeeper.name}}</div>
+  </div>
+  <div class="weui-cell">
+    <div class="weui-cell__hd"><span (click)="back()" class="ui-label hollow radius">返回列表</span></div>
+    <div class="weui-cell__bd"></div>
+  </div>
+</div>
+
+<div *ngIf="housekeeper" class="content-scrollable has-nav has-footer">
+
+  <div class="trainee-info">
+
+    <div class="weui-cells__title">基本资料</div>
+    <table class="resume ui celled table">
+      <tbody>
+      <tr>
+        <td class="label">姓名</td>
+        <td class="value">{{housekeeper.name}}</td>
+        <td class="label">编号</td>
+        <td class="value">{{housekeeper.housekeeperno}}</td>
+      </tr>
+      <tr>
+        <td class="label">手机号</td>
+        <td class="value">{{housekeeper.mobile}}</td>
+        <td class="label">级别</td>
+        <td class="value">{{housekeeper.levelname}}</td>
+      </tr>
+      <tr>
+        <td class="label">月薪</td>
+        <td class="value">￥{{housekeeper.monthlypay}}</td>
+        <td class="label">佣金</td>
+        <td class="value">￥{{housekeeper.commissionamount}}</td>
+      </tr>
+      <tr>
+        <td class="label">服务城市</td>
+        <td colspan="3" class="value">{{housekeeper.serviceareanames}}</td>
+      </tr>
+      <tr>
+        <td class="label">成为管家时间</td>
+        <td colspan="3" class="value">{{housekeeper.createtime.split(' ')[0]}}</td>
+      </tr>
+      </tbody>
+    </table>
+
+    <div class="weui-cells__title">服务客户资料</div>
+    <table *ngIf="cont.contid" class="resume ui celled table">
+      <tbody>
+      <tr>
+        <td class="label">工作状态</td>
+        <td class="value">
+          <span *ngIf="housekeeper.workstatus === 1">待岗中</span>
+          <span *ngIf="housekeeper.workstatus === 2">工作中</span>
+          <span *ngIf="housekeeper.workstatus === 3">已离职</span>
+        </td>
+        <td class="label">预约情况</td>
+        <td class="value">{{housekeeper.issubscribe ? '已预约' : '未预约'}}</td>
+      </tr>
+      <tr>
+        <td class="label">当前客户</td>
+        <td class="value">{{cont.custname}}</td>
+        <td class="label">客户电话</td>
+        <td class="value">{{cont.tel}}</td>
+      </tr>
+      <tr>
+        <td class="label">服务期</td>
+        <td colspan="3" class="value">{{cont.servicestartdate.split(' ')[0]}} ~ {{cont.serviceenddate.split(' ')[0]}}
+        </td>
+      </tr>
+      <tr>
+        <td class="label">客户合同</td>
+        <td colspan="3" class="value"><a [routerLink]="['/admin/employee/orders/protocol',cont.conid]">点击查看合同</a></td>
+      </tr>
+      </tbody>
+    </table>
+
+    <div class="weui-cells__title">管家详细资料</div>
+    <table *ngIf="scores" class="resume ui celled table">
+      <tbody>
+      <tr>
+        <td class="label">学员期数</td>
+        <td class="value">{{housekeeper.termname}}</td>
+        <td class="label">学员来源</td>
+        <td class="value">{{housekeeper.issubscribe ? '已预约' : '未预约'}}</td>
+      </tr>
+      <tr>
+        <td class="label">考试总得分</td>
+        <td class="value" colspan="3">{{scores.resultSum}}</td>
+      </tr>
+      <tr>
+        <ng-template ngFor let-score [ngForOf]="scores.list.slice(0,2)" let-i="index">
+          <td class="label">{{score.coursename}}</td>
+          <td class="value" [ngClass]="{'red' : !score.finished || score.examresults / score.credit < 0.6}">
+            {{score.finished ? score.examresults : '未考'}}
+          </td>
+        </ng-template>
+      </tr>
+      <tr>
+        <ng-template ngFor let-score [ngForOf]="scores.list.slice(2,4)" let-i="index">
+          <td class="label">{{score.coursename}}</td>
+          <td class="value" [ngClass]="{'red' : !score.finished || score.examresults / score.credit < 0.6}">
+            {{score.finished ? score.examresults : '未考'}}
+          </td>
+        </ng-template>
+      </tr>
+      <tr>
+        <ng-template ngFor let-score [ngForOf]="scores.list.slice(4,6)" let-i="index">
+          <td class="label">{{score.coursename}}</td>
+          <td class="value" [ngClass]="{'red' : !score.finished || score.examresults / score.credit < 0.6}">
+            {{score.finished ? score.examresults : '未考'}}
+          </td>
+        </ng-template>
+      </tr>
+      <tr>
+        <ng-template ngFor let-score [ngForOf]="scores.list.slice(6,8)" let-i="index">
+          <td class="label">{{score.coursename}}</td>
+          <td class="value" [ngClass]="{'red' : !score.finished || score.examresults / score.credit < 0.6}">
+            {{score.finished ? score.examresults : '未考'}}
+          </td>
+        </ng-template>
+      </tr>
+      <tr>
+        <td class="label">有何特长</td>
+        <td colspan="3" class="value">{{trainee.specialty}}</td>
+      </tr>
+      <tr>
+        <td class="label">工作经历</td>
+        <td colspan="3" class="value">{{trainee.workExperience}}</td>
+      </tr>
+      <tr>
+        <td class="label">婚否</td>
+        <td class="value">{{trainee.isMarried ? trainee.isMarried : '未知'}}</td>
+        <td class="label">身高(cm)</td>
+        <td class="value" [ngClass]="{'red' : trainee.height < 168}">{{trainee.height}}</td>
+      </tr>
+      <tr>
+        <td class="label">手机号</td>
+        <td class="value">{{trainee.mobile}}</td>
+        <td class="label">体重(kg)</td>
+        <td class="value" [ngClass]="{'red' : trainee.weight < 50}">{{trainee.weight}}</td>
+      </tr>
+      <tr>
+        <td class="label">年龄</td>
+        <td class="value" [ngClass]="{'red' : trainee.age < 23 || trainee.age > 32}">{{trainee.age}}</td>
+        <td class="label">出生年月</td>
+        <td class="value">{{trainee.birthDay}}</td>
+      </tr>
+      <tr>
+        <td class="label">性别</td>
+        <td class="value" [ngClass]="{'red' : trainee.sex === '0'}">{{trainee.sex === '0' ? '女' : '男'}}</td>
+        <td class="label">驾照类型</td>
+        <td class="value" [ngClass]="{'red' : trainee.drivinglicence === 'C2' || trainee.drivinglicence === '无'}">
+          {{trainee.drivinglicence}}
+        </td>
+      </tr>
+      <tr>
+        <td class="label">驾龄</td>
+        <td class="value" [ngClass]="{'red' : trainee.driversage === 0}">{{trainee.driversage}}</td>
+        <td class="label">驾驶里程(km)</td>
+        <td class="value" [ngClass]="{'red' : trainee.drivingMileage < 1000}">{{trainee.drivingMileage}}</td>
+      </tr>
+      <tr>
+        <td class="label">籍贯</td>
+        <td class="value">{{trainee.placeoforigin}}</td>
+        <td class="label">户籍地</td>
+        <td class="value">{{trainee.birthplace}}</td>
+      </tr>
+      <tr>
+        <td class="label">户籍性质</td>
+        <td class="value">{{trainee.birthplacetype === '0' ?'城镇' : '农村'}}</td>
+        <td class="label">现居地</td>
+        <td class="value">{{trainee.address}}</td>
+      </tr>
+      <tr>
+        <td class="label">政治面貌</td>
+        <td class="value">
+          <span *ngIf="trainee.politicalclimate === '0'">群众</span>
+          <span *ngIf="trainee.politicalclimate === '1'">中共党员</span>
+          <span *ngIf="trainee.politicalclimate === '2'">团员</span>
+          <span *ngIf="trainee.politicalclimate === '3'">民主党派</span>
+          <span *ngIf="trainee.politicalclimate === '4'">无党派人士</span>
+        </td>
+        <td class="label">民族</td>
+        <td class="value">{{trainee.nation}}</td>
+      </tr>
+      <tr>
+        <td class="label">学历</td>
+        <td class="value" [ngClass]="{'red' : trainee.education === '0' || trainee.education === '9'}">
+          <span *ngIf="trainee.education === '0'">初中</span>
+          <span *ngIf="trainee.education === '1'">高中</span>
+          <span *ngIf="trainee.education === '2'">中专</span>
+          <span *ngIf="trainee.education === '3'">大专</span>
+          <span *ngIf="trainee.education === '4'">本科</span>
+          <span *ngIf="trainee.education === '5'">硕士</span>
+          <span *ngIf="trainee.education === '6'">博士</span>
+          <span *ngIf="trainee.education === '7'">MBA</span>
+          <span *ngIf="trainee.education === '8'">EMBA</span>
+          <span *ngIf="trainee.education === '9'">其它</span>
+        </td>
+        <td class="label">毕业时间</td>
+        <td class="value">{{trainee.graduationtime}}</td>
+      </tr>
+      <tr>
+        <td class="label">毕业院校</td>
+        <td class="value">{{trainee.graduationplace}}</td>
+        <td class="label">原服役部队</td>
+        <td class="value">{{trainee.armyserveplace}}</td>
+      </tr>
+      <tr>
+        <td class="label">部队专业</td>
+        <td class="value">{{trainee.militaryspecialty}}</td>
+        <td class="label">退伍军衔</td>
+        <td class="value">{{trainee.retiredofficerrank}}</td>
+      </tr>
+      <tr>
+        <td class="label">入伍年月</td>
+        <td class="value">{{trainee.enlistmenttime}}</td>
+        <td class="label">退伍年月</td>
+        <td class="value">{{trainee.retirementtime}}</td>
+      </tr>
+      <tr>
+        <td class="label">军种</td>
+        <td class="value">{{trainee.armyType}}</td>
+        <td class="label">兵种</td>
+        <td class="value">{{trainee.services}}</td>
+      </tr>
+      <tr>
+        <td class="label">俯卧撑</td>
+        <td class="value">{{trainee.pushup}}</td>
+        <td class="label">引体向上</td>
+        <td class="value">{{trainee.pullups}}</td>
+      </tr>
+      <tr>
+        <td class="label">仰卧起坐</td>
+        <td class="value">{{trainee.situp}}</td>
+        <td class="label">立定跳远</td>
+        <td class="value">{{trainee.standingLongJump}}</td>
+      </tr>
+      <tr>
+        <td class="label">100米(秒)</td>
+        <td class="value">{{trainee.hundredmdash}}</td>
+        <td class="label">3000米</td>
+        <td class="value">{{trainee.thousandmdash}}</td>
+      </tr>
+      <tr>
+        <td class="label">重大疾病史</td>
+        <td colspan="3" class="value" [ngClass]="{'red' : trainee.infections === '1'}">
+          <span *ngIf="trainee.infections === '0'">无传染性、心脏或精神性疾病</span>
+          <span *ngIf="trainee.infections === '1'">有传染性、心脏或精神性疾病</span>
+        </td>
+      </tr>
+      <tr>
+        <td class="label">荣誉证书</td>
+        <td colspan="3" class="value">{{trainee.certificate}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+

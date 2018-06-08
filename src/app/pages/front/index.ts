@@ -25,6 +25,8 @@ import {FrontInvestigateSuccessComponent} from './investigate/success/success.co
 import {FrontMsgSuccessComponent} from './msg/success/success.component';
 import {FrontMsgReserveComponent} from './msg/reserve/reserve.component';
 
+import {FrontInviteBecomeComponent} from './invate/become/become.component';
+
 export const FRONT_PAGES_DECLARATIONS = [
   FrontComponent,
   FrontIndexComponent,
@@ -47,5 +49,6 @@ export const FRONT_PAGES_DECLARATIONS = [
   FrontInvestigateWishComponent,
   FrontInvestigateSuccessComponent,
   FrontMsgSuccessComponent,
-  FrontMsgReserveComponent
+  FrontMsgReserveComponent,
+  FrontInviteBecomeComponent
 ];

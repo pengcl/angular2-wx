@@ -1,6 +1,6 @@
 <app-navbar [show]="true" [navBar]="navBarConfig"></app-navbar>
 <weui-infiniteloader (loadmore)="onLoadMore($event)" #comp>
-  <div class="weui-cells__title">Home > 培训管理 > 学员信息</div>
+  <div class="weui-cells__title">Home > 管家管理 > 转管家审核</div>
   <div class="filter-nav weui-flex">
     <div (click)="setType(1)" [ngClass]="{'curr' : params.applyToHousekeeper === 1}" class="weui-flex__item">待审核</div>
     <div (click)="setType(2)" [ngClass]="{'curr' : params.applyToHousekeeper === 2}" class="weui-flex__item">已通过</div>
@@ -56,7 +56,10 @@
         <td>{{item.name}}</td>
         <td>{{item.traineeno}}</td>
         <td>{{item.termname}}</td>
-        <td>{{item.traineetype === 0 ? '退伍士兵' : '体育生'}}</td>
+        <td>
+          <span *ngIf="item.traineetype === 1 || item.traineetype === 2">退伍士兵</span>
+          <span *ngIf="item.traineetype === 3">体育生</span>
+        </td>
         <td>{{item.totalPoints ? item.totalPoints : '未进行'}}</td>
       </tr>
       </tbody>

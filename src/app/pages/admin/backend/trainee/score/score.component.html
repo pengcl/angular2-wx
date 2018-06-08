@@ -1,6 +1,6 @@
-<app-navbar [show]="false" [navBar]="navBarConfig"></app-navbar>
+<app-navbar [show]="true" [navBar]="navBarConfig"></app-navbar>
 
-<div class="content-scrollable">
+<div class="content-scrollable has-nav">
   <form *ngIf="courseForm" [formGroup]="courseForm">
     <div class="weui-cells">
       <div *ngFor="let item of courses" class="weui-cell">
@@ -17,6 +17,6 @@
 </div>
 
 <div class="btns-group">
-  <div class="btn btn-secondary no-state">取消</div>
+  <div (click)="back()" class="btn btn-secondary no-state">取消</div>
   <div (click)="onSubmit()" class="btn btn-secondary no-state">确定</div>
 </div>

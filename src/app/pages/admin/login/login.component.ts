@@ -92,12 +92,18 @@ export class AdminLoginComponent implements OnInit {
     if (this.loginForm.valid) {
       this.userSvc.login(this.loginForm.value).then(res => {
         if (res.code === 0) {
-          console.log(res);
-          const user = {id: res.custId, housekeeperId: '', admin: res.isUser};
-          let callbackUrl = '/admin/employer';
-          if (res.housekeeperId) {
-            user.housekeeperId = res.housekeeperId;
+          const user = {id: res.custId, housekeeperId: res.housekeeperId, admin: res.isUser, gh: res.gh, custType: res.custType};
+          let callbackUrl = '/admin/salesmen/home';
+          if (res.custType === 0) {
             callbackUrl = '/admin/employee';
+          } else if (res.custType === 1) {
+            callbackUrl = '/admin/employer';
+          } else {
+            if (res.agentAuditStatus === 1) {
+              callbackUrl = '/admin/salesmen/home';
+            } else {
+              callbackUrl = '/admin/employer';
+            }
           }
           this.storage.set('user', JSON.stringify(user));
           /*if (this.activatedRoute.snapshot.queryParams['callbackUrl']) {

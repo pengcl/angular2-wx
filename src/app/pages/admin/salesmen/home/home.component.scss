@@ -1,0 +1,18 @@
+.sale-status {
+  background: #fff;
+  .weui-flex__item {
+    padding: 0.15rem 0.1rem;
+    .weui-grid__num {
+      display: block;
+      text-align: center;
+    }
+  }
+}
+
+.weui-cells {
+  .weui-cell {
+    .weui-cell__hd {
+      align-self: center;
+    }
+  }
+}

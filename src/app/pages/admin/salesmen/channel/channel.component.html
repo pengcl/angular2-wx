@@ -1,0 +1,33 @@
+<app-navbar [navBar]="navBarConfig"></app-navbar>
+<div *ngIf="resellers" class="content-scrollable">
+  <div class="customer-status weui-flex">
+    <div class="weui-flex__item">总数：{{resellers.length}}人</div>
+    <div class="weui-flex__item">昨天新增：{{yesterdayCount}}人</div>
+  </div>
+  <weui-searchbar (search)="onSearch($event)" (cancel)="onCancel()" (clear)="onClear()"
+                  (submit)="onSubmit($event)"></weui-searchbar>
+  <div class="customers">
+    <div *ngFor="let reseller of resellers" class="weui-panel">
+      <div class="weui-panel__bd">
+        <a class="weui-media-box weui-media-box_appmsg">
+          <div class="weui-media-box__bd">
+            <h4 class="weui-media-box__title">{{reseller.cust_name}}（{{reseller.mobile}}） <span class="right">{{reseller.createtime.split(' ')[0]}}</span>
+            </h4>
+            <p class="weui-media-box__desc">备注：{{reseller.refereeremark || '无'}}</p>
+            <ul class="weui-media-box__info">
+              <li class="weui-media-box__info__meta">预订单数：{{reseller.intentOrderCount || 0}}</li>
+              <li class="weui-media-box__info__meta">有效合同数：{{reseller.contOrderCount || 0}}</li>
+              <li class="weui-media-box__info__meta weui-media-box__info__meta_extra">总佣金：￥{{reseller.balance || 0}}</li>
+            </ul>
+          </div>
+        </a>
+      </div>
+      <div class="weui-form-preview__ft">
+        <a (click)="showUpdateChannel(reseller)" class="weui-form-preview__btn weui-form-preview__btn_default">修改备注</a>
+        <a [routerLink]="['/admin/salesmen/statistics',reseller.id]"
+           [queryParams]="{intentCount:reseller.intentOrderCount,contOrderCount:reseller.contOrderCount,balance:reseller.balance}"
+           class="weui-form-preview__btn weui-form-preview__btn_primary">月度详细</a>
+      </div>
+    </div>
+  </div>
+</div>

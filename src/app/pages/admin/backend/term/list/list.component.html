@@ -1,17 +1,19 @@
 <app-navbar [show]="true" [navBar]="navBarConfig"></app-navbar>
-<weui-infiniteloader (loadmore)="onLoadMore($event)" #comp>
-  <div class="action-panel weui-cells">
-    <div class="weui-cell">
-      <div class="weui-cell__bd">Home > 培训管理 > 学期管理</div>
-    </div>
-    <div class="weui-cell">
-      <div class="weui-cell__hd"><span routerLink="/admin/backend/term/add" class="ui-label hollow radius">添加新学期</span></div>
-      <div class="weui-cell__bd"></div>
-      <div class="weui-cell__ft"></div>
-    </div>
-  </div>
 
-  <div class="table-content">
+<div class="action-panel weui-cells">
+  <div class="weui-cell">
+    <div class="weui-cell__bd">Home > 培训管理 > 学期管理</div>
+  </div>
+  <div class="weui-cell">
+    <div class="weui-cell__hd"><span routerLink="/admin/backend/term/add" class="ui-label hollow radius">添加新学期</span></div>
+    <div class="weui-cell__bd"></div>
+    <div class="weui-cell__ft"></div>
+  </div>
+</div>
+
+<weui-infiniteloader (loadmore)="onLoadMore($event)" #comp>
+
+  <div *ngIf="terms" class="table-content">
     <table class="result ui celled table">
       <thead>
       <tr>
@@ -22,11 +24,11 @@
       </tr>
       </thead>
       <tbody>
-      <!--<tr *ngIf="params.totalPage === 0">
+      <tr *ngIf="terms.length === 0">
         <td colspan="5" style="text-align: center">
           没有数据
         </td>
-      </tr>-->
+      </tr>
       <tr [routerLink]="['/admin/backend/term/edit',item.termid]"  *ngFor="let item of terms;let i = index">
         <td>{{item.termname}}</td>
         <td>{{item.remark}}</td>

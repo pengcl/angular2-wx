@@ -26,7 +26,7 @@ export class AdminEmployeeMessageComponent implements OnInit {
   ngOnInit() {
     this.user = this.userSvc.isLogin();
 
-    this.messages.getMessages(this.user.id, 0).then(res => {
+    this.messages.getMessages(this.user.id).then(res => {
       this.sysMessages = res.list;
     });
     /*this.messages.getMessages(this.user.id, 1).then(res => {

@@ -629,6 +629,8 @@ export class FrontResumePostComponent implements OnInit {
       referee: new FormControl('', []) // 推荐人
     });
 
+    this.resumeForm.get('registerType').setValue(1);
+
     if (this.activatedRoute.snapshot.queryParams['gh']) { // 初始化下单渠道
       this.resumeForm.get('gh').setValue(this.activatedRoute.snapshot.queryParams['gh']);
     }

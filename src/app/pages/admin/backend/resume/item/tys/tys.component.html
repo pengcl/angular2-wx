@@ -1,18 +1,19 @@
 <app-navbar [show]="true" [navBar]="navBarConfig"></app-navbar>
 
-<div *ngIf="trainee" class="content-scrollable has-nav">
-  <div class="action-panel weui-cells">
-    <div class="weui-cell">
-      <div class="weui-cell__bd">Home > 招聘管理 > 退伍士兵 > 待审核</div>
-    </div>
-    <div class="weui-cell">
-      <div class="weui-cell__hd"><span (click)="back()" class="ui-label hollow radius">返回列表</span></div>
-      <div class="weui-cell__bd"></div>
-      <div class="weui-cell__ft"><span *ngIf="trainee.threeStatus === 'mstg'" [routerLink]="['/admin/backend/resume/check',trainee.id]"
-                                       [queryParams]="{type:1}"
-                                       class="ui-label radius colors blue">审核反馈</span></div>
-    </div>
+<div *ngIf="trainee" class="action-panel weui-cells">
+  <div class="weui-cell">
+    <div class="weui-cell__bd">Home > 招聘管理 > 退伍士兵 > 待审核</div>
   </div>
+  <div class="weui-cell">
+    <div class="weui-cell__hd"><span (click)="back()" class="ui-label hollow radius">返回列表</span></div>
+    <div class="weui-cell__bd"></div>
+    <div class="weui-cell__ft"><span *ngIf="trainee.threeStatus === 'mstg'" [routerLink]="['/admin/backend/resume/check',trainee.id]"
+                                     [queryParams]="{type:1}"
+                                     class="ui-label radius colors blue">审核反馈</span></div>
+  </div>
+</div>
+
+<div *ngIf="trainee" class="content-scrollable has-nav">
 
   <div class="trainee-info weui-grids">
 

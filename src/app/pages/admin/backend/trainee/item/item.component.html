@@ -1,17 +1,18 @@
 <app-navbar [show]="true" [navBar]="navBarConfig"></app-navbar>
 
-<div *ngIf="trainee" class="content-scrollable has-nav">
-  <div class="action-panel weui-cells">
-    <div class="weui-cell">
-      <div class="weui-cell__bd">Home > 招聘管理 > 退伍士兵 > 待审核</div>
-    </div>
-    <div class="weui-cell">
-      <div class="weui-cell__hd"><span (click)="back()" class="ui-label hollow radius">返回列表</span></div>
-      <div class="actions weui-cell__bd"><span *ngIf="finished" (click)="turn()" class="ui-label radius colors blue">申请转管家</span></div>
-      <div class="weui-cell__ft"><span [routerLink]="['/admin/backend/trainee/score',params.id]"
-                                       class="ui-label radius colors blue">录入成绩</span></div>
-    </div>
+<div class="action-panel weui-cells">
+  <div class="weui-cell">
+    <div class="weui-cell__bd">Home > 学员管理</div>
   </div>
+  <div class="weui-cell">
+    <div class="weui-cell__hd"><span (click)="back()" class="ui-label hollow radius">返回列表</span></div>
+    <div class="actions weui-cell__bd"><span *ngIf="finished" (click)="turn()" class="ui-label radius colors blue">申请转管家</span></div>
+    <div class="weui-cell__ft"><span [routerLink]="['/admin/backend/trainee/score',params.id]"
+                                     class="ui-label radius colors blue">录入成绩</span></div>
+  </div>
+</div>
+
+<div *ngIf="trainee" class="content-scrollable has-nav">
 
   <div class="trainee-info weui-grids">
 
@@ -27,7 +28,11 @@
         <td class="label">编号</td>
         <td class="value">{{trainee.traineeno}}</td>
         <td class="label">学员来源</td>
-        <td class="value">{{trainee.traineetype === 0 ? '退伍兵' : '体育生'}}</td>
+        <td class="value">
+          <span *ngIf="trainee.traineetype === 1">士官</span>
+          <span *ngIf="trainee.traineetype === 2">退伍兵</span>
+          <span *ngIf="trainee.traineetype === 3">体育生</span>
+        </td>
       </tr>
       </tbody>
     </table>
@@ -68,8 +73,8 @@
     <table class="resume ui celled table">
       <tbody>
       <tr>
-        <td class="label">姓名</td>
-        <td class="value">{{trainee.isMarried ? trainee.isMarried : '未知'}}</td>
+        <td class="label">婚否</td>
+        <td class="value">{{trainee.isMarried === 1 ? '未婚' : '已婚'}}</td>
         <td class="label">身高(cm)</td>
         <td class="value" [ngClass]="{'red' : trainee.height < 168}">{{trainee.height}}</td>
       </tr>
@@ -87,7 +92,7 @@
       </tr>
       <tr>
         <td class="label">性别</td>
-        <td class="value" [ngClass]="{'red' : trainee.sex === '女'}">{{trainee.sex}}</td>
+        <td class="value" [ngClass]="{'red' : trainee.sex === '0'}">{{trainee.sex === '0' ? '女' : '男'}}</td>
         <td class="label">驾照类型</td>
         <td class="value" [ngClass]="{'red' : trainee.drivinglicence === 'C2' || trainee.drivinglicence === '无'}">
           {{trainee.drivinglicence}}
@@ -107,20 +112,35 @@
       </tr>
       <tr>
         <td class="label">户籍性质</td>
-        <td class="value">{{trainee.birthplacetype}}</td>
+        <td class="value">{{trainee.birthplacetype === '0' ?'城镇' : '农村'}}</td>
         <td class="label">现居地</td>
         <td class="value"></td>
       </tr>
       <tr>
         <td class="label">政治面貌</td>
-        <td class="value">{{trainee.politicalclimate}}</td>
+        <td class="value">
+          <span *ngIf="trainee.politicalclimate === '0'">群众</span>
+          <span *ngIf="trainee.politicalclimate === '1'">中共党员</span>
+          <span *ngIf="trainee.politicalclimate === '2'">团员</span>
+          <span *ngIf="trainee.politicalclimate === '3'">民主党派</span>
+          <span *ngIf="trainee.politicalclimate === '4'">无党派人士</span>
+        </td>
         <td class="label">民族</td>
         <td class="value">{{trainee.nation}}</td>
       </tr>
       <tr>
         <td class="label">学历</td>
-        <td class="value" [ngClass]="{'red' : trainee.education === '初中' || trainee.education === '其他'}">
-          {{trainee.education}}
+        <td class="value" [ngClass]="{'red' : trainee.education === '0' || trainee.education === '9'}">
+          <span *ngIf="trainee.education === '0'">初中</span>
+          <span *ngIf="trainee.education === '1'">高中</span>
+          <span *ngIf="trainee.education === '2'">中专</span>
+          <span *ngIf="trainee.education === '3'">大专</span>
+          <span *ngIf="trainee.education === '4'">本科</span>
+          <span *ngIf="trainee.education === '5'">硕士</span>
+          <span *ngIf="trainee.education === '6'">博士</span>
+          <span *ngIf="trainee.education === '7'">MBA</span>
+          <span *ngIf="trainee.education === '8'">EMBA</span>
+          <span *ngIf="trainee.education === '9'">其它</span>
         </td>
         <td class="label">毕业时间</td>
         <td class="value">{{trainee.graduationTime}}</td>
@@ -169,8 +189,9 @@
       </tr>
       <tr>
         <td class="label">重大疾病史</td>
-        <td colspan="3" class="value" [ngClass]="{'red' : trainee.infections === '有传染性、心脏或精神性疾病'}">
-          {{trainee.infections}}
+        <td colspan="3" class="value" [ngClass]="{'red' : trainee.infections === '1'}">
+          <span *ngIf="trainee.infections === '0'">无传染性、心脏或精神性疾病</span>
+          <span *ngIf="trainee.infections === '1'">有传染性、心脏或精神性疾病</span>
         </td>
       </tr>
       <tr>

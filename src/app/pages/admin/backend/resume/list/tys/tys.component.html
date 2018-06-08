@@ -1,6 +1,6 @@
 <app-navbar [show]="true" [navBar]="navBarConfig"></app-navbar>
 <weui-infiniteloader (loadmore)="onLoadMore($event)" #comp>
-  <div class="weui-cells__title">Home > 招聘管理 > 退伍士兵 > 待审核</div>
+  <div class="weui-cells__title">Home > 招聘管理 > 体育生 > 待审核</div>
   <div class="filter-nav weui-flex">
     <div (click)="setType(1)" [ngClass]="{'curr' : params.type === 1}" class="weui-flex__item">待审核</div>
     <div (click)="setType(2)" [ngClass]="{'curr' : params.type === 2}" class="weui-flex__item">初审通过</div>

@@ -21,6 +21,7 @@
   transition-duration: 200ms;
   transition-timing-function: ease-out;
   transform: translate3d(0px, 0px, 0px);
+  background: #fff;
 }
 
 .content-overlay {
@@ -42,4 +43,8 @@
     transform: translate3d(45%, 0px, 0px);
     z-index: 1;
   }
+}
+
+.action-panel {
+  z-index: 999;
 }

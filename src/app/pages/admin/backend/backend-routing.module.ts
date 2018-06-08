@@ -19,6 +19,22 @@ import {AdminBackendTraineeVerifyTurnComponent} from './trainee/verify/turn/turn
 import {AdminBackendTermListComponent} from './term/list/list.component';
 import {AdminBackendTermItemComponent} from './term/item/item.component';
 import {AdminBackendTermAddComponent} from './term/add/add.component';
+import {AdminBackendTermEditComponent} from './term/edit/edit.component';
+
+import {AdminBackendHousekeeperListComponent} from './housekeeper/list/list.component';
+import {AdminBackendHousekeeperItemComponent} from './housekeeper/item/item.component';
+import {AdminBackendHousekeeperSignListComponent} from './housekeeper/sign/list/list.component';
+import {AdminBackendHousekeeperSignItemComponent} from './housekeeper/sign/item/item.component';
+
+import {AdminBackendOrderListComponent} from './order/list/list.component';
+import {AdminBackendOrderItemComponent} from './order/item/item.component';
+
+import {AdminBackendHousekeeperLeaveListComponent} from './housekeeper/leave/list/list.component';
+import {AdminBackendHousekeeperLeaveItemComponent} from './housekeeper/leave/item/item.component';
+
+import {AdminBackendHousekeeperWeekListComponent} from './housekeeper/week/list/list.component';
+import {AdminBackendHousekeeperWeekItemComponent} from './housekeeper/week/item/item.component';
+import {AdminBackendHousekeeperWeekAuditComponent} from './housekeeper/week/audit/audit.component';
 
 export const appAdminBackendRoutes: Routes = [
   {path: 'index', component: AdminBackendIndexComponent},
@@ -40,7 +56,21 @@ export const appAdminBackendRoutes: Routes = [
 
   {path: 'term/list', component: AdminBackendTermListComponent},
   {path: 'term/item/:id', component: AdminBackendTermItemComponent},
+  {path: 'term/edit/:id', component: AdminBackendTermEditComponent},
   {path: 'term/add', component: AdminBackendTermAddComponent},
+
+  {path: 'housekeeper/list', component: AdminBackendHousekeeperListComponent},
+  {path: 'housekeeper/item/:id', component: AdminBackendHousekeeperItemComponent},
+  {path: 'housekeeper/sign/list', component: AdminBackendHousekeeperSignListComponent},
+  {path: 'housekeeper/sign/item/:id', component: AdminBackendHousekeeperSignItemComponent},
+  {path: 'housekeeper/leave/list', component: AdminBackendHousekeeperLeaveListComponent},
+  {path: 'housekeeper/leave/item/:id', component: AdminBackendHousekeeperLeaveItemComponent},
+  {path: 'housekeeper/week/list', component: AdminBackendHousekeeperWeekListComponent},
+  {path: 'housekeeper/week/item/:id', component: AdminBackendHousekeeperWeekItemComponent},
+  {path: 'housekeeper/week/audit/:id', component: AdminBackendHousekeeperWeekAuditComponent},
+
+  {path: 'order/list', component: AdminBackendOrderListComponent},
+  {path: 'order/item/:id', component: AdminBackendOrderItemComponent},
   {
     path: '**', redirectTo: 'index'
   }

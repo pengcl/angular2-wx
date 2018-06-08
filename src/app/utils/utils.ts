@@ -78,8 +78,19 @@ export function formDataToUrl(body: object): string {
   return str;
 }
 
+export function formDataToUrlNoEncode(body: object): string {
+  let str = '';
+  for (const keyName in body) {
+    if (!str) {
+      str = '?' + keyName + '=' + (body[keyName] === undefined ? '' : body[keyName]);
+    } else {
+      str = str + '&' + keyName + '=' + (body[keyName] === undefined ? '' : body[keyName]);
+    }
+  }
+  return str;
+}
+
 export function getIndex(jsonArray, keyName, value) {
-  console.log(jsonArray, keyName, value);
   for (let i = 0; i < jsonArray.length; i++) {
     if (jsonArray[i][keyName] === value) {
       return i;
@@ -525,4 +536,65 @@ export function getNextOfArray(array, currIndex) {
 
 export function getRate(score) {
   return 5 * score / 100;
+}
+
+function theWeek() {
+  let totalDays = 0;
+  const now = new Date();
+  let years = now.getFullYear();
+  if (years < 1000) {
+    years += 1900;
+  }
+  const days = new Array(12);
+  days[0] = 31;
+  days[2] = 31;
+  days[3] = 30;
+  days[4] = 31;
+  days[5] = 30;
+  days[6] = 31;
+  days[7] = 31;
+  days[8] = 30;
+  days[9] = 31;
+  days[10] = 30;
+  days[11] = 31;
+
+  // 判断是否为闰年，针对2月的天数进行计算
+  if (Math.round(now.getFullYear() / 4) === now.getFullYear() / 4) {
+    days[1] = 29;
+  } else {
+    days[1] = 28;
+  }
+
+  if (now.getMonth() === 0) {
+    totalDays = totalDays + now.getDate();
+  } else {
+    const curMonth = now.getMonth();
+    for (let count = 1; count <= curMonth; count++) {
+      totalDays = totalDays + days[count - 1];
+    }
+    totalDays = totalDays + now.getDate();
+  }
+  // 得到第几周
+  const week = Math.round(totalDays / 7);
+  return week;
+}
+
+export function getThisWeek() {
+  const date = new Date();
+  const year = date.getFullYear();
+  const month = date.getMonth();
+  const week = date.getDay();
+  const day = date.getDate();
+
+  const first = new Date(year, month, day - week + 1);
+  const last = new Date(year, month, day + 7 - week);
+  return {
+    week: theWeek(),
+    first: first,
+    last: last
+  };
+}
+
+export function getYesterday() {
+
 }

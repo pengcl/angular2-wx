@@ -1,0 +1,61 @@
+<app-navbar [show]="true" [navBar]="navBarConfig"></app-navbar>
+
+<div *ngIf="event" class="action-panel weui-cells">
+  <div class="weui-cell">
+    <div class="weui-cell__bd">Home > 管家管理 > 管家请假审核 > {{event?.createbyname}}</div>
+  </div>
+  <div class="weui-cell weui-cell_access">
+    <div class="weui-cell__hd"><span (click)="back()" class="ui-label hollow radius">返回列表</span></div>
+    <div class="weui-cell__bd"></div>
+  </div>
+</div>
+
+<div class="content-scrollable has-nav">
+
+  <div *ngIf="event" class="table-content">
+    <table class="result ui celled table">
+      <tbody>
+      <tr>
+        <td class="label">姓名</td>
+        <td class="value">{{event.createbyname}}</td>
+        <td class="label">手机号</td>
+        <td class="value">{{event.mobile}}</td>
+      </tr>
+      <tr>
+        <td class="label">请假天数</td>
+        <td class="value">{{event.leaveday}}</td>
+        <td class="label">请假类型</td>
+        <td class="value">
+          <span *ngIf="event.leavetype === 'nj'">年假</span>
+          <span *ngIf="event.leavetype === 'sj'">事假</span>
+        </td>
+      </tr>
+      <tr>
+        <td class="label">请假开始时间</td>
+        <td colspan="3" class="value">{{event.startdate}}</td>
+      </tr>
+      <tr>
+        <td class="label">请假结束时间</td>
+        <td colspan="3" class="value">{{event.enddate}}</td>
+      </tr>
+      <tr>
+        <td class="label">请假事由</td>
+        <td colspan="3" class="value">{{event.eventtitle}}</td>
+      </tr>
+      <tr>
+        <td class="label">提交时间</td>
+        <td colspan="3" class="value">{{event.createtime | repairDate | date : 'yyyy年MM月dd日 HH:mm'}}</td>
+      </tr>
+      <tr>
+        <td class="label">审核状态</td>
+        <td colspan="3" class="value"></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="btns-group">
+  <a class="btn-secondary no-state" (click)="pass()">通过</a>
+  <a class="btn-secondary" (click)="refuse()">拒绝</a>
+</div>

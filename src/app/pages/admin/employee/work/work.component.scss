@@ -1,0 +1,116 @@
+weui-navbar.weui-tab.work {
+  background: #f8f8f8;
+  padding-top: 60px;
+  .weui-tab__panel {
+    background: #fff;
+    .weui-cells__title {
+      font-size: 0.14rem;
+      color: #0F0F0F;
+      em {
+        color: #CA9F4D;
+        font-size: 0.12rem;
+      }
+    }
+    .weui-cells {
+      font-size: 0.14rem;
+      color: #666;
+      .weui-cell {
+        .weui-cell__ft {
+          color: #0F0F0F;
+        }
+      }
+      &:before {
+        display: none;
+      }
+
+      &.nb {
+        &:after {
+          display: none;
+        }
+      }
+      .weui-textarea {
+        background: #F5F5F5;
+        border-radius: 0.08rem;
+        padding: 0.15rem;
+        box-sizing: border-box;
+      }
+    }
+    .weui-cells__tips {
+      font-size: 0.12rem;
+      color: #CA9F4D;
+    }
+
+    .weui-btn-area {
+      .weui-flex {
+        margin: 0 - 0.075rem;
+        .weui-flex__item {
+          margin: 0.075rem;
+          .weui-btn_default {
+            background: #ccc;
+          }
+        }
+      }
+    }
+  }
+
+  .weeks.weui-panel {
+    margin-top: 0;
+    &:before, &:after {
+      display: none;
+    }
+    &:before {
+      display: block;
+    }
+    .weui-panel__hd {
+      font-size: 0.14rem;
+      color: #CA9F4D;
+      &:after {
+        display: none;
+      }
+    }
+    .weui-panel__ft {
+      .weui-cell {
+        .weui-cell__bd {
+          text-align: right;
+          color: #666;
+        }
+      }
+    }
+    .weui-media-box_small-appmsg {
+      .weui-cells {
+        font-size: 0.14rem;
+        &:before, &:after {
+          display: none;
+        }
+        .weui-cell {
+          &:before, &:after {
+            display: none;
+          }
+          .weui-cell__hd {
+            color: #999;
+          }
+          .weui-cell__bd {
+            color: #0F0F0F;
+            p {
+              overflow: hidden;
+              text-overflow: ellipsis;
+              display: -webkit-box;
+              -webkit-box-orient: vertical;
+              -webkit-line-clamp: 2;
+            }
+          }
+
+          &.feedback {
+            .weui-cell__bd {
+              color: #CA9F4D;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .red {
+    color: #db2828;
+  }
+}

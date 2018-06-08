@@ -29,7 +29,7 @@
           <div (click)="showPicker('Q_endcreatetime_DG')" class="weui-flex__item">
             <div class="weui-cell">
               <div class="weui-cell__hd">至</div>
-              <div class="weui-cell__bd">{{params.Q_begincreatetime_DL ? params.Q_begincreatetime_DL : '结束日期'}}</div>
+              <div class="weui-cell__bd">{{params.Q_endcreatetime_DG ? params.Q_endcreatetime_DG : '结束日期'}}</div>
             </div>
           </div>
         </div>
@@ -54,15 +54,14 @@
           没有数据
         </td>
       </tr>
-      <tr [routerLink]="['/admin/backend/resume/item/twb',item.id]" *ngFor="let item of trainees;let i = index">
+      <tr [routerLink]="['/admin/backend/resume/item/twb',item.id]" [queryParams]="{type:params.type}" *ngFor="let item of trainees;let i = index">
         <td>{{item.name}}</td>
-        <td>{{item.age}}</td>
-        <td>{{item.height}}</td>
-        <td>{{item.drivinglicence}}</td>
-        <td>{{item.driversage ? item.driversage : 0}}</td>
+        <td class="value" [ngClass]="{'red' : item.age < 23 || item.age > 32}">{{item.age}}</td>
+        <td class="value" [ngClass]="{'red' : item.height < 168}">{{item.height}}</td>
+        <td class="value" [ngClass]="{'red' : item.drivinglicence === 'C2' || item.drivinglicence === '0'}">{{item.drivinglicence !== '0' ? item.drivinglicence : '无'}}</td>
+        <td class="value" [ngClass]="{'red' : item.driversAge === 0}">{{item.driversAge ? item.driversAge : 0}}</td>
       </tr>
       </tbody>
     </table>
   </div>
 </weui-infiniteloader>
-

@@ -4,6 +4,8 @@ import {RouterModule, Routes} from '@angular/router';
 
 import {appWxRoutes} from './pages/wx/wx-routing.module';
 import {appAdminBackendRoutes} from './pages/admin/backend/backend-routing.module';
+import {appAdminArticleRoutes} from './pages/admin/article/article-routing.module';
+import {appAdminSalesmenRoutes} from './pages/admin/salesmen/salesmen-routing.module';
 import {appGuideRoutes} from './pages/guide/guide-routing.module';
 
 import {FrontComponent} from './pages/front/front.component';
@@ -29,6 +31,8 @@ import {FrontInvestigateWishComponent} from './pages/front/investigate/wish/wish
 import {FrontInvestigateSuccessComponent} from './pages/front/investigate/success/success.component';
 import {FrontMsgSuccessComponent} from './pages/front/msg/success/success.component';
 import {FrontMsgReserveComponent} from './pages/front/msg/reserve/reserve.component';
+
+import {FrontInviteBecomeComponent} from './pages/front/invate/become/become.component';
 
 import {AdminComponent} from './pages/admin/admin.component';
 import {AdminLoginComponent} from './pages/admin/login/login.component';
@@ -92,8 +96,11 @@ import {AdminEmployeeSchoolExamOnComponent} from './pages/admin/employee/school/
 import {AdminEmployeeSchoolExamPreviewComponent} from './pages/admin/employee/school/exam/preview/preview.component';
 import {AdminEmployeeSchoolExamResultComponent} from './pages/admin/employee/school/exam/result/result.component';
 import {AdminEmployeeSchoolExamMsgSuccessComponent} from './pages/admin/employee/school/exam/msg/success/success.component';
+import {AdminEmployeeWorkComponent} from './pages/admin/employee/work/work.component';
+import {AdminEmployeeWorkItemComponent} from './pages/admin/employee/work/item/item.component';
 
 import {AdminBackendComponent} from './pages/admin/backend/backend.component';
+import {AdminArticleComponent} from './pages/admin/article/article.component';
 
 import {AdminUploaderAvatarComponent} from './pages/admin/uploader/avatar/avatar.component';
 import {AdminUploaderGalleryComponent} from './pages/admin/uploader/gallery/gallery.component';
@@ -119,6 +126,7 @@ import {AppPayComponent} from './pages/pay/pay.component';
 import {WxComponent} from './pages/wx/wx.component';
 
 import {GuideComponent} from './pages/guide/guide.component';
+import {AdminSalesmenComponent} from './pages/admin/salesmen/salesmen.component';
 
 const appFrontRedRoutes: Routes = [
   {path: 'get', component: FrontRedGetComponent},
@@ -166,6 +174,9 @@ const appAdminRoutes: Routes = [
   {path: 'employee/school/exam/result/:id', component: AdminEmployeeSchoolExamResultComponent},
   {path: 'employee/school/exam/msg/success/:id', component: AdminEmployeeSchoolExamMsgSuccessComponent},
 
+  {path: 'employee/work', component: AdminEmployeeWorkComponent},
+  {path: 'employee/work/item/:id', component: AdminEmployeeWorkItemComponent},
+
   {path: 'employer', component: AdminEmployerComponent},
   {path: 'employer/order/list', component: AdminEmployerOrderListComponent},
   {path: 'employer/order/details/:conId', component: AdminEmployerOrderDetailsComponent},
@@ -192,9 +203,19 @@ const appAdminRoutes: Routes = [
   {path: 'uploader/avatar', component: AdminUploaderAvatarComponent},
   {path: 'uploader/gallery', component: AdminUploaderGalleryComponent},
   {
+    path: 'salesmen',
+    component: AdminSalesmenComponent,
+    children: appAdminSalesmenRoutes
+  },
+  {
     path: 'backend',
     component: AdminBackendComponent,
     children: appAdminBackendRoutes
+  },
+  {
+    path: 'article',
+    component: AdminArticleComponent,
+    children: appAdminArticleRoutes
   },
   {
     path: '**', redirectTo: 'index'
@@ -221,6 +242,8 @@ const appFrontRoutes: Routes = [
   {path: 'investigate/success', component: FrontInvestigateSuccessComponent},
   {path: 'msg/success', component: FrontMsgSuccessComponent},
   {path: 'msg/reserve', component: FrontMsgReserveComponent},
+
+  {path: 'invite/become', component: FrontInviteBecomeComponent},
   {
     path: 'red',
     component: FrontRedComponent,

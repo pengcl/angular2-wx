@@ -6,6 +6,7 @@ import {EmployeeService} from '../../../../services/employee.service';
 import {Config} from '../../../../config';
 import {ChartF2Service} from '../../../../modules/chart-f2';
 import {RatingConfig} from 'ngx-weui';
+import {getRate} from '../../../../utils/utils';
 
 declare var F2: any;
 
@@ -48,56 +49,24 @@ export class AdminEmployeeServiceComponent implements OnInit {
       this.housekeeper = res.housekeeper;
 
       this.employee.getEmployeeScores(this.user.housekeeperId).then(scores => {
-        console.log(scores);
         this.score.count = 0;
+
         scores.forEach(k => {
-          const item = {name: this.housekeeper.name, props: k.props, value: k.value / k.credit * 100, credit: k.credit};
+          const item = {
+            name: this.housekeeper.name,
+            props: k.props,
+            value: k.value / k.credit * 100,
+            rate: getRate(k.value / k.credit * 100)
+          };
           this.score.scores.push(item);
-          this.score.count = this.score.count + k.value;
+          this.score.count = this.score.count + item.value;
         });
 
         if (this.score.count === 0) {
           return false;
         }
-        this.chartSvc.get().then(result => {
-          F2.Global.pixelRatio = window.devicePixelRatio;
-          const data = this.score.scores;
 
-          const chart = new F2.Chart({
-            id: 'mountNode'
-          });
-
-          chart.coord('polar');
-          chart.source(data, {
-            value: {
-              min: 0,
-              tickInterval: 20
-            }
-          });
-
-
-          // 配置刻度文字大小，供PC端显示用(移动端可以使用默认值20px)
-          chart.axis('props', {
-            label: {
-              fontSize: 12
-            },
-            line: null
-          });
-          chart.axis('value', {
-            label: null,
-            line: null
-          });
-
-          chart.area().position('props*value').color('name').style({
-            opacity: 0.6,
-            background: '#FBA703'
-          });
-          // x和y轴同时缩放的动画
-          chart.animate({
-            type: 'scalexy'
-          });
-          chart.render();
-        });
+        this.rate = getRate(this.score.count / scores.length);
       });
     });
     this.employee.getEmployer(this.user.housekeeperId, 2).then(res => {

@@ -1,3 +1,27 @@
+.weui-grids {
+  margin: -0.05rem;
+  .weui-grid {
+    width: 25%;
+    padding: 0.05rem;
+    .weui-grid__icon, .weui-grid__label {
+      display: inline-block;
+      vertical-align: middle;
+    }
+    .weui-grid__label {
+      margin-top: 0;
+    }
+    .weui-grid__icon {
+      width: 0.2rem;
+      height: 0.2rem;
+    }
+    img {
+      width: 100%;
+      border-radius: 0.06rem;
+      display: block;
+    }
+  }
+}
+
 .score {
   width: 100%;
   text-align: center;
@@ -9,15 +33,56 @@
       font-size: 0.48rem;
     }
     sub {
-      font-size: 0.14rem;
+      font-size: 0.24rem;
     }
   }
 
   .score-label {
     text-align: center;
-    margin: -0.05rem 0 0.1rem;
-    font-size: 0.10rem;
-    color: #999;
+    margin-top: 0.05rem;
+  }
+}
+
+.weui-grids {
+  margin: -0.05rem;
+  &:before, &:after {
+    display: none;
+  }
+  .weui-grid {
+    &:before, &:after {
+      display: none;
+    }
+    padding: 5px;
+    .photo {
+      width: 100%;
+      height: 0.7rem;
+      overflow: hidden;
+      border-radius: 0.04rem;
+      background-size: cover;
+      background-position: top center;
+    }
+  }
+}
+
+.rating .on:before {
+  color: #CA9F4D;
+}
+
+.rate-box {
+  text-align: center;
+  .rating > i {
+    font-size: 0.3rem;
+    margin: 0 0.08rem;
+  }
+}
+.rates-box {
+  margin: 0;
+  text-align: left;
+  .weui-grid {
+    width: 50%;
+    span {
+      margin-right: 0.1rem;
+    }
   }
 }
 

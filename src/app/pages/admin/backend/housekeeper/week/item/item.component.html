@@ -1,0 +1,70 @@
+<app-navbar [show]="true" [navBar]="navBarConfig"></app-navbar>
+
+<div class="content-scrollable has-nav">
+  <div *ngFor="let week of weeks" class="weeks weui-panel">
+    <div class="weui-panel__hd">周期 {{week.theyear}}年第{{week.theweek}}周 {{week.begintime | repairDate | date :
+      'MM月dd日'}}~{{week.endtime | repairDate | date : 'MM月dd日'}}
+    </div>
+    <div class="weui-panel__bd">
+      <div class="weui-media-box weui-media-box_small-appmsg">
+        <div class="weui-cells">
+          <div class="weui-cell">
+            <div class="weui-cell__hd">
+              <div class="weui-label">工作时间</div>
+            </div>
+            <div class="weui-cell__bd weui-cell_primary">
+              <p>上班{{week.workdays}}天 共{{week.workhours}}小时</p>
+            </div>
+          </div>
+          <div class="weui-cell">
+            <div class="weui-cell__hd">
+              <div class="weui-label">工作内容</div>
+            </div>
+            <div class="weui-cell__bd weui-cell_primary">
+              <p>{{week.content}}</p>
+            </div>
+          </div>
+          <div class="weui-cell">
+            <div class="weui-cell__hd">
+              <div class="weui-label">工作失误</div>
+            </div>
+            <div class="weui-cell__bd weui-cell_primary">
+              <p>{{week.workmistake}}</p>
+            </div>
+          </div>
+          <div class="weui-cell">
+            <div class="weui-cell__hd">
+              <div class="weui-label">工作体会</div>
+            </div>
+            <div class="weui-cell__bd weui-cell_primary">
+              <p>{{week.workexperience}}</p>
+            </div>
+          </div>
+          <div class="weui-cell">
+            <div class="weui-cell__hd">
+              <div class="weui-label">意见和建议</div>
+            </div>
+            <div class="weui-cell__bd weui-cell_primary">
+              <p>{{week.workopinion}}</p>
+            </div>
+          </div>
+          <div class="feedback weui-cell">
+            <div class="weui-cell__hd">
+              <div class="weui-label">批复意见</div>
+            </div>
+            <div class="weui-cell__bd weui-cell_primary">
+              <p>{{week.auditfeedback}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="weui-panel__ft">
+      <a [routerLink]="['/admin/backend/housekeeper/week/audit',week.weeklyid]" class="weui-cell weui-cell_access">
+        <div class="weui-cell__bd">查看详细</div>
+        <span class="weui-cell__ft"></span>
+      </a>
+    </div>
+  </div>
+</div>
+

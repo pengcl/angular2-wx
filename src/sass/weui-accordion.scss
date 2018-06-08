@@ -1,0 +1,15 @@
+.weui-accordion-content {
+  background: #444;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height .5s ease-in;
+  padding-left: 0.15rem;
+}
+
+.weui-accordion-active {
+  max-height: inherit;
+  .weui-accordion-content {
+    max-height: inherit;
+    overflow: hidden;
+  }
+}

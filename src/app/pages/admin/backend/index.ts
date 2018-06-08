@@ -19,6 +19,22 @@ import {AdminBackendTraineeVerifyTurnComponent} from './trainee/verify/turn/turn
 import {AdminBackendTermListComponent} from './term/list/list.component';
 import {AdminBackendTermItemComponent} from './term/item/item.component';
 import {AdminBackendTermAddComponent} from './term/add/add.component';
+import {AdminBackendTermEditComponent} from './term/edit/edit.component';
+
+import {AdminBackendHousekeeperListComponent} from './housekeeper/list/list.component';
+import {AdminBackendHousekeeperItemComponent} from './housekeeper/item/item.component';
+import {AdminBackendHousekeeperSignListComponent} from './housekeeper/sign/list/list.component';
+import {AdminBackendHousekeeperSignItemComponent} from './housekeeper/sign/item/item.component';
+
+import {AdminBackendOrderListComponent} from './order/list/list.component';
+import {AdminBackendOrderItemComponent} from './order/item/item.component';
+
+import {AdminBackendHousekeeperLeaveListComponent} from './housekeeper/leave/list/list.component';
+import {AdminBackendHousekeeperLeaveItemComponent} from './housekeeper/leave/item/item.component';
+
+import {AdminBackendHousekeeperWeekListComponent} from './housekeeper/week/list/list.component';
+import {AdminBackendHousekeeperWeekItemComponent} from './housekeeper/week/item/item.component';
+import {AdminBackendHousekeeperWeekAuditComponent} from './housekeeper/week/audit/audit.component';
 
 export const ADMIN_PAGES_BACKEND_DECLARATIONS = [
   AdminBackendComponent,
@@ -41,5 +57,21 @@ export const ADMIN_PAGES_BACKEND_DECLARATIONS = [
 
   AdminBackendTermListComponent,
   AdminBackendTermItemComponent,
-  AdminBackendTermAddComponent
+  AdminBackendTermAddComponent,
+  AdminBackendTermEditComponent,
+
+  AdminBackendHousekeeperListComponent,
+  AdminBackendHousekeeperItemComponent,
+  AdminBackendHousekeeperSignListComponent,
+  AdminBackendHousekeeperSignItemComponent,
+
+  AdminBackendOrderListComponent,
+  AdminBackendOrderItemComponent,
+
+  AdminBackendHousekeeperLeaveListComponent,
+  AdminBackendHousekeeperLeaveItemComponent,
+
+  AdminBackendHousekeeperWeekListComponent,
+  AdminBackendHousekeeperWeekItemComponent,
+  AdminBackendHousekeeperWeekAuditComponent
 ];

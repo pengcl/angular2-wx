@@ -84,7 +84,7 @@
         </div>
       </div>
 
-      <div class="weui-panel weui-panel_access"
+      <!--<div class="weui-panel weui-panel_access"
            [ngClass]="{'weui-panel_warn':turnForm.get('serviceAreaIds').invalid && isSubmit}">
         <div class="weui-panel__hd">服务地区</div>
         <div class="weui-panel__bd">
@@ -96,7 +96,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </div>-->
 
       <div class="weui-cells weui-cells_form">
         <div class="weui-cell" [ngClass]="{'weui-cell_warn':turnForm.get('monthlypay').invalid && isSubmit}">
@@ -125,7 +125,7 @@
 </div>
 
 <div class="btns-group">
-  <a class="btn-secondary no-state">返回</a>
+  <a (click)="back()" class="btn-secondary no-state">返回</a>
   <a (click)="turn()" class="btn-secondary">确定</a>
 </div>
 
