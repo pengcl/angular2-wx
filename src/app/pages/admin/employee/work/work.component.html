@@ -2,7 +2,7 @@
 
 <weui-navbar class="work main">
   <weui-tab heading="写周报">
-    <form [formGroup]="workForm">
+    <form [formGroup]="workForm" (change)="onChange()">
       <div class="weui-cells__title">工作周期 <em>({{theWeek.first | date : 'yyyy'}}年第{{theWeek.week}}周)</em></div>
       <div class="weui-cells">
         <div class="weui-cell" href="javascript:;">

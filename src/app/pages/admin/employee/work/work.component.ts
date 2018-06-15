@@ -53,6 +53,7 @@ export class AdminEmployeeWorkComponent implements OnInit {
     this.user = this.userSvc.isLogin();
 
     this.theWeek = getThisWeek();
+    console.log(this.theWeek);
 
     this.workForm = new FormGroup({
       housekeeperId: new FormControl('', [Validators.required]),
@@ -96,7 +97,9 @@ export class AdminEmployeeWorkComponent implements OnInit {
     // 看周报
     this.workSvc.getWeeks(this.user.housekeeperId, 1).then(res => {
       console.log(res);
-      this.weeks = res.list;
+      this.weeks = res.list.filter(item => {
+        return this.theWeek.week !== item.theweek;
+      });
     });
 
   }
@@ -112,7 +115,7 @@ export class AdminEmployeeWorkComponent implements OnInit {
   }
 
   hoursPickerShow(target) {
-    this.pickerSvc.show(this.pickerData[target], '', [this.workForm.get(target).value], {
+    this.pickerSvc.show(this.pickerData[target], '', [0], {
       cancel: '返回',
       confirm: '确定'
     }).subscribe(res => {
@@ -124,6 +127,10 @@ export class AdminEmployeeWorkComponent implements OnInit {
   onSelect() {
   }
 
+  onChange() {
+    console.log('change');
+  }
+
   submit() {
     this.isSubmit = true;
     if (this.loading) {
@@ -131,7 +138,9 @@ export class AdminEmployeeWorkComponent implements OnInit {
     }
 
     if (!this.weeklyId) {
+      this.loading = true;
       this.workSvc.add(this.workForm.value).then(res => {
+        this.loading = false;
         let msg = '';
         if (res.code === 0) {
           msg = '周报保存成功';
@@ -143,7 +152,9 @@ export class AdminEmployeeWorkComponent implements OnInit {
     } else {
       const body = this.workForm.value;
       body.weeklyId = this.weeklyId;
+      this.loading = true;
       this.workSvc.update(this.workForm.value).then(res => {
+        this.loading = false;
         let msg = '';
         if (res.code === 0) {
           msg = '周报更新成功';

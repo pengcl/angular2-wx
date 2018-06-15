@@ -6,6 +6,7 @@ import {WxService} from '../../../modules/wx';
 import {EmployeeService} from '../../../services/employee.service';
 import {Observable} from 'rxjs/Observable';
 import {InfiniteLoaderComponent, InfiniteLoaderConfig} from 'ngx-weui';
+import {OrderService} from '../../../services/order.service';
 import {Config} from '../../../config';
 
 @Component({
@@ -31,11 +32,14 @@ export class GuideStep4Component implements OnInit {
   };*/
 
   orderNo;
+  isPaid;
+  payUrl;
 
   constructor(private router: Router,
               private route: ActivatedRoute,
               private wx: WxService,
-              private employeeSvc: EmployeeService) {
+              private employeeSvc: EmployeeService,
+              private orderSvc: OrderService) {
     this.navBarConfig.navigationBarTitleText = '大牛管家';
   }
 
@@ -58,6 +62,15 @@ export class GuideStep4Component implements OnInit {
     this.employeeSvc.getIntentList(this.params).then(res => {
       this.lists = res.list;
     });
+
+    this.orderSvc.getIntentServiceOrder(this.orderNo).then(res => {
+      if (res.code === 0) {
+        console.log(res);
+        this.isPaid = !!res.intentServiceOrder.paidamount;
+        this.payUrl = res.payUrl;
+        console.log(this.isPaid);
+      }
+    });
   }
 
   onLoadMore(comp: InfiniteLoaderComponent) {
@@ -76,5 +89,9 @@ export class GuideStep4Component implements OnInit {
 
       comp.resolveLoading();
     });
+  }
+
+  pay() {
+    window.location.href = this.payUrl;
   }
 }

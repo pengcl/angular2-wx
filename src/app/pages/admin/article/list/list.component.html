@@ -3,21 +3,42 @@
   <div class="weui-cells">
     <a routerLink="/admin/article/item/1" class="weui-cell weui-cell_access">
       <div class="weui-cell__bd">
-        <p>广州猎金网络科技有限公司员工手册</p>
+        <p>公司员工手册</p>
       </div>
       <div class="weui-cell__ft">
       </div>
     </a>
-    <a routerLink="/admin/article/item/2" class="weui-cell weui-cell_access">
+    <a *ngIf="isEmployee || isAdmin" routerLink="/guide/knowledge" class="weui-cell weui-cell_access" href="javascript:;">
+      <div class="weui-cell__bd">
+        <p>大牛管家客户服务说明书</p>
+      </div>
+      <div class="weui-cell__ft">
+      </div>
+    </a>
+    <a *ngIf="isEmployee || isAdmin" routerLink="/admin/article/item/2" class="weui-cell weui-cell_access">
       <div class="weui-cell__bd">
         <p>大牛管家员工服务指导手册</p>
       </div>
       <div class="weui-cell__ft">
       </div>
     </a>
-    <a routerLink="/guide/knowledge" class="weui-cell weui-cell_access" href="javascript:;">
+    <a *ngIf="isEmployee || isAdmin" routerLink="/admin/article/item/4" class="weui-cell weui-cell_access" href="javascript:;">
       <div class="weui-cell__bd">
-        <p>大牛管家客户服务手册</p>
+        <p>薪酬福利管理制度</p>
+      </div>
+      <div class="weui-cell__ft">
+      </div>
+    </a>
+    <a *ngIf="isEmployee || isAdmin" routerLink="/admin/article/item/5" class="weui-cell weui-cell_access" href="javascript:;">
+      <div class="weui-cell__bd">
+        <p>绩效管理制度</p>
+      </div>
+      <div class="weui-cell__ft">
+      </div>
+    </a>
+    <a *ngIf="isEmployee || isAdmin" routerLink="/admin/article/item/3" class="weui-cell weui-cell_access" href="javascript:;">
+      <div class="weui-cell__bd">
+        <p>办公用品管理规定</p>
       </div>
       <div class="weui-cell__ft">
       </div>

@@ -69,6 +69,7 @@ export class AdminEmployerComponent implements OnInit, OnDestroy {
     });
 
     this.employerSvc.getCount(this.user.id).then(res => {
+      console.log(res);
       this.count = {
         msg: res.msgCount,
         rate: res.evalCount

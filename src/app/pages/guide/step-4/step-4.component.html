@@ -2,12 +2,13 @@
   <div class="img-box">
     <img src="/assets/images/guide/top1.png">
   </div>
+  <div class="weui-cells__title" style="font-size: 0.18rem;color: #333;">{{isPaid ? '更换管家' : '推荐管家'}}  <span style="font-size: 0.14rem">请挑选管家进行预约面试</span></div>
   <app-profile-min [routerLink]="['/guide/step5', item.housekeeperid]" [queryParams]="{orderNo:orderNo}"
                    queryParamsHandling="merge"
                    [profile]="item"
                    *ngFor="let item of lists"></app-profile-min>
 
-  <div class="weui-btn-area">
-    <a routerLink="/guide/step7" class="weui-btn weui-btn_primary">暂不挑选，联系后再确定</a>
+  <div *ngIf="!isPaid" class="weui-btn-area">
+    <a (click)="pay()" class="weui-btn weui-btn_primary">先预约名额，暂不选人（预付￥1.00）</a>
   </div>
 </weui-infiniteloader>

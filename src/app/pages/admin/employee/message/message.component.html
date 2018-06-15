@@ -26,10 +26,10 @@
           <div class="weui-cell__bd">
             <div class="weui-cell">
               <div class="weui-cell__bd">
-                <p><span class="ui-label green horizontal">考勤</span><span class="right">{{item.createtime | repairDate | date : 'yyyy-MM-dd'}}</span>
+                <p>
+                  <span class="ui-label green horizontal">{{item.messageTypename}}</span><span class="right">{{item.createtime | repairDate | date : 'yyyy-MM-dd'}}</span>
                 </p>
-                <div style="font-size: 0.13rem;color: #999;margin-top: 0.05rem" [innerHtml]="item.messagecontent"></div>
-                <!--<p class="weui-media-box__desc">{{item.messagecontent}}</p>-->
+                <div class="desc" [innerHTML]="item.messagecontent"></div>
               </div>
               <div class="weui-cell__ft"></div>
             </div>

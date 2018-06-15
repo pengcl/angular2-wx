@@ -100,13 +100,13 @@
       </tr>
       <tr>
         <td class="label">驾龄</td>
-        <td class="value" [ngClass]="{'red' : trainee.driversAge === 0}">{{trainee.driversAge}}</td>
+        <td class="value" [ngClass]="{'red' : trainee.driversage === 0}">{{trainee.driversage}}</td>
         <td class="label">驾驶里程(km)</td>
         <td class="value" [ngClass]="{'red' : trainee.drivingMileage < 1000}">{{trainee.drivingMileage}}</td>
       </tr>
       <tr>
         <td class="label">籍贯</td>
-        <td class="value">{{trainee.placeOfOrigin}}</td>
+        <td class="value">{{trainee.placeoforigin}}</td>
         <td class="label">户籍地</td>
         <td class="value">{{trainee.birthplace}}</td>
       </tr>
@@ -114,7 +114,7 @@
         <td class="label">户籍性质</td>
         <td class="value">{{trainee.birthplacetype === '0' ?'城镇' : '农村'}}</td>
         <td class="label">现居地</td>
-        <td class="value"></td>
+        <td class="value">{{trainee.address}}</td>
       </tr>
       <tr>
         <td class="label">政治面貌</td>
@@ -143,7 +143,7 @@
           <span *ngIf="trainee.education === '9'">其它</span>
         </td>
         <td class="label">毕业时间</td>
-        <td class="value">{{trainee.graduationTime}}</td>
+        <td class="value">{{trainee.graduationtime}}</td>
       </tr>
       <tr>
         <td class="label">毕业院校</td>
@@ -153,13 +153,13 @@
       </tr>
       <tr>
         <td class="label">部队专业</td>
-        <td class="value">{{trainee.militarySpecialty}}</td>
+        <td class="value">{{trainee.militaryspecialty}}</td>
         <td class="label">退伍军衔</td>
-        <td class="value">{{trainee.retiredOfficerRank}}</td>
+        <td class="value">{{trainee.retiredofficerrank}}</td>
       </tr>
       <tr>
         <td class="label">入伍年月</td>
-        <td class="value">{{trainee.enlistmentTime}}</td>
+        <td class="value">{{trainee.enlistmenttime}}</td>
         <td class="label">退伍年月</td>
         <td class="value">{{trainee.retirementtime}}</td>
       </tr>

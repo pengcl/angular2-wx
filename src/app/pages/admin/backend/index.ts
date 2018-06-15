@@ -36,6 +36,8 @@ import {AdminBackendHousekeeperWeekListComponent} from './housekeeper/week/list/
 import {AdminBackendHousekeeperWeekItemComponent} from './housekeeper/week/item/item.component';
 import {AdminBackendHousekeeperWeekAuditComponent} from './housekeeper/week/audit/audit.component';
 
+import {AdminBackendHousekeeperMessageComponent} from './housekeeper/message/message.component';
+
 export const ADMIN_PAGES_BACKEND_DECLARATIONS = [
   AdminBackendComponent,
   AdminBackendIndexComponent,
@@ -73,5 +75,6 @@ export const ADMIN_PAGES_BACKEND_DECLARATIONS = [
 
   AdminBackendHousekeeperWeekListComponent,
   AdminBackendHousekeeperWeekItemComponent,
-  AdminBackendHousekeeperWeekAuditComponent
+  AdminBackendHousekeeperWeekAuditComponent,
+  AdminBackendHousekeeperMessageComponent
 ];

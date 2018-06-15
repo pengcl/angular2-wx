@@ -16,9 +16,9 @@ export class AdminEmployeeMessageComponent implements OnInit {
 
   user: any;
   sysMessages;
-  userMessages;
 
   tab: string = 'system';
+  types;
 
   constructor(private wx: WxService, private userSvc: UserService, private messages: MessagesService) {
   }
@@ -26,13 +26,20 @@ export class AdminEmployeeMessageComponent implements OnInit {
   ngOnInit() {
     this.user = this.userSvc.isLogin();
 
-    this.messages.getMessages(this.user.id).then(res => {
-      this.sysMessages = res.list;
+    this.messages.getTypeList().then(res => this.types = res.list).then(types => {
+      this.messages.getMessages(this.user.id).then(res => {
+        const sysMessages = [];
+        res.list.forEach(item => {
+          types.forEach(type => {
+            if (type.itemValue === item.messagetype) {
+              item.messageTypename = type.itemName;
+            }
+          });
+          sysMessages.push(item);
+        });
+        this.sysMessages = sysMessages;
+      });
     });
-    /*this.messages.getMessages(this.user.id, 1).then(res => {
-      this.userMessages = res.list;
-      console.log(res.list);
-    });*/
   }
 
   setTab(tab) {

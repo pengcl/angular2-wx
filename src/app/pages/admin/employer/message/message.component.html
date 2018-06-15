@@ -119,21 +119,18 @@
         </div>
       </div>
 
+
       <div class="weui-cells">
-        <div *ngFor="let item of sysMessages" class="weui-cell weui-cell_swiped" weui-swipe>
+        <div *ngFor="let item of sysMessages" class="weui-cell">
           <div class="weui-cell__bd">
-            <div class="weui-cell">
-              <div class="weui-cell__bd">
-                <p><span class="ui-label green horizontal">考勤</span><span class="right">{{item.createtime | repairDate | date : 'yyyy-MM-dd'}}</span>
-                </p>
-                <p class="weui-media-box__desc">{{item.messagecontent}}</p>
-              </div>
-              <div class="weui-cell__ft"></div>
-            </div>
+            <p>
+              <span class="ui-label green horizontal">{{item.messageTypename}}</span> <span
+              *ngIf="item.messageTypename === '出工' && item.isConfirm === 1" (click)="confirm(item.confirmUrl,item)"
+              class="ui-label green horizontal">确认</span> <span class="right">{{item.createtime | repairDate | date : 'yyyy-MM-dd'}}</span>
+            </p>
+            <div class="desc" [innerHTML]="item.messagecontent"></div>
           </div>
-          <div class="weui-cell__ft">
-            <a class="weui-swiped-btn weui-swiped-btn_warn" href="javascript:">删除</a>
-          </div>
+          <div class="weui-cell__ft"></div>
         </div>
       </div>
     </div>

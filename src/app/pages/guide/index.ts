@@ -9,6 +9,7 @@ import {GuideStep4Component} from './step-4/step-4.component';
 import {GuideStep5Component} from './step-5/step-5.component';
 import {GuideStep6Component} from './step-6/step-6.component';
 import {GuideStep7Component} from './step-7/step-7.component';
+import {GuideStep8Component} from './step-8/step-8.component';
 
 export const GUIDE_PAGES_DECLARATIONS = [
   GuideComponent,
@@ -21,5 +22,6 @@ export const GUIDE_PAGES_DECLARATIONS = [
   GuideStep4Component,
   GuideStep5Component,
   GuideStep6Component,
-  GuideStep7Component
+  GuideStep7Component,
+  GuideStep8Component
 ];

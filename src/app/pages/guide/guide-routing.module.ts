@@ -9,6 +9,7 @@ import {GuideStep4Component} from './step-4/step-4.component';
 import {GuideStep5Component} from './step-5/step-5.component';
 import {GuideStep6Component} from './step-6/step-6.component';
 import {GuideStep7Component} from './step-7/step-7.component';
+import {GuideStep8Component} from './step-8/step-8.component';
 
 export const appGuideRoutes: Routes = [
   {path: 'poster', component: GuidePosterComponent},
@@ -21,6 +22,7 @@ export const appGuideRoutes: Routes = [
   {path: 'step5/:id', component: GuideStep5Component},
   {path: 'step6/:id', component: GuideStep6Component},
   {path: 'step7', component: GuideStep7Component},
+  {path: 'step8', component: GuideStep8Component},
   {
     path: '**', redirectTo: 'index'
   }

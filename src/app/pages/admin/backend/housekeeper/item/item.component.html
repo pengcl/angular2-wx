@@ -46,7 +46,7 @@
       </tbody>
     </table>
 
-    <div class="weui-cells__title">服务客户资料</div>
+    <div *ngIf="cont.contid" class="weui-cells__title">服务客户资料</div>
     <table *ngIf="cont.contid" class="resume ui celled table">
       <tbody>
       <tr>
@@ -146,7 +146,7 @@
         <td class="label">年龄</td>
         <td class="value" [ngClass]="{'red' : trainee.age < 23 || trainee.age > 32}">{{trainee.age}}</td>
         <td class="label">出生年月</td>
-        <td class="value">{{trainee.birthDay}}</td>
+        <td class="value">{{housekeeper.birthDay}}</td>
       </tr>
       <tr>
         <td class="label">性别</td>
@@ -158,15 +158,15 @@
       </tr>
       <tr>
         <td class="label">驾龄</td>
-        <td class="value" [ngClass]="{'red' : trainee.driversage === 0}">{{trainee.driversage}}</td>
+        <td class="value" [ngClass]="{'red' : housekeeper.driversage === 0}">{{housekeeper.driversage}}</td>
         <td class="label">驾驶里程(km)</td>
-        <td class="value" [ngClass]="{'red' : trainee.drivingMileage < 1000}">{{trainee.drivingMileage}}</td>
+        <td class="value" [ngClass]="{'red' : housekeeper.modelDetailMap.drivingMileage < 1000}">{{housekeeper.modelDetailMap.drivingMileage}}</td>
       </tr>
       <tr>
         <td class="label">籍贯</td>
-        <td class="value">{{trainee.placeoforigin}}</td>
+        <td class="value">{{housekeeper.placeoforigin}}</td>
         <td class="label">户籍地</td>
-        <td class="value">{{trainee.birthplace}}</td>
+        <td class="value">{{housekeeper.birthplace}}</td>
       </tr>
       <tr>
         <td class="label">户籍性质</td>
@@ -201,11 +201,11 @@
           <span *ngIf="trainee.education === '9'">其它</span>
         </td>
         <td class="label">毕业时间</td>
-        <td class="value">{{trainee.graduationtime}}</td>
+        <td class="value">{{housekeeper.graduationtime}}</td>
       </tr>
       <tr>
         <td class="label">毕业院校</td>
-        <td class="value">{{trainee.graduationplace}}</td>
+        <td class="value">{{housekeeper.graduationplace}}</td>
         <td class="label">原服役部队</td>
         <td class="value">{{trainee.armyserveplace}}</td>
       </tr>

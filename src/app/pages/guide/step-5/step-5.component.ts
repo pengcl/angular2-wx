@@ -57,6 +57,9 @@ export class GuideStep5Component implements OnInit {
   isSubmit = false;
   loading = false;
 
+  isPaid: boolean = false;
+  payUrl;
+
   constructor(private router: Router,
               private route: ActivatedRoute,
               private dialogSvc: DialogService,
@@ -78,6 +81,9 @@ export class GuideStep5Component implements OnInit {
 
     this.orderSvc.getIntentServiceOrder(this.orderNo).then(res => {
       this.order = res.intentServiceOrder;
+
+      this.isPaid = !!res.intentServiceOrder.paidamount;
+      this.payUrl = res.payUrl;
     });
 
     this.contentForm = new FormGroup({
@@ -146,11 +152,17 @@ export class GuideStep5Component implements OnInit {
     this.orderSvc.relHousekeeperForIntent(this.contentForm.value).then(res => {
       this.loading = false;
       if (res.code === 0) {
-        this.router.navigate(['/guide/step7']);
+        if (this.isPaid) {
+          this.router.navigate(['/guide/step8'], {queryParams: {orderNo: this.orderNo}});
+        } else {
+          window.location.href = this.payUrl;
+        }
+        // this.router.navigate(['/guide/step7']);
       } else {
         this.dialogSvc.show({content: res.msg, cancel: '', confirm: '我知道了！'}).subscribe();
       }
       console.log(res);
+    }).then(() => {
     });
   }
 }

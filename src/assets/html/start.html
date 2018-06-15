@@ -621,7 +621,7 @@
   <div class="solders">
     <div class="weui-flex">
       <div class="txt weui-flex__item">
-        <div class="title"><span>特级管家</span><em>¥21000/月</em></div>
+        <div class="title"><span>特级管家</span><em>¥16000/月</em></div>
         <ul>
           <li>5-8年特种部队磨砺</li>
           <li>2年以上相关工作经历</li>
@@ -633,7 +633,7 @@
     </div>
     <div class="weui-flex">
       <div class="txt weui-flex__item">
-        <div class="title"><span>高级管家</span><em>¥16000/月</em></div>
+        <div class="title"><span>高级管家</span><em>¥12000/月</em></div>
         <ul>
           <li>2-5年特种部队磨砺</li>
           <li>2年工作经历</li>
@@ -647,7 +647,7 @@
     </div>
     <div class="weui-flex">
       <div class="txt weui-flex__item">
-        <div class="title"><span>中级管家</span><em>¥14000/月</em></div>
+        <div class="title"><span>中级管家</span><em>¥11000/月</em></div>
         <ul>
           <li>2-5年作战部队磨砺</li>
           <li>1年工作经历</li>
@@ -659,7 +659,7 @@
     </div>
     <div class="weui-flex">
       <div class="txt weui-flex__item">
-        <div class="title"><span>初级管家</span><em>¥12000/月</em></div>
+        <div class="title"><span>初级管家</span><em>¥9000/月</em></div>
         <ul>
           <li>2年以上部队磨砺</li>
           <li>驾驶技术熟练</li>
@@ -678,14 +678,14 @@
   </div>
   <div class="check-customerName check-customerMobile weui-cells__title"
        [ngClass]="{'warn':(subscribeForm.get('customerName').invalid && isSubmit) || (subscribeForm.get('customerMobile').invalid && isSubmit)}">
-    请您留下联系方式，以便我们登记安排管家
+    请留下联系方式，我们的客户经理会尽快联系您
     <p>大牛管家向您承诺，您所有资料均会严格保密，请放心填写。</p>
   </div>
   <div class="input-area weui-cells weui-cells_form">
     <div id="iCustomerName" class="weui-cell">
       <div class="weui-cell__hd"><span class="weui-label">您的称呼</span></div>
       <div class="weui-cell__bd">
-        <input id="customerName" autocomplete="off" maxlength="4" minlength="2" required class="weui-input"
+        <input id="customerName" autocomplete="off" maxlength="5" minlength="1" required class="weui-input"
                placeholder="如：李先生/李女士">
       </div>
       <div class="weui-cell__ft"><i class="weui-icon-warn"></i></div>
@@ -795,7 +795,7 @@
 
   $('#customerName').bind('input propertychange', function () {
     customerName = $(this).val();
-    if (!customerName || customerName.length < 2) {
+    if (!customerName || customerName.length < 1) {
       $("#iCustomerName").addClass('weui-cell_warn');
     } else {
       $("#iCustomerName").removeClass('weui-cell_warn');
@@ -816,7 +816,7 @@
 
     $("html,body").animate({"scrollTop":10000});
 
-    if (!customerName || customerName.length < 2) {
+    if (!customerName || customerName.length < 1) {
       $("#iCustomerName").addClass('weui-cell_warn');
       return false;
     }

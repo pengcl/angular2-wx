@@ -42,7 +42,7 @@
       </div>
     </div>
     <div class="weui-form-preview__ft">
-      <a class="weui-form-preview__btn weui-form-preview__btn_default" href="javascript:">返回</a>
+      <a (click)="back()" class="weui-form-preview__btn weui-form-preview__btn_default" href="javascript:">返回</a>
       <a [routerLink]="['/admin/employer/order/confirm', order.id]" class="weui-form-preview__btn weui-form-preview__btn_primary">我已完成转账</a>
     </div>
   </div>

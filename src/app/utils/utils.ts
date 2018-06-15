@@ -393,6 +393,7 @@ export function getDateDifference(date1, date2) {
 }
 
 export function formatOrder(item) {
+  console.log(item);
   const order = {
     id: item.conid,
     no: item.conno,
@@ -437,6 +438,7 @@ export function formatOrder(item) {
             amount: period.amount,
             index: period.serviceperiod,
             name: period.periodmonth,
+            payno: period.payno,
             meta: {
               createAt: period.createtime,
               paidAt: period.paidtime,
@@ -469,13 +471,14 @@ export function formatOrder(item) {
           height: employee.height,
           weight: employee.weight,
           experience: employee.servicetime,
-          skill: employee.skillnames.split(','),
+          skill: employee.skillnames ? employee.skillnames.split(',') : '',
           avatar: Config.prefix.wApi + employee.headimageurl,
           price: employee.commissionamount,
           origin: '',
           level: employee.levelname,
           like: false
         };
+        console.log(Config.prefix.wApi + employee.headimageurl);
         _list.push(_employee);
       });
       return _list;
@@ -538,60 +541,54 @@ export function getRate(score) {
   return 5 * score / 100;
 }
 
-function theWeek() {
-  let totalDays = 0;
-  const now = new Date();
-  let years = now.getFullYear();
-  if (years < 1000) {
-    years += 1900;
+function getWeekOfYear() {
+  const today = new Date();
+  let firstDay = new Date(today.getFullYear(), 0, 1);
+  const dayOfWeek = firstDay.getDay();
+  let spendDay = 1;
+  if (dayOfWeek !== 0) {
+    spendDay = 7 - dayOfWeek + 1;
   }
-  const days = new Array(12);
-  days[0] = 31;
-  days[2] = 31;
-  days[3] = 30;
-  days[4] = 31;
-  days[5] = 30;
-  days[6] = 31;
-  days[7] = 31;
-  days[8] = 30;
-  days[9] = 31;
-  days[10] = 30;
-  days[11] = 31;
-
-  // 判断是否为闰年，针对2月的天数进行计算
-  if (Math.round(now.getFullYear() / 4) === now.getFullYear() / 4) {
-    days[1] = 29;
-  } else {
-    days[1] = 28;
-  }
-
-  if (now.getMonth() === 0) {
-    totalDays = totalDays + now.getDate();
-  } else {
-    const curMonth = now.getMonth();
-    for (let count = 1; count <= curMonth; count++) {
-      totalDays = totalDays + days[count - 1];
-    }
-    totalDays = totalDays + now.getDate();
-  }
-  // 得到第几周
-  const week = Math.round(totalDays / 7);
-  return week;
+  firstDay = new Date(today.getFullYear(), 0, 1 + spendDay);
+  const d = Math.ceil((today.valueOf() - firstDay.valueOf()) / 86400000);
+  const result = Math.ceil(d / 7);
+  return result + 1;
 }
 
-export function getThisWeek() {
-  const date = new Date();
-  const year = date.getFullYear();
-  const month = date.getMonth();
-  const week = date.getDay();
-  const day = date.getDate();
+function getTime(n) {
+  const now = new Date();
+  let year = now.getFullYear();
+  // 因为月份是从0开始的,所以获取这个月的月份数要加1才行
+  let month = now.getMonth() + 1;
+  let date = now.getDate();
+  const day = now.getDay();
+  if (day !== 0) {// 判断是否为周日,如果不是的话,就让今天的day-1(例如星期二就是2-1)
+    n = n + (day - 1);
+  } else {
+    n = n + day;
+  }
+  if (day) {// 这个判断是为了解决跨年的问题
+    if (month > 1) {
+      month = month;
+    } else {// 这个判断是为了解决跨年的问题,月份是从0开始的
+      year = year - 1;
+      month = 12;
+    }
+  }
+  now.setDate(now.getDate() - n);
+  year = now.getFullYear();
+  month = now.getMonth() + 1;
+  date = now.getDate();
+  const s = year + '/' + (month < 10 ? ('0' + month) : month) + '/' + (date < 10 ? ('0' + date) : date) + ' 00:00:00';
+  return s;
+}
 
-  const first = new Date(year, month, day - week + 1);
-  const last = new Date(year, month, day + 7 - week);
+
+export function getThisWeek() {
   return {
-    week: theWeek(),
-    first: first,
-    last: last
+    week: getWeekOfYear(),
+    first: getTime(0),
+    last: getTime(-6)
   };
 }
 

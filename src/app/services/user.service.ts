@@ -21,6 +21,13 @@ export class UserService {
               private wxService: WxService) {
   }
 
+  getStorageUser() {
+    const user = JSON.parse(this.storageService.get('user'));
+    if (user) {
+      return user;
+    }
+  }
+
   getUser() {
     let loginUrl = Config.webHost + '/admin/login';
     if (window.location.href.indexOf('recruitment') !== -1) {

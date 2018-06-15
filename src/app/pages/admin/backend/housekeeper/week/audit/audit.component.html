@@ -39,7 +39,7 @@
     <div class="weui-cell" [ngClass]="{'weui-cell_warn' : auditForm.get('auditFeedback').invalid && isSubmit}">
       <div class="weui-cell__bd">
         <!--readonly="week.auditstatus !== 1"-->
-        <textarea readonly="week.auditstatus === 1" formControlName="auditFeedback" class="weui-textarea" placeholder="您的批复内容" rows="3"></textarea>
+        <textarea formControlName="auditFeedback" class="weui-textarea" placeholder="您的批复内容" rows="3"></textarea>
       </div>
     </div>
   </div>

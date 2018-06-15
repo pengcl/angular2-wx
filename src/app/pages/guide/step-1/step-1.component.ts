@@ -76,25 +76,25 @@ export class GuideStep1Component implements OnInit {
       res.list.forEach((item, index) => {
         const level = item;
         if (index === 0) {
-          level.price = 21000;
+          level.price = 16000;
           level.tag = '5-8年特种部队磨砺';
           level.content = '2年以上相关工作经历，驾驶技术娴熟，综合技能优秀';
           level.avatar = '/assets/images/front/guide/cartoon-4.png';
         }
         if (index === 1) {
-          level.price = 16000;
+          level.price = 12000;
           level.tag = '2-5年特种部队磨砺';
           level.content = '2年工作经历，驾驶技术娴熟，综合技能优良';
           level.avatar = '/assets/images/front/guide/cartoon-3.png';
         }
         if (index === 2) {
-          level.price = 14000;
+          level.price = 11000;
           level.tag = '2-5年作战部队磨砺';
           level.content = '1年工作经历，驾驶技术熟练，综合技能良好';
           level.avatar = '/assets/images/front/guide/cartoon-2.png';
         }
         if (index === 3) {
-          level.price = 12000;
+          level.price = 9000;
           level.tag = '2年以上部队磨砺';
           level.content = '驾驶技术熟练，综合技能达标';
           level.avatar = '/assets/images/front/guide/cartoon-1.png';

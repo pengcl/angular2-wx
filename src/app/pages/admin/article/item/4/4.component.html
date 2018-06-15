@@ -1,0 +1,12 @@
+<app-navbar [navBar]="navBarConfig"></app-navbar>
+
+<div #scrollable class="article-content content-scrollable">
+  <div class="pdf">
+    <div class="weui-flex">
+      <span (click)="onPrevPage()" class="weui-flex__item" id="prev">上一页</span>
+      <span class="weui-flex__item"><span id="page_num">{{pageNum}}</span> / <span id="page_count">{{pdfDoc?.numPages}}</span></span>
+      <span (click)="onNextPage()" class="weui-flex__item" id="next">下一页</span>
+    </div>
+    <canvas id="the-canvas"></canvas>
+  </div>
+</div>

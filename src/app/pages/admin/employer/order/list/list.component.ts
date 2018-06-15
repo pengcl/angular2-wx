@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 
 import {PageConfig} from './page.config';
+import {Config} from '../../../../../config';
 import {WxService} from '../../../../../modules/wx';
 import {UserService} from '../../../../../services/user.service';
 
@@ -16,6 +17,8 @@ import {formatOrder} from '../../../../../utils/utils';
 export class AdminEmployerOrderListComponent implements OnInit {
   tabBarConfig = PageConfig.tabBar;
   navBarConfig = PageConfig.navBar;
+
+  config = Config;
 
   user: any;
 
@@ -50,13 +53,16 @@ export class AdminEmployerOrderListComponent implements OnInit {
           list.push(formatOrder(k));
         });
         this.orderList = list;
+        console.log(this.orderList);
       } else {
         this.orderList = [];
       }
+      console.log(this.orderList);
     });
 
     this.employer.getReserveOrders(this.user.id).then(res => {
       this.reserveOrderList = res.list;
+      console.log(this.reserveOrderList);
     });
   }
 
@@ -67,6 +73,7 @@ export class AdminEmployerOrderListComponent implements OnInit {
   }
 
   gotoPay(i, id, no) {
+    console.log(i, id, no);
     if (i === 0) {
       this.router.navigate(['/admin/employer/order/protocol', id], {queryParams: {no: no}});
     } else {

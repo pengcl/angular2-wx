@@ -36,4 +36,8 @@ export class AdminEmployerOrderUnderlineComponent implements OnInit {
       this.order = formatOrder(res.cont);
     });
   }
+
+  back() {
+    window.history.back();
+  }
 }

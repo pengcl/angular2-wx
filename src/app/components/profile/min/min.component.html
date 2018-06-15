@@ -35,12 +35,13 @@
         </div>
         <div class="attr">
           <div class="weui-flex">
-            <div *ngIf="profile.worktime" class="weui-flex__item">
-              <span class="label" style="font-size: 0.1rem">最快到岗时间：<em><span *ngIf="profile.issubscribe === 0">立即到岗</span><span *ngIf="profile.issubscribe === 2">{{profile.worktime.split(' ')[0].split('-')[1]}}-{{profile.worktime.split(' ')[0].split('-')[2]}}</span></em></span>
-            </div>
             <div class="price weui-flex__item">
               <sub>￥</sub><em>{{profile.commissionamount}}</em><sub>/月</sub>
+              <!--<span class="label" style="font-size: 0.1rem">最快到岗时间：<em><span *ngIf="profile.issubscribe === 0">立即到岗</span><span *ngIf="profile.issubscribe === 2">{{profile.worktime.split(' ')[0].split('-')[1]}}-{{profile.worktime.split(' ')[0].split('-')[2]}}</span></em></span>-->
             </div>
+            <!--<div class="price weui-flex__item">
+              <sub>￥</sub><em>{{profile.commissionamount}}</em><sub>/月</sub>
+            </div>-->
           </div>
         </div>
       </div>

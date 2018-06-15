@@ -97,7 +97,7 @@
     <div class="weui-flex">
       <div class="reserve weui-flex__item">
         <a *ngIf="housekeeper" (click)="reserve()" [userTrack]="'reserve'"
-           class="weui-btn weui-btn_primary">预约他</a>
+           class="weui-btn weui-btn_primary">{{isPaid ? '选择他' : '预约他（预付￥1.00）'}}</a>
       </div>
       <div class="other weui-flex__item">
         <a *ngIf="housekeeper" [routerLink]="['/guide/step4']" [queryParams]="{orderNo:orderNo}"
