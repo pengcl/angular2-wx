@@ -1,0 +1,80 @@
+<app-navbar [show]="true" [navBar]="navBarConfig"></app-navbar>
+<weui-infiniteloader (loadmore)="onLoadMore($event)" #comp>
+  <div class="weui-cells__title">Home > 管家管理 > 管家信息</div>
+
+  <!--<div class="filter-date weui-cells weui-cells_form">
+    <div class="weui-flex">
+      <div class="search weui-flex__item">
+        <div class="weui-cell">
+          <div class="weui-cell__hd"><span class="icon-search"></span></div>
+          <div class="weui-cell__bd">
+            <input class="weui-input" [(ngModel)]="params.name" (ngModelChange)="inputChange(params.name)"
+                   type="text" name="Q_name_S" placeholder="查找姓名"></div>
+        </div>
+      </div>
+      <div class="level weui-flex__item">
+        <div (click)="setLevel()" class="weui-cell weui-cell_access">
+          <div class="weui-cell__bd">级别</div>
+          <div class="weui-cell__ft">{{level.label}}</div>
+        </div>
+      </div>
+      <div class="weui-cells_checkbox weui-flex__item">
+        <label class="weui-cell weui-check__label" for="s12">
+          <div class="weui-cell__hd">
+            <input type="checkbox" (click)="setSubscribe()" name="issubscribe" class="weui-check" id="s12">
+            <i class="weui-icon-checked"></i>
+          </div>
+          <div class="weui-cell__bd">
+            <p>未预约</p>
+          </div>
+        </label>
+      </div>
+    </div>
+  </div>-->
+
+
+  <!--citycode : "140100"
+  cityname : "太原市"
+  countycode : "140105"
+  countyname : "小店区"
+  createBy : null
+  createtime : null
+  custids : null
+  housekeeperids : null
+  housekeepernum : 2
+  path : "140000/140100/140105"
+  postnames : null
+  provincecode : "140000"
+  provincename : "山西省"
+  regionid : 10000103240380
+  regionname : "山西小店区"
+  updateBy : null
+  updatetime : null-->
+
+  <div *ngIf="list" class="table-content">
+    <table class="result ui celled table">
+      <thead>
+      <tr>
+        <th>市</th>
+        <th>区域</th>
+        <th>负责人</th>
+        <th>管家人数</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngIf="list.length === 0">
+        <td colspan="4" style="text-align: center">
+          没有数据
+        </td>
+      </tr>
+      <tr [routerLink]="['/admin/backend/housekeeper/region/item',item.regionid]" *ngFor="let item of list;let i = index">
+        <td>{{item.cityname}}</td>
+        <td>{{item.regionname}}</td>
+        <td>{{item.masterName}}</td>
+        <!--<td>{{item.serviceareanames}}</td>-->
+        <td>{{item.housekeepernum}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</weui-infiniteloader>

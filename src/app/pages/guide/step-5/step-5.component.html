@@ -3,10 +3,34 @@
 <div class="employee-box content-scrollable has-footer">
   <app-profile *ngIf="housekeeper" [profile]="housekeeper"></app-profile>
 
+  <div class="profile-base weui-panel weui-panel_access" style="margin-top: 0.1rem">
+    <div class="weui-panel__hd">
+      <a href="javascript:void(0);" class="weui-cell weui-cell_access">
+        <div class="weui-cell__title weui-cell__bd">基本资料</div>
+      </a>
+    </div>
+    <div class="weui-panel__bd">
+      <div class="weui-media-box">
+        <div class="weui-flex">
+          <div class="weui-flex__item"><b>出生日期：</b>1995-08-30</div>
+          <div class="weui-flex__item"><b>民族：</b>汉族</div>
+        </div>
+        <div class="weui-flex">
+          <div class="weui-flex__item"><b>政治面貌：</b>中共党员</div>
+          <div class="weui-flex__item"><b>婚姻状况：</b>未婚</div>
+        </div>
+        <div class="weui-flex">
+          <div class="weui-flex__item"><b>户籍所在地：</b>河南上蔡</div>
+          <div class="weui-flex__item"><b>学历：</b>高中</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div class="weui-panel weui-panel_access" style="margin-top: 0.1rem">
     <div class="weui-panel__hd">
       <a href="javascript:void(0);" class="weui-cell weui-cell_access">
-        <div class="weui-cell__title weui-cell__bd">培训综合评分</div>
+        <div class="weui-cell__title weui-cell__bd">综合评分</div>
       </a>
     </div>
     <div class="weui-panel__bd">
@@ -19,7 +43,7 @@
   <div class="weui-panel weui-panel_access">
     <div class="weui-panel__hd">
       <a href="javascript:void(0);" class="weui-cell weui-cell_access">
-        <div class="weui-cell__title weui-cell__bd">各项培训得分</div>
+        <div class="weui-cell__title weui-cell__bd">培训评分</div>
       </a>
     </div>
     <div class="weui-panel__bd">
@@ -58,7 +82,7 @@
   <div *ngIf="images?.length > 0" class="weui-panel weui-panel_access">
     <div class="weui-panel__hd">
       <a (click)="showMore()" class="weui-cell weui-cell_access">
-        <div class="weui-cell__title weui-cell__bd">照片</div>
+        <div class="weui-cell__title weui-cell__bd">管家照片</div>
         <span class="weui-cell__ft">查看更多</span>
       </a>
     </div>
@@ -78,33 +102,21 @@
 
   </div>
 
-  <div *ngIf="housekeeper?.introduction" class="weui-panel weui-panel_access">
+  <div *ngIf="housekeeper?.detail" class="weui-panel weui-panel_access">
     <div class="weui-panel__hd">
       <a href="javascript:void(0);" class="weui-cell weui-cell_access">
-        <div class="weui-cell__title weui-cell__bd">管家简介</div>
+        <div class="weui-cell__title weui-cell__bd">管家详情</div>
       </a>
     </div>
     <div class="weui-panel__bd">
-      <div class="weui-media-box weui-media-box_appmsg">
-        <div class="weui-media-box__bd">
-          <p class="housekeeper_desc weui-media-box__desc">{{housekeeper.introduction}}</p>
-        </div>
-      </div>
+      <div class="housekeeper-detail weui-media-box" [innerHTML]="housekeeper.detail"></div>
     </div>
   </div>
 
-  <div class="weui-btn-area">
-    <div class="weui-flex">
-      <div class="reserve weui-flex__item">
-        <a *ngIf="housekeeper" (click)="reserve()" [userTrack]="'reserve'"
-           class="weui-btn weui-btn_primary">{{isPaid ? '选择他' : '预约他（预付￥1.00）'}}</a>
-      </div>
-      <div class="other weui-flex__item">
-        <a *ngIf="housekeeper" [routerLink]="['/guide/step4']" [queryParams]="{orderNo:orderNo}"
-           [userTrack]="'reserve'"
-           class="weui-btn weui-btn_default">看看其他</a>
-      </div>
-    </div>
+  <div class="btns-group">
+    <a (click)="reserve()" [userTrack]="'reserve'" href="#" class="btn-primary">{{isPaid ? '选择他' : '预约他（预付￥1.00）'}}</a>
+    <a *ngIf="housekeeper" [routerLink]="['/guide/step4']" [queryParams]="{orderNo:orderNo}"
+       [userTrack]="'reserve'" class="btn-secondary" href="#">看看其他</a>
   </div>
 
 </div>

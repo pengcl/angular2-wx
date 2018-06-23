@@ -72,6 +72,7 @@ export class AdminBackendHousekeeperListComponent implements OnInit {
     this.housekeeperSvc.get(this.params).then(res => {
       if (res.code === 0) {
         this.housekeepers = res.list;
+        console.log(this.housekeepers);
       }
     });
   }

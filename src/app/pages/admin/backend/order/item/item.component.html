@@ -35,12 +35,22 @@
         </tr>
         <tr>
           <td class="label">订单金额</td>
-          <td class="value">￥{{order.orderamount}}</td>
+          <td colspan="3" class="value">￥{{order.orderamount}}</td>
+        </tr>
+        <tr>
           <td class="label">订单状态</td>
           <td class="value">
             <span *ngIf="order.paystatus === 1">未支付</span>
             <span *ngIf="order.paystatus === 2">已支付</span>
             <span *ngIf="order.paystatus === 3">部分支付</span>
+          </td>
+          <td class="label">沟通状态</td>
+          <td class="value">
+            <span *ngIf="order.currentnode === 1 || order.currentnode === null">新建</span>
+            <span *ngIf="order.currentnode === 2">派单</span>
+            <span *ngIf="order.currentnode === 3">出单</span>
+            <span *ngIf="order.currentnode === 4">确认订单</span>
+            <span *ngIf="order.currentnode === 5">已完成</span>
           </td>
         </tr>
         </tbody>
@@ -70,12 +80,22 @@
         </tr>
         <tr>
           <td class="label">订单金额</td>
-          <td class="value">￥{{order.orderamount}}</td>
+          <td colspan="3" class="value">￥{{order.orderamount}}</td>
+        </tr>
+        <tr>
           <td class="label">订单状态</td>
           <td class="value">
             <span *ngIf="order.paystatus === 1">未支付</span>
             <span *ngIf="order.paystatus === 2">已支付</span>
             <span *ngIf="order.paystatus === 3">部分支付</span>
+          </td>
+          <td class="label">沟通状态</td>
+          <td class="value">
+            <span *ngIf="order.currentnode === 1 || order.currentnode === null">新建</span>
+            <span *ngIf="order.currentnode === 2">派单</span>
+            <span *ngIf="order.currentnode === 3">出单</span>
+            <span *ngIf="order.currentnode === 4">确认订单</span>
+            <span *ngIf="order.currentnode === 5">已完成</span>
           </td>
         </tr>
         <tr>
@@ -86,7 +106,7 @@
       </table>
     </div>
 
-    <div class="weui-cells__title">客户订单信息</div>
+    <div *ngIf="housekeeper" class="weui-cells__title">客户订单信息</div>
     <table *ngIf="housekeeper" class="resume ui celled table">
       <tbody>
       <tr>

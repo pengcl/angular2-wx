@@ -1,0 +1,97 @@
+<app-navbar [show]="true" [navBar]="navBarConfig"></app-navbar>
+<weui-infiniteloader (loadmore)="onLoadMore($event)" #comp>
+  <div class="weui-cells__title">Home > 管家管理 > 管家信息</div>
+  <div class="weui-cell">
+    <div class="weui-cell__hd">
+      <img src="/assets/images/icons/search.png" style="width:20px;margin-right:5px;display:block">
+    </div>
+    <div class="weui-cell__bd">
+      <input class="weui-input" [(ngModel)]="params.userName" (ngModelChange)="onInput($event)" placeholder="查找姓名">
+    </div>
+  </div>
+  <div class="weui-flex">
+    <div class="weui-flex__item">
+      <div (click)="provincePicker()" class="weui-cell weui-cell_access">
+        <div class="weui-cell__bd">{{province ? province?.label : '全部'}}</div>
+        <div class="weui-cell__ft">省</div>
+      </div>
+    </div>
+    <div class="weui-flex__item">
+      <div (click)="cityPicker()" class="weui-cell weui-cell_access">
+        <div class="weui-cell__bd">{{city ? city?.label : '全部'}}</div>
+        <div class="weui-cell__ft">市</div>
+      </div>
+    </div>
+    <div class="weui-flex__item">
+      <div (click)="regionPicker()" class="weui-cell weui-cell_access">
+        <div class="weui-cell__bd">{{region ? region?.label : '全部'}}</div>
+        <div class="weui-cell__ft">区</div>
+      </div>
+    </div>
+  </div>
+  <!--<div class="filter-date weui-cells weui-cells_form">
+    <div class="weui-flex">
+      <div class="search weui-flex__item">
+        <div class="weui-cell">
+          <div class="weui-cell__hd"><span class="icon-search"></span></div>
+          <div class="weui-cell__bd">
+            <input class="weui-input" [(ngModel)]="params.name" (ngModelChange)="inputChange(params.name)"
+                   type="text" name="Q_name_S" placeholder="查找姓名"></div>
+        </div>
+      </div>
+      <div class="level weui-flex__item">
+        <div (click)="setLevel()" class="weui-cell weui-cell_access">
+          <div class="weui-cell__bd">级别</div>
+          <div class="weui-cell__ft">{{level.label}}</div>
+        </div>
+      </div>
+      <div class="weui-cells_checkbox weui-flex__item">
+        <label class="weui-cell weui-check__label" for="s12">
+          <div class="weui-cell__hd">
+            <input type="checkbox" (click)="setSubscribe()" name="issubscribe" class="weui-check" id="s12">
+            <i class="weui-icon-checked"></i>
+          </div>
+          <div class="weui-cell__bd">
+            <p>未预约</p>
+          </div>
+        </label>
+      </div>
+    </div>
+  </div>-->
+
+
+  <!--
+  cityName: "广州市"
+  countyName:"天河区"
+  custName:"181****8593"
+  mobile:"18125748593"
+  provinceName:"广东省"
+  regionManagementId:10000103330386-->
+
+  <div *ngIf="list" class="table-content">
+    <table class="result ui celled table">
+      <thead>
+      <tr>
+        <th>姓名</th>
+        <th>手机号</th>
+        <th>所在地区</th>
+        <th>职位</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngIf="list.length === 0">
+        <td colspan="4" style="text-align: center">
+          没有数据
+        </td>
+      </tr>
+      <tr *ngFor="let item of list;let i = index">
+        <td>{{item.custName}}</td>
+        <td>{{item.mobile}}</td>
+        <td>{{item.provinceName}}{{item.cityName}}{{item.countyName}}</td>
+        <!--<td>{{item.serviceareanames}}</td>-->
+        <td>{{item.postName}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</weui-infiniteloader>

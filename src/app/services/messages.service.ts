@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import 'rxjs/add/operator/toPromise';
 
 import {Config} from '../config';
+import {formData} from '../utils/utils';
 
 @Injectable()
 export class MessagesService {
@@ -10,8 +11,15 @@ export class MessagesService {
   constructor(private http: HttpClient) {
   }
 
-  getMessages(customerId) {
-    return this.http.get(Config.prefix.wApi + '/interface/message/getList.ht?custId=' + customerId)
+  getMessages(customerId?) {
+    return this.http.get(Config.prefix.wApi + '/interface/message/getList.ht?custId=' + (customerId ? customerId : ''))
+      .toPromise()
+      .then(response => response)
+      .catch(this.handleError);
+  }
+
+  getMessage(id) {
+    return this.http.get(Config.prefix.wApi + '/interface/message/getMsgDetail.ht?messageId=' + id)
       .toPromise()
       .then(response => response)
       .catch(this.handleError);
@@ -40,6 +48,13 @@ export class MessagesService {
 
   read(id) {
     return this.http.get(Config.prefix.wApi + '/interface/message/readMsg.ht?id=' + id)
+      .toPromise()
+      .then(response => response)
+      .catch(this.handleError);
+  }
+
+  send(body) {
+    return this.http.post(Config.prefix.wApi + '/interface/message/send.ht', formData(body))
       .toPromise()
       .then(response => response)
       .catch(this.handleError);

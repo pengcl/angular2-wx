@@ -18,3 +18,37 @@
 @import "sass/weui-actionsheet";
 @import "sass/weui-progress";
 @import "sass/weui-accordion";
+
+.housekeeper-detail {
+  font-size: 0.12rem;
+  color: #999;
+
+  img {
+    display: block;
+    width: 100%;
+  }
+  section {
+    margin-top: 0.1rem;
+    h4 {
+      font-size: 0.14rem;
+      color: #000;
+    }
+    p {
+      margin-top: 0.07rem;
+    }
+    strong {
+      color: #333;
+    }
+    h5 {
+      font-size: 0.12rem;
+      color: #000;
+    }
+
+    ul, ol {
+      margin: 0.05rem 0.1rem 0;
+    }
+    & > section {
+      margin: 0.07rem 0 0 0.1rem;
+    }
+  }
+}

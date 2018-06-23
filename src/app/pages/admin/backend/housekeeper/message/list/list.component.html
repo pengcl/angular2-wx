@@ -1,0 +1,22 @@
+<app-navbar [show]="true" [navBar]="navBarConfig"></app-navbar>
+<weui-infiniteloader (loadmore)="onLoadMore($event)" #comp>
+  <div class="weui-cells__title">Home > 管家管理 > 消息群发</div>
+
+  <app-msg *ngIf="list?.length === 0" [msg]='{title:"暂无任何消息",desc:"",cancel:""}'></app-msg>
+
+  <div *ngIf="list?.length > 0" class="weui-panel">
+    <div class="weui-panel__bd">
+      <div [routerLink]="['/admin/backend/housekeeper/message/item',item.messageid]" *ngFor="let item of list" class="weui-media-box weui-media-box_appmsg">
+        <!--<div class="weui-media-box__hd"></div>-->
+        <div class="weui-media-box__bd">
+          <h4 class="weui-media-box__title">[系统通知] {{item.messageTitle}}<span class="right">{{item.createtime.split(' ')[0]}}</span></h4>
+          <p class="weui-media-box__desc">{{item.messagecontent}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</weui-infiniteloader>
+
+<div class="btns-group">
+  <a routerLink="/admin/backend/housekeeper/message/add" class="btn-secondary">发送消息</a>
+</div>

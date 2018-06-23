@@ -36,7 +36,7 @@ export class GuideStep5Component implements OnInit {
   show: boolean = false;
 
   images;
-  imagesLen = 4;
+  imagesLen = 3;
   galleryCurrent = 0;
 
   housekeeper: any;
@@ -101,6 +101,7 @@ export class GuideStep5Component implements OnInit {
 
     this.route.paramMap.switchMap((params: ParamMap) => this.employeeSvc.getHousekeeper(params.get('id'))).subscribe(res => {
       this.housekeeper = res.housekeeper;
+      console.log(this.housekeeper);
       const images = [];
 
       this.housekeeper.imageList.forEach(item => {
@@ -136,7 +137,7 @@ export class GuideStep5Component implements OnInit {
 
   showMore() {
     if (this.imagesLen === 100) {
-      this.imagesLen = 4;
+      this.imagesLen = 3;
     } else {
       this.imagesLen = 100;
     }

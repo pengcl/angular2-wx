@@ -18,7 +18,7 @@ export class AdminBackendOrderListComponent implements OnInit {
 
   orders;
 
-  @ViewChild(InfiniteLoaderComponent) il;
+  @ViewChild('comp') private comp: InfiniteLoaderComponent;
 
   payStatus = [
     {
@@ -39,6 +39,16 @@ export class AdminBackendOrderListComponent implements OnInit {
     label: '全部',
     value: ''
   };
+
+/*
+provinceCode=440000
+&cityCode=440100
+&countyCode=440106
+&payStatus=2
+&customerName=测试03
+&startDate=2018-06-01
+&endDate=2018-06-30
+*/
 
   params = {
     page: 1,
@@ -76,6 +86,7 @@ export class AdminBackendOrderListComponent implements OnInit {
   setType(t) {
     this.params.type = t;
     this.params.page = 1;
+    this.comp.restart();
     this.getOrders();
   }
 
@@ -111,7 +122,7 @@ export class AdminBackendOrderListComponent implements OnInit {
       if (this.params.type === 0) {
         this.orderSvc.intentOrderList(this.params).then(res => {
           this.orders = this.orders.concat(res.list);
-          if (res.page === res.totalPage) {
+          if (res.page >= res.totalPage) {
             comp.setFinished();
             return;
           }
@@ -119,7 +130,7 @@ export class AdminBackendOrderListComponent implements OnInit {
       } else {
         this.orderSvc.orderList(this.params).then(res => {
           this.orders = this.orders.concat(res.list);
-          if (res.page === res.totalPage) {
+          if (res.page >= res.totalPage) {
             comp.setFinished();
             return;
           }

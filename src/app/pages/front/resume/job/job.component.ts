@@ -19,7 +19,7 @@ export class FrontResumeJobComponent implements OnInit {
 
   ngOnInit() {
     this.wx.config({
-      title: '“大牛管家”第三期招聘简章',
+      title: '“大牛管家”第四期招聘简章',
       desc: '欢迎广大有志于高端管家助理服务的退伍军人踊跃报名！',
       link: 'http://wap.danius.cn/front/resume/job',
       imgUrl: 'http://wap.danius.cn/assets/images/front/resume/share-icon.png'

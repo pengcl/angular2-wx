@@ -36,6 +36,15 @@ import {AdminBackendHousekeeperWeekListComponent} from './housekeeper/week/list/
 import {AdminBackendHousekeeperWeekItemComponent} from './housekeeper/week/item/item.component';
 import {AdminBackendHousekeeperWeekAuditComponent} from './housekeeper/week/audit/audit.component';
 
+import {AdminBackendHousekeeperMessageListComponent} from './housekeeper/message/list/list.component';
+import {AdminBackendHousekeeperMessageAddComponent} from './housekeeper/message/add/add.component';
+import {AdminBackendHousekeeperMessageItemComponent} from './housekeeper/message/item/item.component';
+
+import {AdminBackendHousekeeperRegionListComponent} from './housekeeper/region/list/list.component';
+import {AdminBackendHousekeeperRegionItemComponent} from './housekeeper/region/item/item.component';
+import {AdminBackendHousekeeperRegionManagerListComponent} from './housekeeper/region/manager/list/list.component';
+import {AdminBackendHousekeeperRegionManagerItemComponent} from './housekeeper/region/manager/item/item.component';
+
 export const appAdminBackendRoutes: Routes = [
   {path: 'index', component: AdminBackendIndexComponent},
   {path: 'icons', component: AdminBackendIconsComponent},
@@ -68,6 +77,15 @@ export const appAdminBackendRoutes: Routes = [
   {path: 'housekeeper/week/list', component: AdminBackendHousekeeperWeekListComponent},
   {path: 'housekeeper/week/item/:id', component: AdminBackendHousekeeperWeekItemComponent},
   {path: 'housekeeper/week/audit/:id', component: AdminBackendHousekeeperWeekAuditComponent},
+
+  {path: 'housekeeper/region/list', component: AdminBackendHousekeeperRegionListComponent},
+  {path: 'housekeeper/region/item/:id', component: AdminBackendHousekeeperRegionItemComponent},
+  {path: 'housekeeper/region/manager/list', component: AdminBackendHousekeeperRegionManagerListComponent},
+  {path: 'housekeeper/region/manager/item/:id', component: AdminBackendHousekeeperRegionManagerItemComponent},
+
+  {path: 'housekeeper/message/list', component: AdminBackendHousekeeperMessageListComponent},
+  {path: 'housekeeper/message/add', component: AdminBackendHousekeeperMessageAddComponent},
+  {path: 'housekeeper/message/item/:id', component: AdminBackendHousekeeperMessageItemComponent},
 
   {path: 'order/list', component: AdminBackendOrderListComponent},
   {path: 'order/item/:id', component: AdminBackendOrderItemComponent},

@@ -24,14 +24,13 @@ export class AdminArticleListComponent implements OnInit {
 
   ngOnInit() {
     this.user = this.userSvc.getStorageUser();
-    console.log(this.user);
     if (this.user) {
-      if (this.user.housekeeperId) {
-        this.isEmployee = true;
-      }
       this.employerSvc.getEmployer(this.user.id).then(res => {
         if (res.code === 0) {
           this.isAdmin = res.isUser;
+        }
+        if (res.cust.custType === 0) {
+          this.isEmployee = true;
         }
       });
     }

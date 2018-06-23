@@ -46,8 +46,8 @@
       <tr>
         <th>客户<br/>名称</th>
         <th>订单号</th>
-        <th>手机<br/>号码</th>
-        <th>支付<br/>金额(￥)</th>
+        <th>支付<br/>状态</th>
+        <th>沟通<br/>情况</th>
         <th>下单<br/>时间</th>
       </tr>
       </thead>
@@ -61,11 +61,17 @@
           *ngFor="let item of orders">
         <td>{{item.customername}}</td>
         <td>***{{item.orderno.slice(item.orderno.length - 4)}}</td>
-        <td>{{item.customermobile}}</td>
         <td>
-          <span *ngIf="params.type === 0">{{item.orderamount}}</span>
-          <span *ngIf="params.type !== 0">{{item.paidamount}}</span>
-
+          <span *ngIf="item.paystatus === 1">未支付</span>
+          <span *ngIf="item.paystatus === 2">已支付</span>
+          <span *ngIf="item.paystatus === 3">部分支付</span>
+        </td>
+        <td>
+          <span *ngIf="item.currentnode === 1 || item.currentnode === null">新建</span>
+          <span *ngIf="item.currentnode === 2">派单</span>
+          <span *ngIf="item.currentnode === 3">出单</span>
+          <span *ngIf="item.currentnode === 4">确认订单</span>
+          <span *ngIf="item.currentnode === 5">已完成</span>
         </td>
         <td>{{item.createtime}}</td>
       </tr>

@@ -1,0 +1,45 @@
+<app-navbar [show]="true" [navBar]="navBarConfig"></app-navbar>
+
+<div class="content-scrollable has-nav">
+  <div class="weui-panel">
+    <div class="weui-panel__hd">负责人 <span class="right">({{inCharges?.length}}人)</span></div>
+    <div class="weui-panel__bd">
+      <div *ngFor="let item of inCharges" class="weui-media-box weui-media-box_appmsg">
+        <!--<div class="weui-media-box__hd"></div>-->
+        <div class="weui-media-box__bd">
+          <h4 class="weui-media-box__title">{{item.cust_name}}</h4>
+          <p class="weui-media-box__desc">{{item.mobile}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="weui-panel">
+    <div class="weui-panel__hd">客户经理 <span class="right">({{managers?.length}}人)</span></div>
+    <div class="weui-panel__bd">
+      <div *ngFor="let item of managers" class="weui-media-box weui-media-box_appmsg">
+        <!--<div class="weui-media-box__hd"></div>-->
+        <div class="weui-media-box__bd">
+          <h4 class="weui-media-box__title">{{item.cust_name}}</h4>
+          <p class="weui-media-box__desc">{{item.mobile}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="weui-panel">
+    <div class="weui-panel__hd">管家人员 <span class="right">({{housekeepers?.length}}人)</span></div>
+    <div class="weui-panel__bd">
+      <div class="weui-media-box">
+        <div class="weui-grids">
+          <a [routerLink]="['/admin/backend/housekeeper/item',item.housekeeperid]" *ngFor="let item of housekeepers" class="weui-grid">
+            <div class="weui-grid__icon">
+              <img src="{{config.prefix.wApi + item.headimageurl}}" alt="">
+            </div>
+            <p class="weui-grid__label">{{item.name}}</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

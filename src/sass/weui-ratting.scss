@@ -7,20 +7,20 @@
     display: inline-block;
     vertical-align: text-top;
     font-size: 0.12rem;
+    line-height: 1;
+    width: 0.12rem;
+    height: 0.12rem;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center center;
     &:before {
       font-style: normal;
     }
   }
   .off {
-    &:before {
-      content: '★';
-      color: #999;
-    }
+    background-image: url("/assets/images/icons/star-off.png");
   }
   .on {
-    &:before {
-      content: '★';
-      color: #FBA703;
-    }
+    background-image: url("/assets/images/icons/star-on.png");
   }
 }

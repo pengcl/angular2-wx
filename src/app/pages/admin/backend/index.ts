@@ -36,7 +36,16 @@ import {AdminBackendHousekeeperWeekListComponent} from './housekeeper/week/list/
 import {AdminBackendHousekeeperWeekItemComponent} from './housekeeper/week/item/item.component';
 import {AdminBackendHousekeeperWeekAuditComponent} from './housekeeper/week/audit/audit.component';
 
+import {AdminBackendHousekeeperMessageListComponent} from './housekeeper/message/list/list.component';
+import {AdminBackendHousekeeperMessageAddComponent} from './housekeeper/message/add/add.component';
+import {AdminBackendHousekeeperMessageItemComponent} from './housekeeper/message/item/item.component';
+
 import {AdminBackendHousekeeperMessageComponent} from './housekeeper/message/message.component';
+
+import {AdminBackendHousekeeperRegionListComponent} from './housekeeper/region/list/list.component';
+import {AdminBackendHousekeeperRegionItemComponent} from './housekeeper/region/item/item.component';
+import {AdminBackendHousekeeperRegionManagerListComponent} from './housekeeper/region/manager/list/list.component';
+import {AdminBackendHousekeeperRegionManagerItemComponent} from './housekeeper/region/manager/item/item.component';
 
 export const ADMIN_PAGES_BACKEND_DECLARATIONS = [
   AdminBackendComponent,
@@ -76,5 +85,13 @@ export const ADMIN_PAGES_BACKEND_DECLARATIONS = [
   AdminBackendHousekeeperWeekListComponent,
   AdminBackendHousekeeperWeekItemComponent,
   AdminBackendHousekeeperWeekAuditComponent,
-  AdminBackendHousekeeperMessageComponent
+  AdminBackendHousekeeperMessageComponent,
+  AdminBackendHousekeeperMessageListComponent,
+  AdminBackendHousekeeperMessageAddComponent,
+  AdminBackendHousekeeperMessageItemComponent,
+
+  AdminBackendHousekeeperRegionListComponent,
+  AdminBackendHousekeeperRegionItemComponent,
+  AdminBackendHousekeeperRegionManagerListComponent,
+  AdminBackendHousekeeperRegionManagerItemComponent
 ];

@@ -1,0 +1,41 @@
+<app-navbar [show]="true" [navBar]="navBarConfig"></app-navbar>
+
+<div [formGroup]="sendForm" class="content-scrollable">
+  <div class="weui-cells__title">消息标题</div>
+  <div class="weui-cells weui-cells_form">
+    <div class="weui-cell" [ngClass]="{'weui-cell_warn':sendForm.get('title').invalid && isSubmit}">
+      <div class="weui-cell__bd">
+        <input formControlName="title" placeholder="请输入消息标题" class="weui-input">
+      </div>
+      <div class="weui-cell__ft">
+        <i class="weui-icon-warn"></i>
+      </div>
+    </div>
+  </div>
+  <div class="weui-cells__title">消息内容</div>
+  <div class="weui-cells weui-cells_form">
+    <div class="weui-cell" [ngClass]="{'weui-cell_warn':sendForm.get('content').invalid && isSubmit}">
+      <div class="weui-cell__bd">
+        <textarea formControlName="content" rows="3" placeholder="请输入消息标题" class="weui-textarea"></textarea>
+      </div>
+      <div class="weui-cell__ft">
+        <i class="weui-icon-warn"></i>
+      </div>
+    </div>
+  </div>
+
+  <!--<div class="weui-cells">
+    <div (click)="showCity()" class="weui-cell weui-cell_access">
+      <div class="weui-cell__bd">选择地区</div>
+      <div class="weui-cell__ft">{{sendForm.get('area').value ? sendForm.get('area').value : '请选择'}}</div>
+    </div>
+    <div (click)="onShow()" class="weui-cell weui-cell_access">
+      <div class="weui-cell__bd">管家级别</div>
+      <div class="weui-cell__ft">{{sendForm.get('level').value ? sendForm.get('level').value : '请选择'}}</div>
+    </div>
+  </div>-->
+
+  <div class="weui-btn-area">
+    <a (click)="submit()" weui-button [weui-loading]="loading" class="weui-btn weui-btn_primary">发送</a>
+  </div>
+</div>

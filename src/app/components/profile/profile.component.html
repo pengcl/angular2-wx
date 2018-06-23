@@ -13,30 +13,37 @@
         </div>
       </div>
       <div class="weui-media-box__bd">
-        <h4 class="weui-media-box__title">{{profile.name}} <span class="ui-label yellow hollow horizontal">{{profile.levelname}}管家</span>
+        <h4 class="weui-media-box__title">{{profile.name}} <span class="level">
+      <img *ngIf="profile.levelname === '初级'" class="icons" src="/assets/images/levels/1.png">
+      <img *ngIf="profile.levelname === '中级'" class="icons" src="/assets/images/levels/2.png">
+      <img *ngIf="profile.levelname === '高级'" class="icons" src="/assets/images/levels/3.png">
+      <img *ngIf="profile.levelname === '特级'" class="icons" src="/assets/images/levels/4.png">
+      <span>{{profile.levelname}}管家</span>
+    </span>
         </h4>
         <div class="attr">
           <div class="weui-flex">
             <div class="weui-flex__item">
-              <span class="label">{{profile.age}}岁</span>
+              <span class="label">{{profile.age}}岁</span> ·
+              <span class="label">{{profile.height}}<sub>CM</sub></span> ·
               <span class="label">{{profile.weight}}<sub>KG</sub></span>
-              <span class="label">{{profile.height}}<sub>CM</sub></span>
-              <span class="label">{{profile.placeoforigin}}</span>
+              <!--<span class="label">{{profile.placeoforigin}}</span>-->
             </div>
           </div>
-          <div class="weui-flex">
+          <div class="gold weui-flex">
             <div class="weui-flex__item">
-              <span class="label">服务地：{{profile.serviceareanames}}</span>
+              <span class="label">{{profile.servicetime}}年工作经验</span> ·
+              <span class="label">军龄{{profile.soldierAge}}年</span>
             </div>
           </div>
         </div>
         <div class="attr">
           <div class="weui-flex">
-            <div *ngIf="profile.worktime" class="weui-flex__item">
+            <!--<div *ngIf="profile.worktime" class="weui-flex__item">
               <span class="label" style="font-size: 0.1rem">最快到岗时间：<em><span *ngIf="profile.issubscribe === 0">立即到岗</span><span *ngIf="profile.issubscribe === 2">{{profile.worktime.split(' ')[0].split('-')[1]}}-{{profile.worktime.split(' ')[0].split('-')[2]}}</span></em></span>
-            </div>
+            </div>-->
             <div class="price weui-flex__item">
-              <sub>￥</sub><em>{{profile.commissionamount}}</em><sub>/月</sub>
+              <sub>￥</sub><em>{{profile.commissionamount}}</em>
             </div>
           </div>
         </div>
@@ -44,8 +51,8 @@
       <div class="weui-media-box__ft"></div>
     </div>
   </div>
-  <div class="weui-panel__ft">
+  <!--<div class="weui-panel__ft">
     <span *ngFor="let item of profile.expertisenames.split(',')" class="ui-label colors horizontal">{{item}}</span>
-  </div>
+  </div>-->
 </div>
 

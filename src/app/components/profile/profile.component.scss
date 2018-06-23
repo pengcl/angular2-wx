@@ -7,11 +7,12 @@
 }
 
 .weui-media-box__hd {
-  width: 1rem;
+  width: 0.75rem;
   height: auto;
+  align-self: start;
   .avatar-box {
     overflow: hidden;
-    height: 1.3rem;
+    height: 1rem;
     border-radius: 0.04rem;
     position: relative;
     overflow: hidden;
@@ -42,15 +43,18 @@
 .weui-media-box__title {
   font-size: 0.15rem;
   color: #0F0F0F;
-  .label {
+  .level {
     font-size: 0.12rem;
-    display: inline-block;
     color: #666;
+    margin-left: 0.15rem;
     .icons, span {
       display: inline-block;
       height: 0.2rem;
       line-height: 0.2rem;
       vertical-align: middle;
+    }
+    .icons {
+      margin-right: 0.05rem;
     }
   }
 }
@@ -76,20 +80,23 @@
 .attr {
   font-size: 0.12rem;
   line-height: 1.8;
-  color: #999;
-  margin-top: 0.08rem;
+  color: #666;
+  margin-top: 0.05rem;
   sub {
     font-size: 0.12rem;
   }
   &:last-child {
-    margin-top: 0.22rem;
     .weui-flex__item {
       align-self: center;
       em {
-        color: #CA9F4D;
+        color: #C6302B;
       }
     }
   }
+}
+
+.gold {
+  color: #CA9F4D;
 }
 
 em {
@@ -103,7 +110,7 @@ em {
 
 .price {
   font-size: 0.18rem;
-  color: #CA9F4D !important;
+  color: #C6302B !important;
   text-align: right;
   flex: unset;
 }

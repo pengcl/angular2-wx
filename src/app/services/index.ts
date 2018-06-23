@@ -24,6 +24,7 @@ import {MeiqiaService} from './meiqia.service';
 import {WorkService} from './work.service';
 import {BackendOrderService} from './backend/order.service';
 import {BackendLeaveService} from './backend/leave.service';
+import {RegionService} from './backend/region.service';
 
 import {SalesService} from './sales.service';
 
@@ -54,5 +55,6 @@ export const SERVICES_DECLARATIONS = [
   WorkService,
   BackendOrderService,
   BackendLeaveService,
-  SalesService
+  SalesService,
+  RegionService
 ];

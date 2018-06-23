@@ -1,0 +1,33 @@
+<app-navbar [show]="true" [navBar]="navBarConfig"></app-navbar>
+
+<div class="content-scrollable has-nav">
+  <div *ngIf="message" class="weui-panel">
+    <div class="weui-panel__hd">[系统通知] {{message.messageTitle}}<span
+      class="right">{{message.createtime.split(' ')[0]}}</span></div>
+    <div class="weui-panel__bd">
+      <div class="weui-media-box weui-media-box_appmsg">
+        <!--<div class="weui-media-box__hd"></div>-->
+        <div class="weui-media-box__bd">
+          <p class="weui-media-box__desc">{{message.messagecontent}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="notReadList?.length > 0" class="weui-panel">
+    <div class="weui-panel__hd">未读 ({{notReadList.length}})</div>
+    <div class="weui-panel__bd">
+      <div class="weui-media-box">
+        <span *ngFor="let item of notReadList">{{item.housekeepername}}</span>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="readList?.length > 0" class="weui-panel">
+    <div class="weui-panel__hd">已读 ({{readList.length}})</div>
+    <div class="weui-panel__bd">
+      <div class="weui-media-box">
+      </div>
+    </div>
+  </div>
+</div>

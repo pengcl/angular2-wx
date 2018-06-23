@@ -60,6 +60,9 @@
           <a class="weui-cell" routerLink="/admin/backend/housekeeper/week/list">
             <div class="weui-cell__bd">管家周报</div>
           </a>
+          <a class="weui-cell" routerLink="/admin/backend/housekeeper/message/list">
+            <div class="weui-cell__bd">消息群发</div>
+          </a>
         </div>
       </div>
     </weui-accordion-panel>
@@ -73,6 +76,24 @@
         <div class="weui-cells">
           <a class="weui-cell" routerLink="/admin/backend/order/list">
             <div class="weui-cell__bd">订单信息</div>
+          </a>
+        </div>
+      </div>
+    </weui-accordion-panel>
+
+    <weui-accordion-panel [disabled]="false" class="weui-accordion-panel">
+      <div class="heading" heading>
+        <a class="weui-cell weui-cell_access" href="javascript:;">
+          <div class="weui-cell__bd">区域管理</div>
+        </a>
+      </div>
+      <div class="content">
+        <div class="weui-cells">
+          <a class="weui-cell" routerLink="/admin/backend/housekeeper/region/list">
+            <div class="weui-cell__bd">地区信息</div>
+          </a>
+          <a class="weui-cell" routerLink="/admin/backend/housekeeper/region/manager/list">
+            <div class="weui-cell__bd">人员信息</div>
           </a>
         </div>
       </div>

@@ -1,12 +1,13 @@
 .employee-box {
   .weui-cell__bd.weui-cell__title {
+    padding-left: 0;
     font-size: 0.15rem;
   }
   .weui-grids {
     padding: 0.1rem 0.15rem;
     margin: -0.05rem;
     .weui-grid {
-      width: 25%;
+      width: 33.3333%;
       padding: 0.05rem;
       .weui-grid__icon, .weui-grid__label {
         display: inline-block;
@@ -28,8 +29,18 @@
   }
 
   .weui-panel {
+    margin-top: 0 !important;
+    &:before, &:after {
+      display: none;
+    }
     .weui-panel__hd {
-      padding: 0.1rem 0 0;
+      padding: 0;
+      &:after {
+        display: none;
+      }
+    }
+    .weui-media-box {
+      padding-top: 0;
     }
   }
 
@@ -124,17 +135,21 @@
   }
   .weui-cell__bd.weui-cell__title:before {
     border: 0.02rem solid #CA9F4D;
+    display: none;
   }
 
   .rate-box {
     text-align: center;
     .rating > i {
       font-size: 0.3rem;
+      width: 0.3rem;
+      height: 0.3rem;
       margin: 0 0.08rem;
     }
   }
   .rates-box {
     margin: 0;
+    padding-top: 0;
     .weui-grid {
       width: 50%;
       span {
@@ -164,6 +179,50 @@
     .other {
       flex: unset;
       margin-left: 0.1rem;
+    }
+  }
+
+  .profile-base {
+    font-size: 0.12rem;
+    line-height: 2;
+    color: #2A2A2A;
+    b {
+      color: #0F0F0F;
+    }
+  }
+
+  app-profile {
+    .weui-panel {
+      &:after {
+        display: block;
+      }
+      .weui-media-box {
+        padding-top: 0.15rem !important;
+
+      }
+    }
+  }
+
+  .btns-group {
+    background: #fff;
+    box-shadow: 0 10px 20px 0 #999999;
+    .btn-primary {
+      flex: 0.65;
+      margin: 0.1rem 0.075rem 0.1rem 0.2rem;
+      background-image: linear-gradient(90deg, #B38247 0%, #E0BB7C 100%);
+      border-radius: 100px;
+      font-size: 0.14rem;
+      line-height: 0.17rem;
+      padding: 0.1rem;
+    }
+    .btn-secondary {
+      flex: 0.35;
+      margin: 0.1rem 0.2rem 0.1rem 0.075rem;
+      background: #CCCCCC;
+      border-radius: 100px;
+      font-size: 0.14rem;
+      line-height: 0.17rem;
+      padding: 0.1rem;
     }
   }
 }

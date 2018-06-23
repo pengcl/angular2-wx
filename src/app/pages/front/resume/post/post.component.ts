@@ -114,6 +114,29 @@ export class FrontResumePostComponent implements OnInit {
         }
       ]
     },
+    fertilityState: {
+      type: 'isMarried',
+      title: '婚姻情况',
+      selected: '请选择',
+      data: [
+        {
+          text: '未婚未育',
+          value: 0
+        },
+        {
+          text: '已婚未育',
+          value: 1
+        },
+        {
+          text: '已婚已育',
+          value: 2
+        },
+        {
+          text: '其他',
+          value: 3
+        }
+      ]
+    },
     politicalClimate: {
       type: 'politicalClimate',
       title: '政治面貌',
@@ -300,10 +323,6 @@ export class FrontResumePostComponent implements OnInit {
         {
           text: 'C2',
           value: 'C2'
-        },
-        {
-          text: '无',
-          value: 0
         }
       ]
     },
@@ -559,8 +578,8 @@ export class FrontResumePostComponent implements OnInit {
   ngOnInit() {
 
     this.wx.config({
-      title: '大牛管家诚聘优才',
-      desc: '欢迎广大有志于高端管家助理服务的退伍军人，体育专业毕业生踊跃报名！',
+      title: '“大牛管家”第四期招聘简章',
+      desc: '欢迎广大有志于高端管家助理服务的退伍军人踊跃报名！',
       link: 'http://wap.danius.cn/front/resume/job',
       imgUrl: 'http://wap.danius.cn/assets/images/front/resume/share-icon.png'
     }).then(() => {
@@ -579,30 +598,33 @@ export class FrontResumePostComponent implements OnInit {
       mobile: new FormControl('', [Validators.required, Validators.min(10000000000), Validators.max(19999999999), Validators.pattern(/^[0-9]*$/)]),
       sex: new FormControl('', [Validators.required, Validators.maxLength(1), Validators.pattern(/^[0-9]*$/)]),
       // isMarried: new FormControl('', [Validators.required]),
+      fertilityState: new FormControl('', [Validators.required, Validators.maxLength(1), Validators.pattern(/^[0-9]*$/)]),
+      idCardNo: new FormControl('', [Validators.required, Validators.minLength(15), Validators.maxLength(18), Validators.pattern(/^([0-9]){7,18}(x|X)?/)]),
       birthday: new FormControl('', [Validators.required]),
       height: new FormControl('', [Validators.required, Validators.pattern(/^[0-9]*$/)]),
       weight: new FormControl('', [Validators.required, Validators.pattern(/^[0-9]*$/)]),
       politicalClimate: new FormControl('', [Validators.required, Validators.pattern(/^[0-9]*$/)]),
-      // nation: new FormControl('', [Validators.required]),
+      nation: new FormControl('', [Validators.required]),
       education: new FormControl('', [Validators.required, Validators.pattern(/^[0-9]*$/)]),
-      // placeOfOrigin: new FormControl('', [Validators.required]),
-      // birthplace: new FormControl('', [Validators.required]),
-      // birthplaceType: new FormControl('', [Validators.required, Validators.pattern(/^[0-9]*$/)]),
+      placeOfOrigin: new FormControl('', [Validators.required]),
+      birthplace: new FormControl('', [Validators.required]),
+      birthplaceType: new FormControl('', [Validators.required, Validators.pattern(/^[0-9]*$/)]),
       address: new FormControl('', [Validators.required]),
-      serverCity: new FormControl('', [Validators.required]),
-      graduationPlace: new FormControl('', [Validators.required]), // registerType === 0
-      graduationTime: new FormControl('', [Validators.required]), // registerType === 0
-      movementType: new FormControl('', [Validators.required]), // registerType === 0
+      // serverCity: new FormControl('', [Validators.required]),
+      // graduationPlace: new FormControl('', [Validators.required]), // registerType === 0
+      // graduationTime: new FormControl('', [Validators.required]), // registerType === 0
+      // movementType: new FormControl('', [Validators.required]), // registerType === 0
       // major: new FormControl('', []),
-      // armyServePlace: new FormControl('', [Validators.required]), // registerType === 1
+      armyServePlace: new FormControl('', [Validators.required]), // registerType === 1
       enlistmentTime: new FormControl('', [Validators.required]), // registerType === 1
       retirementTime: new FormControl('', [Validators.required]), // registerType === 1
-      // armyType: new FormControl('', [Validators.required]), // registerType === 1
-      // services: new FormControl('', [Validators.required]), // registerType === 1
+      armyType: new FormControl('', [Validators.required]), // registerType === 1
+      services: new FormControl('', [Validators.required]), // registerType === 1
       // isSpecialArms: new FormControl('', [Validators.required]), // registerType === 1
       // militarySpecialty: new FormControl('', [Validators.required]), // registerType === 1
       // retiredOfficerRank: new FormControl('', [Validators.required]), // registerType === 1
       drivingLicence: new FormControl('', [Validators.required, Validators.maxLength(2)]),
+      driverLicenseDate: new FormControl('', [Validators.required]),
       driversAge: new FormControl('', [Validators.required, Validators.pattern(/^[0-9]*$/), Validators.maxLength(2)]),
       drivingMileage: new FormControl('', [Validators.required, Validators.min(0), Validators.max(999999)]),
 
@@ -610,18 +632,18 @@ export class FrontResumePostComponent implements OnInit {
       workExperience: new FormControl('', []),
 
       // 体能指标
-      pushUp: new FormControl('', [Validators.required]),
-      standingLongJump: new FormControl('', [Validators.required, Validators.min(1), Validators.max(1000)]),
-      pullUps: new FormControl('', [Validators.required]),
-      sitUp: new FormControl('', [Validators.required]),
-      hundredMDash: new FormControl('', [Validators.required]),
-      thousandMin: new FormControl('', [Validators.required]),
-      thousandSec: new FormControl('', [Validators.required]),
+      pushUp: new FormControl('', [Validators.required, Validators.pattern(/^[0-9]*$/)]),
+      standingLongJump: new FormControl('', [Validators.required, Validators.pattern(/^[0-9]*$/), Validators.min(1), Validators.max(1000)]),
+      pullUps: new FormControl('', [Validators.required, Validators.pattern(/^[0-9]*$/)]),
+      sitUp: new FormControl('', [Validators.required, Validators.pattern(/^[0-9]*$/)]),
+      hundredMDash: new FormControl('', [Validators.required, Validators.pattern(/^[0-9]*$/)]),
+      thousandMin: new FormControl('', [Validators.required, Validators.pattern(/^[0-9]*$/)]),
+      thousandSec: new FormControl('', [Validators.required, Validators.pattern(/^[0-9]*$/)]),
       thousandMDash: new FormControl('', [Validators.required]),
 
       // 其它
       specialty: new FormControl('', []),
-      certificate: new FormControl('', []),
+      certificate: new FormControl('', [Validators.required]),
       infections: new FormControl('', [Validators.required]),
       userPromise: new FormControl('', [Validators.required, Validators.requiredTrue]),
 
@@ -662,13 +684,13 @@ export class FrontResumePostComponent implements OnInit {
         // this.resumeForm.get('retiredOfficerRank').enable();
         // this.resumeForm.get('isSpecialArms').enable();
 
-        this.resumeForm.get('graduationPlace').disable();
-        this.resumeForm.get('graduationTime').disable();
-        this.resumeForm.get('movementType').disable();
+        // this.resumeForm.get('graduationPlace').disable();
+        // this.resumeForm.get('graduationTime').disable();
+        // this.resumeForm.get('movementType').disable();
       } else {
-        this.resumeForm.get('graduationPlace').enable();
-        this.resumeForm.get('graduationTime').enable();
-        this.resumeForm.get('movementType').enable();
+        // this.resumeForm.get('graduationPlace').enable();
+        // this.resumeForm.get('graduationTime').enable();
+        // this.resumeForm.get('movementType').enable();
 
         // this.resumeForm.get('armyServePlace').disable();
         this.resumeForm.get('enlistmentTime').disable();
@@ -683,10 +705,15 @@ export class FrontResumePostComponent implements OnInit {
     });
 
     this.resumeForm.get('drivingLicence').valueChanges.subscribe(data => {
-      if (data === '无') {
+      console.log(data);
+      if (data === '0') {
         this.resumeForm.get('driversAge').disable();
+        this.resumeForm.get('driverLicenseDate').disable();
+        this.resumeForm.get('drivingMileage').disable();
       } else {
         this.resumeForm.get('driversAge').enable();
+        this.resumeForm.get('driverLicenseDate').enable();
+        this.resumeForm.get('drivingMileage').enable();
       }
     });
   }
@@ -759,6 +786,7 @@ export class FrontResumePostComponent implements OnInit {
     const valid = validScroll(this.resumeForm.controls);
 
     if (!valid.valid) {// page_scroll_to_target
+      console.log(valid.control);
       const target = this.container.nativeElement.querySelector('.check-' + valid.control).offsetTop;
       let times = 1;
       try {
