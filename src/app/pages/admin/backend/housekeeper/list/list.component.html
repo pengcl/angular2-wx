@@ -2,9 +2,9 @@
 <weui-infiniteloader (loadmore)="onLoadMore($event)" #comp>
   <div class="weui-cells__title">Home > 管家管理 > 管家信息</div>
   <div class="filter-nav weui-flex">
-    <div (click)="setWorkState(1)" [ngClass]="{'curr' : params.workstatus === 1}" class="weui-flex__item">待岗中</div>
-    <div (click)="setWorkState(2)" [ngClass]="{'curr' : params.workstatus === 2}" class="weui-flex__item">工作中</div>
-    <div (click)="setWorkState(3)" [ngClass]="{'curr' : params.workstatus === 3}" class="weui-flex__item">已离职</div>
+    <div (click)="setWorkState(1)" [ngClass]="{'curr' : params.status === 1}" class="weui-flex__item">待岗中</div>
+    <div (click)="setWorkState(2)" [ngClass]="{'curr' : params.status === 2}" class="weui-flex__item">工作中</div>
+    <div (click)="setWorkState(3)" [ngClass]="{'curr' : params.status === 3}" class="weui-flex__item">已离职</div>
   </div>
   <div class="filter-date weui-cells weui-cells_form">
     <div class="weui-flex">
@@ -12,8 +12,8 @@
         <div class="weui-cell">
           <div class="weui-cell__hd"><span class="icon-search"></span></div>
           <div class="weui-cell__bd">
-            <input class="weui-input" [(ngModel)]="params.name" (ngModelChange)="inputChange(params.name)"
-                   type="text" name="Q_name_S" placeholder="查找姓名"></div>
+            <input class="weui-input" [(ngModel)]="params.keyword" (ngModelChange)="inputChange(params.keyword)"
+                   type="text" name="Q_keyword_S" placeholder="查找姓名"></div>
         </div>
       </div>
       <div class="level weui-flex__item">
@@ -25,7 +25,7 @@
       <div class="weui-cells_checkbox weui-flex__item">
         <label class="weui-cell weui-check__label" for="s12">
           <div class="weui-cell__hd">
-            <input type="checkbox" (click)="setSubscribe()" name="issubscribe" class="weui-check" id="s12">
+            <input type="checkbox" (click)="setSubscribe()" name="isSubscribe" class="weui-check" id="s12">
             <i class="weui-icon-checked"></i>
           </div>
           <div class="weui-cell__bd">
@@ -61,14 +61,14 @@
       <tr [routerLink]="['/admin/backend/housekeeper/item',item.housekeeperid]"
           *ngFor="let item of housekeepers;let i = index">
         <td>{{item.name}}</td>
-        <td>{{item.levelname}}</td>
+        <td>{{item.levelName}}</td>
         <!--<td>{{item.serviceareanames}}</td>-->
         <td>
-          <span *ngIf="item.issubscribe === 0">未预约</span>
-          <span *ngIf="item.issubscribe === 1">已预约</span>
-          <span *ngIf="item.issubscribe === 2">可预约</span>
+          <span *ngIf="item.isSubscribe === 0">未预约</span>
+          <span *ngIf="item.isSubscribe === 1">已预约</span>
+          <span *ngIf="item.isSubscribe === 2">可预约</span>
         </td>
-        <td>s</td>
+        <td>{{item.provinceName}}{{item.cityName}}{{item.countyName}}</td>
       </tr>
       </tbody>
     </table>

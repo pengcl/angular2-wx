@@ -1,0 +1,20 @@
+<app-navbar [navBar]="navBarConfig"></app-navbar>
+
+<div class="content-scrollable">
+  <div class="msg-content">
+    <h1>预约成功</h1>
+    <p>已收到您的登记信息，我们稍后将联系您！请留意接听广州地区 (020) 来电</p>
+  </div>
+
+  <h2 *ngIf="!isWx">请关注大牛管家公众号查看订单及管家信息</h2>
+  <ul *ngIf="!isWx">
+    <li>方法一：微信公众号搜索“大牛管家”</li>
+    <li>方法二：保存下方二维码图片，进入微信打开二维码，选择图片进行识别关注</li>
+  </ul>
+
+  <div class="qr-code">
+    <img src="/assets/images/qrcode.jpg">
+  </div>
+
+  <p *ngIf="isWx" class="qr-tips">长按识别二维码，关注大牛管家公众号 <br>查看订单及管家信息</p>
+</div>

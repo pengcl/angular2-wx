@@ -131,9 +131,8 @@
   </div>
 
   <div class="btns-group">
-    <a (click)="reserve()" [userTrack]="'reserve'" class="btn-primary">{{isPaid ? '选择他' : '预约他（预付￥1.00）'}}</a>
-    <a *ngIf="housekeeper" [routerLink]="['/guide/step4']" [queryParams]="{orderNo:orderNo}"
-       [userTrack]="'reserve'" class="btn-secondary">看看其他</a>
+    <a [routerLink]="['/guide/n6',housekeeperId]" [queryParams]="{gh:gh}" [userTrack]="'reserve'" class="btn-primary">预约他</a>
+    <a [routerLink]="['/guide/n4']" [queryParams]="{orderNo:orderNo,gh:gh}" [userTrack]="'reserve'" class="btn-secondary">看看其他</a>
   </div>
 
 </div>

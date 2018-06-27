@@ -26,6 +26,6 @@ export class UaService {
   }
 
   isWx(): boolean {// 检查是否微信
-    return String(ua.match(/MicroMessenger/i)) === 'micromessenger';
+    return String(ua.toLowerCase().match(/MicroMessenger/i)) === 'micromessenger';
   }
 }

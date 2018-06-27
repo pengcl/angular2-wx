@@ -14,12 +14,12 @@ import {RatingConfig, DialogService} from 'ngx-weui';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 
 @Component({
-  selector: 'app-guide-step5',
+  selector: 'app-guide-n-step5',
   templateUrl: './step-5.component.html',
   styleUrls: ['./step-5.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class GuideStep5Component implements OnInit {
+export class GuideNStep5Component implements OnInit {
   tabBarConfig = PageConfig.tabBar;
   navBarConfig = PageConfig.navBar;
 
@@ -48,15 +48,12 @@ export class GuideStep5Component implements OnInit {
     count: 0
   };
 
-  orderNo;
-  order;
-  orderId;
-
   contentForm: FormGroup;
 
   isSubmit = false;
   loading = false;
 
+  orderNo;
   isPaid: boolean = false;
   payUrl;
 
@@ -76,33 +73,23 @@ export class GuideStep5Component implements OnInit {
 
   ngOnInit() {
     this.gh = this.route.snapshot.queryParams['gh'];
-    this.orderNo = this.route.snapshot.queryParams['orderNo'];
     this.housekeeperId = this.route.snapshot.params['id'];
-
-    this.orderSvc.getIntentServiceOrder(this.orderNo).then(res => {
-      console.log(res);
-      this.order = res.intentServiceOrder;
-
-      this.isPaid = !!res.intentServiceOrder.paidamount;
-      this.payUrl = res.payUrl;
-    });
+    this.orderNo = this.route.snapshot.queryParams['orderNo'];
 
     this.contentForm = new FormGroup({
       intentServiceOrderId: new FormControl('', [Validators.required]),
       housekeeperId: new FormControl('', [Validators.required])
     });
 
-    this.contentForm.get('housekeeperId').setValue(this.housekeeperId);
-
-    this.orderSvc.getIntentServiceOrder(this.orderNo)
-      .then(res => this.orderId = res.intentServiceOrder.serviceorderid)
-      .then(orderId => {
-        this.contentForm.get('intentServiceOrderId').setValue(orderId);
+    if (this.orderNo) {
+      this.orderSvc.getIntentServiceOrder(this.orderNo).then(res => {
+        this.isPaid = !!res.intentServiceOrder.paidamount;
+        this.payUrl = res.payUrl;
       });
+    }
 
     this.route.paramMap.switchMap((params: ParamMap) => this.employeeSvc.getHousekeeper(params.get('id'))).subscribe(res => {
       this.housekeeper = res.housekeeper;
-      console.log(res);
       const images = [];
 
       this.housekeeper.imageList.forEach(item => {
@@ -142,28 +129,5 @@ export class GuideStep5Component implements OnInit {
     } else {
       this.imagesLen = 100;
     }
-  }
-
-  reserve() {
-    this.isSubmit = true;
-    if (this.loading || this.contentForm.invalid) {
-      return false;
-    }
-    this.loading = true;
-    this.orderSvc.relHousekeeperForIntent(this.contentForm.value).then(res => {
-      this.loading = false;
-      if (res.code === 0) {
-        if (this.isPaid) {
-          this.router.navigate(['/guide/step8'], {queryParams: {orderNo: this.orderNo}});
-        } else {
-          window.location.href = this.payUrl;
-        }
-        // this.router.navigate(['/guide/step7']);
-      } else {
-        this.dialogSvc.show({content: res.msg, cancel: '', confirm: '我知道了！'}).subscribe();
-      }
-      console.log(res);
-    }).then(() => {
-    });
   }
 }

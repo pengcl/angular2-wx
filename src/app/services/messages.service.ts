@@ -18,6 +18,13 @@ export class MessagesService {
       .catch(this.handleError);
   }
 
+  getSendMessages(sender?) {
+    return this.http.get(Config.prefix.wApi + '/interface/message/getList.ht?sender=' + (sender ? sender : ''))
+      .toPromise()
+      .then(response => response)
+      .catch(this.handleError);
+  }
+
   getMessage(id) {
     return this.http.get(Config.prefix.wApi + '/interface/message/getMsgDetail.ht?messageId=' + id)
       .toPromise()

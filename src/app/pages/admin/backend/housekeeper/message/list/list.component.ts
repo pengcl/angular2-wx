@@ -29,7 +29,7 @@ export class AdminBackendHousekeeperMessageListComponent implements OnInit {
   ngOnInit() {
     this.user = this.userSvc.isLogin();
     this.messagesSvc.getTypeList().then(res => this.types = res.list).then(types => {
-      this.messagesSvc.getMessages(this.user.id).then(res => {
+      this.messagesSvc.getSendMessages(this.user.id).then(res => {
         const sysMessages = [];
         res.list.forEach(item => {
           types.forEach(type => {

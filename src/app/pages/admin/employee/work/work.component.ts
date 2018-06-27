@@ -37,7 +37,8 @@ export class AdminEmployeeWorkComponent implements OnInit {
 
   pickerData = {
     workDays: Array(7).fill('').map((v: number, idx: number) => `${idx + 1}`),
-    workHours: ['20小时以下', '约20小时', '约25小时', '约30小时', '约35小时', '约40小时', '约45小时', '45小时以上']
+    workHours: Array(100).fill('').map((v: number, idx: number) => `${idx + 1}`),
+    /*workHours: ['20小时以下', '约20小时', '约25小时', '约30小时', '约35小时', '约40小时', '约45小时', '45小时以上']*/
   };
 
   weeks;
@@ -109,17 +110,15 @@ export class AdminEmployeeWorkComponent implements OnInit {
       cancel: '返回',
       confirm: '确定'
     }).subscribe(res => {
-      console.log(res);
       this.workForm.get(target).setValue(res.value);
     });
   }
 
   hoursPickerShow(target) {
-    this.pickerSvc.show(this.pickerData[target], '', [0], {
+    this.pickerSvc.show(this.pickerData[target], '', [this.workForm.get(target).value ? this.workForm.get(target).value - 1 : 0], {
       cancel: '返回',
       confirm: '确定'
     }).subscribe(res => {
-      console.log(res);
       this.workForm.get(target).setValue(res.value);
     });
   }
@@ -128,7 +127,6 @@ export class AdminEmployeeWorkComponent implements OnInit {
   }
 
   onChange() {
-    console.log('change');
   }
 
   submit() {

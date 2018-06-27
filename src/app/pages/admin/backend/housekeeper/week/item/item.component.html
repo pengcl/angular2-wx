@@ -1,4 +1,17 @@
-<app-navbar [show]="true" [navBar]="navBarConfig"></app-navbar>
+<nav>
+  <div class="nav-group">
+    <a (click)="back()" class="nav-item"><span class="icon-arrow-left-alt"></span></a>
+  </div>
+
+  <div class="title-page">
+    {{housekeeperName}}的周报
+  </div>
+
+  <!--<div class="nav-group right">
+    <a class="nav-item" href="javascript:;"><span class="icon-cog"></span></a>
+    <a class="logout nav-item" href="javascript:;"><span class="icon-power"></span></a>
+  </div>-->
+</nav>
 
 <div class="content-scrollable has-nav">
   <div *ngFor="let week of weeks" class="weeks weui-panel">
@@ -13,7 +26,7 @@
               <div class="weui-label">工作时间</div>
             </div>
             <div class="weui-cell__bd weui-cell_primary">
-              <p>上班{{week.workdays}}天 共{{week.workhours}}小时</p>
+              <p>上班{{week.workdays}}天 共{{week.workhours}}<span *ngIf="week.workhours.indexOf('小时') === -1">小时</span></p>
             </div>
           </div>
           <div class="weui-cell">

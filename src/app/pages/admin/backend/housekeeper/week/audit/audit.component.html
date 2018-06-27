@@ -1,4 +1,12 @@
-<app-navbar [navBar]="navBarConfig"></app-navbar>
+<nav>
+  <div class="nav-group">
+    <a (click)="back()" class="nav-item"><span class="icon-arrow-left-alt"></span></a>
+  </div>
+
+  <div class="title-page">
+    {{housekeeperName}}的周报
+  </div>
+</nav>
 <div *ngIf="week" class="content-scrollable">
   <div class="weui-panel">
     <div class="weui-panel__hd">周期 {{week.theyear}}年第{{week.theweek}}周 {{week.begintime | repairDate | date :
@@ -7,30 +15,38 @@
     <div class="weui-panel__bd">
       <div class="weui-media-box weui-media-box_text">
         <h4 class="weui-media-box__title">工作时间</h4>
-        <div class="weui-media-box__content" [ngClass]="{'red' : !week.content}">上班{{week.workdays}}天 共{{week.workhours}}小时</div>
+        <div class="weui-media-box__content" [ngClass]="{'red' : !week.content}">上班{{week.workdays}}天 共{{week.workhours}}<span *ngIf="week.workhours.indexOf('小时') === -1">小时</span></div>
       </div>
       <div class="weui-media-box weui-media-box_text">
         <h4 class="weui-media-box__title">工作内容</h4>
-        <div class="weui-media-box__content" [ngClass]="{'red' : !week.content}">{{week.content ? week.content : '无填写'}}</div>
+        <div class="weui-media-box__content" [ngClass]="{'red' : !week.content}">
+          <p [innerHTML]="week.content ? (week.content | newLine) : '无填写'"></p>
+        </div>
       </div>
       <div class="weui-media-box weui-media-box_text">
         <h4 class="weui-media-box__title">工作失误</h4>
-        <div class="weui-media-box__content">{{week.workmistake ? week.workmistake : '无'}}</div>
+        <div class="weui-media-box__content">
+          <p [innerHTML]="week.workmistake ? (week.workmistake | newLine) : '无填写'"></p>
+        </div>
       </div>
       <div class="weui-media-box weui-media-box_text">
         <h4 class="weui-media-box__title">工作体会</h4>
-        <div class="weui-media-box__content" [ngClass]="{'red' : !week.workexperience}">{{week.workexperience ? week.workexperience : '无填写'}}</div>
+        <div class="weui-media-box__content" [ngClass]="{'red' : !week.workexperience}">
+          <p [innerHTML]="week.workexperience ? (week.workexperience | newLine) : '无填写'"></p>
+        </div>
       </div>
       <div class="weui-media-box weui-media-box_text">
         <h4 class="weui-media-box__title">意见和建议</h4>
-        <div class="weui-media-box__content">{{week.workopinion ? week.workopinion : '无'}}</div>
+        <div class="weui-media-box__content">
+          <p [innerHTML]="week.workopinion ? (week.workopinion | newLine) : '无填写'"></p>
+        </div>
       </div>
     </div>
   </div>
 
   <div class="weui-cells__title">批复意见 <span *ngIf="week.auditstatus !== 1">(未批复)</span></div>
   <div [formGroup]="auditForm" class="weui-cells weui-cells_form">
-    <a (click)="onPickerShow()" class="weui-cell weui-cell_access">
+    <a *ngIf="week.auditstatus !== 1" (click)="onPickerShow()" class="weui-cell weui-cell_access">
       <div class="weui-cell__bd">
         <p>快捷批复</p>
       </div>
@@ -44,7 +60,7 @@
     </div>
   </div>
 
-  <div *ngIf="week.auditstatus !== 1" class="weui-btn-area">
-    <a (click)="submit()" weui-button [weui-loading]="loading" class="weui-btn weui-btn_primary">批复</a>
+  <div class="weui-btn-area">
+    <a (click)="submit()" weui-button [weui-loading]="loading" class="weui-btn weui-btn_primary">{{week.auditstatus === 1 ? '修改批复意见' : '提交批复意见'}}</a>
   </div>
 </div>

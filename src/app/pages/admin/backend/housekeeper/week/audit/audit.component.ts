@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {Location} from '@angular/common';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute} from '@angular/router';
 
@@ -27,6 +28,7 @@ export class AdminBackendHousekeeperWeekAuditComponent implements OnInit {
   auditForm: FormGroup;
   loading = false;
   isSubmit = false;
+  housekeeperName;
 
   pickerData = [
     {label: '总结的不错，请继续努力！', value: '总结的不错，请继续努力！'},
@@ -35,6 +37,7 @@ export class AdminBackendHousekeeperWeekAuditComponent implements OnInit {
   ];
 
   constructor(private route: ActivatedRoute,
+              private location: Location,
               private dialogSvc: DialogService,
               private pickerSvc: PickerService,
               private userSvc: UserService,
@@ -60,6 +63,7 @@ export class AdminBackendHousekeeperWeekAuditComponent implements OnInit {
     this.workSvc.getWeek(this.weeklyId).then(res => {
       if (res.code === 0) {
         this.week = res.weekly;
+        this.housekeeperName = this.week.housekeeperName;
         if (res.weekly.auditstatus === 1) {
           this.auditForm.get('auditFeedback').setValue(res.weekly.auditfeedback);
         }
@@ -93,6 +97,10 @@ export class AdminBackendHousekeeperWeekAuditComponent implements OnInit {
         window.history.back();
       });
     });
+  }
+
+  back() {
+    this.location.back();
   }
 
 }

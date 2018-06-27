@@ -126,7 +126,7 @@
                 <div class="weui-label">工作时间</div>
               </div>
               <div class="weui-cell__bd weui-cell_primary">
-                <p>上班{{week.workdays}}天 共{{week.workhours}}小时</p>
+                <p>上班{{week.workdays}}天 共{{week.workhours}}<span *ngIf="week.workhours.indexOf('小时') === -1">小时</span></p>
               </div>
             </div>
             <div class="weui-cell">

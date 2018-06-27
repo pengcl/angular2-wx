@@ -1,0 +1,15 @@
+<weui-infiniteloader *ngIf="lists?.length > 0" (loadmore)="onLoadMore($event)" #comp>
+  <div class="img-box">
+    <img src="/assets/images/guide/top1.png">
+  </div>
+  <div class="weui-cells__title" style="font-size: 0.18rem;color: #333;">{{isPaid ? '更换管家' : '推荐管家'}} <span
+    style="font-size: 0.14rem">请挑选管家进行预约面试</span></div>
+  <app-profile [routerLink]="['/guide/n5', item.housekeeperid]" [queryParams]="{orderNo:orderNo,gh:gh}"
+               queryParamsHandling="merge"
+               [profile]="item"
+               *ngFor="let item of lists"></app-profile>
+
+  <div *ngIf="!isPaid" class="weui-btn-area">
+    <a routerLink="/guide/n6" class="weui-btn weui-btn_primary">预定名额</a>
+  </div>
+</weui-infiniteloader>

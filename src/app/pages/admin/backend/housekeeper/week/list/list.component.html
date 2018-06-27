@@ -53,12 +53,18 @@
         <td>{{work.housekeeperno}}</td>
         <td [ngClass]="{'red':work.iscomplete !== 1}">
           <span *ngIf="work.iscomplete === 1">完整</span>
-          <span *ngIf="work.iscomplete !== 1">不完整</span>
+          <span *ngIf="work.iscomplete !== 1"><em>不完整</em></span>
         </td>
         <td [ngClass]="{'red':work.auditstatus !== 1}">
           <span *ngIf="work.auditstatus === 1">已批复</span>
-          <span *ngIf="work.auditstatus !== 1">未批复</span>
+          <span *ngIf="work.auditstatus !== 1"><em>未批复</em></span>
         </td>
+      </tr>
+
+      <tr *ngFor="let work of omissionList;let i = index">
+        <td>{{work.housekeeperName}}</td>
+        <td>{{work.housekeeperno}}</td>
+        <td colspan="2"><em>未填写</em></td>
       </tr>
       </tbody>
     </table>

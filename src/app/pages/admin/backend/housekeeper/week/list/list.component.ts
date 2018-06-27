@@ -19,6 +19,7 @@ export class AdminBackendHousekeeperWeekListComponent implements OnInit {
   user: any;
 
   works;
+  omissionList;
 
   pickerData = {
     iscomplete: {
@@ -73,6 +74,7 @@ export class AdminBackendHousekeeperWeekListComponent implements OnInit {
     this.housekeeperSvc.getWeeks(this.params).then(res => {
       if (res.code === 0) {
         this.works = res.list;
+        this.omissionList = res.omissionList;
       }
     });
   }

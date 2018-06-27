@@ -33,8 +33,8 @@ export class AppComponent implements ErrorHandler {
       url: window.location.href,
       error: error.toString()
     };
-    this.logSvc._log('error', _error).then(res => {
-    });
+    /*this.logSvc._log('error', _error).then(res => {
+    });*/
   }
 
   getState(outlet) {

@@ -9,7 +9,7 @@
     "logLevel": "debug"
   },
   "/wApi": {
-    "target": "http://192.168.1.193:8888",
+    "target": "http://wap.danius.cn/wApi",
     "secure": false,
     "pathRewrite": {
       "^/wApi/": ""

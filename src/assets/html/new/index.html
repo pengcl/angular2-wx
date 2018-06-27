@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en" style="font-size: 100px">
+<head>
+  <meta charset="utf-8">
+  <title>大牛管家</title>
+  <base href="/">
+
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1"/>
+  <meta name="format-detection" content="telephone=no"/>
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link href="https://cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet">
+  <style>
+    body {
+      padding: 0;
+      margin: 0;
+    }
+
+    .img-box {
+      margin-top: 0.1rem;
+      display: block;
+    }
+
+    .img-box:first-child {
+      margin-top: 0;
+    }
+
+    .img-box:nth-child(2) {
+      margin-top: 0;
+    }
+
+    .img-box:nth-child(7) {
+      margin-top: 0.2rem;
+
+    }
+
+    .img-box img {
+      display: block;
+      width: 100%;
+    }
+
+    .space {
+      height: 1rem;
+    }
+
+    .fixed-bt {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.8) 0%, #fff 100%);
+    }
+  </style>
+</head>
+<body>
+<div class="img-box">
+  <img src="/assets/images/guide/new/index/banner.jpg">
+</div>
+<div class="img-box">
+  <img src="/assets/images/guide/new/index/1.jpg">
+</div>
+<div class="img-box">
+  <img src="/assets/images/guide/new/index/2.jpg">
+</div>
+<div class="img-box">
+  <img src="/assets/images/guide/new/index/3.jpg">
+</div>
+<div class="img-box">
+  <img src="/assets/images/guide/new/index/4.jpg">
+</div>
+<div class="img-box">
+  <img src="/assets/images/guide/new/index/5.jpg">
+</div>
+<div class="space"></div>
+<div class="fixed-bt">
+  <a onclick="start()" class="img-box">
+    <img src="/assets/images/guide/new/index/btn.png">
+  </a>
+</div>
+
+
+<script src="https://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<script src="/assets/js/extand.js"></script>
+<script>
+  var $html = document.getElementsByTagName('html');
+  var $body = document.getElementsByTagName('body');
+  $html[0].style.fontSize = $body[0].clientWidth / 375 * 100 + 'px';
+
+  var gh = getUrlParam('gh');
+  console.log(gh);
+
+  function _log(operation) {
+    $.ajax({
+      type: "get",
+      url: 'http://m.yfq.cn/record/writeLog.html?loc=' + window.location.href + '&operation=' + operation + '&gh=' + gh,
+      dataType: "jsonp",
+      jsonp: "callback",
+      jsonpCallback: "callback",
+      success: function (json) {
+
+      },
+      error: function () {
+
+      }
+    });
+  }
+
+  function start() {
+    window.location.href = '/assets/html/new/start.html?gh=' + gh;
+  }
+
+  _log('loadA');
+
+  $('#invite').click(function () {
+    _log('invite');
+  });
+
+  wx.ready(function (res) {
+    wx.onMenuShareAppMessage({
+      title: '大牛管家, 只为牛人服务',
+      desc: '我们禀承“忠诚、安全、健康、舒心”的服务理念，旨在为全国高端商务人士及其家庭提供“安全防护、驾驶出行、科学运动”三大类日常综合管家服务。',
+      link: 'http://wap.danius.cn/assets/html/new/index.html',
+      imgUrl: 'http://wap.danius.cn/assets/images/guide/share.jpg',
+      trigger: function (res) {
+      },
+      success: function (res) {
+      },
+      cancel: function (res) {
+      },
+      fail: function (res) {
+      }
+    });
+    wx.onMenuShareTimeline({
+      title: '大牛管家, 只为牛人服务',
+      desc: '我们禀承“忠诚、安全、健康、舒心”的服务理念，旨在为全国高端商务人士及其家庭提供“安全防护、驾驶出行、科学运动”三大类日常综合管家服务。',
+      link: 'http://wap.danius.cn/assets/html/new/index.html',
+      imgUrl: 'http://wap.danius.cn/assets/images/guide/share.jpg',
+      trigger: function (res) {
+      },
+      success: function (res) {
+      },
+      cancel: function (res) {
+      },
+      fail: function (res) {
+      }
+    });
+  });
+</script>
+</body>
+</html>

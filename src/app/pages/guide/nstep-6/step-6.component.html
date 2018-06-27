@@ -1,0 +1,42 @@
+<div #scrollMe [formGroup]="subscribeForm" class="content-scrollable">
+
+  <div class="check-customerName check-customerMobile weui-cells__title"
+       [ngClass]="{'warn':(subscribeForm.get('customerName').invalid && isSubmit) || (subscribeForm.get('customerMobile').invalid && isSubmit)}">
+    请您留下联系方式，以便我们登记安排管家
+    <p>大牛管家向您承诺，您所有资料均会严格保密，请放心填写。</p>
+  </div>
+  <div class="input-area weui-cells weui-cells_form">
+    <div class="weui-cell" [ngClass]="{'weui-cell_warn':subscribeForm.get('customerName').invalid && isSubmit}">
+      <div class="weui-cell__hd"><span class="weui-label">您的称呼</span></div>
+      <div class="weui-cell__bd">
+        <input formControlName="customerName" class="weui-input" placeholder="如：李先生/李女士">
+      </div>
+      <div class="weui-cell__ft"><i class="weui-icon-warn"></i></div>
+    </div>
+    <div class="weui-cell" [ngClass]="{'weui-cell_warn':subscribeForm.get('customerMobile').invalid && isSubmit}">
+      <div class="weui-cell__hd"><span class="weui-label">联系电话</span></div>
+      <div class="weui-cell__bd">
+        <input formControlName="customerMobile" maxlength="11" class="weui-input" placeholder="请输入手机号码">
+      </div>
+      <div class="weui-cell__ft"><i class="weui-icon-warn"></i></div>
+    </div>
+  </div>
+
+  <div class="check-serviceAreaId check-serviceAreaName weui-cells__title"
+       [ngClass]="{'warn':subscribeForm.get('serviceAreaId').invalid && isSubmit}">您所在的城市是？
+  </div>
+  <div class="item-list weui-grids">
+    <div (click)="setCity(item)" class="list-item weui-grid" *ngFor="let item of citys">
+      <div class="item-box" [ngClass]="{'curr':subscribeForm.get('serviceAreaId').value === item.value}">
+        {{item.label}}
+        <span class="tag"><img src="/assets/images/guide/checked.png"></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="weui-btn-area">
+    <p><em>需支付1元预定金</em></p>
+    <weui-button [userTrack]="'reserve'" (click)="submit()" [weui-loading]="loading" class="weui-btn weui-btn_primary">提交</weui-button>
+  </div>
+
+</div>

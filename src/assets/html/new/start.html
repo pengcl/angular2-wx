@@ -1,0 +1,715 @@
+<!doctype html>
+<html lang="en" style="font-size: 100px">
+<head>
+  <meta charset="utf-8">
+  <title>大牛管家</title>
+  <base href="/">
+
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1"/>
+  <meta name="format-detection" content="telephone=no"/>
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link href="https://cdn.bootcss.com/weui/1.1.2/style/weui.min.css" rel="stylesheet">
+  <link href="https://cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet">
+  <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <style>
+
+    body {
+      font-size: 0.14rem;
+    }
+
+    .img-box img {
+      display: block;
+      width: 100%;
+    }
+
+    .content-scrollable {
+      background: #fff;
+    }
+
+    .content-scrollable:after {
+      height: 0.8rem;
+    }
+
+    .title {
+      margin-top: 0.35rem;
+      line-height: 1;
+      font-weight: bold;
+    }
+
+    .title .txt {
+      font-size: 0.22rem;
+      text-align: center;
+    }
+
+    .title .txt em {
+      color: #cfab66;
+      font-style: normal;
+    }
+
+    .title .line {
+      width: 50%;
+      margin: 0.1rem auto;
+    }
+
+    .title .line img {
+      display: block;
+      width: 100%;
+    }
+
+    .sub-title {
+      font-size: 0.13rem;
+      margin-top: 0.2rem;
+      color: #666;
+      text-align: center;
+    }
+
+    .services {
+      margin-top: 0.2rem;
+    }
+
+    .services .weui-flex {
+      margin: 0.1rem;
+    }
+
+    .services .weui-flex .weui-flex__item.txt {
+      flex: 0.4;
+      align-self: center;
+      padding: 0.1rem 0.1rem 0.1rem 0.3rem;
+    }
+
+    .services .weui-flex .weui-flex__item.txt .txt-num {
+      background: #cfab66;
+      font-size: 0.18rem;
+      text-align: center;
+      color: #fff;
+      line-height: 0.28rem;
+      font-weight: normal;
+      display: block;
+      position: relative;
+      width: 4.5em;
+      white-space: nowrap;
+      box-sizing: content-box;
+      padding: 0.03rem 0.15rem;
+    }
+
+    .services .weui-flex .weui-flex__item.txt .txt-num.tr:after {
+      content: ' ';
+      position: absolute;
+      display: block;
+      right: -0.11rem;
+      bottom: 0.06rem;
+      width: 0.12rem;
+      height: 0.12rem;
+      border-top: 0.06rem solid transparent;
+      border-bottom: 0.06rem solid transparent;
+      border-left: 0.06rem solid #cfab66;
+      box-sizing: border-box;
+    }
+
+    .services .weui-flex .weui-flex__item.txt .txt-num.tl:after {
+      content: ' ';
+      position: absolute;
+      display: block;
+      left: -0.11rem;
+      bottom: 0.06rem;
+      width: 0.12rem;
+      height: 0.12rem;
+      border-bottom: 0.06rem solid transparent;
+      border-top: 0.06rem solid transparent;
+      border-right: 0.06rem solid #cfab66;
+      box-sizing: border-box;
+    }
+
+    .services .weui-flex .weui-flex__item.txt .txt-title {
+      font-size: 0.17rem;
+      line-height: 1;
+      color: #000;
+      margin-top: 0.1rem;
+    }
+
+    .services .weui-flex .weui-flex__item.txt .txt-content {
+      font-size: 0.15rem;
+      color: #666;
+      margin-top: 0.15rem;
+      line-height: 0.24rem;
+      margin-left: 0.15rem;
+    }
+
+    .services .weui-flex .weui-flex__item.img {
+      flex: 0.6;
+      background-size: cover;
+    }
+
+    .sub-service {
+      padding: 0.05rem 0.05rem;
+    }
+
+    .sub-service .weui-flex__item {
+      margin: 0.05rem;
+      position: relative;
+    }
+
+    .sub-service .weui-flex__item .title {
+      background: rgba(0, 0, 0, 0.8);
+      position: absolute;
+      bottom: 0;
+      line-height: 1;
+      font-size: 0.14rem;
+      text-align: center;
+      width: 100%;
+      padding: 0.1rem 0;
+      color: #cfab66;
+    }
+
+    .solders .weui-flex {
+      margin: 0.1rem;
+    }
+
+    .solders .weui-flex .weui-flex__item.txt {
+      flex: 0.56;
+      padding: 0.15rem 0.15rem 0.1rem 0.15rem;
+      position: relative;
+    }
+
+    .solders .weui-flex .weui-flex__item.txt .title {
+      margin-top: 0.05rem;
+      font-size: 0.19rem;
+      color: #fff;
+      font-weight: bold;
+    }
+
+    .solders .weui-flex .weui-flex__item.txt .title span, .solders .weui-flex .weui-flex__item.txt .title em {
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    .solders .weui-flex .weui-flex__item.txt .title em {
+      background: #fff;
+      color: #cfab66;
+      font-size: 0.12rem;
+      line-height: 0.16rem;
+      padding: 0 0.05rem;
+      margin-left: 0.1rem;
+      font-style: normal;
+      font-weight: normal;
+    }
+
+    .solders .weui-flex .weui-flex__item.txt ul {
+      padding-left: 0.13rem;
+      margin-top: 0.15rem;
+    }
+
+    .solders .weui-flex .weui-flex__item.txt ul li {
+      font-size: 0.13rem;
+      line-height: 1.4;
+    }
+
+    .solders .weui-flex .weui-flex__item.img {
+      flex: 0.44;
+    }
+
+    .solders .weui-flex:nth-child(1) {
+      background-image: url('/assets/images/guide/start/solder-1.png');
+      background-size: cover;
+      background-position: right top;
+    }
+
+    .solders .weui-flex:nth-child(2) {
+      background-image: url('/assets/images/guide/start/solder-2.jpg');
+      background-size: cover;
+      background-position: right top;
+    }
+
+    .solders .weui-flex:nth-child(3) {
+      background-image: url('/assets/images/guide/start/solder-3.png');
+      background-size: cover;
+      background-position: right top;
+    }
+
+    .solders .weui-flex:nth-child(4) {
+      background-image: url('/assets/images/guide/start/solder-4.png');
+      background-size: cover;
+      background-position: right top;
+    }
+
+    .solders .weui-flex:nth-child(4) .txt {
+      padding: 0.15rem 0.15rem 0.28rem 0.15rem;
+    }
+
+    .teams .weui-flex, .teams-sub .weui-flex {
+      margin: 0.05rem 0.1rem;
+      border: 1px solid #cfab66;
+      background-color: #cfab66;
+    }
+
+    .teams .weui-flex .weui-flex__item, .teams-sub .weui-flex .weui-flex__item {
+      font-size: 0.11rem;
+      line-height: 1;
+      padding: 0.1rem;
+      background: transparent;
+    }
+
+    .teams .weui-flex .weui-flex__item.label, .teams-sub .weui-flex .weui-flex__item.label {
+      align-self: center;
+      color: #000;
+      flex: 0.28;
+      font-weight: bold;
+    }
+
+    .teams .weui-flex .weui-flex__item.value, .teams-sub .weui-flex .weui-flex__item.value {
+      background-color: #fff;
+      flex: 0.72;
+    }
+
+    .teams-title {
+      margin: 0.2rem 0.1rem;
+    }
+
+    .teams-title .weui-flex .weui-flex__item {
+      font-size: 0.18rem;
+      line-height: 1;
+    }
+
+    .teams-title .weui-flex .weui-flex__item.value {
+      flex: 0.26;
+      background: #c67b51;
+      color: #fff;
+      padding: 0.05rem 0.15rem;
+      position: relative;
+    }
+
+    .teams-title .weui-flex .weui-flex__item.value:after {
+      content: ' ';
+      position: absolute;
+      display: block;
+      right: -0.08rem;
+      bottom: 0.06rem;
+      width: 0.08rem;
+      height: 0.08rem;
+      border-top: 0.04rem solid transparent;
+      border-bottom: 0.04rem solid transparent;
+      border-left: 0.04rem solid #c67b51;
+      box-sizing: border-box;
+    }
+
+    .teams-title .weui-flex .weui-flex__item.label {
+      flex: 0.37;
+    }
+
+    .teams-sub-title {
+      margin: 0.2rem 0.1rem;
+    }
+
+    .teams-sub-title .weui-flex .weui-flex__item {
+      font-size: 0.18rem;
+      line-height: 1;
+    }
+
+    .teams-sub-title .weui-flex .weui-flex__item.value {
+      flex: 0.26;
+      background: #c67b51;
+      color: #fff;
+      padding: 0.05rem 0.15rem;
+      position: relative;
+    }
+
+    .teams-sub-title .weui-flex .weui-flex__item.value:after {
+      content: ' ';
+      position: absolute;
+      display: block;
+      right: -0.08rem;
+      bottom: 0.06rem;
+      width: 0.08rem;
+      height: 0.08rem;
+      border-top: 0.04rem solid transparent;
+      border-bottom: 0.04rem solid transparent;
+      border-left: 0.04rem solid #c67b51;
+      box-sizing: border-box;
+    }
+
+    .teams-sub-title .weui-flex .weui-flex__item.label {
+      flex: 0.37;
+    }
+
+    .good {
+      padding: 0.1rem;
+    }
+
+    .btn-primary {
+      font-size: 0.17rem;
+      padding: 0.17rem 0 0.15rem;
+      line-height: 1 !important;
+      font-weight: normal;
+    }
+
+    .about {
+      position: fixed;
+      bottom: 0.7rem;
+      right: 0.1rem;
+      width: 0.35rem;
+      height: 0.35rem;
+      display: block;
+    }
+
+    .about img {
+      display: block;
+      width: 100%;
+    }
+
+    .weui-btn-area a {
+      width: 35%;
+      display: block;
+      line-height: 1;
+      font-size: 0.14rem;
+      color: #999;
+      padding: 0.1rem 0.3rem;
+      background: none;
+    }
+
+    .weui-btn-area a:after {
+      display: block;
+
+    }
+
+    .btns-group {
+      display: flex;
+      flex-wrap: wrap;
+      position: fixed;
+      top: auto;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      z-index: 999;
+    }
+
+    .btns-group [class*="btn-"] {
+      flex: 1;
+    }
+
+    [class^="btn-"],
+    [class*=" btn-"] {
+      font-size: 14px;
+      line-height: 18px;
+      line-height: 22px !important;
+      padding: 14px 15px 12px;
+      font-family: "lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-weight: 900;
+      letter-spacing: .03em;
+      text-indent: .03em;
+      text-transform: uppercase;
+      color: #fff;
+      display: inline-block;
+      position: relative;
+      text-align: center;
+      text-decoration: none !important;
+      vertical-align: middle;
+      white-space: nowrap;
+      border: 0;
+    }
+
+    .btn-primary {
+      font-size: 0.17rem;
+      padding: 0.17rem 0 0.15rem;
+      line-height: 1 !important;
+      font-weight: normal;
+      background-color: #d83e14;
+      color: white;
+    }
+
+    .space {
+      height: 0.8rem;
+    }
+
+    .weui-cells__title {
+      font-size: 0.15rem;
+      font-weight: bold;
+      color: #0F0F0F;
+    }
+
+    .weui-cells__title .right {
+      color: #4AA1DB;
+      font-size: 0.13rem;
+    }
+
+    .weui-cells__title p {
+      font-size: 0.12rem;
+      color: #CA9F4D;
+    }
+
+    .weui-cells__title.warn {
+      color: #EA5A2B;
+    }
+
+    .weui-cells.input-area:before, .weui-cells.input-area:after {
+      display: none;
+    }
+
+    .weui-cells.input-area .weui-cell {
+      font-size: 0.13rem;
+      margin: 0.15rem;
+      margin-left: 0;
+    }
+
+    .weui-cells.input-area .weui-cell:before {
+      display: none;
+    }
+
+    .weui-cells.input-area .weui-cell:after {
+      content: " ";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      height: 1px;
+      border-top: 1px solid #e5e5e5;
+      color: #e5e5e5;
+      -webkit-transform-origin: 0 0;
+      transform-origin: 0 0;
+      -webkit-transform: scaleY(0.5);
+      transform: scaleY(0.5);
+      left: 15px;
+      z-index: 2;
+    }
+
+    .weui-cells.input-area .weui-cell input, .weui-cells.input-area .weui-cell .weui-label {
+      height: 0.25rem;
+      line-height: 0.25rem;
+    }
+
+    .weui-grids:before, .weui-grids:after {
+      display: none;
+    }
+
+    .weui-grid:before, .weui-grid:after {
+      display: none;
+    }
+
+    .item-list {
+      margin: 0 0.075rem;
+    }
+
+    .item-list .list-item {
+      padding: 0;
+    }
+
+    .item-list .list-item .item-box {
+      margin: 0.075rem;
+      background: #F3F3F3;
+      border-radius: 0.04rem;
+      text-align: center;
+      line-height: 1;
+      font-size: 0.13rem;
+      padding: 0.1rem 0;
+      position: relative;
+    }
+
+    .item-list .list-item .item-box.curr {
+      background: #CA9F4D;
+      color: #fff;
+    }
+
+    .item-list .list-item .item-box .curr .tag {
+      display: block;
+    }
+
+    .item-list .list-item .item-box .tag {
+      position: absolute;
+      bottom: 0.05rem;
+      right: 0.05rem;
+      width: 0.14rem;
+      display: none;
+    }
+
+    .item-list .list-item .item-box .tag img {
+      display: block;
+      width: 100%;
+    }
+
+    .weui-btn-area {
+      margin: 0.15rem 0.15rem 0.3rem;
+    }
+
+    .fixed-bt {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.8) 0%, #fff 100%);
+    }
+  </style>
+</head>
+<body>
+<div class="content-scrollable has-footer">
+  <div class="img-box">
+    <img src="/assets/images/guide/start/banner.jpg">
+  </div>
+
+  <div class="title">
+    <div class="txt"><em>服务内容</em></div>
+    <div class="line">
+      <img src="/assets/images/guide/start/line.png">
+    </div>
+  </div>
+
+  <div class="services">
+    <div class="weui-flex">
+      <div class="txt weui-flex__item">
+        <span class="txt-num tr">安全防护</span>
+        <div class="txt-content">随身防护<br>固定防护<br>紧急救护</div>
+      </div>
+      <div class="img weui-flex__item" style="background-image: url('/assets/images/guide/start/service-1.jpg');"></div>
+    </div>
+    <div class="weui-flex">
+      <div class="img weui-flex__item" style="background-image: url('/assets/images/guide/start/service-2.png');"></div>
+      <div class="txt weui-flex__item">
+        <span class="txt-num tl">驾驶保障</span>
+        <div class="txt-content">安全驾驶<br>车辆养护<br>出行保障</div>
+      </div>
+    </div>
+    <div class="weui-flex">
+      <div class="txt weui-flex__item">
+        <span class="txt-num tr">体能训练</span>
+        <div class="txt-content">运动陪练<br>体能训练<br>损伤预防</div>
+      </div>
+      <div class="img weui-flex__item" style="background-image: url('/assets/images/guide/start/service-3.jpg');"></div>
+    </div>
+  </div>
+
+  <div class="title">
+    <div class="txt"><em>服务等级</em></div>
+    <div class="line">
+      <img src="/assets/images/guide/start/line.png">
+    </div>
+  </div>
+
+  <div class="solders">
+    <div class="weui-flex">
+      <div class="txt weui-flex__item">
+        <div class="title"><span>特级管家</span><em>¥16000/月</em></div>
+        <ul>
+          <li>5-8年特种部队磨砺</li>
+          <li>2年以上相关工作经历</li>
+          <li>驾驶技术娴熟</li>
+          <li>综合技能优秀</li>
+        </ul>
+      </div>
+      <div class="img weui-flex__item"></div>
+    </div>
+    <div class="weui-flex">
+      <div class="txt weui-flex__item">
+        <div class="title"><span>高级管家</span><em>¥12000/月</em></div>
+        <ul>
+          <li>2-5年特种部队磨砺</li>
+          <li>2年工作经历</li>
+          <li>驾驶技术娴熟</li>
+          <li>综合技能优秀</li>
+        </ul>
+      </div>
+      <div class="img weui-flex__item">
+
+      </div>
+    </div>
+    <div class="weui-flex">
+      <div class="txt weui-flex__item">
+        <div class="title"><span>中级管家</span><em>¥11000/月</em></div>
+        <ul>
+          <li>2-5年作战部队磨砺</li>
+          <li>1年工作经历</li>
+          <li>驾驶技术熟练</li>
+          <li>综合技能良好</li>
+        </ul>
+      </div>
+      <div class="img weui-flex__item"></div>
+    </div>
+    <div class="weui-flex">
+      <div class="txt weui-flex__item">
+        <div class="title"><span>初级管家</span><em>¥9000/月</em></div>
+        <ul>
+          <li>2年以上部队磨砺</li>
+          <li>驾驶技术熟练</li>
+          <li>综合技能达标</li>
+        </ul>
+      </div>
+      <div class="img weui-flex__item"></div>
+    </div>
+  </div>
+
+  <div class="space"></div>
+  <div class="fixed-bt">
+    <a onclick="go()" class="img-box">
+      <img src="/assets/images/guide/new/start/btn.png">
+    </a>
+  </div>
+
+</div>
+<script src="https://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<script src="/assets/js/extand.js"></script>
+<script>
+  var $html = document.getElementsByTagName('html');
+  var $body = document.getElementsByTagName('body');
+  $html[0].style.fontSize = $body[0].clientWidth / 375 * 100 + 'px';
+
+  var gh = getUrlParam('gh');
+  console.log(gh);
+
+  function _log(operation) {
+    $.ajax({
+      type: "get",
+      url: 'http://m.yfq.cn/record/writeLog.html?loc=' + window.location.href + '&operation=' + operation + '&gh=' + gh,
+      dataType: "jsonp",
+      jsonp: "callback",
+      jsonpCallback: "callback",
+      success: function (json) {
+
+      },
+      error: function () {
+
+      }
+    });
+  }
+
+  _log('loadA');
+
+  $('#invite').click(function () {
+    _log('invite');
+  });
+
+  function go() {
+    window.location.href = '/guide/n4?gh=' + gh;
+  }
+
+  wx.ready(function (res) {
+    wx.onMenuShareAppMessage({
+      title: '大牛管家, 只为牛人服务',
+      desc: '我们禀承“忠诚、安全、健康、舒心”的服务理念，旨在为全国高端商务人士及其家庭提供“安全防护、驾驶出行、科学运动”三大类日常综合管家服务。',
+      link: 'http://wap.danius.cn/assets/html/start.html',
+      imgUrl: 'http://wap.danius.cn/assets/images/guide/share.jpg',
+      trigger: function (res) {
+      },
+      success: function (res) {
+      },
+      cancel: function (res) {
+      },
+      fail: function (res) {
+      }
+    });
+    wx.onMenuShareTimeline({
+      title: '大牛管家, 只为牛人服务',
+      desc: '我们禀承“忠诚、安全、健康、舒心”的服务理念，旨在为全国高端商务人士及其家庭提供“安全防护、驾驶出行、科学运动”三大类日常综合管家服务。',
+      link: 'http://wap.danius.cn/assets/html/start.html',
+      imgUrl: 'http://wap.danius.cn/assets/images/guide/share.jpg',
+      trigger: function (res) {
+      },
+      success: function (res) {
+      },
+      cancel: function (res) {
+      },
+      fail: function (res) {
+      }
+    });
+  });
+</script>
+</body>
+</html>

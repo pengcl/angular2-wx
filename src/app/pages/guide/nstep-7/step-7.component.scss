@@ -1,0 +1,49 @@
+.content-scrollable {
+  background: #fff;
+  .msg-content {
+    margin: 0.2rem;
+    padding: 0.2rem;
+    background: #F6EBD8;
+    border-radius: 0.08rem;
+    h1 {
+      font-size: 0.17rem;
+      line-height: 1;
+    }
+    p {
+      margin-top: 0.15rem;
+      font-size: 0.12rem;
+    }
+  }
+
+  h2 {
+    margin: 0.2rem;
+    line-height: 1;
+    font-size: 0.13rem;
+  }
+
+  ul {
+    margin: 0.2rem;
+    padding-left: 0.2rem;
+    font-size: 0.12rem;
+    color: #666;
+  }
+
+  .qr-code {
+    width: 40%;
+    margin: 0.35rem auto;
+    overflow: hidden;
+    box-shadow: 0 10px 20px 0 rgba(181,133,74,0.20);
+    border-radius: 0.08rem;
+    img {
+      display: block;
+      width: 100%;
+    }
+  }
+
+  .qr-tips {
+    margin-top: -0.15rem;
+    text-align: center;
+    font-size: 0.12rem;
+    color: #666;
+  }
+}

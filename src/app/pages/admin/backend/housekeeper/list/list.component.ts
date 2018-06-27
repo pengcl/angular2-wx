@@ -28,12 +28,12 @@ export class AdminBackendHousekeeperListComponent implements OnInit {
 
   params = {
     page: 1,
-    name: '',
+    keyword: '',
     totalPage: 0,
-    levelid: '',
+    levelName: '',
     serviceareaids: [],
-    workstatus: 1,
-    issubscribe: ''
+    status: 1,
+    isSubscribe: ''
   };
 
   @ViewChild(InfiniteLoaderComponent) il;
@@ -70,6 +70,7 @@ export class AdminBackendHousekeeperListComponent implements OnInit {
 
   getHousekeepers() {
     this.housekeeperSvc.get(this.params).then(res => {
+      console.log(res);
       if (res.code === 0) {
         this.housekeepers = res.list;
         console.log(this.housekeepers);
@@ -98,13 +99,13 @@ export class AdminBackendHousekeeperListComponent implements OnInit {
   }
 
   setWorkState(state) {
-    this.params.workstatus = state;
+    this.params.status = state;
     this.params.page = 1;
     this.getHousekeepers();
   }
 
   setSubscribe() {
-    this.params.issubscribe === '0' ? this.params.issubscribe = '' : this.params.issubscribe = '0';
+    this.params.isSubscribe === '0' ? this.params.isSubscribe = '' : this.params.isSubscribe = '0';
     this.params.page = 1;
     this.getHousekeepers();
   }
@@ -112,7 +113,7 @@ export class AdminBackendHousekeeperListComponent implements OnInit {
   setLevel() {
     this.picker.show([this.levels], [], [], {cancel: '取消', confirm: '确定'}).subscribe(res => {
       this.level = res.items[0];
-      this.params.levelid = this.level.value;
+      this.params.levelName = this.level.label;
       this.params.page = 1;
       console.log(this.params);
       this.getHousekeepers();

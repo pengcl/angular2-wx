@@ -11,9 +11,17 @@ export class HousekeeperService {
   constructor(private http: HttpClient) {
   }
 
-  get(body): Promise<any> {// 获取学期列表
+  /*get(body): Promise<any> {// 获取学期列表
     const params = formDataToUrl(body);
     return this.http.get(Config.prefix.wApi + '/interface/backgroup/getHousekeeperList.ht' + params)
+      .toPromise()
+      .then(response => response)
+      .catch(this.handleError);
+  }*/
+
+  get(body): Promise<any> {// 获取学期列表
+    const params = formDataToUrl(body);
+    return this.http.get(Config.prefix.wApi + '/interface/housekeeper/findRegionHousekeeperByCondition.ht' + params)
       .toPromise()
       .then(response => response)
       .catch(this.handleError);

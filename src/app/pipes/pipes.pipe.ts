@@ -1,4 +1,4 @@
-import {Injectable, Pipe, PipeTransform, SecurityContext} from '@angular/core';
+import {Injectable, Pipe, PipeTransform, SecurityContext, ElementRef} from '@angular/core';
 import {DomSanitizer} from '@angular/platform-browser';
 import {Config} from '../config';
 
@@ -102,5 +102,41 @@ export class FollowCountPipe implements PipeTransform {
     return items.filter(item => {
       return item['followCount'] === 1;
     });
+  }
+}
+
+@Pipe({
+  name: 'details',
+  pure: false
+})
+export class DetailsPipe implements PipeTransform {
+  transform(html): any {
+    if (!html) {
+      return '';
+    }
+    html = html.replace(/<h3/g, '<\/section><h3');
+    html = html.replace(/<\/h3>/g, '<\/h3><section>');
+    html = html.replace(/<\/section>/, '');
+    html = html.replace(/>l</g, 'class="dot">·<');
+    html = html.replace(/>\(/g, 'class="num">');
+    return html;
+  }
+}
+
+@Pipe({
+  name: 'newLine',
+  pure: false
+})
+export class NewLinePipe implements PipeTransform {
+  transform(content): any {
+    if (!content) {
+      return '';
+    }
+    content = content.trim();
+    let result = content;
+    if (content.indexOf('\n') > 0) {
+      result = content.replace(/\n/g, '<br>');
+    }
+    return result;
   }
 }
