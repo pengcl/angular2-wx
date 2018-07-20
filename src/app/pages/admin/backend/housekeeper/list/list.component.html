@@ -58,7 +58,7 @@
           没有数据
         </td>
       </tr>
-      <tr [routerLink]="['/admin/backend/housekeeper/item',item.housekeeperid]"
+      <tr [routerLink]="['/admin/backend/housekeeper/item',item.housekeeperId]"
           *ngFor="let item of housekeepers;let i = index">
         <td>{{item.name}}</td>
         <td>{{item.levelName}}</td>

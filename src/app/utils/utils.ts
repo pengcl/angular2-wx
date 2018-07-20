@@ -583,13 +583,42 @@ function getTime(n) {
   return s;
 }
 
+function getCurrentWeek() {
+  // 起止日期数组
+  const startStop = new Array();
+  // 获取当前时间
+  const currentDate = new Date();
+  // 返回date是一周中的某一天
+  const week = currentDate.getDay();
+  // 返回date是一个月中的某一天
+  const month = currentDate.getDate();
+
+  // 一天的毫秒数
+  const millisecond = 1000 * 60 * 60 * 24;
+  // 减去的天数
+  const minusDay = week !== 0 ? week - 1 : 6;
+  // alert(minusDay);
+  // 本周 周一
+  const monday = new Date(currentDate.getTime() - (minusDay * millisecond));
+  // 本周 周日
+  const sunday = new Date(monday.getTime() + (6 * millisecond));
+
+  // 添加本周时间
+  startStop.push(monday.toLocaleDateString().replace(/\//g, '-')); // 本周起始时间
+  // 添加本周最后一天时间
+  startStop.push(sunday.toLocaleDateString().replace(/\//g, '-')); // 本周终止时间
+  // 返回
+  return startStop;
+}
+
 
 export function getThisWeek() {
-  return {
+  const thisWeek = {
     week: getWeekOfYear(),
-    first: getTime(0),
-    last: getTime(-6)
+    first: getCurrentWeek()[0],
+    last: getCurrentWeek()[1]
   };
+  return thisWeek;
 }
 
 export function getYesterday() {

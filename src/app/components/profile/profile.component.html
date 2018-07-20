@@ -13,7 +13,7 @@
         </div>
       </div>
       <div class="weui-media-box__bd">
-        <h4 class="weui-media-box__title">{{profile.name}} <span class="level">
+        <h4 class="weui-media-box__title">{{profile.name}} <span class="level" style="display: none">
       <img *ngIf="profile.levelname === '初级'" class="icons" src="/assets/images/levels/1.png">
       <img *ngIf="profile.levelname === '中级'" class="icons" src="/assets/images/levels/2.png">
       <img *ngIf="profile.levelname === '高级'" class="icons" src="/assets/images/levels/3.png">
@@ -36,14 +36,10 @@
               <span class="label">军龄{{profile.soldierAge}}年</span>
             </div>
           </div>
-        </div>
-        <div class="attr">
-          <div class="weui-flex">
-            <!--<div *ngIf="profile.worktime" class="weui-flex__item">
-              <span class="label" style="font-size: 0.1rem">最快到岗时间：<em><span *ngIf="profile.issubscribe === 0">立即到岗</span><span *ngIf="profile.issubscribe === 2">{{profile.worktime.split(' ')[0].split('-')[1]}}-{{profile.worktime.split(' ')[0].split('-')[2]}}</span></em></span>
-            </div>-->
-            <div class="price weui-flex__item">
-              <sub>￥</sub><em>{{profile.commissionamount}}</em>
+          <div class="gold weui-flex">
+            <div class="weui-flex__item">
+              <span class="label">{{profile.drivinglicence}}驾照</span> ·
+              <span class="label">驾龄{{profile.driversage}}年</span>
             </div>
           </div>
         </div>
@@ -54,5 +50,8 @@
   <!--<div class="weui-panel__ft">
     <span *ngFor="let item of profile.expertisenames.split(',')" class="ui-label colors horizontal">{{item}}</span>
   </div>-->
+  <div class="price">
+    <sub>￥</sub><em>{{profile.commissionamount}} /月</em>
+  </div>
 </div>
 

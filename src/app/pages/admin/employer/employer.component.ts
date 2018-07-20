@@ -20,6 +20,7 @@ declare var wx: any;
 export class AdminEmployerComponent implements OnInit, OnDestroy {
   tabBarConfig = PageConfig.tabBar;
   navBarConfig = PageConfig.navBar;
+  config = Config;
   user: any;
   employer;
   employees;
@@ -46,7 +47,7 @@ export class AdminEmployerComponent implements OnInit, OnDestroy {
     this.wxSvc.config({
       title: '大牛管家, 只为牛人服务',
       desc: '我们禀承“忠诚、安全、健康、舒心”的服务理念，旨在为全国高端商务人士及其家庭提供“安全防护、驾驶出行、科学运动”三大类日常综合管家服务。',
-      link: Config.webHost + '/assets/html/start.html',
+      link: Config.webHost + '/assets/html/w/start.html',
       imgUrl: Config.webHost + '/assets/images/guide/share.jpg'
     }).then(() => {
       // 其它操作，可以确保注册成功以后才有效

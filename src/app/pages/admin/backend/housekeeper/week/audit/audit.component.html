@@ -7,7 +7,7 @@
     {{housekeeperName}}的周报
   </div>
 </nav>
-<div *ngIf="week" class="content-scrollable">
+<div *ngIf="week" class="content-scrollable has-nav">
   <div class="weui-panel">
     <div class="weui-panel__hd">周期 {{week.theyear}}年第{{week.theweek}}周 {{week.begintime | repairDate | date :
       'MM月dd日'}}~{{week.endtime | repairDate | date : 'MM月dd日'}}

@@ -102,7 +102,7 @@ export class UserService {
   }
 
   getCode(mobile) {
-    return this.http.get(Config.prefix.wApi + '/interface/user/getSystemCode.ht?custMoblie=' + mobile)
+    return this.http.get(Config.prefix.wApi + '/interface/user/getCode.ht?custMoblie=' + mobile)
       .toPromise()
       .then(response => {
         return response;

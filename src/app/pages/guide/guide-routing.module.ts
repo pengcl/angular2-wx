@@ -16,6 +16,12 @@ import {GuideNStep6Component} from './nstep-6/step-6.component';
 import {GuideNStep7Component} from './nstep-7/step-7.component';
 import {GuideNStep8Component} from './nstep-8/step-8.component';
 
+import {GuideWNStep4Component} from './wnstep-4/step-4.component';
+import {GuideWNStep5Component} from './wnstep-5/step-5.component';
+import {GuideWNStep6Component} from './wnstep-6/step-6.component';
+import {GuideWNStep7Component} from './wnstep-7/step-7.component';
+import {GuideWNStep8Component} from './wnstep-8/step-8.component';
+
 export const appGuideRoutes: Routes = [
   {path: 'poster', component: GuidePosterComponent},
   {path: 'knowledge', component: GuideKnowledgeComponent},
@@ -34,6 +40,12 @@ export const appGuideRoutes: Routes = [
   {path: 'n6/:id', component: GuideNStep6Component},
   {path: 'n7', component: GuideNStep7Component},
   {path: 'n8', component: GuideNStep8Component},
+
+  {path: 'w4', component: GuideWNStep4Component},
+  {path: 'w5/:id', component: GuideWNStep5Component},
+  {path: 'w6/:id', component: GuideWNStep6Component},
+  {path: 'w7', component: GuideWNStep7Component},
+  {path: 'w8', component: GuideWNStep8Component},
   {
     path: '**', redirectTo: 'index'
   }

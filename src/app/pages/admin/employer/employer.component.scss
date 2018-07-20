@@ -1,3 +1,6 @@
+.content-scrollable {
+  background: #fff;
+}
 .user-info {
   &:before {
     display: none;
@@ -11,7 +14,7 @@
 }
 
 .dashboard {
-  padding-bottom: 2rem;
+  padding-bottom: 0.7rem;
   .weui-grids {
     &:before, &:after {
       display: none;

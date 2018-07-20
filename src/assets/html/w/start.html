@@ -1,0 +1,942 @@
+<!doctype html>
+<html lang="en" style="font-size: 100px">
+<head>
+  <meta charset="utf-8">
+  <title>大牛管家</title>
+  <base href="/">
+
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1"/>
+  <meta name="format-detection" content="telephone=no"/>
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link href="https://cdn.bootcss.com/weui/1.1.2/style/weui.min.css" rel="stylesheet">
+  <link href="https://cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet">
+  <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <style>
+
+    body {
+      font-size: 0.14rem;
+    }
+
+    sub {
+      vertical-align: baseline;
+      font-size: 75%;
+    }
+
+    .img-box img {
+      display: block;
+      width: 100%;
+    }
+
+    .content-scrollable {
+      background: #fff;
+    }
+
+    .content-scrollable:after {
+      height: 0.8rem;
+    }
+
+    .title {
+      margin-top: 0.35rem;
+      line-height: 1;
+      font-weight: bold;
+    }
+
+    .title .txt {
+      font-size: 0.22rem;
+      text-align: center;
+    }
+
+    .title .txt em {
+      color: #cfab66;
+      font-style: normal;
+    }
+
+    .title .line {
+      width: 50%;
+      margin: 0.1rem auto;
+    }
+
+    .title .line img {
+      display: block;
+      width: 100%;
+    }
+
+    .sub-title {
+      font-size: 0.13rem;
+      margin-top: 0.2rem;
+      color: #666;
+      text-align: center;
+    }
+
+    .services {
+      margin-top: 0.2rem;
+    }
+
+    .services .weui-flex {
+      margin: 0.1rem;
+    }
+
+    .services .weui-flex .weui-flex__item.txt {
+      flex: 0.4;
+      align-self: center;
+      padding: 0.1rem 0.1rem 0.1rem 0.3rem;
+    }
+
+    .services .weui-flex .weui-flex__item.txt .txt-num {
+      background: #cfab66;
+      font-size: 0.18rem;
+      text-align: center;
+      color: #fff;
+      line-height: 0.28rem;
+      font-weight: normal;
+      display: block;
+      position: relative;
+      width: 4.5em;
+      white-space: nowrap;
+      box-sizing: content-box;
+      padding: 0.03rem 0.15rem;
+    }
+
+    .services .weui-flex .weui-flex__item.txt .txt-num.tr:after {
+      content: ' ';
+      position: absolute;
+      display: block;
+      right: -0.11rem;
+      bottom: 0.06rem;
+      width: 0.12rem;
+      height: 0.12rem;
+      border-top: 0.06rem solid transparent;
+      border-bottom: 0.06rem solid transparent;
+      border-left: 0.06rem solid #cfab66;
+      box-sizing: border-box;
+    }
+
+    .services .weui-flex .weui-flex__item.txt .txt-num.tl:after {
+      content: ' ';
+      position: absolute;
+      display: block;
+      left: -0.11rem;
+      bottom: 0.06rem;
+      width: 0.12rem;
+      height: 0.12rem;
+      border-bottom: 0.06rem solid transparent;
+      border-top: 0.06rem solid transparent;
+      border-right: 0.06rem solid #cfab66;
+      box-sizing: border-box;
+    }
+
+    .services .weui-flex .weui-flex__item.txt .txt-title {
+      font-size: 0.17rem;
+      line-height: 1;
+      color: #000;
+      margin-top: 0.1rem;
+    }
+
+    .services .weui-flex .weui-flex__item.txt .txt-content {
+      font-size: 0.15rem;
+      color: #666;
+      margin-top: 0.15rem;
+      line-height: 0.24rem;
+      margin-left: 0.15rem;
+    }
+
+    .services .weui-flex .weui-flex__item.img {
+      flex: 0.6;
+      background-size: cover;
+    }
+
+    .sub-service {
+      padding: 0.05rem 0.05rem;
+    }
+
+    .sub-service .weui-flex__item {
+      margin: 0.05rem;
+      position: relative;
+    }
+
+    .sub-service .weui-flex__item .title {
+      background: rgba(0, 0, 0, 0.8);
+      position: absolute;
+      bottom: 0;
+      line-height: 1;
+      font-size: 0.14rem;
+      text-align: center;
+      width: 100%;
+      padding: 0.1rem 0;
+      color: #cfab66;
+    }
+
+    .solders .weui-flex {
+      margin: 0.1rem;
+    }
+
+    .solders .weui-flex .weui-flex__item.txt {
+      flex: 0.56;
+      padding: 0.15rem 0.15rem 0.1rem 0.15rem;
+      position: relative;
+    }
+
+    .solders .weui-flex .weui-flex__item.txt .title {
+      margin-top: 0.05rem;
+      font-size: 0.19rem;
+      color: #fff;
+      font-weight: bold;
+    }
+
+    .solders .weui-flex .weui-flex__item.txt .title span, .solders .weui-flex .weui-flex__item.txt .title em {
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    .solders .weui-flex .weui-flex__item.txt .title em {
+      background: #fff;
+      color: #cfab66;
+      font-size: 0.12rem;
+      line-height: 0.16rem;
+      padding: 0 0.05rem;
+      margin-left: 0.1rem;
+      font-style: normal;
+      font-weight: normal;
+    }
+
+    .solders .weui-flex .weui-flex__item.txt ul {
+      padding-left: 0.13rem;
+      margin-top: 0.15rem;
+    }
+
+    .solders .weui-flex .weui-flex__item.txt ul li {
+      font-size: 0.13rem;
+      line-height: 1.4;
+    }
+
+    .solders .weui-flex .weui-flex__item.img {
+      flex: 0.44;
+    }
+
+    .solders .weui-flex:nth-child(1) {
+      background-image: url('/assets/images/guide/start/solder-1.png');
+      background-size: cover;
+      background-position: right top;
+    }
+
+    .solders .weui-flex:nth-child(2) {
+      background-image: url('/assets/images/guide/start/solder-2.jpg');
+      background-size: cover;
+      background-position: right top;
+    }
+
+    .solders .weui-flex:nth-child(3) {
+      background-image: url('/assets/images/guide/start/solder-3.png');
+      background-size: cover;
+      background-position: right top;
+    }
+
+    .solders .weui-flex:nth-child(4) {
+      background-image: url('/assets/images/guide/start/solder-4.png');
+      background-size: cover;
+      background-position: right top;
+    }
+
+    .solders .weui-flex:nth-child(4) .txt {
+      padding: 0.15rem 0.15rem 0.28rem 0.15rem;
+    }
+
+    .teams .weui-flex, .teams-sub .weui-flex {
+      margin: 0.05rem 0.1rem;
+      border: 1px solid #cfab66;
+      background-color: #cfab66;
+    }
+
+    .teams .weui-flex .weui-flex__item, .teams-sub .weui-flex .weui-flex__item {
+      font-size: 0.11rem;
+      line-height: 1;
+      padding: 0.1rem;
+      background: transparent;
+    }
+
+    .teams .weui-flex .weui-flex__item.label, .teams-sub .weui-flex .weui-flex__item.label {
+      align-self: center;
+      color: #000;
+      flex: 0.28;
+      font-weight: bold;
+    }
+
+    .teams .weui-flex .weui-flex__item.value, .teams-sub .weui-flex .weui-flex__item.value {
+      background-color: #fff;
+      flex: 0.72;
+    }
+
+    .teams-title {
+      margin: 0.2rem 0.1rem;
+    }
+
+    .teams-title .weui-flex .weui-flex__item {
+      font-size: 0.18rem;
+      line-height: 1;
+    }
+
+    .teams-title .weui-flex .weui-flex__item.value {
+      flex: 0.26;
+      background: #c67b51;
+      color: #fff;
+      padding: 0.05rem 0.15rem;
+      position: relative;
+    }
+
+    .teams-title .weui-flex .weui-flex__item.value:after {
+      content: ' ';
+      position: absolute;
+      display: block;
+      right: -0.08rem;
+      bottom: 0.06rem;
+      width: 0.08rem;
+      height: 0.08rem;
+      border-top: 0.04rem solid transparent;
+      border-bottom: 0.04rem solid transparent;
+      border-left: 0.04rem solid #c67b51;
+      box-sizing: border-box;
+    }
+
+    .teams-title .weui-flex .weui-flex__item.label {
+      flex: 0.37;
+    }
+
+    .teams-sub-title {
+      margin: 0.2rem 0.1rem;
+    }
+
+    .teams-sub-title .weui-flex .weui-flex__item {
+      font-size: 0.18rem;
+      line-height: 1;
+    }
+
+    .teams-sub-title .weui-flex .weui-flex__item.value {
+      flex: 0.26;
+      background: #c67b51;
+      color: #fff;
+      padding: 0.05rem 0.15rem;
+      position: relative;
+    }
+
+    .teams-sub-title .weui-flex .weui-flex__item.value:after {
+      content: ' ';
+      position: absolute;
+      display: block;
+      right: -0.08rem;
+      bottom: 0.06rem;
+      width: 0.08rem;
+      height: 0.08rem;
+      border-top: 0.04rem solid transparent;
+      border-bottom: 0.04rem solid transparent;
+      border-left: 0.04rem solid #c67b51;
+      box-sizing: border-box;
+    }
+
+    .teams-sub-title .weui-flex .weui-flex__item.label {
+      flex: 0.37;
+    }
+
+    .good {
+      padding: 0.1rem;
+    }
+
+    .btn-primary {
+      font-size: 0.17rem;
+      padding: 0.17rem 0 0.15rem;
+      line-height: 1 !important;
+      font-weight: normal;
+    }
+
+    .about {
+      position: fixed;
+      bottom: 0.7rem;
+      right: 0.1rem;
+      width: 0.35rem;
+      height: 0.35rem;
+      display: block;
+    }
+
+    .about img {
+      display: block;
+      width: 100%;
+    }
+
+    .weui-btn-area a {
+      width: 35%;
+      display: block;
+      line-height: 1;
+      font-size: 0.14rem;
+      color: #999;
+      padding: 0.1rem 0.3rem;
+      background: none;
+    }
+
+    .weui-btn-area a:after {
+      display: block;
+
+    }
+
+    .btns-group {
+      display: flex;
+      flex-wrap: wrap;
+      position: fixed;
+      top: auto;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      z-index: 999;
+    }
+
+    .btns-group [class*="btn-"] {
+      flex: 1;
+    }
+
+    [class^="btn-"],
+    [class*=" btn-"] {
+      font-size: 14px;
+      line-height: 18px;
+      line-height: 22px !important;
+      padding: 14px 15px 12px;
+      font-family: "lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-weight: 900;
+      letter-spacing: .03em;
+      text-indent: .03em;
+      text-transform: uppercase;
+      color: #fff;
+      display: inline-block;
+      position: relative;
+      text-align: center;
+      text-decoration: none !important;
+      vertical-align: middle;
+      white-space: nowrap;
+      border: 0;
+    }
+
+    .btn-primary {
+      font-size: 0.17rem;
+      padding: 0.17rem 0 0.15rem;
+      line-height: 1 !important;
+      font-weight: normal;
+      background-color: #d83e14;
+      color: white;
+    }
+
+    .space {
+      height: 0.8rem;
+    }
+
+    .weui-cells__title {
+      font-size: 0.15rem;
+      font-weight: bold;
+      color: #0F0F0F;
+    }
+
+    .weui-cells__title .right {
+      color: #4AA1DB;
+      font-size: 0.13rem;
+    }
+
+    .weui-cells__title p {
+      font-size: 0.12rem;
+      color: #CA9F4D;
+    }
+
+    .weui-cells__title.warn {
+      color: #EA5A2B;
+    }
+
+    .weui-cells.input-area:before, .weui-cells.input-area:after {
+      display: none;
+    }
+
+    .weui-cells.input-area .weui-cell {
+      font-size: 0.13rem;
+      margin: 0.15rem;
+      margin-left: 0;
+    }
+
+    .weui-cells.input-area .weui-cell:before {
+      display: none;
+    }
+
+    .weui-cells.input-area .weui-cell:after {
+      content: " ";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      height: 1px;
+      border-top: 1px solid #e5e5e5;
+      color: #e5e5e5;
+      -webkit-transform-origin: 0 0;
+      transform-origin: 0 0;
+      -webkit-transform: scaleY(0.5);
+      transform: scaleY(0.5);
+      left: 15px;
+      z-index: 2;
+    }
+
+    .weui-cells.input-area .weui-cell input, .weui-cells.input-area .weui-cell .weui-label {
+      height: 0.25rem;
+      line-height: 0.25rem;
+    }
+
+    .weui-grids:before, .weui-grids:after {
+      display: none;
+    }
+
+    .weui-grid:before, .weui-grid:after {
+      display: none;
+    }
+
+    .item-list {
+      margin: 0 0.075rem;
+    }
+
+    .item-list .list-item {
+      padding: 0;
+    }
+
+    .item-list .list-item .item-box {
+      margin: 0.075rem;
+      background: #F3F3F3;
+      border-radius: 0.04rem;
+      text-align: center;
+      line-height: 1;
+      font-size: 0.13rem;
+      padding: 0.1rem 0;
+      position: relative;
+    }
+
+    .item-list .list-item .item-box.curr {
+      background: #CA9F4D;
+      color: #fff;
+    }
+
+    .item-list .list-item .item-box .curr .tag {
+      display: block;
+    }
+
+    .item-list .list-item .item-box .tag {
+      position: absolute;
+      bottom: 0.05rem;
+      right: 0.05rem;
+      width: 0.14rem;
+      display: none;
+    }
+
+    .item-list .list-item .item-box .tag img {
+      display: block;
+      width: 100%;
+    }
+
+    .weui-btn-area {
+      margin: 0.15rem 0.15rem 0.3rem;
+    }
+
+    .fixed-bt {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.8) 0%, #fff 100%);
+    }
+
+    .menu {
+      padding-top: 0.2rem;
+    }
+
+    .menu .weui-grid__icon {
+      width: 0.4rem;
+      height: 0.4rem;
+    }
+
+    .menu .weui-grid__label {
+      font-size: 0.13rem;
+    }
+
+    .ui-label {
+      padding: 0.2em 0.8em;
+    }
+
+    .hollow, .colors {
+      border-radius: 100px;
+    }
+
+    #employees .weui-panel {
+      margin-top: 0;
+    }
+
+    .weui-media-box__hd {
+      width: 0.75rem !important;
+      height: auto !important;
+      -ms-flex-item-align: start !important;
+      -ms-grid-row-align: start !important;
+      align-self: start !important;
+    }
+
+    .weui-media-box__hd .avatar-box {
+      overflow: hidden;
+      height: 1rem;
+      border-radius: 0.04rem;
+      position: relative;
+      overflow: hidden;
+      background-size: cover;
+      background-position: center center;
+    }
+
+    .weui-media-box__hd .avatar-box img {
+      border-radius: 0;
+    }
+
+    .weui-media-box__hd .avatar-box .state {
+      position: absolute;
+      width: 100%;
+      bottom: 0;
+      line-height: 1.8;
+      font-size: 0.12rem;
+      color: #fff;
+      border-bottom-left-radius: 0.04rem;
+      border-bottom-right-radius: 0.04rem;
+    }
+
+    .weui-media-box__hd .avatar-box .state.off {
+      background-color: rgba(78, 184, 118, 0.9);
+    }
+
+    .weui-media-box__hd .avatar-box .state.on {
+      background-color: rgba(234, 90, 43, 0.9);
+    }
+
+    .weui-media-box__title {
+      font-size: 0.15rem;
+      color: #0F0F0F;
+    }
+
+    .weui-media-box__title .level {
+      font-size: 0.12rem;
+      color: #666;
+      margin-left: 0.15rem;
+    }
+
+    .weui-media-box__title .level .icons, .weui-media-box__title .level span {
+      display: inline-block;
+      height: 0.2rem;
+      line-height: 0.2rem;
+      vertical-align: middle;
+    }
+
+    .weui-media-box__title .level .icons {
+      margin-right: 0.05rem;
+    }
+
+    .weui-media-box__info {
+      margin-top: 0.05rem;
+      padding-bottom: 0;
+    }
+
+    .weui-media-box__info.ui-label:first-child {
+      margin-left: 0 !important;
+    }
+
+    .weui-media-box__thumb {
+      border-radius: 4px;
+    }
+
+    .weui-flex__item {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .attr {
+      font-size: 0.12rem;
+      line-height: 1.8;
+      color: #666;
+      margin-top: 0.05rem;
+    }
+
+    .attr sub {
+      font-size: 0.12rem;
+    }
+
+    .attr:last-child .weui-flex__item {
+      -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+    }
+
+    .attr:last-child .weui-flex__item em {
+      color: #C6302B;
+    }
+
+    .gold {
+      color: #CA9F4D;
+    }
+
+    em {
+      font-style: normal;
+    }
+
+    .ui-label.yellow.hollow {
+      border-color: #CA9F4D !important;
+      color: #CA9F4D !important;
+    }
+
+    .price {
+      font-size: 0.18rem;
+      color: #C6302B !important;
+      text-align: right;
+      -webkit-box-flex: unset;
+      -ms-flex: unset;
+      flex: unset;
+    }
+
+    .weui-grid-box .img {
+      overflow: hidden;
+      border-radius: 0.04rem;
+    }
+
+    .weui-grid-box .img img {
+      display: block;
+      width: 100%;
+    }
+
+    .weui-grid-box .txt {
+      padding: 0.1rem 0 0;
+    }
+
+    .weui-grid-box .txt .sex, .weui-grid-box .txt .origin, .weui-grid-box .txt .age {
+      color: #999;
+    }
+
+    .weui-grid-box .txt p.skill {
+      color: #999;
+      font-size: 0.1rem;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+
+    .weui-grid-box .txt .extra .price {
+      font-size: 0.16rem;
+      color: red;
+    }
+
+    .weui-grid-box .txt .extra .like {
+      width: 0.16rem;
+      margin: 0.03rem 0.1rem 0;
+    }
+
+    .weui-grid-box .txt .extra .like img {
+      display: block;
+      width: 100%;
+    }
+
+    .weui-panel__ft {
+      padding: 0 0.15rem 0.15rem;
+    }
+
+    .weui-panel__ft .ui-label {
+      padding: 0.2em 0.4em;
+      background: #F5F5F5;
+      color: #666;
+      font-size: 0.1rem;
+      font-weight: 300;
+    }
+
+    .price {
+      position: absolute;
+      right: 0.15rem;
+      top: 0.2rem;
+    }
+  </style>
+</head>
+<body>
+<div class="content-scrollable has-footer">
+  <div class="img-box">
+    <img src="/assets/images/guide/w/banner.jpg">
+  </div>
+  <div class="menu">
+    <div class="weui-flex">
+      <a href="/guide/w6/null" class="link weui-flex__item">
+        <div class="weui-grid__icon">
+          <img src="/assets/images/guide/w/1.png">
+        </div>
+        <div class="weui-grid__label">预定管家</div>
+      </a>
+      <a href="/guide/w4" class="link weui-flex__item">
+        <div class="weui-grid__icon">
+          <img src="/assets/images/guide/w/2.png">
+        </div>
+        <div class="weui-grid__label">挑选管家</div>
+      </a>
+      <a href="https://mp.weixin.qq.com/s/tChhCMEZUqmg_SQYsu6ntg" class="weui-flex__item">
+        <div class="weui-grid__icon">
+          <img src="/assets/images/guide/w/3.png">
+        </div>
+        <div class="weui-grid__label">基地风采</div>
+      </a>
+      <a onclick="contact()" class="weui-flex__item">
+        <div class="weui-grid__icon">
+          <img src="/assets/images/guide/w/4.png">
+        </div>
+        <div class="weui-grid__label">在线客服</div>
+      </a>
+    </div>
+  </div>
+
+  <div class="title">
+    <div class="txt"><em>优秀管家推荐</em></div>
+    <div class="line">
+      <img src="/assets/images/guide/start/line.png">
+    </div>
+  </div>
+  <div id="employees"></div>
+
+</div>
+<script src="https://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<script src="/assets/js/extand.js"></script>
+<script>
+  var $html = document.getElementsByTagName('html');
+  var $body = document.getElementsByTagName('body');
+  $html[0].style.fontSize = $body[0].clientWidth / 375 * 100 + 'px';
+
+  var gh = getUrlParam('gh');
+  console.log(gh);
+
+  getMeiqia();
+
+  /*$(".link").attr('href', $(".link").attr('href') + '?gh=' + gh);*/
+  /*$(".link").forEach(function (item) {
+    console.log(item);
+  });*/
+
+  var $links = $(".link");
+
+  for (var i = 0; i < $links.length; i++) {
+    $links.eq(i).attr('href', $links.eq(i).attr('href') + '?gh=' + gh);
+  }
+
+  function _log(operation) {
+    $.ajax({
+      type: "get",
+      url: 'http://m.yfq.cn/record/writeLog.html?loc=' + window.location.href + '&operation=' + operation + '&gh=' + gh,
+      dataType: "jsonp",
+      jsonp: "callback",
+      jsonpCallback: "callback",
+      success: function (json) {
+
+      },
+      error: function () {
+
+      }
+    });
+  }
+
+  $.ajax({
+    type: "get",
+    url: 'http://wap.danius.cn/wApi/interface/housekeeper/getIntentList.ht?isRecommend=1',
+    success: function (res) {
+      if (res.code === 0) {
+        var html = '';
+        res.list.forEach(function (item) {
+          var avatar = item.headimageurl ? 'http://wap.danius.cn/wApi' + item.headimageurl : '/assets/images/avatar.jpg';
+          html = html +
+            '<div class="weui-panel">' +
+            '<div class="weui-panel__bd">' +
+            '<a href="/guide/w5/' + item.housekeeperid + '?gh=' + gh + '" class="weui-media-box weui-media-box_appmsg">' +
+            '<div class="weui-media-box__hd">' +
+            '<div class="avatar-box" style="background-image:url(' + avatar + ')"></div>' +
+            '</div>' +
+            '<div class="weui-media-box__bd">' +
+            '<h4 class="weui-media-box__title">' + item.name + '</h4>' +
+            '<div class="attr">' +
+            '<div class="weui-flex">' +
+            '<div class="weui-flex__item">' +
+            '<span class="label">' + item.age + '岁</span> · ' +
+            '<span class="label">' + item.height + '<sub>CM</sub></span> · ' +
+            '<span class="label">' + item.weight + '<sub>KG</sub></span>' +
+            '</div>' +
+            '</div>' +
+            '<div class="gold weui-flex">' +
+            '<div class="weui-flex__item">' +
+            '<span class="label">' + item.servicetime + '年工作经验</span> · ' +
+            '<span class="label">军龄' + item.soldierAge + '年</span>' +
+            '</div>' +
+            '</div>' +
+            '<div class="gold weui-flex">' +
+            '<div class="weui-flex__item">' +
+            '<span class="label">' + item.drivinglicence + '驾照</span> · ' +
+            '<span class="label">驾龄' + item.driversage + '年</span>' +
+            '</div>' +
+            '</div>' +
+            '</div>' +
+            '</div>' +
+            '<div class="weui-media-box__ft"></div>' +
+            '</a>' +
+            '</div>' +
+            '<div class="price">' +
+            '<sub>￥</sub><em>' + item.commissionamount + '/月</em>' +
+            '</div>' +
+            '</div>';
+        });
+
+        $("#employees").html(html);
+      }
+
+    },
+    error: function () {
+
+    }
+  });
+
+  _log('loadA');
+
+  $('#invite').click(function () {
+    _log('invite');
+  });
+
+  function go() {
+    window.location.href = '/guide/w4?gh=' + gh;
+  }
+
+  function contact() {
+    _MEIQIA('showPanel');
+  }
+
+  wx.ready(function (res) {
+    wx.onMenuShareAppMessage({
+      title: '大牛管家, 只为牛人服务',
+      desc: '我们禀承“忠诚、安全、健康、舒心”的服务理念，旨在为全国高端商务人士及其家庭提供“安全防护、驾驶出行、科学运动”三大类日常综合管家服务。',
+      link: 'http://wap.danius.cn/assets/html/start.html',
+      imgUrl: 'http://wap.danius.cn/assets/images/guide/share.jpg',
+      trigger: function (res) {
+      },
+      success: function (res) {
+      },
+      cancel: function (res) {
+      },
+      fail: function (res) {
+      }
+    });
+    wx.onMenuShareTimeline({
+      title: '大牛管家, 只为牛人服务',
+      desc: '我们禀承“忠诚、安全、健康、舒心”的服务理念，旨在为全国高端商务人士及其家庭提供“安全防护、驾驶出行、科学运动”三大类日常综合管家服务。',
+      link: 'http://wap.danius.cn/assets/html/start.html',
+      imgUrl: 'http://wap.danius.cn/assets/images/guide/share.jpg',
+      trigger: function (res) {
+      },
+      success: function (res) {
+      },
+      cancel: function (res) {
+      },
+      fail: function (res) {
+      }
+    });
+  });
+</script>
+</body>
+</html>

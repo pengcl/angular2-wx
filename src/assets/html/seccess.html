@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en" style="font-size: 100px">
+<head>
+  <meta charset="utf-8">
+  <title>大牛管家</title>
+  <base href="/">
+
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1"/>
+  <meta name="format-detection" content="telephone=no"/>
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link href="https://cdn.bootcss.com/weui/1.1.2/style/weui.min.css" rel="stylesheet">
+  <style>
+    .content-scrollable {
+      background: #fff;
+    }
+
+    .weui-msg {
+      padding-top: 0.7rem;
+    }
+
+    .weui-icon_msg {
+      font-size: 0;
+    }
+
+    .weui-icon_msg img {
+      width: 1.35rem
+    }
+
+    .weui-msg__icon-area {
+      margin-bottom: 0.2rem;
+    }
+
+    .weui-msg__title {
+      font-size: 0.18rem;
+    }
+
+    .weui-msg__desc {
+      font-size: 0.14rem;
+      color: #FBA703;
+    }
+
+    .qr-code {
+      width: 40%;
+      margin: 0.35rem auto;
+      overflow: hidden;
+      box-shadow: 0 10px 20px 0 rgba(181,133,74,0.20);
+      border-radius: 0.08rem;
+    }
+
+    .qr-code img {
+      display: block;
+      width: 100%;
+    }
+
+  </style>
+</head>
+<body>
+<div class="content-scrollable">
+  <div class="weui-msg">
+    <div class="weui-msg__icon-area">
+      <div class="weui-icon_msg"><img src="/assets/images/guide/success.png"></div>
+    </div>
+    <div class="weui-msg__text-area">
+      <h2 class="weui-msg__title">预约成功！已收到您的登记信息</h2>
+      <p class="weui-msg__desc">我们的客户经理稍后将会联系您！<br>请留意接听广州地区 (020) 的来电</p>
+    </div>
+    <!--<div class="weui-msg__opr-area">
+      <p class="weui-btn-area">
+        <a routerLink="/admin/home" class="weui-btn weui-btn_primary">进入个人中心</a>
+      </p>
+    </div>-->
+
+    <div class="qr-code">
+      <img src="/assets/images/qrcode.jpg">
+    </div>
+
+    <p style="font-size: 0.12rem; text-align: center">欢迎关注大牛管家公众号，留意我们的最新消息！</p>
+
+    <div class="weui-msg__extra-area">
+      <div class="weui-footer">
+        <p class="weui-footer__links">
+          <a href="javascript:void(0);" class="weui-footer__link">大牛管家</a>
+        </p>
+        <p class="weui-footer__text">Copyright © 2008-2018 danius.cn</p>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  var $html = document.getElementsByTagName('html');
+  var $body = document.getElementsByTagName('body');
+  $html[0].style.fontSize = $body[0].clientWidth / 375 * 100 + 'px';
+</script>
+</body>
+</html>

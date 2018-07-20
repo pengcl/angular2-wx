@@ -4,6 +4,7 @@ import {AdminRegisterRecruiterComponent} from './register/recruiter/recruiter.co
 import {AdminIndexComponent} from './index/index.component';
 import {AdminHomeComponent} from './home/home.component';
 import {AdminUploaderAvatarComponent} from './uploader/avatar/avatar.component';
+import {AdminUploaderCvatarComponent} from './uploader/cvatar/cvatar.component';
 import {AdminUploaderGalleryComponent} from './uploader/gallery/gallery.component';
 import {ADMIN_PAGES_EMPLOYER_DECLARATIONS} from './employer';
 import {ADMIN_PAGES_EMPLOYEE_DECLARATIONS} from './employee';
@@ -18,6 +19,7 @@ export const ADMIN_PAGES_DECLARATIONS = [
   AdminIndexComponent,
   AdminHomeComponent,
   AdminUploaderAvatarComponent,
+  AdminUploaderCvatarComponent,
   AdminUploaderGalleryComponent,
   ...ADMIN_PAGES_EMPLOYER_DECLARATIONS,
   ...ADMIN_PAGES_EMPLOYEE_DECLARATIONS,

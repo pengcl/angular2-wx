@@ -17,6 +17,12 @@ import {GuideNStep6Component} from './nstep-6/step-6.component';
 import {GuideNStep7Component} from './nstep-7/step-7.component';
 import {GuideNStep8Component} from './nstep-8/step-8.component';
 
+import {GuideWNStep4Component} from './wnstep-4/step-4.component';
+import {GuideWNStep5Component} from './wnstep-5/step-5.component';
+import {GuideWNStep6Component} from './wnstep-6/step-6.component';
+import {GuideWNStep7Component} from './wnstep-7/step-7.component';
+import {GuideWNStep8Component} from './wnstep-8/step-8.component';
+
 export const GUIDE_PAGES_DECLARATIONS = [
   GuideComponent,
   GuideStartComponent,
@@ -34,5 +40,10 @@ export const GUIDE_PAGES_DECLARATIONS = [
   GuideNStep5Component,
   GuideNStep6Component,
   GuideNStep7Component,
-  GuideNStep8Component
+  GuideNStep8Component,
+  GuideWNStep4Component,
+  GuideWNStep5Component,
+  GuideWNStep6Component,
+  GuideWNStep7Component,
+  GuideWNStep8Component
 ];

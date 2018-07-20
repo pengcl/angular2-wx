@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {PageConfig} from '../../page.config';
 import {WxService} from '../../../modules/wx';
 import {LogService} from '../../../services/log.service';
+import {MeiqiaService} from '../../../services/meiqia.service';
 
 import {Config} from '../../../config';
 
@@ -15,6 +16,7 @@ export class GuideKnowledgeComponent implements OnInit {
   navBarConfig = PageConfig.navBar;
 
   constructor(private wx: WxService,
+              private meiqiaSvc: MeiqiaService,
               private logSvc: LogService) {
     this.navBarConfig.navigationBarTitleText = '大牛管家';
     logSvc.pageLoad('D');
@@ -37,5 +39,9 @@ export class GuideKnowledgeComponent implements OnInit {
 
   onSelected(tab) {
     this.logSvc.__log(tab);
+  }
+
+  contact() {
+    this.meiqiaSvc.show();
   }
 }

@@ -3,23 +3,28 @@
 }
 
 .avatar {
-  width: 0.6rem;
-  height: 0.6rem;
-  margin-right: 0.8em;
+  width: 0.68rem;
+  height: 0.68rem;
+  margin-right: 0.15rem;
   border-radius: 50%;
   display: block;
-  background-color: #fff;
+  border: 0.02rem solid rgba(255, 255, 255, .5);
 }
 
 .user-info {
-  background-image: url("/assets/images/admin/userInfo-bg.png");
-  background-repeat: no-repeat;
-  background-size: 100%;
-  background-position: left bottom;
-  background-color: #162F4D;
-  padding: 0.12rem 0;
+  background-image: linear-gradient(35deg, #E0BB7C 0%, #B38247 90%);
+  box-shadow: 0 0.05rem 0.1rem 0 rgba(204, 170, 102, 0.30);
+  border-radius: 0.04rem;
+  margin: 0.2rem !important;
   &:after {
     display: none;
+  }
+  .weui-media-box {
+    padding: 0.3rem 0.2rem;
+    .weui-media-box__hd {
+      width: 0.68rem;
+      height: 0.68rem;
+    }
   }
   .weui-media-box__title {
     color: #fff;
@@ -27,23 +32,31 @@
       font-size: 0.12rem;
     }
   }
+  .weui-media-box__desc {
+    font-size: 0.12rem;
+    color: #fff;
+    margin-top: 0.05rem;
+  }
   .weui-media-box_appmsg .weui-media-box__ft {
     position: relative;
-    padding-right: 0.18rem;
-    font-size: 0.16rem;
+    padding-right: 0.13rem;
+    font-size: 0.12rem;
     color: #fff;
+    align-self: start;
+    line-height: 1;
+    margin-top: -0.15rem;
     &:after {
       content: " ";
       display: inline-block;
-      height: 0.08rem;
-      width: 0.08rem;
-      border-width: 2px 2px 0 0;
-      border-color: #C8C8CD;
+      height: 0.05rem;
+      width: 0.05rem;
+      border-width: 1px 1px 0 0;
+      border-color: #fff;
       border-style: solid;
       transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
       position: absolute;
       top: 50%;
-      margin-top: -4px;
+      margin-top: -3px;
       right: 2px;
     }
   }

@@ -103,6 +103,7 @@ import {AdminBackendComponent} from './pages/admin/backend/backend.component';
 import {AdminArticleComponent} from './pages/admin/article/article.component';
 
 import {AdminUploaderAvatarComponent} from './pages/admin/uploader/avatar/avatar.component';
+import {AdminUploaderCvatarComponent} from './pages/admin/uploader/cvatar/cvatar.component';
 import {AdminUploaderGalleryComponent} from './pages/admin/uploader/gallery/gallery.component';
 
 import {RecruitmentComponent} from './pages/recruitment/recruitment.component';
@@ -201,6 +202,7 @@ const appAdminRoutes: Routes = [
   {path: 'employer/recruitment', component: AdminEmployerRecruitmentComponent},
   {path: 'employer/recruitment/records', component: AdminEmployerRecruitmentRecordsComponent},
   {path: 'uploader/avatar', component: AdminUploaderAvatarComponent},
+  {path: 'uploader/cvatar', component: AdminUploaderCvatarComponent},
   {path: 'uploader/gallery', component: AdminUploaderGalleryComponent},
   {
     path: 'salesmen',

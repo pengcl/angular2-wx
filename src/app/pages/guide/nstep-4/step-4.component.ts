@@ -1,13 +1,14 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {Router, ActivatedRoute} from '@angular/router';
 import {PageConfig} from '../../page.config';
 import {WxService} from '../../../modules/wx';
 
 import {EmployeeService} from '../../../services/employee.service';
 import {Observable} from 'rxjs/Observable';
-import {InfiniteLoaderComponent, InfiniteLoaderConfig} from 'ngx-weui';
+import {PickerService, InfiniteLoaderComponent, InfiniteLoaderConfig} from 'ngx-weui';
 import {OrderService} from '../../../services/order.service';
 import {Config} from '../../../config';
+import {getIndex} from '../../../utils/utils';
 
 @Component({
   selector: 'app-guide-n-step4',
@@ -18,12 +19,63 @@ export class GuideNStep4Component implements OnInit {
   tabBarConfig = PageConfig.tabBar;
   navBarConfig = PageConfig.navBar;
 
+  @ViewChild('comp') private comp: InfiniteLoaderComponent;
+
+  pickerData = {
+    driversage: {
+      selected: {
+        label: '不限',
+        value: '0'
+      },
+      data: [
+        {
+          label: '不限',
+          value: '0'
+        },
+        {
+          label: '1年',
+          value: '1'
+        },
+        {
+          label: '2年',
+          value: '2'
+        },
+        {
+          label: '3年以上',
+          value: '3'
+        }
+      ]
+    },
+    soldierage: {
+      selected: {
+        label: '不限',
+        value: '0'
+      },
+      data: [
+        {
+          label: '不限',
+          value: '0'
+        },
+        {
+          label: '2年兵',
+          value: '2'
+        },
+        {
+          label: '5年兵',
+          value: '5'
+        }
+      ]
+    }
+  };
+
   lists;
 
   params = {
     serviceAreaId: '',
     levelId: '',
     synthetical: '',
+    driversage: '',
+    soldierage: '',
     page: 1
   };
 
@@ -35,6 +87,7 @@ export class GuideNStep4Component implements OnInit {
   constructor(private router: Router,
               private route: ActivatedRoute,
               private wx: WxService,
+              private pickerSvc: PickerService,
               private employeeSvc: EmployeeService,
               private orderSvc: OrderService) {
     this.navBarConfig.navigationBarTitleText = '大牛管家';
@@ -71,15 +124,30 @@ export class GuideNStep4Component implements OnInit {
     });
   }
 
+  showPicker(target) {
+    const defaultSelect = getIndex(this.pickerData[target].data, 'value', this.pickerData[target].selected.value);
+    this.pickerSvc.show([this.pickerData[target].data], '', [defaultSelect], {
+      cancel: '返回',
+      confirm: '确定'
+    }).subscribe(res => {
+      this.pickerData[target].selected.label = res.items[0].label;
+      this.pickerData[target].selected.value = res.items[0].value;
+      this.params[target] = (res.value === '0' ? '' : res.value);
+      this.params.page = 1;
+      this.employeeSvc.getIntentList(this.params).then(data => {
+        this.lists = data.list;
+        this.comp.restart();
+      });
+    });
+  }
+
   onLoadMore(comp: InfiniteLoaderComponent) {
     Observable.timer(1500).subscribe(() => {
 
       this.params.page = this.params.page + 1;
       this.employeeSvc.getIntentList(this.params).then(res => {
         this.lists = this.lists.concat(res.list);
-        console.log(res.page, res.totalPage);
         if (res.page >= res.totalPage) {
-          console.log('finished');
           comp.setFinished();
           return;
         }

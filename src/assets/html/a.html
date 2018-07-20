@@ -1,0 +1,765 @@
+<!doctype html>
+<html lang="en" style="font-size: 100px">
+<head>
+  <meta charset="utf-8">
+  <title>大牛管家</title>
+  <base href="/">
+
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1"/>
+  <meta name="format-detection" content="telephone=no"/>
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link href="https://cdn.bootcss.com/weui/1.1.2/style/weui.min.css" rel="stylesheet">
+  <link href="https://cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet">
+  <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <style>
+
+    body {
+      font-size: 0.14rem;
+    }
+
+    .img-box img {
+      display: block;
+      width: 100%;
+    }
+
+    .content-scrollable {
+      background: #fff;
+    }
+
+    .content-scrollable:after {
+      height: 0.8rem;
+    }
+
+    .title {
+      margin-top: 0.35rem;
+      line-height: 1;
+      font-weight: bold;
+    }
+
+    .title .txt {
+      font-size: 0.22rem;
+      text-align: center;
+    }
+
+    .title .txt em {
+      color: #cfab66;
+      font-style: normal;
+    }
+
+    .title .line {
+      width: 50%;
+      margin: 0.1rem auto;
+    }
+
+    .title .line img {
+      display: block;
+      width: 100%;
+    }
+
+    .sub-title {
+      font-size: 0.13rem;
+      margin-top: 0.2rem;
+      color: #666;
+      text-align: center;
+    }
+
+    .services {
+      margin-top: 0.2rem;
+    }
+
+    .services .weui-flex {
+      margin: 0.1rem;
+    }
+
+    .services .weui-flex .weui-flex__item.txt {
+      flex: 0.4;
+      align-self: center;
+      padding: 0.1rem 0.1rem 0.1rem 0.3rem;
+    }
+
+    .services .weui-flex .weui-flex__item.txt .txt-num {
+      background: #cfab66;
+      font-size: 0.18rem;
+      text-align: center;
+      color: #fff;
+      line-height: 0.28rem;
+      font-weight: normal;
+      display: block;
+      position: relative;
+      width: 4.5em;
+      white-space: nowrap;
+      box-sizing: content-box;
+      padding: 0.03rem 0.15rem;
+    }
+
+    .services .weui-flex .weui-flex__item.txt .txt-num.tr:after {
+      content: ' ';
+      position: absolute;
+      display: block;
+      right: -0.11rem;
+      bottom: 0.06rem;
+      width: 0.12rem;
+      height: 0.12rem;
+      border-top: 0.06rem solid transparent;
+      border-bottom: 0.06rem solid transparent;
+      border-left: 0.06rem solid #cfab66;
+      box-sizing: border-box;
+    }
+
+    .services .weui-flex .weui-flex__item.txt .txt-num.tl:after {
+      content: ' ';
+      position: absolute;
+      display: block;
+      left: -0.11rem;
+      bottom: 0.06rem;
+      width: 0.12rem;
+      height: 0.12rem;
+      border-bottom: 0.06rem solid transparent;
+      border-top: 0.06rem solid transparent;
+      border-right: 0.06rem solid #cfab66;
+      box-sizing: border-box;
+    }
+
+    .services .weui-flex .weui-flex__item.txt .txt-title {
+      font-size: 0.17rem;
+      line-height: 1;
+      color: #000;
+      margin-top: 0.1rem;
+    }
+
+    .services .weui-flex .weui-flex__item.txt .txt-content {
+      font-size: 0.15rem;
+      color: #666;
+      margin-top: 0.15rem;
+      line-height: 0.24rem;
+      margin-left: 0.15rem;
+    }
+
+    .services .weui-flex .weui-flex__item.img {
+      flex: 0.6;
+      background-size: cover;
+    }
+
+    .sub-service {
+      padding: 0.05rem 0.05rem;
+    }
+
+    .sub-service .weui-flex__item {
+      margin: 0.05rem;
+      position: relative;
+    }
+
+    .sub-service .weui-flex__item .title {
+      background: rgba(0, 0, 0, 0.8);
+      position: absolute;
+      bottom: 0;
+      line-height: 1;
+      font-size: 0.14rem;
+      text-align: center;
+      width: 100%;
+      padding: 0.1rem 0;
+      color: #cfab66;
+    }
+
+    .solders .weui-flex {
+      margin: 0.1rem;
+    }
+
+    .solders .weui-flex .weui-flex__item.txt {
+      flex: 0.56;
+      padding: 0.15rem 0.15rem 0.1rem 0.15rem;
+      position: relative;
+    }
+
+    .solders .weui-flex .weui-flex__item.txt .title {
+      margin-top: 0.05rem;
+      font-size: 0.19rem;
+      color: #fff;
+      font-weight: bold;
+    }
+
+    .solders .weui-flex .weui-flex__item.txt .title span, .solders .weui-flex .weui-flex__item.txt .title em {
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    .solders .weui-flex .weui-flex__item.txt .title em {
+      background: #fff;
+      color: #cfab66;
+      font-size: 0.12rem;
+      line-height: 0.16rem;
+      padding: 0 0.05rem;
+      margin-left: 0.1rem;
+      font-style: normal;
+      font-weight: normal;
+    }
+
+    .solders .weui-flex .weui-flex__item.txt ul {
+      padding-left: 0.13rem;
+      margin-top: 0.15rem;
+    }
+
+    .solders .weui-flex .weui-flex__item.txt ul li {
+      font-size: 0.13rem;
+      line-height: 1.4;
+    }
+
+    .solders .weui-flex .weui-flex__item.img {
+      flex: 0.44;
+    }
+
+    .solders .weui-flex:nth-child(1) {
+      background-image: url('/assets/images/guide/start/solder-1.png');
+      background-size: cover;
+      background-position: right top;
+    }
+
+    .solders .weui-flex:nth-child(2) {
+      background-image: url('/assets/images/guide/start/solder-2.jpg');
+      background-size: cover;
+      background-position: right top;
+    }
+
+    .solders .weui-flex:nth-child(3) {
+      background-image: url('/assets/images/guide/start/solder-3.png');
+      background-size: cover;
+      background-position: right top;
+    }
+
+    .solders .weui-flex:nth-child(4) {
+      background-image: url('/assets/images/guide/start/solder-4.png');
+      background-size: cover;
+      background-position: right top;
+    }
+
+    .solders .weui-flex:nth-child(4) .txt {
+      padding: 0.15rem 0.15rem 0.28rem 0.15rem;
+    }
+
+    .teams .weui-flex, .teams-sub .weui-flex {
+      margin: 0.05rem 0.1rem;
+      border: 1px solid #cfab66;
+      background-color: #cfab66;
+    }
+
+    .teams .weui-flex .weui-flex__item, .teams-sub .weui-flex .weui-flex__item {
+      font-size: 0.11rem;
+      line-height: 1;
+      padding: 0.1rem;
+      background: transparent;
+    }
+
+    .teams .weui-flex .weui-flex__item.label, .teams-sub .weui-flex .weui-flex__item.label {
+      align-self: center;
+      color: #000;
+      flex: 0.28;
+      font-weight: bold;
+    }
+
+    .teams .weui-flex .weui-flex__item.value, .teams-sub .weui-flex .weui-flex__item.value {
+      background-color: #fff;
+      flex: 0.72;
+    }
+
+    .teams-title {
+      margin: 0.2rem 0.1rem;
+    }
+
+    .teams-title .weui-flex .weui-flex__item {
+      font-size: 0.18rem;
+      line-height: 1;
+    }
+
+    .teams-title .weui-flex .weui-flex__item.value {
+      flex: 0.26;
+      background: #c67b51;
+      color: #fff;
+      padding: 0.05rem 0.15rem;
+      position: relative;
+    }
+
+    .teams-title .weui-flex .weui-flex__item.value:after {
+      content: ' ';
+      position: absolute;
+      display: block;
+      right: -0.08rem;
+      bottom: 0.06rem;
+      width: 0.08rem;
+      height: 0.08rem;
+      border-top: 0.04rem solid transparent;
+      border-bottom: 0.04rem solid transparent;
+      border-left: 0.04rem solid #c67b51;
+      box-sizing: border-box;
+    }
+
+    .teams-title .weui-flex .weui-flex__item.label {
+      flex: 0.37;
+    }
+
+    .teams-sub-title {
+      margin: 0.2rem 0.1rem;
+    }
+
+    .teams-sub-title .weui-flex .weui-flex__item {
+      font-size: 0.18rem;
+      line-height: 1;
+    }
+
+    .teams-sub-title .weui-flex .weui-flex__item.value {
+      flex: 0.26;
+      background: #c67b51;
+      color: #fff;
+      padding: 0.05rem 0.15rem;
+      position: relative;
+    }
+
+    .teams-sub-title .weui-flex .weui-flex__item.value:after {
+      content: ' ';
+      position: absolute;
+      display: block;
+      right: -0.08rem;
+      bottom: 0.06rem;
+      width: 0.08rem;
+      height: 0.08rem;
+      border-top: 0.04rem solid transparent;
+      border-bottom: 0.04rem solid transparent;
+      border-left: 0.04rem solid #c67b51;
+      box-sizing: border-box;
+    }
+
+    .teams-sub-title .weui-flex .weui-flex__item.label {
+      flex: 0.37;
+    }
+
+    .good {
+      padding: 0.1rem;
+    }
+
+    .btn-primary {
+      font-size: 0.17rem;
+      padding: 0.17rem 0 0.15rem;
+      line-height: 1 !important;
+      font-weight: normal;
+    }
+
+    .about {
+      position: fixed;
+      bottom: 0.7rem;
+      right: 0.1rem;
+      width: 0.35rem;
+      height: 0.35rem;
+      display: block;
+    }
+
+    .about img {
+      display: block;
+      width: 100%;
+    }
+
+    .weui-btn-area a {
+      width: 35%;
+      display: block;
+      line-height: 1;
+      font-size: 0.14rem;
+      color: #999;
+      padding: 0.1rem 0.3rem;
+      background: none;
+    }
+
+    .weui-btn-area a:after {
+      display: block;
+
+    }
+
+    .btns-group {
+      display: flex;
+      flex-wrap: wrap;
+      position: fixed;
+      top: auto;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      z-index: 999;
+    }
+
+    .btns-group [class*="btn-"] {
+      flex: 1;
+    }
+
+    [class^="btn-"],
+    [class*=" btn-"] {
+      font-size: 14px;
+      line-height: 18px;
+      line-height: 22px !important;
+      padding: 14px 15px 12px;
+      font-family: "lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-weight: 900;
+      letter-spacing: .03em;
+      text-indent: .03em;
+      text-transform: uppercase;
+      color: #fff;
+      display: inline-block;
+      position: relative;
+      text-align: center;
+      text-decoration: none !important;
+      vertical-align: middle;
+      white-space: nowrap;
+      border: 0;
+    }
+
+    .btn-primary {
+      font-size: 0.17rem;
+      padding: 0.17rem 0 0.15rem;
+      line-height: 1 !important;
+      font-weight: normal;
+      background-color: #d83e14;
+      color: white;
+    }
+
+    .space {
+      height: 0.8rem;
+    }
+
+    .weui-cells__title {
+      font-size: 0.15rem;
+      font-weight: bold;
+      color: #0F0F0F;
+    }
+
+    .weui-cells__title .right {
+      color: #4AA1DB;
+      font-size: 0.13rem;
+    }
+
+    .weui-cells__title p {
+      font-size: 0.12rem;
+      color: #CA9F4D;
+    }
+
+    .weui-cells__title.warn {
+      color: #EA5A2B;
+    }
+
+    .weui-cells.input-area:before, .weui-cells.input-area:after {
+      display: none;
+    }
+
+    .weui-cells.input-area .weui-cell {
+      font-size: 0.13rem;
+      margin: 0.15rem;
+      margin-left: 0;
+    }
+
+    .weui-cells.input-area .weui-cell:before {
+      display: none;
+    }
+
+    .weui-cells.input-area .weui-cell:after {
+      content: " ";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      height: 1px;
+      border-top: 1px solid #e5e5e5;
+      color: #e5e5e5;
+      -webkit-transform-origin: 0 0;
+      transform-origin: 0 0;
+      -webkit-transform: scaleY(0.5);
+      transform: scaleY(0.5);
+      left: 15px;
+      z-index: 2;
+    }
+
+    .weui-cells.input-area .weui-cell input, .weui-cells.input-area .weui-cell .weui-label {
+      height: 0.25rem;
+      line-height: 0.25rem;
+    }
+
+    .weui-grids:before, .weui-grids:after {
+      display: none;
+    }
+
+    .weui-grid:before, .weui-grid:after {
+      display: none;
+    }
+
+    .item-list {
+      margin: 0 0.075rem;
+    }
+
+    .item-list .list-item {
+      padding: 0;
+    }
+
+    .item-list .list-item .item-box {
+      margin: 0.075rem;
+      background: #F3F3F3;
+      border-radius: 0.04rem;
+      text-align: center;
+      line-height: 1;
+      font-size: 0.13rem;
+      padding: 0.1rem 0;
+      position: relative;
+    }
+
+    .item-list .list-item .item-box.curr {
+      background: #CA9F4D;
+      color: #fff;
+    }
+
+    .item-list .list-item .item-box .curr .tag {
+      display: block;
+    }
+
+    .item-list .list-item .item-box .tag {
+      position: absolute;
+      bottom: 0.05rem;
+      right: 0.05rem;
+      width: 0.14rem;
+      display: none;
+    }
+
+    .item-list .list-item .item-box .tag img {
+      display: block;
+      width: 100%;
+    }
+
+    .weui-btn-area {
+      margin: 0.15rem 0.15rem 0.3rem;
+    }
+  </style>
+</head>
+<body>
+<div class="content-scrollable has-footer">
+
+  <div id="reserve" class="title">
+    <div class="txt"><em>马上预约管家服务</em></div>
+    <div class="line">
+      <img src="/assets/images/guide/start/line.png">
+    </div>
+  </div>
+  <div class="check-customerName check-customerMobile weui-cells__title"
+       [ngClass]="{'warn':(subscribeForm.get('customerName').invalid && isSubmit) || (subscribeForm.get('customerMobile').invalid && isSubmit)}">
+    请留下联系方式，我们的客户经理会尽快联系您
+    <p>大牛管家向您承诺，您所有资料均会严格保密，请放心填写。</p>
+  </div>
+  <div class="input-area weui-cells weui-cells_form">
+    <div id="iCompanyName" class="weui-cell">
+      <div class="weui-cell__hd"><span class="weui-label">公司名称</span></div>
+      <div class="weui-cell__bd">
+        <input id="companyName" autocomplete="off" maxlength="20" minlength="1" required class="weui-input"
+               placeholder="如：广州大牛信息有限公司">
+      </div>
+      <div class="weui-cell__ft"><i class="weui-icon-warn"></i></div>
+    </div>
+    <div id="iCustomerName" class="weui-cell">
+      <div class="weui-cell__hd"><span class="weui-label">您的称呼</span></div>
+      <div class="weui-cell__bd">
+        <input id="customerName" autocomplete="off" maxlength="5" minlength="1" required class="weui-input"
+               placeholder="如：李先生/李女士">
+      </div>
+      <div class="weui-cell__ft"><i class="weui-icon-warn"></i></div>
+    </div>
+    <div id="iCustomerMobile" class="weui-cell">
+      <div class="weui-cell__hd"><span class="weui-label">联系电话</span></div>
+      <div class="weui-cell__bd">
+        <input id="customerMobile" autocomplete="off" maxlength="11" minlength="11" required class="weui-input"
+               placeholder="请输入手机号码">
+      </div>
+      <div class="weui-cell__ft"><i class="weui-icon-warn"></i></div>
+    </div>
+  </div>
+
+  <div class="check-serviceAreaId check-serviceAreaName weui-cells__title"
+       [ngClass]="{'warn':subscribeForm.get('serviceAreaId').invalid && isSubmit}">您所在的城市是？
+  </div>
+  <div id="areas" class="item-list weui-grids"></div>
+
+  <div class="space"></div>
+  <div class="btns-group">
+    <a id="invite" class="btn-primary" onclick="submit()">提交</a>
+  </div>
+
+</div>
+<script src="https://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<script src="/assets/js/extand.js"></script>
+<script>
+  var $html = document.getElementsByTagName('html');
+  var $body = document.getElementsByTagName('body');
+  $html[0].style.fontSize = $body[0].clientWidth / 375 * 100 + 'px';
+
+
+
+  var gh = getUrlParam('gh');
+  console.log(gh);
+
+  function _log(operation) {
+    $.ajax({
+      type: "get",
+      url: 'http://m.yfq.cn/record/writeLog.html?loc=' + window.location.href + '&operation=' + operation + '&gh=' + gh,
+      dataType: "jsonp",
+      jsonp: "callback",
+      jsonpCallback: "callback",
+      success: function (json) {
+
+      },
+      error: function () {
+
+      }
+    });
+  }
+
+  _log('loadA');
+
+  $('#invite').click(function () {
+    _log('invite');
+  });
+
+  /*areaid:10000098830758
+  areaname:"上海"*/
+
+  /*customerName: new FormControl('', [Validators.required]),
+    customerMobile: new FormControl('', [Validators.required, Validators.min(10000000000), Validators.max(19999999999), Validators.pattern(/^[0-9]*$/)]),
+    serviceAreaId: new FormControl('', [Validators.required]),
+    serviceAreaName: new FormControl('', [Validators.required]),*/
+  var companyName = '', customerName = '', customerMobile = '', serviceAreaId, serviceAreaName, _areas;
+
+  function getIndex(jsonArray, keyName, value) {
+    console.log(jsonArray, keyName, value);
+    for (var i = 0; i < jsonArray.length; i++) {
+      if (jsonArray[i][keyName] == value) {
+        return i;
+      }
+    }
+  }
+
+  function setArea(id) {
+    serviceAreaId = id;
+    var index = getIndex(_areas, 'areaid', id);
+    serviceAreaName = _areas[index].areaname;
+
+    $("#areas").find(".list-item").find('.item-box').removeClass('curr');
+    $("#areas").find(".list-item").eq(index).find('.item-box').addClass('curr');
+  }
+
+  $.ajax({
+    type: "get",
+    url: '/wApi/interface/housekeeper/getServiceAreaList.ht',
+    success: function (json) {
+      _areas = json.list;
+      var areas = '';
+      json.list.forEach(function (area) {
+        areas = areas + '<div onclick="setArea(' + area.areaid + ')" class="list-item weui-grid"><div class="item-box">' + area.areaname + '<span class="tag"><img src="/assets/images/guide/checked.png"></span></div></div>';
+        $("#areas").html(areas);
+      });
+    },
+    error: function () {
+
+    }
+  });
+
+  $('#companyName').bind('input propertychange', function () {
+    companyName = $(this).val();
+    if (!companyName || companyName.length < 1) {
+      $("#iCompanyName").addClass('weui-cell_warn');
+    } else {
+      $("#iCompanyName").removeClass('weui-cell_warn');
+    }
+  });
+
+  $('#customerName').bind('input propertychange', function () {
+    customerName = $(this).val();
+    if (!customerName || customerName.length < 1) {
+      $("#iCustomerName").addClass('weui-cell_warn');
+    } else {
+      $("#iCustomerName").removeClass('weui-cell_warn');
+    }
+  });
+
+  $('#customerMobile').bind('input propertychange', function () {
+    customerMobile = $(this).val();
+    if (!customerMobile || customerMobile.length !== 11) {
+      $("#iCustomerMobile").addClass('weui-cell_warn');
+    } else {
+      $("#iCustomerMobile").removeClass('weui-cell_warn');
+    }
+  });
+
+
+  function submit() {
+
+    $("html,body").animate({"scrollTop": 10000});
+
+    if (!companyName || companyName.length < 1) {
+      $("#iCompanyName").addClass('weui-cell_warn');
+      return false;
+    }
+
+    if (!customerName || customerName.length < 1) {
+      $("#iCustomerName").addClass('weui-cell_warn');
+      return false;
+    }
+    if (!customerMobile || customerMobile.length !== 11) {
+      $("#iCustomerMobile").addClass('weui-cell_warn');
+      return false
+    }
+
+    if (!serviceAreaId) {
+      alert('您的所在城市未填写');
+      return false;
+    }
+
+    $.ajax({
+      type: "get",
+      url: '/wApi/interface/order/intentSubmitOrder.ht?customerName=' + encodeURI(encodeURI(customerName)) + '&customerMobile=' + customerMobile + '&serviceAreaId=' + serviceAreaId + '&serviceAreaName=' + encodeURI(encodeURI(serviceAreaName)) + '&gh=' + gh,
+      success: function (res) {
+        console.log(res);
+        if (res.code === 0) {
+          window.location.href = '/assets/html/seccess.html?orderNo=' + res.orderNo;
+        } else {
+          alert(res.msg);
+        }
+      },
+      error: function () {
+
+      }
+    });
+    body = {}
+  }
+
+  wx.ready(function (res) {
+    wx.onMenuShareAppMessage({
+      title: '大牛管家, 只为牛人服务',
+      desc: '我们禀承“忠诚、安全、健康、舒心”的服务理念，旨在为全国高端商务人士及其家庭提供“安全防护、驾驶出行、科学运动”三大类日常综合管家服务。',
+      link: 'http://wap.danius.cn/assets/html/start.html',
+      imgUrl: 'http://wap.danius.cn/assets/images/guide/share.jpg',
+      trigger: function (res) {
+      },
+      success: function (res) {
+      },
+      cancel: function (res) {
+      },
+      fail: function (res) {
+      }
+    });
+    wx.onMenuShareTimeline({
+      title: '大牛管家, 只为牛人服务',
+      desc: '我们禀承“忠诚、安全、健康、舒心”的服务理念，旨在为全国高端商务人士及其家庭提供“安全防护、驾驶出行、科学运动”三大类日常综合管家服务。',
+      link: 'http://wap.danius.cn/assets/html/start.html',
+      imgUrl: 'http://wap.danius.cn/assets/images/guide/share.jpg',
+      trigger: function (res) {
+      },
+      success: function (res) {
+      },
+      cancel: function (res) {
+      },
+      fail: function (res) {
+      }
+    });
+  });
+</script>
+</body>
+</html>

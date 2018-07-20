@@ -1,12 +1,12 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {Router, ActivatedRoute} from '@angular/router';
+import {Router, ActivatedRoute, ParamMap} from '@angular/router';
 import {PageConfig} from '../../page.config';
 import {WxService} from '../../../modules/wx';
 import {DialogService, PickerService} from 'ngx-weui';
 import {EmployeeService} from '../../../services/employee.service';
 import {LogService} from '../../../services/log.service';
-import {validScroll} from '../../../utils/utils';
+import {getRate, validScroll} from '../../../utils/utils';
 import {Config} from '../../../config';
 
 @Component({
@@ -17,6 +17,8 @@ import {Config} from '../../../config';
 export class GuideNStep6Component implements OnInit {
   tabBarConfig = PageConfig.tabBar;
   navBarConfig = PageConfig.navBar;
+
+  housekeeper;
 
   months: string[] = Array(10).fill('').map((v: string, idx: number) => `${idx + 3}`);
 
@@ -55,7 +57,7 @@ export class GuideNStep6Component implements OnInit {
     });
 
     this.subscribeForm = new FormGroup({
-      housekeeperId: new FormControl('', [Validators.required]),
+      housekeeperId: new FormControl('', []),
       customerName: new FormControl('', [Validators.required]),
       customerMobile: new FormControl('', [Validators.required, Validators.min(10000000000), Validators.max(19999999999), Validators.pattern(/^[0-9]*$/)]),
       serviceAreaId: new FormControl('', [Validators.required]),
@@ -68,6 +70,9 @@ export class GuideNStep6Component implements OnInit {
     this.subscribeForm.get('gh').setValue(this.route.snapshot.queryParams['gh']);
     this.subscribeForm.get('callbackUrl').setValue(Config.webHost + '/guide/n7');
 
+    this.route.paramMap.switchMap((params: ParamMap) => this.employeeSvc.getHousekeeper(params.get('id'))).subscribe(res => {
+      this.housekeeper = res.housekeeper;
+    });
 
     // areaid
     this.employeeSvc.getServiceAreaList().then(res => {

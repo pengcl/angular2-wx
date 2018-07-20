@@ -1,0 +1,31 @@
+<weui-infiniteloader (loadmore)="onLoadMore($event)" #comp>
+  <div class="img-box">
+    <img src="/assets/images/guide/top1.png">
+  </div>
+  <div class="weui-cells__title" style="font-size: 0.18rem;color: #333;">{{isPaid ? '更换管家' : '推荐管家'}} <span
+    style="font-size: 0.14rem">请挑选管家进行预约面试</span></div>
+  <div class="weui-cells">
+    <div class="weui-flex">
+      <div class="weui-flex__item">
+        <div (click)="showPicker('driversAge')" class="weui-cell weui-cell_access">
+          <div class="weui-cell__bd">驾龄</div>
+          <div class="weui-cell__ft">{{pickerData.driversAge.selected.label}}</div>
+        </div>
+      </div>
+      <div class="weui-flex__item">
+        <div (click)="showPicker('soldierAge')" class="weui-cell weui-cell_access">
+          <div class="weui-cell__bd">军龄</div>
+          <div class="weui-cell__ft">{{pickerData.soldierAge.selected.label}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <app-profile [routerLink]="['/guide/w5', item.housekeeperid]" [queryParams]="{orderNo:orderNo,gh:gh}"
+               queryParamsHandling="merge"
+               [profile]="item"
+               *ngFor="let item of lists"></app-profile>
+
+  <div *ngIf="!isPaid" class="weui-btn-area">
+    <a [routerLink]="['/guide/w6','']" [queryParams]="{orderNo:orderNo,gh:gh}" queryParamsHandling="merge" class="weui-btn weui-btn_primary">预定名额</a>
+  </div>
+</weui-infiniteloader>

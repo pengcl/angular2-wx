@@ -7,14 +7,14 @@
       <div class="weui-media-box weui-media-box_appmsg">
         <div class="weui-media-box__hd">
           <img class="avatar weui-media-box__thumb"
-               src="{{employer?.headimageurl ? employer.headimageurl : '/assets/images/logo.png'}}"
+               src="{{employer?.headimageurl ? config.prefix.wApi + employer.headimageurl : '/assets/images/logo.png'}}"
                alt="">
         </div>
         <div class="weui-media-box__bd">
           <h4 class="weui-media-box__title">{{employer?.cust_name}}</h4>
-          <p class="weui-media-box__desc">广东 广州</p>
+          <p class="weui-media-box__desc">{{employer?.mobile}}</p>
         </div>
-        <div (click)="logout()" class="weui-media-box__ft">退出</div>
+        <div routerLink="/admin/uploader/cvatar" class="weui-media-box__ft">更换头像</div>
       </div>
     </div>
   </div>
@@ -38,121 +38,111 @@
       </div>
     </div>
 
-    <div class="dashboard weui-panel">
-      <div class="weui-panel__title weui-panel__hd">个人中心</div>
-      <div class="weui-panel__bd">
-        <div class="weui-grids">
-          <a *ngIf="!admin" [routerLink]="['/admin/employer/order/list']" class="weui-grid">
-            <div class="item-box">
-              <div class="img red">
-                <img src="/assets/images/icons/employer/form.png">
-              </div>
-              <div class="txt">
-                <div class="weui-grid__label">我的订单</div>
-              </div>
-            </div>
-          </a>
-          <a *ngIf="!admin" [routerLink]="['/admin/employer/employees']" class="weui-grid">
-            <div class="item-box">
-              <div class="img green">
-                <img src="/assets/images/icons/employer/employee.png">
-              </div>
-              <div class="txt">
-                <div class="weui-grid__label">我的管家</div>
-              </div>
-            </div>
-          </a>
-          <a *ngIf="contractList?.length > 0 && !admin"
-             [routerLink]="['/admin/employer/employees/employee/attendance',contractList[0]?.housekeeperid]"
-             class="weui-grid">
-            <div class="item-box">
-              <div class="img yellow">
-                <img src="/assets/images/icons/employer/signs.png">
-              </div>
-              <div class="txt">
-                <div class="weui-grid__label">管家考勤</div>
-              </div>
-            </div>
-          </a>
-          <!--<a *ngIf="!admin" [routerLink]="['/admin/employer/rate/list']" class="weui-grid">
-            <div class="item-box">
-              <div class="img yellow">
-                <img src="/assets/images/icons/employer/favor.png">
-                <span *ngIf="count.rate > 0" class="weui-badge">{{count.rate}}</span>
-              </div>
-              <div class="txt">
-                <div class="weui-grid__label">人员评价</div>
-              </div>
-            </div>
-          </a>-->
-          <a [routerLink]="['/admin/employer/message']" class="weui-grid">
-            <div class="item-box">
-              <div class="img blue">
-                <img src="/assets/images/icons/employer/community.png">
-                <span *ngIf="count.msg > 0" class="weui-badge">{{count.msg}}</span>
-              </div>
-              <div class="txt">
-                <div class="weui-grid__label">我的消息</div>
-              </div>
-            </div>
-          </a>
-          <!--<a [routerLink]="['/recruitment/index']" [queryParams]="{referee:employer?.mobile}" class="weui-grid">
-            <div class="item-box">
-              <div class="img red">
-                <img src="/assets/images/icons/white/hire.png">
-              </div>
-              <div class="txt">
-                <div class="weui-grid__label">我的招募</div>
-              </div>
-            </div>
-          </a>-->
-          <a (click)="onShare()" class="weui-grid">
-            <div class="item-box">
-              <div class="img green">
-                <img src="/assets/images/icons/employer/invite.png">
-              </div>
-              <div class="txt">
-                <div class="weui-grid__label">推荐好友</div>
-              </div>
-            </div>
-          </a>
-          <a *ngIf="admin" routerLink="/admin/employee/school/index" class="weui-grid">
-            <div class="item-box">
-              <div class="img blue">
-                <img src="/assets/images/icons/employee/school.png">
-              </div>
-              <div class="txt">
-                <div class="weui-grid__label">大牛课堂</div>
-              </div>
-            </div>
-          </a>
-          <a *ngIf="admin" [routerLink]="['/admin/backend/statistics']" class="weui-grid">
-            <div class="item-box">
-              <div class="img blue">
-                <img src="/assets/images/icons/employer/ziliao.png">
-              </div>
-              <div class="txt">
-                <div class="weui-grid__label">信息管理</div>
-              </div>
-            </div>
-          </a>
-          <a [routerLink]="['/admin/article/list']" class="weui-grid">
-            <div class="item-box">
-              <div class="img blue">
-                <img src="/assets/images/icons/employer/book.png">
-              </div>
-              <div class="txt">
-                <div class="weui-grid__label">资料库</div>
-              </div>
-            </div>
-          </a>
-        </div>
+    <div class="dashboard">
+
+      <div class="weui-cells">
+
+        <a *ngIf="!admin" [routerLink]="['/admin/employer/order/list']" class="weui-cell weui-cell_access">
+          <div class="weui-cell__hd"><img src="/assets/images/icons/employer/new/order.png" alt="" style="width:20px;margin-right:5px;display:block"></div>
+          <div class="weui-cell__bd">
+            <p>我的订单</p>
+          </div>
+          <div class="weui-cell__ft"></div>
+        </a>
+
+        <a *ngIf="!admin" [routerLink]="['/admin/employer/employees']" class="weui-cell weui-cell_access">
+          <div class="weui-cell__hd"><img src="/assets/images/icons/employer/new/employee.png" alt="" style="width:20px;margin-right:5px;display:block"></div>
+          <div class="weui-cell__bd">
+            <p>我的管家</p>
+          </div>
+          <div class="weui-cell__ft"></div>
+        </a>
+
+        <a *ngIf="contractList?.length > 0 && !admin" [routerLink]="['/admin/employer/employees/employee/attendance',contractList[0]?.housekeeperid]" class="weui-cell weui-cell_access">
+          <div class="weui-cell__hd"><img src="/assets/images/icons/employer/new/attendance.png" alt="" style="width:20px;margin-right:5px;display:block"></div>
+          <div class="weui-cell__bd">
+            <p>管家考勤</p>
+          </div>
+          <div class="weui-cell__ft"></div>
+        </a>
+
+        <a [routerLink]="['/admin/employer/message']" class="weui-cell weui-cell_access">
+          <div class="weui-cell__hd"><img src="/assets/images/icons/employer/new/message.png" alt="" style="width:20px;margin-right:5px;display:block"></div>
+          <div class="weui-cell__bd">
+            <p>我的消息</p>
+          </div>
+          <div class="weui-cell__ft"></div>
+        </a>
+
+        <a href="tel:020-85598666" class="weui-cell weui-cell_access">
+          <div class="weui-cell__hd"><img src="/assets/images/icons/employer/new/service.png" alt="" style="width:20px;margin-right:5px;display:block"></div>
+          <div class="weui-cell__bd">
+            <p>客服电话 020-85598666</p>
+          </div>
+          <div class="weui-cell__ft"></div>
+        </a>
+
+        <a (click)="contact()" class="weui-cell weui-cell_access">
+          <div class="weui-cell__hd"><img src="/assets/images/icons/employer/new/service.png" alt="" style="width:20px;margin-right:5px;display:block"></div>
+          <div class="weui-cell__bd">
+            <p>在线客服</p>
+          </div>
+          <div class="weui-cell__ft"></div>
+        </a>
+
+        <a [routerLink]="['/admin/article/list']" class="weui-cell weui-cell_access">
+          <div class="weui-cell__hd"><img src="/assets/images/icons/employer/new/book.png" alt="" style="width:20px;margin-right:5px;display:block"></div>
+          <div class="weui-cell__bd">
+            <p>资料库</p>
+          </div>
+          <div class="weui-cell__ft"></div>
+        </a>
+
+        <a (click)="onShare()" class="weui-cell weui-cell_access">
+          <div class="weui-cell__hd"><img src="/assets/images/icons/employer/new/invite.png" alt="" style="width:20px;margin-right:5px;display:block"></div>
+          <div class="weui-cell__bd">
+            <p>推荐好友</p>
+          </div>
+          <div class="weui-cell__ft"></div>
+        </a>
+
+        <a *ngIf="admin" routerLink="/admin/employee/school/index" class="weui-cell weui-cell_access">
+          <div class="weui-cell__hd"><img src="/assets/images/icons/employer/new/course.png" alt="" style="width:20px;margin-right:5px;display:block"></div>
+          <div class="weui-cell__bd">
+            <p>大牛课堂</p>
+          </div>
+          <div class="weui-cell__ft"></div>
+        </a>
+
+        <a *ngIf="admin" [routerLink]="['/admin/backend/statistics']" class="weui-cell weui-cell_access">
+          <div class="weui-cell__hd"><img src="/assets/images/icons/employer/new/backend.png" alt="" style="width:20px;margin-right:5px;display:block"></div>
+          <div class="weui-cell__bd">
+            <p>信息管理</p>
+          </div>
+          <div class="weui-cell__ft"></div>
+        </a>
+
+        <a routerLink="/admin/employer/feedback" class="weui-cell weui-cell_access">
+          <div class="weui-cell__hd"><img src="/assets/images/icons/employer/new/contact.png" alt="" style="width:20px;margin-right:5px;display:block"></div>
+          <div class="weui-cell__bd">
+            <p>意见反馈</p>
+          </div>
+          <div class="weui-cell__ft"></div>
+        </a>
+
+        <a (click)="logout()" class="weui-cell weui-cell_access">
+          <div class="weui-cell__hd"><img src="/assets/images/icons/employer/new/service.png" alt="" style="width:20px;margin-right:5px;display:block"></div>
+          <div class="weui-cell__bd">
+            <p>退出登录</p>
+          </div>
+          <div class="weui-cell__ft"></div>
+        </a>
       </div>
     </div>
   </div>
 </div>
 
-<div class="btns-group">
+<!--<div class="btns-group">
   <div routerLink="/admin/employer/feedback" class="btn-secondary no-state">意见反馈</div>
   <div (click)="contact()" class="btn-secondary">联系客服</div>
-</div>
+</div>-->

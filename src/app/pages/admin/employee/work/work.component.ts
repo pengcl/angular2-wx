@@ -54,6 +54,7 @@ export class AdminEmployeeWorkComponent implements OnInit {
     this.user = this.userSvc.isLogin();
 
     this.theWeek = getThisWeek();
+    // this.theWeek = {week: 28, first: '2018-7-9', last: '2018-7-15'};
     console.log(this.theWeek);
 
     this.workForm = new FormGroup({
@@ -98,9 +99,7 @@ export class AdminEmployeeWorkComponent implements OnInit {
     // 看周报
     this.workSvc.getWeeks(this.user.housekeeperId, 1).then(res => {
       console.log(res);
-      this.weeks = res.list.filter(item => {
-        return this.theWeek.week !== item.theweek;
-      });
+      this.weeks = res.list;
     });
 
   }

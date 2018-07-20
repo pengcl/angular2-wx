@@ -75,6 +75,7 @@ export class AdminBackendHousekeeperWeekListComponent implements OnInit {
       if (res.code === 0) {
         this.works = res.list;
         this.omissionList = res.omissionList;
+        console.log(this.omissionList);
       }
     });
   }

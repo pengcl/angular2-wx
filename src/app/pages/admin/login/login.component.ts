@@ -70,7 +70,7 @@ export class AdminLoginComponent implements OnInit {
             this.activeText = '重发验证码';
             this.activeClass = true;
           } else {
-            this.activeText = '' + this.second;
+            this.activeText = '' + this.second + 's';
             this.activeClass = false;
             this.second = this.second - 1;
           }
