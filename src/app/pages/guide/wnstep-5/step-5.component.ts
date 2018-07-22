@@ -23,6 +23,7 @@ export class GuideWNStep5Component implements OnInit {
   tabBarConfig = PageConfig.tabBar;
   navBarConfig = PageConfig.navBar;
 
+  avatar;
   ratingConfig: RatingConfig = {
     cls: 'rating',
     stateOff: 'off',
@@ -90,6 +91,19 @@ export class GuideWNStep5Component implements OnInit {
 
     this.route.paramMap.switchMap((params: ParamMap) => this.employeeSvc.getHousekeeper(params.get('id'))).subscribe(res => {
       this.housekeeper = res.housekeeper;
+      this.avatar = this.housekeeper.headimageurl ? this.config.prefix.wApi + this.housekeeper.headimageurl : '/assets/images/avatar.jpg';
+      this.wx.config({
+        title: '【大牛管家】推荐人才！' + this.housekeeper.name + '，' + this.housekeeper.soldierAge + '年军龄',
+        desc: '军龄:' + this.housekeeper.soldierAge + '年，工作经验:' + this.housekeeper.servicetime + '年，' + this.housekeeper.drivinglicence + '驾照',
+        link: Config.webHost + '/guide/w5/' + this.housekeeperId + '?gh=userShare',
+        imgUrl: this.avatar
+      }).then(() => {
+        // 其它操作，可以确保注册成功以后才有效
+        console.log('注册成功');
+      }).catch((err: string) => {
+        console.log(`注册失败，原因：${err}`);
+      });
+
       const images = [];
 
       this.housekeeper.imageList.forEach(item => {
