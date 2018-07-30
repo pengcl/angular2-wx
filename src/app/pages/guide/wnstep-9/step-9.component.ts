@@ -1,6 +1,6 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {Router, ActivatedRoute, ParamMap} from '@angular/router';
+import {Router, ActivatedRoute} from '@angular/router';
 import {PageConfig} from '../../page.config';
 import {WxService} from '../../../modules/wx';
 import {DialogService, PickerService} from 'ngx-weui';
@@ -10,23 +10,17 @@ import {getRate, validScroll} from '../../../utils/utils';
 import {Config} from '../../../config';
 
 @Component({
-  selector: 'app-guide-w-n-step6',
-  templateUrl: './step-6.component.html',
-  styleUrls: ['./step-6.component.scss']
+  selector: 'app-guide-w-n-step9',
+  templateUrl: './step-9.component.html',
+  styleUrls: ['./step-9.component.scss']
 })
-export class GuideWNStep6Component implements OnInit {
+export class GuideWNStep9Component implements OnInit {
   tabBarConfig = PageConfig.tabBar;
   navBarConfig = PageConfig.navBar;
-
-  type = '1';
-
-  housekeeper;
 
   subscribeForm: FormGroup;
   isSubmit = false;
   loading = false;
-
-  @ViewChild('scrollMe') private container: any;
 
   constructor(private router: Router,
               private route: ActivatedRoute,
@@ -53,53 +47,22 @@ export class GuideWNStep6Component implements OnInit {
       console.log(`注册失败，原因：${err}`);
     });
 
-    this.type = this.route.snapshot.queryParams['type'];
-
     this.subscribeForm = new FormGroup({
       intentionType: new FormControl('', [Validators.required]),
-      housekeeperId: new FormControl('', []),
       customerName: new FormControl('', [Validators.required]),
       customerMobile: new FormControl('', [Validators.required, Validators.min(10000000000), Validators.max(19999999999), Validators.pattern(/^[0-9]*$/)]),
       callbackUrl: new FormControl('', [Validators.required]),
       gh: new FormControl('', [])
     });
 
-    this.subscribeForm.get('intentionType').setValue(this.type);
-
-    this.subscribeForm.get('housekeeperId').setValue(this.route.snapshot.params['id']);
+    this.subscribeForm.get('intentionType').setValue(0);
     this.subscribeForm.get('gh').setValue(this.route.snapshot.queryParams['gh']);
     this.subscribeForm.get('callbackUrl').setValue(Config.webHost + '/guide/w7');
-
-    this.route.paramMap.switchMap((params: ParamMap) => this.employeeSvc.getHousekeeper(params.get('id'))).subscribe(res => {
-      this.housekeeper = res.housekeeper;
-      console.log(this.housekeeper.levelname);
-    });
 
   }
 
   submit() {
     this.isSubmit = true;
-
-    console.log(this.subscribeForm.get('intentionType').value);
-
-    const valid = validScroll(this.subscribeForm.controls);
-
-    if (!valid.valid) {// page_scroll_to_target
-      const target = this.container.nativeElement.querySelector('.check-' + valid.control).offsetTop;
-      let times = 1;
-      try {
-        const interval = setInterval(() => {
-          this.container.nativeElement.scrollTop = this.container.nativeElement.scrollTop - (((this.container.nativeElement.scrollTop - target) / 320) * 16 * times);
-          times = times + 1;
-        }, 16);
-        setTimeout(function () {
-          clearInterval(interval);
-        }, 320);
-      } catch (err) {
-        console.log(err);
-      }
-      return false;
-    }
 
     if (this.subscribeForm.invalid || this.loading) {
       return false;
@@ -107,8 +70,7 @@ export class GuideWNStep6Component implements OnInit {
     this.loading = true;
     this.employeeSvc.reserveButler(this.subscribeForm.value).then(res => {
       if (res.code === 0) {
-        console.log(res);
-        window.location.href = res.msg;
+        this.router.navigate(['/guide/w7']);
       } else {
         this.dialogSvc.show({content: res.msg, cancel: '', confirm: '我知道了'}).subscribe();
       }

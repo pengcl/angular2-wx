@@ -1,97 +1,42 @@
 <app-navbar [navBar]="navBarConfig"></app-navbar>
 
 <div class="employee-box content-scrollable has-footer">
-  <app-profile *ngIf="housekeeper" [profile]="housekeeper"></app-profile>
+  <app-profile-big *ngIf="housekeeper" [profile]="housekeeper"></app-profile-big>
 
-  <div *ngIf="housekeeper" class="profile-base weui-panel weui-panel_access" style="margin-top: 0.1rem">
-    <div class="weui-panel__hd">
-      <a href="javascript:void(0);" class="weui-cell weui-cell_access">
-        <div class="weui-cell__title weui-cell__bd">基本资料</div>
-      </a>
+  <div *ngIf="housekeeper?.termid !== 'c6a14c76-8a67-4c2a-87ef-f7e6e2d0b6e9'" class="weui-cells__price weui-cells">
+    <div class="weui-cell">
+      <div class="weui-cell__bd">聘用转让费（一次性支付）</div>
+      <div class="weui-cell__ft">
+        <em>¥{{housekeeper?.employAmount * 1.2}}</em>
+        <!--<em *ngIf="housekeeper?.levelname === '初级'">¥9600</em>
+        <em *ngIf="housekeeper?.levelname === '中级'">¥12000</em>
+        <em *ngIf="housekeeper?.levelname === '高级'">¥13200</em>
+        <em *ngIf="housekeeper?.levelname === '特级'">¥18000</em>-->
+      </div>
     </div>
-    <div class="weui-panel__bd">
-      <div class="weui-media-box">
-        <div class="weui-flex">
-          <div class="weui-flex__item"><b>出生年月：</b>{{housekeeper.birthDay}}</div>
-          <div class="weui-flex__item"><b>民族：</b>{{housekeeper.nation}}族</div>
-        </div>
-        <div class="weui-flex">
-          <div class="weui-flex__item"><b>政治面貌：</b>
-            <span *ngIf="housekeeper.politicalclimate === '0'">群众</span>
-            <span *ngIf="housekeeper.politicalclimate === '1'">共产党员(含预备)</span>
-            <span *ngIf="housekeeper.politicalclimate === '2'">共青团员</span>
-            <span *ngIf="housekeeper.politicalclimate === '3'">民主党派</span>
-            <span *ngIf="housekeeper.politicalclimate === '4'">无党派人士</span>
-          </div>
-          <div class="weui-flex__item"><b>婚姻状况：</b>{{housekeeper.isMarried === 2 ? '已婚' : '未婚'}}</div>
-        </div>
-        <div class="weui-flex">
-          <div class="weui-flex__item"><b>户籍所在地：</b>{{housekeeper.placeoforigin}}</div>
-          <div class="weui-flex__item"><b>学历：</b>
-            <span *ngIf="housekeeper.education === '0'">初中</span>
-            <span *ngIf="housekeeper.education === '1'">高中</span>
-            <span *ngIf="housekeeper.education === '2'">中专</span>
-            <span *ngIf="housekeeper.education === '3'">大专</span>
-            <span *ngIf="housekeeper.education === '4'">本科</span>
-            <span *ngIf="housekeeper.education === '5'">硕士</span>
-            <span *ngIf="housekeeper.education === '6'">博士</span>
-            <span *ngIf="housekeeper.education === '7'">MBA</span>
-            <span *ngIf="housekeeper.education === '8'">EMBA</span>
-            <span *ngIf="housekeeper.education === '9'">其它</span>
-          </div>
-        </div>
+    <div *ngIf="housekeeper?.commissionamount === 10000 || housekeeper?.commissionamount === 12000" class="weui-cell">
+      <div class="weui-cell__bd">租用价（按月付费给平台）</div>
+      <div class="weui-cell__ft">
+        <em>¥{{housekeeper?.commissionamount}}/月</em>
       </div>
     </div>
   </div>
 
-  <div class="weui-panel weui-panel_access" style="margin-top: 0.1rem;display: none">
-    <div class="weui-panel__hd">
-      <a href="javascript:void(0);" class="weui-cell weui-cell_access">
-        <div class="weui-cell__title weui-cell__bd">综合评分</div>
-      </a>
-    </div>
-    <div class="weui-panel__bd">
-      <div class="rate-box weui-media-box">
-        <weui-rating [(ngModel)]="rate" [config]="ratingConfig" [readonly]="true"></weui-rating>
+  <div *ngIf="housekeeper?.termid === 'c6a14c76-8a67-4c2a-87ef-f7e6e2d0b6e9'" class="weui-cells__price weui-cells">
+    <div class="weui-cell">
+      <div class="weui-cell__bd">聘用转让费（一次性支付）</div>
+      <div class="weui-cell__ft">
+        <em>待定</em>
+        <!--<em *ngIf="housekeeper?.levelname === '初级'">¥9600</em>
+        <em *ngIf="housekeeper?.levelname === '中级'">¥12000</em>
+        <em *ngIf="housekeeper?.levelname === '高级'">¥13200</em>
+        <em *ngIf="housekeeper?.levelname === '特级'">¥18000</em>-->
       </div>
     </div>
-  </div>
-
-  <div class="weui-panel weui-panel_access" style="display: none">
-    <div class="weui-panel__hd">
-      <a href="javascript:void(0);" class="weui-cell weui-cell_access">
-        <div class="weui-cell__title weui-cell__bd">培训评分</div>
-      </a>
-    </div>
-    <div class="weui-panel__bd">
-      <div class="rates-box weui-grids">
-        <div *ngFor="let item of score.scores" class="weui-grid">
-          <span>{{item.props}}</span>
-          <weui-rating [(ngModel)]="item.rate" [config]="ratingConfig" [readonly]="true"></weui-rating>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div style="display: none" class="skills weui-panel weui-panel_access">
-    <div class="weui-panel__hd">
-      <a href="javascript:void(0);" class="weui-cell weui-cell_access">
-        <div class="weui-cell__title weui-cell__bd">技能图谱</div>
-      </a>
-    </div>
-    <div class="weui-panel__bd">
-      <div class="weui-media-box weui-media-box_appmsg">
-        <div class="score">
-
-          <div class="score-rate">
-            <em>{{this.score.count}}</em><sub>分</sub>
-          </div>
-
-          <div class="score-label">综合评分</div>
-        </div>
-      </div>
-      <div class="weui-media-box">
-        <canvas id="mountNode" style="width:100%;height:200px;"></canvas>
+    <div *ngIf="housekeeper?.commissionamount === 10000 || housekeeper?.commissionamount === 12000" class="weui-cell">
+      <div class="weui-cell__bd">租用价（按月付费给平台）</div>
+      <div class="weui-cell__ft">
+        <em>待定</em>
       </div>
     </div>
   </div>
@@ -103,7 +48,277 @@
       </a>
     </div>
     <div class="weui-panel__bd">
-      <div class="housekeeper-detail weui-media-box" [innerHTML]="housekeeper.detail | details"></div>
+      <div id="details" style="display: none" class="housekeeper-detail weui-media-box"
+           [innerHTML]="housekeeper.detail | details"></div>
+
+      <div class="housekeeper-detail weui-media-box">
+        <div *ngFor="let item of htmlItems?.slice(0,1)">
+          <h3 [innerHtml]="item.h"></h3>
+          <section [innerHtml]="item.section"></section>
+        </div>
+      </div>
+
+      <weui-navbar class="main">
+        <weui-tab heading="服务清单">
+          <div class="table-article">
+            <div class="img-box">
+              <img src="/assets/images/table.png">
+            </div>
+          </div>
+        </weui-tab>
+        <weui-tab heading="服务标准">
+          <article class="weui-article">
+            <h1>“大牛管家”服务标准</h1>
+            <div class="desc">
+              “大牛管家”禀承“忠诚、安全、健康、舒心”的服务理念，旨在为全国高端商务人士及其家庭提供“安全防护、体能训练、驾驶保障”三大类日常综合管家服务。具体包括以下服务内容:
+            </div>
+            <section>
+              <h2 class="title">1.安全防护</h2>
+              <section>
+                <h3>1.1 日常随身防护</h3>
+                <p>
+                  对客户进行随行贴身防护，预防一切不安全因素可能造成的伤害；在发生意外情况时，尽可能护送客户迅速离开危险环境。
+                </p>
+                <section>
+                  <h4>1.1.1 固定防护</h4>
+                  <p>
+                    在固定场所比如民居、公司、酒店、别墅，围绕客户日常行为进行防护。
+                  </p>
+                </section>
+                <section>
+                  <h4>1.1.2 流动防护</h4>
+                  <p>
+                    在客户乘坐交通工具比如轿车、公交车、飞机、火车、轮船时，从出发地到目的地进行动态全过程防护。
+                  </p>
+                </section>
+                <section>
+                  <h4>1.1.3 开放防护</h4>
+                  <p>
+                    在客户赴公共开放场所(如广场、会展中心、体育馆)参加公开活动(如开幕式、演唱会、剪彩、庙会)时，围绕客户随机行动进行防护。
+                  </p>
+                </section>
+                <section>
+                  <h4>1.1.4 突发事件现场处置</h4>
+                  <p>
+                    在遭遇一些突发意外事件，如抢劫、劫持、踩踏、交通事故、暴恐袭击等，采取紧急应对措施，避免或减少对客户可能造成的人身伤害。
+                  </p>
+                </section>
+              </section>
+              <section>
+                <h3>1.2 日常紧急救护</h3>
+                <p>
+                  对肢体创伤、常见急症、生活事故等进行早期紧急救护，预防症状恶化，为专业救护争取时间。
+                </p>
+                <section>
+                  <h4>1.2.1 肢体创伤救护</h4>
+                  <p>
+                    对肢体擦伤、扭伤、挫伤、割伤、骨折等创伤进行止血、包扎、固定等早期紧急救护。
+                  </p>
+                </section>
+                <section>
+                  <h4>1.2.2 常见急症救护</h4>
+                  <p>
+                    对昏迷、中暑、休克、心脏等常见急症进行早期紧急救护。
+                  </p>
+                </section>
+                <section>
+                  <h4>1.2.3 生活事故救护</h4>
+                  <p>
+                    对触电、雷击、烧伤、烫伤、冻伤等可能出现的生活事故进行早期紧急救护。
+                  </p>
+                </section>
+              </section>
+            </section>
+            <section>
+              <h2 class="title">2.体能训练</h2>
+              <section>
+                <h3>2.1 运动陪练</h3>
+                <p>
+                  主要针对户外运动和室内运动两个方面陪练，需要客户提前明确具体需求，选择有特长的管家提供相应服务。
+                </p>
+                <section>
+                  <h4>2.1.1 常规户外运动陪练</h4>
+                  <p>
+                    主要包括健走、跑步、爬山、骑行等。
+                  </p>
+                </section>
+                <section>
+                  <h4>2.1.2 常规室内健身陪练</h4>
+                  <p>
+                    主要包括俯卧撑、仰卧起坐、平板支撑等力量练习，以及利用跑步机、椭圆机、哑铃、杠铃等器械练习。
+                  </p>
+                </section>
+              </section>
+              <section>
+                <h3>2.2 健身指导</h3>
+                <p>
+                  负责客户的健身指导和安全防护，包括科学制定健身计划、一对一指导训练、预防运动损伤、运动伤病康复和搭配营养膳食，也可承担儿童协调性练习和格斗教学。
+                </p>
+                <section>
+                  <h4>2.2.1 制定健身计划指导</h4>
+                  <p>
+                    根据客户身体状况和训练目的，协助制定客户专属的科学健身计划。
+                  </p>
+                </section>
+                <section>
+                  <h4>2.2.2 运动损伤预防指导</h4>
+                  <p>
+                    根据客户身体状况，合理组织热身和拉伸搭配，循序渐进加大训练强度，加强自我保护意识，积极采取保护措施，防止出现运动损伤。
+                  </p>
+                </section>
+                <section>
+                  <h4>2.2.3 运动损伤康复指导</h4>
+                  <p>
+                    针对客户所患运动损伤或存在隐患，采取损伤对应的体能康复训练或者按摩拉伸、拔罐等康复方法，协助客户逐步恢复健康。
+                  </p>
+                </section>
+                <section>
+                  <h4>2.2.4 运动营养补充指导</h4>
+                  <p>
+                    根据客户日常的运动方式和强度，提出营养补充建议，保持肌体的能量供给和恢复水平。
+                  </p>
+                </section>
+                <section>
+                  <h4>2.2.5 儿童协调性练习和格斗教练</h4>
+                  <p>
+                    主要是 6 周岁以上儿童日常协调性练习和格斗陪练及指导。
+                  </p>
+                </section>
+              </section>
+            </section>
+            <section>
+              <h2 class="title">3.驾驶保障</h2>
+              <section>
+                <h3>3.1 日常用车保障</h3>
+                <p>
+                  围绕客户生活和工作需要，提供日常接送、代办车辆维护保养和车辆保险等服务。
+                </p>
+                <section>
+                  <h4>3.1.1 私人/公务接送</h4>
+                  <p>
+                    客户家庭日常活动接送(包括老人外出/购物/看病接送、孩子上学接送和亲朋好友接送)，以及商务活动接送。
+                  </p>
+                </section>
+                <section>
+                  <h4>3.1.2 车辆日常维护保养</h4>
+                  <p>
+                    掌握私家车辆或公务车辆的车况，定期组织车辆维护、保养和清洁，保持车辆性能良好，做到整车清洁、车内舒适。
+                  </p>
+                </section>
+                <section>
+                  <h4>3.1.3 车辆故障送修</h4>
+                  <p>
+                    遇有车辆故障，联系指定维修厂，妥善送达修理，规范报销费用。
+                  </p>
+                </section>
+                <section>
+                  <h4>3.1.4 车辆保险实务</h4>
+                  <p>
+                    根据客户需求，协助或代办车辆交强险及商业险，遇到交通事故按照规范程序报险处理。
+                  </p>
+                </section>
+              </section>
+              <section>
+                <h3>3.2 日常接待预订</h3>
+                <p>
+                  根据客户生活或商务活动接待需求，进行相关事务的预订。
+                </p>
+                <section>
+                  <h4>3.2.1 用餐预订</h4>
+                  <p></p>
+                </section>
+                <section>
+                  <h4>3.2.2 住宿预订</h4>
+                  <p></p>
+                </section>
+                <section>
+                  <h4>3.2.3 旅游预订</h4>
+                  <p></p>
+                </section>
+                <section>
+                  <h4>3.2.4 娱乐预订</h4>
+                  <p></p>
+                </section>
+              </section>
+              <section>
+                <h3>3.3 短期出行保障</h3>
+                <p>
+                  根据客户生活或商务出行要求，在出行范围限于国内(包括港澳台)、出行时间 1 个月内的前提下，组织衣物、饮食、住宿、财务等 各项伴随保障。
+                </p>
+                <section>
+                  <h4>3.3.1 出行衣物保障</h4>
+                  <p>根据旅途和目的地天气情况和活动需要，筹划必备的服装、物品，分门别类打包携带，随时提供给客户使用，途中加强保管和维护，不 出现损坏、丢失现象。</p>
+                </section>
+                <section>
+                  <h4>3.3.2 出行食宿保障</h4>
+                  <p>根据行程规划和实际情况，科学合理的安排饮食和住宿，确保饮食质量。</p>
+                </section>
+                <section>
+                  <h4>3.3.3 出行财务保障</h4>
+                  <p>根据客户要求，按相关规范报领经费，使用过程做好记录并取得票据，行程结束及时报销。</p>
+                </section>
+              </section>
+            </section>
+          </article>
+        </weui-tab>
+        <weui-tab heading="客户须知">
+          <article class="weui-article">
+            <h1>“大牛管家”客户须知</h1>
+            <div class="desc">
+              非常感谢您在我公司选用管家人员!公司坚持把提供优质服务、 满足客户需求放在首位，从人员录用到岗前培训都会严格把关。由于 管家人员的教育程度、工作经历、成长环境等与您的社会地位和生活
+              品质有差异，敬请海涵与指正；公司将不断努力提高服务专业性，以 满足不同客户的个性化要求。同时为建立和谐的雇佣关系，尽可避 免不必要的争议，希望您在使用管家人员时注意以下事项:
+            </div>
+            <section>
+              <h2>一、 日常事项</h2>
+              <p>1.客户应当对管家人员多指导、多鼓励，帮助其尽快度过磨合期，更好的发挥自身潜力和工作热情;</p>
+              <p>2.客户应当向管家人员明确服务内容、范围、时段和标准，介绍家庭基本情况、服务要求、注意事项等，便于其更好的展开工作;</p>
+              <p>3.客户应当相信管家的专业能力和职业道德，配合管家人员的安全防护工作;</p>
+              <p>4.客户不宜安排管家人员做合约以外的工作，以避免未经过专业培训带来不必要的麻烦或损失;</p>
+              <p>5.客户应当对管家人员工作期间的安全负责，请勿指派其从事无安全措施的危险工作;</p>
+              <p>6.客户应当清晰下达工作指令，切忌多人口径不同，令管家人员无所适从;</p>
+              <p>7.客户应当尊重管家人员的隐私;</p>
+              <p>8.客户请勿将管家人员住所安排在成年异性活动场所或与异性同居一室;</p>
+              <p>9.客户请勿指派管家人员驾驶超出其驾照许可范围的车型、驾驶非法车辆、驾驶车辆时故意违反交通规则或进行危险驾驶行为;</p>
+              <p>10.客户请勿让管家人员介入任何形式的家庭纠纷、商务纠纷;</p>
+              <p>11.客户请妥善保管现金及贵重物品，以免出现差错造成误会;</p>
+              <p>12.客户禁止带管家人员参与黄赌毒活动，请勿让管家人员代酒，以免影响其正常工作的开展;</p>
+              <p>13.管家人员服务区域仅限国内(含港澳台地区)，客户请勿带管家人员出国;客户如需变更服务地址或带管家人员去外地，请预先征得管家人员同意，并向本公司备案，以免发生争议;</p>
+              <p>14.管家人员在服务过程中如遇急病和意外，烦请客户及时送医并联系本公司;</p>
+              <p>15.管家人员出现工作失误，客户应及时联系公司妥善处理，请勿采取搜身、扣押钱物、身份证及其它有效证件，以及辱骂、体罚、殴打、威逼等非法方式处理问题。</p>
+            </section>
+            <section>
+              <h2>二、 更换人员</h2>
+              <p>管家人员有下列情形之一，客户可提出更换管家人员:</p>
+              <p>1. 有严重违背公序良俗或违法犯罪行为的;</p>
+              <p>2. 擅自离岗，拒绝履行或不履行工作义务;</p>
+              <p>3. 个人工作不称职，经提醒改进不明显的;</p>
+              <p>4. 严重或恶意损害客户利益的;</p>
+              <p>5. 干预客户私生活，或泄露客户及亲友隐私的;</p>
+              <p>6. 私自引领他人进入客户家中的;</p>
+              <p>7. 因健康及其他原因不适宜再继续工作的。</p>
+            </section>
+            <section>
+              <h2>三、 拒绝服务</h2>
+              <p>客户请勿指派管家人员从事违法犯罪行为，客户要求的事务如有触犯国家法律，管家人员有权拒绝，公司有权终止合同，客户承担违约费用。</p>
+              <p>另外客户有下列情形之一，管家人员可拒绝提供服务:</p>
+              <p>1.不能提供约定工作条件的;</p>
+              <p>2.强制要求管家人员提供约定之外服务的;</p>
+              <p>3.虐待、歧视管家人员或损害管家人员人格的;</p>
+              <p>4.强制要求管家人员提供健康和人身安全没有保障服务的;</p>
+              <p>5.限制管家人员通信自由、人身自由和宗教信仰自由的;</p>
+              <p>6.连续差遣导致管家人员平均每天休息不足 8 小时的，或长期不能享受国家公共假期的;</p>
+              <p>本须知未尽事宜，请客户与公司具体协商解决。</p>
+            </section>
+          </article>
+        </weui-tab>
+      </weui-navbar>
+
+      <div class="housekeeper-detail weui-media-box">
+        <div *ngFor="let item of htmlItems?.slice(1)">
+          <h3 [innerHtml]="item.h"></h3>
+          <section [innerHtml]="item.section"></section>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -130,9 +345,16 @@
 
   </div>
 
-  <div class="btns-group">
-    <a [routerLink]="['/guide/w6',housekeeperId]" [queryParams]="{gh:gh}" [userTrack]="'reserve'" class="btn-primary">预约他</a>
-    <a [routerLink]="['/guide/w4']" [queryParams]="{orderNo:orderNo,gh:gh}" [userTrack]="'reserve'" class="btn-secondary">看看其他</a>
+  <div *ngIf="housekeeper?.termid !== 'c6a14c76-8a67-4c2a-87ef-f7e6e2d0b6e9'" class="btns-group">
+    <a (click)="go(2)" [userTrack]="'reserve'" class="btn-primary"
+       [ngClass]="{'disabled':housekeeper?.issubscribe !== 2}">聘用他</a>
+    <a *ngIf="housekeeper?.employAmount !== 7000" (click)="go(1)" [userTrack]="'reserve'" class="btn-secondary"
+       [ngClass]="{'disabled':housekeeper?.issubscribe !== 2}">租用他</a>
+  </div>
+
+  <div *ngIf="housekeeper?.termid === 'c6a14c76-8a67-4c2a-87ef-f7e6e2d0b6e9'" class="btns-group">
+    <a class="btn-primary disabled">聘用他</a>
+    <a class="btn-secondary disabled">租用他</a>
   </div>
 
 </div>

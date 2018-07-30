@@ -21,6 +21,7 @@ import {GuideWNStep5Component} from './wnstep-5/step-5.component';
 import {GuideWNStep6Component} from './wnstep-6/step-6.component';
 import {GuideWNStep7Component} from './wnstep-7/step-7.component';
 import {GuideWNStep8Component} from './wnstep-8/step-8.component';
+import {GuideWNStep9Component} from './wnstep-9/step-9.component';
 
 export const appGuideRoutes: Routes = [
   {path: 'poster', component: GuidePosterComponent},
@@ -46,6 +47,7 @@ export const appGuideRoutes: Routes = [
   {path: 'w6/:id', component: GuideWNStep6Component},
   {path: 'w7', component: GuideWNStep7Component},
   {path: 'w8', component: GuideWNStep8Component},
+  {path: 'w9', component: GuideWNStep9Component},
   {
     path: '**', redirectTo: 'index'
   }

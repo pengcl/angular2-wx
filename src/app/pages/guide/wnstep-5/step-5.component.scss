@@ -31,6 +31,12 @@
     }
   }
 
+  .housekeeper-detail {
+    &:before {
+      display: none;
+    }
+  }
+
   .weui-panel {
     margin-top: 0 !important;
     &:before, &:after {
@@ -194,14 +200,22 @@
     }
   }
 
-  app-profile {
+  .weui-cells__price {
+    font-size: 0.15rem;
+    margin-top: 0;
+    color: #666;
+    em {
+      color: #E64340;
+    }
+  }
+
+  app-profile-big {
     .weui-panel {
       &:after {
         display: block;
       }
       .weui-media-box {
         padding-top: 0.15rem !important;
-
       }
     }
   }
@@ -210,7 +224,6 @@
     background: #fff;
     box-shadow: 0 10px 20px 0 #999999;
     .btn-primary {
-      flex: 0.65;
       margin: 0.1rem 0.075rem 0.1rem 0.2rem;
       background-image: linear-gradient(90deg, #E0BB7C 0%, #B38247 100%);
       border-radius: 100px;
@@ -219,13 +232,98 @@
       padding: 0.1rem;
     }
     .btn-secondary {
-      flex: 0.35;
       margin: 0.1rem 0.2rem 0.1rem 0.075rem;
-      background: #CCCCCC;
+      background-image: linear-gradient(90deg, #66B3FF 0%, #3399FF 100%);
       border-radius: 100px;
       font-size: 0.14rem;
       line-height: 0.17rem;
       padding: 0.1rem;
     }
+    .disabled {
+      background-image: linear-gradient(90deg, #ccc 0%, #ccc 100%);
+    }
   }
+
+  weui-navbar {
+    position: relative;
+    .weui-navbar {
+      position: absolute;
+    }
+  }
+  weui-tab {
+    padding-top: 0.08rem;
+    min-height: auto !important;
+    .table-article {
+      padding: 0 0.15rem 0.2rem;
+    }
+    table {
+      font-size: 0.1rem;
+      box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.10);
+      border-radius: 8px;
+      thead {
+        th {
+          font-size: 0.15rem;
+          text-align: center;
+          background: none;
+        }
+      }
+      tbody {
+        td {
+          &.label {
+            font-size: 0.13rem;
+            color: #0F0F0F;
+            font-weight: bold;
+          }
+          em, span {
+            font-size: 0.13rem;
+          }
+          em {
+            font-style: normal;
+            color: #CA9F4D;
+            margin: 0 0.1rem;
+          }
+          &.center {
+            text-align: center;
+          }
+        }
+      }
+    }
+    .weui-article {
+      background: #fff;
+      min-height: 100%;
+      section {
+        margin-bottom: 0.15rem;
+      }
+      h1 {
+        font-size: 0.15rem;
+        text-align: center;
+        font-weight: bold;
+      }
+      .desc {
+        font-size: 0.13rem;
+        background: #CA9F4D;
+        color: #fff;
+        padding: 0.1rem;
+        border-radius: 0.04rem;
+      }
+      h2 {
+        font-size: 0.13rem;
+        line-height: 1;
+        margin-top: 0.2rem;
+        margin-bottom: 0.15rem;
+        font-weight: bold;
+      }
+      h3, h4 {
+        font-size: 0.13rem;
+        color: #0f0f0f;
+        font-weight: bold;
+      }
+      p {
+        margin: 0.08rem 0;
+        font-size: 0.12rem;
+        color: #666;
+      }
+    }
+  }
+
 }

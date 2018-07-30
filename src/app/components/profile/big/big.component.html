@@ -40,19 +40,77 @@
               <span class="label">军龄{{profile.soldierAge}}年</span>
             </div>
           </div>
+          <div class="weui-flex">
+            <div class="weui-flex__item">
+              <span class="label">驾龄：{{profile.driversage}}年</span>
+              <!--<span class="label">{{profile.placeoforigin}}</span>-->
+            </div>
+          </div>
           <!--<div class="gold weui-flex">
             <div class="weui-flex__item">
               <span class="label">{{profile.drivinglicence}}驾照</span> ·
               <span class="label">驾龄{{profile.driversage}}年</span>
             </div>
           </div>-->
-          <div class="has-label weui-flex">
+          <div *ngIf="profile.troopsName" class="has-label weui-flex">
             <div class="weui-flex__item">
-              <span *ngIf="profile.troopsName" class="ui-label horizontal hollow gold radius mini">{{profile.troopsName}}</span>
+              <span class="ui-label horizontal hollow gold radius mini">{{profile.troopsName || ''}}</span>
             </div>
-            <div class="weui-flex__item">
+            <!--<div class="weui-flex__item">
               <span *ngIf="profile.issubscribe === 2" class="right ui-label horizontal hollow red radius mini">可预约</span>
               <span *ngIf="profile.issubscribe !== 2" class="right ui-label horizontal hollow gray radius mini">已派出</span>
+            </div>-->
+          </div>
+          <div class="weui-flex">
+            <div class="weui-flex__item">
+              <span class="label">出生年月：{{profile.birthDay}}</span>
+            </div>
+          </div>
+          <div class="weui-flex">
+            <div class="weui-flex__item">
+              <span class="label">民族：{{profile.nation}}</span>
+            </div>
+          </div>
+          <div class="weui-flex">
+            <div class="weui-flex__item">
+              <span class="label">政治面貌：
+                <span *ngIf="profile.politicalclimate === '0'">群众</span>
+                <span *ngIf="profile.politicalclimate === '1'">共产党员(含预备)</span>
+                <span *ngIf="profile.politicalclimate === '2'">共青团员</span>
+                <span *ngIf="profile.politicalclimate === '3'">民主党派</span>
+                <span *ngIf="profile.politicalclimate === '4'">无党派人士</span>
+              </span>
+            </div>
+          </div>
+          <div class="weui-flex">
+            <div class="weui-flex__item">
+              <span class="label">婚姻状况：{{profile.isMarried === 2 ? '已婚' : '未婚'}}</span>
+            </div>
+          </div>
+          <!--<div class="weui-flex">
+            <div class="weui-flex__item">
+              <span class="label">婚姻状况：{{profile.nation}}</span>
+            </div>
+          </div>-->
+          <div class="weui-flex">
+            <div class="weui-flex__item">
+              <span class="label">户籍所在地：{{profile.placeoforigin}}</span>
+            </div>
+          </div>
+          <div class="weui-flex">
+            <div class="weui-flex__item">
+              <span class="label">学历：
+                <span *ngIf="profile.education === '0'">初中</span>
+                <span *ngIf="profile.education === '1'">高中</span>
+                <span *ngIf="profile.education === '2'">中专</span>
+                <span *ngIf="profile.education === '3'">大专</span>
+                <span *ngIf="profile.education === '4'">本科</span>
+                <span *ngIf="profile.education === '5'">硕士</span>
+                <span *ngIf="profile.education === '6'">博士</span>
+                <span *ngIf="profile.education === '7'">MBA</span>
+                <span *ngIf="profile.education === '8'">EMBA</span>
+                <span *ngIf="profile.education === '9'">其它</span>
+              </span>
             </div>
           </div>
         </div>
@@ -63,9 +121,9 @@
   <!--<div class="weui-panel__ft">
     <span *ngFor="let item of profile.expertisenames.split(',')" class="ui-label colors horizontal">{{item}}</span>
   </div>-->
-  <div class="price">
+  <!--<div class="price">
     <span *ngIf="profile.termid === 'c6a14c76-8a67-4c2a-87ef-f7e6e2d0b6e9'">薪资待定</span>
-    <span *ngIf="profile.termid !== 'c6a14c76-8a67-4c2a-87ef-f7e6e2d0b6e9'"><sub>￥</sub><em>{{profile.employAmount}}/月</em></span>
-  </div>
+    <span *ngIf="profile.termid !== 'c6a14c76-8a67-4c2a-87ef-f7e6e2d0b6e9'"><sub>￥</sub><em>{{profile.commissionamount}} /月</em></span>
+  </div>-->
 </div>
 

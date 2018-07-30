@@ -106,7 +106,7 @@ import {AdminUploaderAvatarComponent} from './pages/admin/uploader/avatar/avatar
 import {AdminUploaderCvatarComponent} from './pages/admin/uploader/cvatar/cvatar.component';
 import {AdminUploaderGalleryComponent} from './pages/admin/uploader/gallery/gallery.component';
 
-import {RecruitmentComponent} from './pages/recruitment/recruitment.component';
+/*import {RecruitmentComponent} from './pages/recruitment/recruitment.component';
 import {RecruitmentLoginComponent} from './pages/recruitment/login/login.component';
 import {RecruitmentIndexComponent} from './pages/recruitment/index/index.component';
 import {RecruitmentIncomesComponent} from './pages/recruitment/incomes/incomes.component';
@@ -121,7 +121,7 @@ import {RecruitmentChannelDetailsComponent} from './pages/recruitment/channel/de
 import {RecruitmentAboutComponent} from './pages/recruitment/about/about.component';
 import {RecruitmentArticleIncomeRulesComponent} from './pages/recruitment/article/incomeRules/incomeRules.component';
 import {RecruitmentArticleRequirementsComponent} from './pages/recruitment/article/requirements/requirements.component';
-import {RecruitmentRecruitersComponent} from './pages/recruitment/recruiters/recruiters.component';
+import {RecruitmentRecruitersComponent} from './pages/recruitment/recruiters/recruiters.component';*/
 
 import {AppPayComponent} from './pages/pay/pay.component';
 import {WxComponent} from './pages/wx/wx.component';
@@ -256,7 +256,7 @@ const appFrontRoutes: Routes = [
   }
 ];
 
-const appRecruitmentRoutes: Routes = [
+/*const appRecruitmentRoutes: Routes = [
   {path: 'index', component: RecruitmentIndexComponent},
   {path: 'incomes', component: RecruitmentIncomesComponent},
   {path: 'login', component: RecruitmentLoginComponent},
@@ -272,7 +272,7 @@ const appRecruitmentRoutes: Routes = [
   {path: 'article/incomeRules', component: RecruitmentArticleIncomeRulesComponent},
   {path: 'article/requirements', component: RecruitmentArticleRequirementsComponent},
   {path: 'recruiters', component: RecruitmentRecruitersComponent},
-];
+];*/
 
 export const routes: Routes = [
 
@@ -293,11 +293,11 @@ export const routes: Routes = [
     component: GuideComponent,
     children: appGuideRoutes
   },
-  {
+  /*{
     path: 'recruitment',
     component: RecruitmentComponent,
     children: appRecruitmentRoutes
-  },
+  },*/
   {
     path: 'wx',
     component: WxComponent,

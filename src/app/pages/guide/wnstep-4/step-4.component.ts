@@ -1,12 +1,16 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit, ViewChild, ElementRef} from '@angular/core';
 import {Router, ActivatedRoute} from '@angular/router';
 import {PageConfig} from '../../page.config';
 import {WxService} from '../../../modules/wx';
 
+import {timeout} from 'rxjs/operator/timeout';
+
+import {StorageService} from '../../../services/storage.service';
 import {EmployeeService} from '../../../services/employee.service';
 import {Observable} from 'rxjs/Observable';
-import {PickerService, InfiniteLoaderComponent, InfiniteLoaderConfig} from 'ngx-weui';
+import {PickerService} from 'ngx-weui';
 import {OrderService} from '../../../services/order.service';
+import {MeiqiaService} from '../../../services/meiqia.service';
 import {Config} from '../../../config';
 import {getIndex} from '../../../utils/utils';
 
@@ -19,7 +23,9 @@ export class GuideWNStep4Component implements OnInit {
   tabBarConfig = PageConfig.tabBar;
   navBarConfig = PageConfig.navBar;
 
-  @ViewChild('comp') private comp: InfiniteLoaderComponent;
+  @ViewChild('scrollable') private scrollable: ElementRef;
+
+  filterShow = false;
 
   pickerData = {
     driversAge: {
@@ -84,12 +90,17 @@ export class GuideWNStep4Component implements OnInit {
   isPaid: boolean = false;
   payUrl;
 
+  isLoading = false;
+  isFinished = false;
+
   constructor(private router: Router,
               private route: ActivatedRoute,
+              private storageSvc: StorageService,
               private wx: WxService,
               private pickerSvc: PickerService,
               private employeeSvc: EmployeeService,
-              private orderSvc: OrderService) {
+              private orderSvc: OrderService,
+              private contactSvc: MeiqiaService) {
     this.navBarConfig.navigationBarTitleText = '大牛管家';
   }
 
@@ -122,6 +133,34 @@ export class GuideWNStep4Component implements OnInit {
     this.employeeSvc.getIntentList(this.params).then(res => {
       this.lists = res.list;
     });
+
+    /*if (this.storageSvc.get('scroll')) {
+      const scroll = JSON.parse(this.storageSvc.get('scroll'));
+      this.employeeSvc.getIntentList(this.params).then(res => {
+        this.lists = res.list;
+        if (this.params.page <= scroll.page) {
+          this.morePage();
+        }
+      });
+    } else {
+      this.employeeSvc.getIntentList(this.params).then(res => {
+        this.lists = res.list;
+      });
+    }*/
+  }
+
+  morePage() {
+    this.employeeSvc.getIntentList(this.params).then(res => {
+      this.lists.concat(res.list);
+      const scroll = JSON.parse(this.storageSvc.get('scroll'));
+      if (this.params.page < scroll.page) {
+        this.params.page = this.params.page + 1;
+        this.morePage();
+      }
+      if (this.params.page === scroll.page) {
+        this.scrollable.nativeElement.scrollTop = scroll.top;
+      }
+    });
   }
 
   showPicker(target) {
@@ -136,24 +175,51 @@ export class GuideWNStep4Component implements OnInit {
       this.params.page = 1;
       this.employeeSvc.getIntentList(this.params).then(data => {
         this.lists = data.list;
-        this.comp.restart();
+        this.restart();
+        // this.comp.restart();
       });
     });
   }
 
-  onLoadMore(comp: InfiniteLoaderComponent) {
-    Observable.timer(1500).subscribe(() => {
+  contact() {
+    this.contactSvc.show();
+  }
 
-      this.params.page = this.params.page + 1;
-      this.employeeSvc.getIntentList(this.params).then(res => {
-        this.lists = this.lists.concat(res.list);
-        if (res.page >= res.totalPage) {
-          comp.setFinished();
-          return;
-        }
+  resolveLoading() {
+    this.isLoading = true;
+  }
+
+  setFinished() {
+    this.isLoading = false;
+    this.isFinished = true;
+  }
+
+  restart() {
+    this.isLoading = false;
+    this.isFinished = false;
+  }
+
+  onLoadMore(e) {
+    this.filterShow = true;
+    const percent = e.target.scrollTop / (e.target.scrollHeight - e.target.offsetHeight);
+    this.storageSvc.set('scroll', JSON.stringify({top: e.target.scrollTop, page: this.params.page}));
+    if (percent > 0.75) {
+      if (this.isLoading || this.isFinished) {
+        return false;
+      }
+      this.resolveLoading();
+      Observable.timer(1500).subscribe(() => {
+        this.params.page = this.params.page + 1;
+        this.employeeSvc.getIntentList(this.params).then(res => {
+          this.isLoading = false;
+          this.lists = this.lists.concat(res.list);
+          if (res.page >= res.totalPage) {
+            // comp.setFinished();
+            this.setFinished();
+            return;
+          }
+        });
       });
-
-      comp.resolveLoading();
-    });
+    }
   }
 }

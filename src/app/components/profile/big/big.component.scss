@@ -7,12 +7,13 @@
 }
 
 .weui-media-box__hd {
-  width: 0.75rem;
+  width: 1.59rem;
   height: auto;
   align-self: start;
+  margin-right: 0.15rem;
   .avatar-box {
     overflow: hidden;
-    height: 1rem;
+    height: 2.12rem;
     border-radius: 0.04rem;
     position: relative;
     overflow: hidden;
@@ -121,6 +122,7 @@
 }
 
 .has-label {
+  margin-bottom: 0.05rem;
   .ui-label {
     font-weight: normal;
     font-size: 0.12rem;

@@ -223,32 +223,6 @@
   }
 }
 
-.weui-form-preview {
-  margin-top: 0;
-  &:before {
-    display: none;
-  }
-}
-
-.weui-form-preview__hd {
-  .weui-form-preview__label {
-    color: #666;
-    font-size: 0.16rem;
-  }
-}
-
-.weui-form-preview__label {
-  color: #999
-}
-
-.weui-form-preview__value {
-  color: #666
-}
-
-em.weui-form-preview__value {
-  color: #EA5A2B;
-}
-
 .weui-btn-area {
   margin: 0.15rem 0.15rem 0.3rem;
 }

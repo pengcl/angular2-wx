@@ -48,7 +48,6 @@ import {AppPayComponent} from './pages/pay/pay.component';
 import {COMPONENTS_DECLARATIONS} from './components';
 import {FRONT_PAGES_DECLARATIONS} from './pages/front';
 import {ADMIN_PAGES_DECLARATIONS} from './pages/admin';
-import {RECRUITMENT_PAGES_DECLARATIONS} from './pages/recruitment';
 import {GUIDE_PAGES_DECLARATIONS} from './pages/guide';
 import {WX_PAGES_DECLARATIONS} from './pages/wx';
 
@@ -85,7 +84,6 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     ...COMPONENTS_DECLARATIONS,
     ...FRONT_PAGES_DECLARATIONS,
     ...ADMIN_PAGES_DECLARATIONS,
-    ...RECRUITMENT_PAGES_DECLARATIONS,
     ...GUIDE_PAGES_DECLARATIONS,
     ...WX_PAGES_DECLARATIONS,
     ...DIRECTIVES_DECLARATIONS

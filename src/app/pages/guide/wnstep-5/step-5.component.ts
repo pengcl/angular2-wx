@@ -1,5 +1,6 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
+import {DomSanitizer} from '@angular/platform-browser';
 
 import 'rxjs/add/operator/switchMap';
 import {PageConfig} from '../../page.config';
@@ -9,9 +10,12 @@ import {EmployeeService} from '../../../services/employee.service';
 import {OrderService} from '../../../services/order.service';
 import {Config} from '../../../config';
 
+import {DetailsPipe} from '../../../pipes/pipes.pipe';
 import {getRate} from '../../../utils/utils';
 import {RatingConfig, DialogService} from 'ngx-weui';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
+
+declare var $: any;
 
 @Component({
   selector: 'app-guide-w-n-step5',
@@ -22,6 +26,8 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 export class GuideWNStep5Component implements OnInit {
   tabBarConfig = PageConfig.tabBar;
   navBarConfig = PageConfig.navBar;
+
+  htmlItems;
 
   avatar;
   ratingConfig: RatingConfig = {
@@ -60,6 +66,8 @@ export class GuideWNStep5Component implements OnInit {
 
   constructor(private router: Router,
               private route: ActivatedRoute,
+              private domSanitizer: DomSanitizer,
+              private detailsPipe: DetailsPipe,
               private dialogSvc: DialogService,
               private wx: WxService,
               private userSvc: UserService,
@@ -89,8 +97,22 @@ export class GuideWNStep5Component implements OnInit {
       });
     }
 
+    /*this.datePipe.transform(myDate, 'yyyy-MM-dd');*/
+
     this.route.paramMap.switchMap((params: ParamMap) => this.employeeSvc.getHousekeeper(params.get('id'))).subscribe(res => {
       this.housekeeper = res.housekeeper;
+
+      setTimeout(() => {
+        const sectionItems = $('#details').find('section');
+        const hItems = $('#details').find('h3');
+        const htmlItems = [];
+        for (let i = 0; i < hItems.length; i++) {
+          htmlItems.push({h: hItems[i].innerHTML, section: sectionItems[i].innerHTML});
+        }
+        this.htmlItems = htmlItems;
+
+        console.log(this.htmlItems);
+      });
       this.avatar = this.housekeeper.headimageurl ? this.config.prefix.wApi + this.housekeeper.headimageurl : '/assets/images/avatar.jpg';
       this.wx.config({
         title: '【大牛管家】推荐人才！' + this.housekeeper.name + '，' + this.housekeeper.soldierAge + '年军龄',
@@ -143,5 +165,12 @@ export class GuideWNStep5Component implements OnInit {
     } else {
       this.imagesLen = 100;
     }
+  }
+
+  go(type) {
+    if (this.housekeeper.issubscribe !== 2 || this.housekeeper.termid === 'c6a14c76-8a67-4c2a-87ef-f7e6e2d0b6e9') {
+      return false;
+    }
+    this.router.navigate(['/guide/w6', this.housekeeperId], {queryParams: {type: type, gh: this.gh}});
   }
 }

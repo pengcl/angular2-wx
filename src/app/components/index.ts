@@ -4,6 +4,7 @@ import {GalleryComponent} from './gallery/gallery.component';
 import {ProfileComponent} from './profile/profile.component';
 import {ProfileGraphicComponent} from './profile/graphic/graphic.component';
 import {ProfileMinComponent} from './profile/min/min.component';
+import {ProfileBigComponent} from './profile/big/big.component';
 import {RateComponent} from './rate/rate.component';
 import {MsgComponent} from './msg/msg.component';
 
@@ -14,6 +15,7 @@ export const COMPONENTS_DECLARATIONS = [
   ProfileComponent,
   ProfileGraphicComponent,
   ProfileMinComponent,
+  ProfileBigComponent,
   RateComponent,
   MsgComponent
 ];

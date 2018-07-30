@@ -1,10 +1,31 @@
-<weui-infiniteloader (loadmore)="onLoadMore($event)" #comp>
-  <div class="img-box">
-    <img src="/assets/images/guide/top1.png">
+<div class="content-scrollable" (scroll)="onLoadMore($event)" #scrollable>
+  <div class="img-box" [ngClass]="{'filter-show':filterShow}">
+    <img src="/assets/images/guide/w/banner.jpg">
   </div>
-  <div class="weui-cells__title" style="font-size: 0.18rem;color: #333;">{{isPaid ? '更换管家' : '推荐管家'}} <span
-    style="font-size: 0.14rem">请挑选管家进行预约面试</span></div>
-  <div class="weui-cells">
+  <div class="menu">
+    <div class="weui-flex">
+      <a href="https://mp.weixin.qq.com/s/lgHUR4RIa8Ss-QH5JE79Qw" class="link weui-flex__item">
+        <div class="weui-grid__icon">
+          <img src="/assets/images/guide/w/2.png">
+        </div>
+        <div class="weui-grid__label">关于我们</div>
+      </a>
+      <a href="https://mp.weixin.qq.com/s/tChhCMEZUqmg_SQYsu6ntg" class="weui-flex__item">
+        <div class="weui-grid__icon">
+          <img src="/assets/images/guide/w/3.png">
+        </div>
+        <div class="weui-grid__label">基地风采</div>
+      </a>
+      <a (click)="contact()" class="weui-flex__item">
+        <div class="weui-grid__icon">
+          <img src="/assets/images/guide/w/4.png">
+        </div>
+        <div class="weui-grid__label">在线客服</div>
+      </a>
+    </div>
+  </div>
+  <div class="weui-cells__title" style="font-size: 0.18rem;color: #333;">{{isPaid ? '更换管家' : '管家列表'}}</div>
+  <div *ngIf="filterShow" class="filter weui-cells">
     <div class="weui-flex">
       <div class="weui-flex__item">
         <div (click)="showPicker('driversAge')" class="weui-cell weui-cell_access">
@@ -25,7 +46,11 @@
                [profile]="item"
                *ngFor="let item of lists"></app-profile>
 
-  <div *ngIf="!isPaid" class="weui-btn-area">
-    <a [routerLink]="['/guide/w6','']" [queryParams]="{orderNo:orderNo,gh:gh}" queryParamsHandling="merge" class="weui-btn weui-btn_primary">预定名额</a>
+  <div *ngIf="isLoading && !isFinished" class="weui-loadmore">
+    <i class="weui-loading"></i>
+    <span class="weui-loadmore__tips">正在加载</span>
   </div>
-</weui-infiniteloader>
+  <div *ngIf="isFinished" class="weui-loadmore weui-loadmore_line">
+    <span class="weui-loadmore__tips">加载完毕</span>
+  </div>
+</div>

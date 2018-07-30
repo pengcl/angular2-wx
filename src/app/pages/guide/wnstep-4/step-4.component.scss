@@ -1,8 +1,8 @@
+.content-scrollable {
+  background: #fff;
+}
 .weui-media-box {
   padding: 0;
-}
-.img-box {
-  margin: 0.15rem;
 }
 
 .weui-btn-area {
@@ -10,4 +10,30 @@
     background-image: linear-gradient(90deg, #E0BB7C 0%, #B38247 100%);
     border-radius: 100px;
   }
+}
+
+.menu {
+  padding-top: 0.2rem;
+}
+
+.menu .weui-grid__icon {
+  width: 0.4rem;
+  height: 0.4rem;
+}
+
+.menu .weui-grid__label {
+  font-size: 0.13rem;
+}
+
+.filter {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: auto;
+  z-index: 9999;
+}
+
+.filter-show {
+  margin-top: 0.45rem;
 }

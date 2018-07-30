@@ -1,5 +1,80 @@
 <div #scrollMe [formGroup]="subscribeForm" class="content-scrollable">
-  <app-profile *ngIf="housekeeper" [profile]="housekeeper"></app-profile>
+  <app-profile-big *ngIf="housekeeper" [profile]="housekeeper"></app-profile-big>
+
+  <div *ngIf="type === '1'" class="weui-form-preview">
+    <div class="weui-form-preview__hd">
+      <div class="weui-form-preview__item">
+        <label class="weui-form-preview__label">租用管家费用</label>
+        <em class="weui-form-preview__value">¥{{housekeeper?.commissionamount}}/月</em>
+      </div>
+    </div>
+    <div class="weui-form-preview__bd">
+      <div class="weui-form-preview__item">
+        <label class="weui-form-preview__label">工资</label>
+        <span class="weui-form-preview__value">
+          <span *ngIf="housekeeper?.commissionamount == 10000">¥7500/月</span>
+          <span *ngIf="housekeeper?.commissionamount == 12000">¥9000/月</span>
+        </span>
+      </div>
+      <div class="weui-form-preview__item">
+        <label class="weui-form-preview__label">服务管理税费</label>
+        <span class="weui-form-preview__value">
+          <span *ngIf="housekeeper?.commissionamount == 10000">¥1500/月</span>
+          <span *ngIf="housekeeper?.commissionamount == 12000">¥1800/月</span>
+        </span>
+      </div>
+      <div class="weui-form-preview__item">
+        <label class="weui-form-preview__label">五险一金</label>
+        <span class="weui-form-preview__value">¥1492/月</span>
+      </div>
+      <div class="weui-form-preview__item">
+        <label class="weui-form-preview__label">商业保险</label>
+        <span class="weui-form-preview__value">¥300/月</span>
+      </div>
+      <div class="weui-form-preview__item">
+        <label class="weui-form-preview__label">总计</label>
+        <span class="weui-form-preview__value">
+          <span *ngIf="housekeeper?.commissionamount === 10000">¥10792/月</span>
+          <span *ngIf="housekeeper?.commissionamount === 12000">¥12592/月</span>
+        </span>
+      </div>
+      <div class="weui-form-preview__item">
+        <label class="weui-form-preview__label">优惠折扣</label>
+        <span style="color: #09BB07;" class="weui-form-preview__value">
+          <span *ngIf="housekeeper?.commissionamount === 10000">-¥792/月</span>
+          <span *ngIf="housekeeper?.commissionamount === 12000">-¥592/月</span>
+        </span>
+      </div>
+      <div class="weui-form-preview__item">
+        <label class="weui-form-preview__label">租用说明</label>
+        <span class="weui-form-preview__value">租用是指客户按月付费给平台，客户负责管家食宿差旅，对管家不满意我们可提供更换服务。</span>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="type === '2'" class="weui-form-preview">
+    <div class="weui-form-preview__hd">
+      <div class="weui-form-preview__item">
+        <label class="weui-form-preview__label">聘用管家转让费</label>
+        <em class="weui-form-preview__value">¥{{housekeeper?.employAmount * 1.2}}</em>
+      </div>
+    </div>
+    <div class="weui-form-preview__bd">
+      <div class="weui-form-preview__item">
+        <label class="weui-form-preview__label">工资</label>
+        <span class="weui-form-preview__value">¥{{housekeeper?.employAmount}}/月</span>
+      </div>
+      <div class="weui-form-preview__item">
+        <label class="weui-form-preview__label">转让费</label>
+        <span class="weui-form-preview__value">¥{{housekeeper?.employAmount * 1.2}}</span>
+      </div>
+      <div class="weui-form-preview__item">
+        <label class="weui-form-preview__label">聘用说明</label>
+        <span class="weui-form-preview__value">聘用是指客户与管家直接建立劳动关系，负责管家五险一金和食宿差旅，不支持更换服务。</span>
+      </div>
+    </div>
+  </div>
+
   <div class="check-customerName check-customerMobile weui-cells__title"
        [ngClass]="{'warn':(subscribeForm.get('customerName').invalid && isSubmit) || (subscribeForm.get('customerMobile').invalid && isSubmit)}">
     请您留下联系方式，以便我们登记安排管家
@@ -22,7 +97,7 @@
     </div>
   </div>
 
-  <div class="check-serviceAreaId check-serviceAreaName weui-cells__title"
+  <!--<div class="check-serviceAreaId check-serviceAreaName weui-cells__title"
        [ngClass]="{'warn':subscribeForm.get('serviceAreaId').invalid && isSubmit}">您所在的城市是？
   </div>
   <div class="item-list weui-grids">
@@ -32,10 +107,12 @@
         <span class="tag"><img src="/assets/images/guide/checked.png"></span>
       </div>
     </div>
-  </div>
+  </div>-->
 
   <div class="weui-btn-area">
-    <weui-button [userTrack]="'reserve'" (click)="submit()" [weui-loading]="loading" class="weui-btn weui-btn_primary">提交</weui-button>
+    <weui-button [userTrack]="'reserve'" (click)="submit()" [weui-loading]="loading" class="weui-btn weui-btn_primary">
+      支付预定金（￥9.9）
+    </weui-button>
   </div>
 
 </div>
