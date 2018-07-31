@@ -1,12 +1,28 @@
 <div [formGroup]="subscribeForm" class="content-scrollable">
   <div class="img-box">
-    <img src="/assets/images/guide/w/banner.jpg">
+    <img src="/assets/images/guide/w/3/banner.jpg">
   </div>
-  <div class="check-customerName check-customerMobile weui-cells__title"
+  <div class="img-box">
+    <img src="/assets/images/guide/w/3/1.jpg">
+  </div>
+  <div class="img-box">
+    <img src="/assets/images/guide/w/3/2.jpg">
+  </div>
+  <div class="img-box">
+    <img src="/assets/images/guide/w/3/3.jpg">
+  </div>
+  <div class="img-box">
+    <img src="/assets/images/guide/w/3/4.jpg">
+  </div>
+  <div class="img-box">
+    <img src="/assets/images/guide/w/3/5.jpg">
+  </div>
+  <h1><em>1元抢订</em>大牛管家活动</h1>
+  <!--<div class="check-customerName check-customerMobile weui-cells__title"
        [ngClass]="{'warn':(subscribeForm.get('customerName').invalid && isSubmit) || (subscribeForm.get('customerMobile').invalid && isSubmit)}">
     请您留下联系方式，以便我们登记安排管家
     <p>大牛管家向您承诺，您所有资料均会严格保密，请放心填写。</p>
-  </div>
+  </div>-->
   <div class="input-area weui-cells weui-cells_form">
     <div class="weui-cell" [ngClass]="{'weui-cell_warn':subscribeForm.get('customerName').invalid && isSubmit}">
       <div class="weui-cell__hd"><span class="weui-label">您的称呼</span></div>
@@ -16,17 +32,25 @@
       <div class="weui-cell__ft"><i class="weui-icon-warn"></i></div>
     </div>
     <div class="weui-cell" [ngClass]="{'weui-cell_warn':subscribeForm.get('customerMobile').invalid && isSubmit}">
-      <div class="weui-cell__hd"><span class="weui-label">联系电话</span></div>
+      <div class="weui-cell__hd"><span class="weui-label">手机号码</span></div>
       <div class="weui-cell__bd">
-        <input formControlName="customerMobile" maxlength="11" class="weui-input" placeholder="请输入手机号码">
+        <input type="tel" formControlName="customerMobile" maxlength="11" class="weui-input" placeholder="请输入手机号码">
+      </div>
+      <div class="weui-cell__ft"><span class="active-code" (click)="getCode(subscribeForm.get('customerMobile').value)" *ngIf="subscribeForm.get('customerMobile').valid">{{activeText}}</span><i class="weui-icon-warn"></i></div>
+    </div>
+    <div class="weui-cell" [ngClass]="{'weui-cell_warn':subscribeForm.get('code').invalid && isSubmit}">
+      <div class="weui-cell__hd"><span class="weui-label">验证码</span></div>
+      <div class="weui-cell__bd">
+        <input type="tel" formControlName="code" maxlength="11" class="weui-input" placeholder="请输入手机验证码">
       </div>
       <div class="weui-cell__ft"><i class="weui-icon-warn"></i></div>
     </div>
   </div>
+  <div class="weui-cells__tips">大牛管家向您承诺，您所有资料均会严格保密，请放心填写。</div>
 
   <div class="weui-btn-area">
     <weui-button [userTrack]="'reserve'" (click)="submit()" [weui-loading]="loading" class="weui-btn weui-btn_primary">
-      提交
+      预订 (支付1元)
     </weui-button>
   </div>
 

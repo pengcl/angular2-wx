@@ -5,9 +5,12 @@
 
   <div *ngIf="housekeeper?.termid !== 'c6a14c76-8a67-4c2a-87ef-f7e6e2d0b6e9'" class="weui-cells__price weui-cells">
     <div class="weui-cell">
-      <div class="weui-cell__bd">聘用转让费（一次性支付）</div>
-      <div class="weui-cell__ft">
-        <em>¥{{housekeeper?.employAmount * 1.2}}</em>
+      <div class="weui-cell__bd">
+        聘用价
+        <div style="color: #B5854A;font-size: 0.12rem" class="weui-media-box__desc">聘用需支付管家年薪10%的人才转让费</div>
+      </div>
+      <div style="align-self: start" class="weui-cell__ft">
+        <em>¥{{housekeeper?.employAmount}}/月</em>
         <!--<em *ngIf="housekeeper?.levelname === '初级'">¥9600</em>
         <em *ngIf="housekeeper?.levelname === '中级'">¥12000</em>
         <em *ngIf="housekeeper?.levelname === '高级'">¥13200</em>
@@ -345,16 +348,28 @@
 
   </div>
 
-  <div *ngIf="housekeeper?.termid !== 'c6a14c76-8a67-4c2a-87ef-f7e6e2d0b6e9'" class="btns-group">
-    <a (click)="go(2)" [userTrack]="'reserve'" class="btn-primary"
-       [ngClass]="{'disabled':housekeeper?.issubscribe !== 2}">聘用他</a>
-    <a *ngIf="housekeeper?.employAmount !== 7000" (click)="go(1)" [userTrack]="'reserve'" class="btn-secondary"
-       [ngClass]="{'disabled':housekeeper?.issubscribe !== 2}">租用他</a>
+  <div *ngIf="!isPaid">
+    <div *ngIf="housekeeper?.termid !== 'c6a14c76-8a67-4c2a-87ef-f7e6e2d0b6e9'" class="btns-group">
+      <a (click)="go(2)" [userTrack]="'reserve'" class="btn-primary"
+         [ngClass]="{'disabled':housekeeper?.issubscribe !== 2}">聘用他</a>
+      <a *ngIf="housekeeper?.employAmount !== 7000" (click)="go(1)" [userTrack]="'reserve'" class="btn-secondary"
+         [ngClass]="{'disabled':housekeeper?.issubscribe !== 2}">租用他</a>
+    </div>
+
+    <div *ngIf="housekeeper?.termid === 'c6a14c76-8a67-4c2a-87ef-f7e6e2d0b6e9'" class="btns-group">
+      <a class="btn-primary disabled">聘用他</a>
+      <a class="btn-secondary disabled">租用他</a>
+    </div>
   </div>
 
-  <div *ngIf="housekeeper?.termid === 'c6a14c76-8a67-4c2a-87ef-f7e6e2d0b6e9'" class="btns-group">
-    <a class="btn-primary disabled">聘用他</a>
-    <a class="btn-secondary disabled">租用他</a>
+  <div *ngIf="isPaid">
+    <div *ngIf="housekeeper?.termid !== 'c6a14c76-8a67-4c2a-87ef-f7e6e2d0b6e9'" class="btns-group">
+      <a (click)="reserve()" [userTrack]="'reserve'" class="btn-primary"
+         [ngClass]="{'disabled':housekeeper?.issubscribe !== 2}">选择他</a>
+    </div>
+    <div *ngIf="housekeeper?.termid === 'c6a14c76-8a67-4c2a-87ef-f7e6e2d0b6e9'" class="btns-group">
+      <a class="btn-primary disabled">选择他</a>
+    </div>
   </div>
 
 </div>

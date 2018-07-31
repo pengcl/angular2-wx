@@ -98,8 +98,8 @@
       <div class="weui-media-box weui-media-box_appmsg">
         <div class="weui-media-box__hd">
           <img src="{{item.headimageurl ? config.prefix.wApi + item.headimageurl : '/assets/images/logo.png'}}">
-          <a *ngIf="!item.istrunorder && !item.housekeeperid" routerLink="/guide/step4" [queryParams]="{orderNo:item.orderno}">选择管家</a>
-          <a *ngIf="!item.istrunorder && item.housekeeperid" routerLink="/guide/step4" [queryParams]="{orderNo:item.orderno}">更换管家</a>
+          <a *ngIf="!item.istrunorder && !item.housekeeperid" routerLink="/guide/w4" [queryParams]="{orderNo:item.orderno}">选择管家</a>
+          <a *ngIf="!item.istrunorder && item.housekeeperid" routerLink="/guide/w4" [queryParams]="{orderNo:item.orderno}">更换管家</a>
         </div>
         <div class="weui-media-box__bd">
           <p class="weui-media-box__desc">订单编号：{{item.orderno}}</p>

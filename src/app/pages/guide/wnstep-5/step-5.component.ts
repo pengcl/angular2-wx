@@ -90,8 +90,11 @@ export class GuideWNStep5Component implements OnInit {
       housekeeperId: new FormControl('', [Validators.required])
     });
 
+    this.contentForm.get('housekeeperId').setValue(this.housekeeperId);
+
     if (this.orderNo) {
       this.orderSvc.getIntentServiceOrder(this.orderNo).then(res => {
+        this.contentForm.get('intentServiceOrderId').setValue(res.intentServiceOrder.serviceorderid);
         this.isPaid = !!res.intentServiceOrder.paidamount;
         this.payUrl = res.payUrl;
       });
@@ -172,5 +175,28 @@ export class GuideWNStep5Component implements OnInit {
       return false;
     }
     this.router.navigate(['/guide/w6', this.housekeeperId], {queryParams: {type: type, gh: this.gh}});
+  }
+
+  reserve() {
+    this.isSubmit = true;
+    if (this.loading || this.contentForm.invalid) {
+      return false;
+    }
+    this.loading = true;
+    this.orderSvc.relHousekeeperForIntent(this.contentForm.value).then(res => {
+      this.loading = false;
+      if (res.code === 0) {
+        if (this.isPaid) {
+          this.router.navigate(['/guide/w8'], {queryParams: {orderNo: this.orderNo}});
+        } else {
+          window.location.href = this.payUrl;
+        }
+        // this.router.navigate(['/guide/step7']);
+      } else {
+        this.dialogSvc.show({content: res.msg, cancel: '', confirm: '我知道了！'}).subscribe();
+      }
+      console.log(res);
+    }).then(() => {
+    });
   }
 }

@@ -64,6 +64,7 @@
       </tr>
 
       <tr [routerLink]="['/admin/backend/housekeeper/week/item',work.housekeeperid]" *ngFor="let work of omissionList;let i = index">
+        <td>{{i + 1}}</td>
         <td>{{work.housekeeperName}}</td>
         <td>{{work.housekeeperno}}</td>
         <td colspan="2"><em>未填写</em></td>

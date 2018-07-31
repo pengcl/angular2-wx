@@ -17,10 +17,10 @@
         </span>
       </div>
       <div class="weui-form-preview__item">
-        <label class="weui-form-preview__label">服务管理税费</label>
+        <label class="weui-form-preview__label">服务管理费</label>
         <span class="weui-form-preview__value">
-          <span *ngIf="housekeeper?.commissionamount == 10000">¥1500/月</span>
-          <span *ngIf="housekeeper?.commissionamount == 12000">¥1800/月</span>
+          <span *ngIf="housekeeper?.commissionamount == 10000">¥1000/月</span>
+          <span *ngIf="housekeeper?.commissionamount == 12000">¥1200/月</span>
         </span>
       </div>
       <div class="weui-form-preview__item">
@@ -55,22 +55,18 @@
   <div *ngIf="type === '2'" class="weui-form-preview">
     <div class="weui-form-preview__hd">
       <div class="weui-form-preview__item">
-        <label class="weui-form-preview__label">聘用管家转让费</label>
-        <em class="weui-form-preview__value">¥{{housekeeper?.employAmount * 1.2}}</em>
+        <label class="weui-form-preview__label">聘用管家月薪</label>
+        <em class="weui-form-preview__value">¥{{housekeeper?.employAmount}}/月</em>
       </div>
     </div>
     <div class="weui-form-preview__bd">
-      <div class="weui-form-preview__item">
-        <label class="weui-form-preview__label">工资</label>
-        <span class="weui-form-preview__value">¥{{housekeeper?.employAmount}}/月</span>
-      </div>
-      <div class="weui-form-preview__item">
-        <label class="weui-form-preview__label">转让费</label>
+      <!--<div class="weui-form-preview__item">
+        <label class="weui-form-preview__label">转让费<span style="color: #B5854A;">(一次性支付)</span></label>
         <span class="weui-form-preview__value">¥{{housekeeper?.employAmount * 1.2}}</span>
-      </div>
+      </div>-->
       <div class="weui-form-preview__item">
         <label class="weui-form-preview__label">聘用说明</label>
-        <span class="weui-form-preview__value">聘用是指客户与管家直接建立劳动关系，负责管家五险一金和食宿差旅，不支持更换服务。</span>
+        <span class="weui-form-preview__value">需支付管家年薪10%的人才转让费（猎头收费标准为20%），在管家面试合格上岗时支付。</span>
       </div>
     </div>
   </div>
@@ -111,7 +107,7 @@
 
   <div class="weui-btn-area">
     <weui-button [userTrack]="'reserve'" (click)="submit()" [weui-loading]="loading" class="weui-btn weui-btn_primary">
-      支付预定金（￥9.9）
+      支付预定金（￥1）
     </weui-button>
   </div>
 
