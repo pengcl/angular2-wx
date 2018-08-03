@@ -4,6 +4,7 @@ import {Router, ActivatedRoute, ParamMap} from '@angular/router';
 import {PageConfig} from '../../page.config';
 import {WxService} from '../../../modules/wx';
 import {DialogService, PickerService} from 'ngx-weui';
+import {UserService} from '../../../services/user.service';
 import {EmployeeService} from '../../../services/employee.service';
 import {LogService} from '../../../services/log.service';
 import {getRate, validScroll} from '../../../utils/utils';
@@ -28,12 +29,18 @@ export class GuideWNStep6Component implements OnInit {
 
   @ViewChild('scrollMe') private container: any;
 
+  activeText = '获取验证码';
+  activeClass = true;
+  second = 59;
+  timePromise = undefined;
+
   constructor(private router: Router,
               private route: ActivatedRoute,
               private logSvc: LogService,
               private dialogSvc: DialogService,
               private wx: WxService,
               private picker: PickerService,
+              private userSvc: UserService,
               private employeeSvc: EmployeeService) {
     this.navBarConfig.navigationBarTitleText = '大牛管家';
     logSvc.pageLoad('B');
@@ -60,7 +67,9 @@ export class GuideWNStep6Component implements OnInit {
       housekeeperId: new FormControl('', []),
       customerName: new FormControl('', [Validators.required]),
       customerMobile: new FormControl('', [Validators.required, Validators.min(10000000000), Validators.max(19999999999), Validators.pattern(/^[0-9]*$/)]),
+      code: new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(4)]),
       callbackUrl: new FormControl('', [Validators.required]),
+      returnUrl: new FormControl('', [Validators.required]), // 支付页回退地址
       gh: new FormControl('', [])
     });
 
@@ -69,12 +78,46 @@ export class GuideWNStep6Component implements OnInit {
     this.subscribeForm.get('housekeeperId').setValue(this.route.snapshot.params['id']);
     this.subscribeForm.get('gh').setValue(this.route.snapshot.queryParams['gh']);
     this.subscribeForm.get('callbackUrl').setValue(Config.webHost + '/guide/w7');
+    this.subscribeForm.get('returnUrl').setValue(window.location.href);
 
     this.route.paramMap.switchMap((params: ParamMap) => this.employeeSvc.getHousekeeper(params.get('id'))).subscribe(res => {
       this.housekeeper = res.housekeeper;
       console.log(this.housekeeper.levelname);
     });
 
+  }
+
+  getCode(mobile) {
+    if (!this.activeClass) {
+      return false;
+    }
+    this.userSvc.getCode(mobile).then(res => {
+      if (res.code === 0) {
+        this.activeClass = false;
+        this.timePromise = setInterval(() => {
+          if (this.second <= 0) {
+            clearInterval(this.timePromise);
+            this.timePromise = undefined;
+
+            this.second = 59;
+            this.activeText = '重发验证码';
+            this.activeClass = true;
+          } else {
+            this.activeText = '' + this.second + 's';
+            this.activeClass = false;
+            this.second = this.second - 1;
+          }
+        }, 1000);
+      } else {
+        this.dialogSvc.show({
+          title: '系统提示',
+          content: res.msg
+        }).subscribe(data => {
+          console.log(data);
+        });
+      }
+      console.log(res);
+    });
   }
 
   submit() {
@@ -107,8 +150,9 @@ export class GuideWNStep6Component implements OnInit {
     this.loading = true;
     this.employeeSvc.reserveButler(this.subscribeForm.value).then(res => {
       if (res.code === 0) {
-        console.log(res);
-        window.location.href = res.msg;
+        const locUrl = encodeURIComponent(window.location.href);
+        const _url = res.msg.indexOf('?') === -1 ? res.msg + '?returnUrl=' + locUrl : res.msg + '&returnUrl=' + locUrl;
+        window.location.href = _url;
       } else {
         this.dialogSvc.show({content: res.msg, cancel: '', confirm: '我知道了'}).subscribe();
       }

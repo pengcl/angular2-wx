@@ -1,5 +1,8 @@
 import {Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
 import {PageConfig} from './page.config';
+
+import {StorageService} from '../../../services/storage.service';
 import {WxService} from '../../../modules/wx';
 import {UserService} from '../../../services/user.service';
 import {EmployeeService} from '../../../services/employee.service';
@@ -23,7 +26,9 @@ export class AdminEmployeeComponent implements OnInit {
     msg: 0
   };
 
-  constructor(private wx: WxService,
+  constructor(private router: Router,
+              private storageSvc: StorageService,
+              private wx: WxService,
               private userSvc: UserService,
               private employee: EmployeeService,
               private contactSvc: MeiqiaService) {
@@ -52,6 +57,7 @@ export class AdminEmployeeComponent implements OnInit {
     this.user = this.userSvc.isLogin();
     this.employee.getHousekeeper(this.user.housekeeperId).then(res => {
       this.userInfo = res.housekeeper;
+      console.log(this.userInfo);
       this.admin = res.isUser;
     });
     this.employee.getEmployer(this.user.housekeeperId, 2).then(res => {
@@ -64,5 +70,10 @@ export class AdminEmployeeComponent implements OnInit {
 
   contact() {
     this.contactSvc.show();
+  }
+
+  logout() {
+    this.storageSvc.clear();
+    this.router.navigate(['/admin/login']);
   }
 }

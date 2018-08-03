@@ -1,6 +1,6 @@
 import {Component, OnInit, OnDestroy} from '@angular/core';
 import {Router, ActivatedRoute} from '@angular/router';
-import {Location, PlatformLocation} from '@angular/common';
+import {Location, LocationStrategy, PlatformLocation} from '@angular/common';
 import {PageConfig} from './page.config';
 import {WxService} from '../../../modules/wx';
 import {StorageService} from '../../../services/storage.service';
@@ -34,6 +34,7 @@ export class AdminEmployerComponent implements OnInit, OnDestroy {
   constructor(private storageSvc: StorageService,
               private router: Router,
               private route: ActivatedRoute,
+              private location: LocationStrategy,
               private wxSvc: WxService,
               private userSvc: UserService,
               private employerSvc: EmployerService,
@@ -54,6 +55,10 @@ export class AdminEmployerComponent implements OnInit, OnDestroy {
       console.log('注册成功');
     }).catch((err: string) => {
       console.log(`注册失败，原因：${err}`);
+    });
+
+    this.location.onPopState(state => {
+      this.wxSvc.destroyAll();
     });
 
     this.employerSvc.getEmployer(this.user.id).then(res => {
@@ -85,6 +90,7 @@ export class AdminEmployerComponent implements OnInit, OnDestroy {
   }
 
   onShare() {
+    this.location.pushState('', 'onShare', this.location.path(), '');
     this.wxSvc.show({}).subscribe(res => {
     });
   }

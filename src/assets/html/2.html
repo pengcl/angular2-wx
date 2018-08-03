@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en" style="font-size: 50px">
+<head>
+  <meta charset="utf-8">
+  <title>大牛管家</title>
+  <base href="/">
+
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1"/>
+  <meta name="format-detection" content="telephone=no"/>
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+</head>
+<body>
+2.html-><a onclick="setState()" href="/assets/html/3.html">3.html</a>
+<script>
+  function setState() {
+    history.replaceState({page: 'prev'}, "title 3", history.back());
+  }
+</script>
+</body>
+</html>

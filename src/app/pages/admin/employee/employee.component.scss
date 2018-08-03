@@ -1,44 +1,181 @@
-.content-scrollable {
+.home-content {
   background: #fff;
-}
-.panels {
-  background: #f8f8f8;
-}
-.dashboard {
-  /*&:before {
-    display: block;
-  }*/
-  &:after {
-    display: none;
-  }
-  .weui-grids {
-    &:before, &:after {
-      display: none;
-    }
-    .weui-grid {
-      &:before, &:after {
-        display: none;
-      }
-    }
-  }
-  .item-box {
-    .img {
-      width: 0.6rem;
-      height: 0.6rem;
-      box-sizing: border-box;
-      margin: 0.12rem auto;
-      position: relative;
+  .userinfo {
+    background-image: linear-gradient(-35deg, #B38247 0%, #E0BB7C 90%);
+    overflow: hidden;
+    position: relative;
+    padding-bottom: 0.2rem;
+    .left-circle, .right-circle {
       border-radius: 100%;
-      img {
-        display: block;
-        width: 100%;
+      background: #fff;
+      position: absolute;
+      display: block;
+    }
+    .left-circle {
+      width: 1rem;
+      height: 1rem;
+      top: -0.6rem;
+      left: -0.4rem;
+      opacity: 0.1;
+    }
+    .right-circle {
+      width: 0.75rem;
+      height: 0.75rem;
+      bottom: -0.4rem;
+      right: -0.3rem;
+      opacity: 0.1;
+    }
+    .userinfo-avatar {
+      width: 0.7rem;
+      height: 0.7rem;
+      box-sizing: border-box;
+      border: 0.02rem solid rgba(255, 255, 255, 0.4);
+    }
+    span {
+      display: inline-block;
+      line-height: 1;
+      padding: 0.05rem 0.05rem;
+      margin: 0 0.02rem;
+      color: #fff;
+    }
+  }
+  .menu {
+    background: #f5f5f5;
+    .status {
+      background: #fff;
+      .weui-flex {
+        .weui-flex__item {
+          text-align: center;
+          align-self: center;
+          padding: 0.18rem 0 0.2rem;
+          span {
+            font-size: 0.12rem;
+            line-height: 1;
+            color: #333;
+            display: block;
+          }
+          .weui-grid__label {
+            margin-top: 0.1rem;
+          }
+        }
       }
-      .weui-badge {
-        position: absolute;
-        right: 0;
-        top: 0;
-        border: 1px solid #fff;
+    }
+    .menu-list {
+      margin-top: 0.1rem;
+      background: #fff;
+      .weui-grids {
+        &:after {
+          display: block;
+          width: 100%;
+          height: 1px;
+          top: auto;
+          border-left: none;
+          border-bottom: 1px solid #d9d9d9;
+          transform: scale(1, 0.5);
+        }
+      }
+      .weui-grid {
+        padding: 0.24rem 0.1rem;
+        &:before, &:after {
+          display: block;
+        }
+        &.nrb {
+          &:before {
+            display: none;
+          }
+        }
+        &.nbb {
+          &:after {
+            display: none;
+          }
+        }
+
+        .weui-grid__label {
+          font-size: 0.12rem;
+          margin-top: 0.1rem;
+          line-height: 1;
+        }
       }
     }
   }
+
+  .weui-footer {
+    margin: 0.2rem 0 0.13rem;
+    .weui-footer__text {
+      font-size: 0.12rem;
+      line-height: 1;
+      margin-bottom: 0.15rem;
+    }
+    .weui-footer__links {
+      .weui-footer__link {
+        display: inline-block;
+        padding: 0.07rem 0.3rem;
+        font-size: 0.14rem;
+        line-height: 1;
+        color: #999;
+        width: auto;
+        margin: 0 auto;
+        border: 1px solid #ccc;
+        border-radius: 0.02rem;
+      }
+    }
+  }
+}
+
+.weui-grid__icon {
+  width: 0.24rem;
+  height: 0.24rem;
+}
+
+weui-mask {
+  .qr {
+    width: 60%;
+    margin: 0 auto;
+    img {
+      width: 100%;
+      display: block;
+    }
+  }
+}
+
+.edit {
+  position: absolute;
+  top: 0.2rem;
+  right: 0.2rem;
+  font-size: 0.12rem;
+}
+
+.userinfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+}
+
+.userinfo-avatar {
+  width: 0.62rem;
+  height: 0.62rem;
+  margin: 0.24rem 0.1rem 0.1rem;
+  position: relative;
+  border-radius: 100%;
+  overflow: hidden;
+  img {
+    width: 100%;
+    display: block;
+    border-radius: 50%;
+  }
+}
+
+.userinfo-nickname {
+  color: #fff;
+  font-size: 0.17rem;
+  line-height: 1;
+  span {
+    color: #999;
+    font-size: 0.12rem;
+  }
+}
+
+.userinfo-service {
+  font-size: 0.12rem;
 }

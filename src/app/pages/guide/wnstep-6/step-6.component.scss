@@ -205,6 +205,17 @@
   }
 }
 
+.active-code {
+  font-size: 0.11rem;
+  width: 7em;
+  color: #000;
+  text-align: center;
+  line-height: 0.21rem;
+  display: inline-block;
+  border-radius: 0.3rem;
+  background: #ccaa66;
+}
+
 .weui-cells__title {
   font-size: 0.15rem;
   font-weight: bold;

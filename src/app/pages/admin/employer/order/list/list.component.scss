@@ -36,6 +36,13 @@
   overflow: hidden;
 }
 
+.order-item {
+  .ui-label {
+    margin: 0.05rem 0 0;
+    padding: 0;
+  }
+}
+
 .periods {
   max-height: 0;
   overflow: hidden;

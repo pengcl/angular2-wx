@@ -1,6 +1,148 @@
 <app-navbar [navBar]="navBarConfig"></app-navbar>
 
-<div *ngIf="user" class="content-scrollable">
+<div *ngIf="employer" class="home-content content-scrollable has-footer">
+  <div class="userinfo">
+    <img class="userinfo-avatar" src="{{employer.headimageurl ? config.prefix.wApi + employer.headimageurl : '/assets/images/logo.png'}}"/>
+    <div class="userinfo-nickname">{{employer.cust_name}}</div>
+    <div class="userinfo-service"><span class="name">{{employer.mobile}}</span><span class="level">广东广州</span></div>
+    <!--<span (click)="sign()" class="sign"><i class="icon-edit"></i> {{userInfo.signDays ? '累计签到' + userInfo.signDays + '天' : '每日签到'}}</span>-->
+    <span routerLink="/admin/uploader/cvatar" class="edit">更换头像 ></span>
+    <span class="left-circle"></span>
+    <span class="right-circle"></span>
+  </div>
+  <div *ngIf="!admin" class="menu">
+    <div class="status">
+      <div class="weui-flex">
+        <div routerLink="/admin/employer/order/list" class="weui-flex__item">
+          <span class="weui-grid__icon">
+            <img src="/assets/images/icons/employer/orders.png">
+          </span>
+          <span class="weui-grid__label">订单</span>
+        </div>
+        <div routerLink="/admin/employer/employees" class="weui-flex__item">
+          <span class="weui-grid__icon">
+            <img src="/assets/images/icons/employer/employees.png">
+          </span>
+          <span class="weui-grid__label">我的管家</span>
+        </div>
+        <div routerLink="/admin/employer/message" class="weui-flex__item">
+          <span class="weui-grid__icon">
+            <img src="/assets/images/icons/employer/messages.png">
+          </span>
+          <span class="weui-grid__label">消息</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="menu-lists">
+      <div class="menu-list">
+        <div class="weui-grids">
+          <div routerLink="/admin/article/list" class="weui-grid">
+            <div class="weui-grid__icon">
+              <img src="/assets/images/icons/employer/library.png">
+            </div>
+            <p class="weui-grid__label">资料库</p>
+          </div>
+          <div (click)="onShare()" class="weui-grid">
+            <div class="weui-grid__icon">
+              <img src="/assets/images/icons/employer/invite.png">
+            </div>
+            <p class="weui-grid__label">推荐好友</p>
+          </div>
+          <div routerLink="/admin/employer/feedback" class="nrb weui-grid">
+            <div class="weui-grid__icon">
+              <img src="/assets/images/icons/employer/feedback.png">
+            </div>
+            <p class="weui-grid__label">意见反馈</p>
+          </div>
+          <div (click)="contact()" class="nbb weui-grid">
+            <div class="weui-grid__icon">
+              <img src="/assets/images/icons/employer/onlineSvc.png">
+            </div>
+            <p class="weui-grid__label">在线客服</p>
+          </div>
+          <div (click)="logout()" class="nbb weui-grid">
+            <div class="weui-grid__icon">
+              <img src="/assets/images/icons/employer/logout.png?1">
+            </div>
+            <p class="weui-grid__label">退出登录</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="admin" class="menu">
+
+    <div class="status">
+      <div class="weui-flex">
+        <div routerLink="/admin/employee/school/index" class="weui-flex__item">
+          <span class="weui-grid__icon">
+            <img src="/assets/images/icons/employer/orders.png">
+          </span>
+          <span class="weui-grid__label">大牛课堂</span>
+        </div>
+        <div routerLink="/admin/backend/statistics" class="weui-flex__item">
+          <span class="weui-grid__icon">
+            <img src="/assets/images/icons/employer/employees.png">
+          </span>
+          <span class="weui-grid__label">信息管理</span>
+        </div>
+        <div routerLink="/admin/employer/message" class="weui-flex__item">
+          <span class="weui-grid__icon">
+            <img src="/assets/images/icons/employer/messages.png">
+          </span>
+          <span class="weui-grid__label">我的消息</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="menu-lists">
+      <div class="menu-list">
+        <div class="weui-grids">
+          <div (click)="onShare()" class="weui-grid">
+            <div class="weui-grid__icon">
+              <img src="/assets/images/icons/employer/invite.png">
+            </div>
+            <p class="weui-grid__label">推荐好友</p>
+          </div>
+          <div routerLink="/admin/employer/feedback" class="weui-grid">
+            <div class="weui-grid__icon">
+              <img src="/assets/images/icons/employer/feedback.png">
+            </div>
+            <p class="weui-grid__label">意见反馈</p>
+          </div>
+          <div (click)="contact()" class="nrb weui-grid">
+            <div class="weui-grid__icon">
+              <img src="/assets/images/icons/employer/onlineSvc.png">
+            </div>
+            <p class="weui-grid__label">在线客服</p>
+          </div>
+          <div (click)="logout()" class="nbb weui-grid">
+            <div class="weui-grid__icon">
+              <img src="/assets/images/icons/employer/logout.png">
+            </div>
+            <p class="weui-grid__label">退出登录</p>
+          </div>
+          <div class="nbb weui-grid">
+            <div class="weui-grid__icon">
+            </div>
+            <p class="weui-grid__label">&nbsp;</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="weui-footer">
+    <p class="weui-footer__text">客服电话：<a href="tel:020-85598666">020-85598666</a></p>
+    <!--<p class="weui-footer__text">Copyright © 2008-2018 <em>{{config.webHost.replace("http://","")}}</em></p>-->
+    <!--<p class="weui-footer__links">
+      <a (click)="logout()" class="weui-footer__link">退出登录</a>
+    </p>-->
+  </div>
+</div>
+
+<!--<div *ngIf="user" class="content-scrollable">
 
   <div class="user-info weui-panel">
     <div class="weui-panel__bd">
@@ -140,7 +282,7 @@
       </div>
     </div>
   </div>
-</div>
+</div>-->
 
 <!--<div class="btns-group">
   <div routerLink="/admin/employer/feedback" class="btn-secondary no-state">意见反馈</div>

@@ -32,17 +32,24 @@
         <span class="weui-form-preview__value">¥300/月</span>
       </div>
       <div class="weui-form-preview__item">
+        <label class="weui-form-preview__label">税费</label>
+        <span class="weui-form-preview__value">
+          <span *ngIf="housekeeper?.commissionamount == 10000">¥325/月</span>
+          <span *ngIf="housekeeper?.commissionamount == 12000">¥395/月</span>
+        </span>
+      </div>
+      <div class="weui-form-preview__item">
         <label class="weui-form-preview__label">总计</label>
         <span class="weui-form-preview__value">
-          <span *ngIf="housekeeper?.commissionamount === 10000">¥10792/月</span>
-          <span *ngIf="housekeeper?.commissionamount === 12000">¥12592/月</span>
+          <span *ngIf="housekeeper?.commissionamount === 10000">¥10617/月</span>
+          <span *ngIf="housekeeper?.commissionamount === 12000">¥12387/月</span>
         </span>
       </div>
       <div class="weui-form-preview__item">
         <label class="weui-form-preview__label">优惠折扣</label>
         <span style="color: #09BB07;" class="weui-form-preview__value">
-          <span *ngIf="housekeeper?.commissionamount === 10000">-¥792/月</span>
-          <span *ngIf="housekeeper?.commissionamount === 12000">-¥592/月</span>
+          <span *ngIf="housekeeper?.commissionamount === 10000">-¥617/月</span>
+          <span *ngIf="housekeeper?.commissionamount === 12000">-¥387/月</span>
         </span>
       </div>
       <div class="weui-form-preview__item">
@@ -88,6 +95,13 @@
       <div class="weui-cell__hd"><span class="weui-label">联系电话</span></div>
       <div class="weui-cell__bd">
         <input formControlName="customerMobile" maxlength="11" class="weui-input" placeholder="请输入手机号码">
+      </div>
+      <div class="weui-cell__ft"><span class="active-code" (click)="getCode(subscribeForm.get('customerMobile').value)" *ngIf="subscribeForm.get('customerMobile').valid">{{activeText}}</span><i class="weui-icon-warn"></i></div>
+    </div>
+    <div class="weui-cell" [ngClass]="{'weui-cell_warn':subscribeForm.get('code').invalid && isSubmit}">
+      <div class="weui-cell__hd"><span class="weui-label">验证码</span></div>
+      <div class="weui-cell__bd">
+        <input type="tel" formControlName="code" maxlength="4" minlength="4" class="weui-input" placeholder="请输入手机验证码">
       </div>
       <div class="weui-cell__ft"><i class="weui-icon-warn"></i></div>
     </div>

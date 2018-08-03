@@ -125,7 +125,9 @@ export class GuideNStep6Component implements OnInit {
     this.loading = true;
     this.employeeSvc.reserveButler(this.subscribeForm.value).then(res => {
       if (res.code === 0) {
-        window.location.href = res.msg;
+        const locUrl = encodeURIComponent(window.location.href);
+        const _url = res.msg.indexOf('?') === -1 ? res.msg + '?returnUrl=' + locUrl : res.msg + '&returnUrl=' + locUrl;
+        window.location.href = _url;
       } else {
         this.dialogSvc.show({content: res.msg, cancel: '', confirm: '我知道了'}).subscribe();
       }

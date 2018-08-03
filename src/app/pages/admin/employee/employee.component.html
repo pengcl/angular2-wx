@@ -1,6 +1,93 @@
 <app-navbar [navBar]="navBarConfig"></app-navbar>
 
-<div *ngIf="user" class="content-scrollable has-footer">
+<div *ngIf="userInfo" class="home-content content-scrollable has-footer">
+  <div class="userinfo">
+    <img class="userinfo-avatar" src="{{config.prefix.wApi + userInfo.headimageurl}}"/>
+    <div class="userinfo-nickname">{{userInfo.name}}</div>
+    <div class="userinfo-service"><span class="name">{{userInfo.mobile}}</span><span class="level">{{userInfo.levelname}}管家</span></div>
+    <!--<span (click)="sign()" class="sign"><i class="icon-edit"></i> {{userInfo.signDays ? '累计签到' + userInfo.signDays + '天' : '每日签到'}}</span>-->
+    <span routerLink="/admin/employee/setting" class="edit">更换头像 ></span>
+    <span class="left-circle"></span>
+    <span class="right-circle"></span>
+  </div>
+  <div class="menu">
+    <div class="status">
+      <div class="weui-flex">
+        <div routerLink="/admin/employee/work" class="weui-flex__item">
+          <span class="weui-grid__icon">
+            <img src="/assets/images/icons/employee/reports.png">
+          </span>
+          <span class="weui-grid__label">周报</span>
+        </div>
+        <div routerLink="/admin/employee/clockIn" class="weui-flex__item">
+          <span class="weui-grid__icon">
+            <img src="/assets/images/icons/employee/clockIn.png">
+          </span>
+          <span class="weui-grid__label">打卡</span>
+        </div>
+        <div routerLink="/admin/employee/message" class="weui-flex__item">
+          <span class="weui-grid__icon">
+            <img src="/assets/images/icons/employee/messages.png">
+          </span>
+          <span class="weui-grid__label">消息</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="menu-lists">
+      <div class="menu-list">
+        <div class="weui-grids">
+          <div routerLink="/admin/employee/service" class="weui-grid">
+            <div class="weui-grid__icon">
+              <img src="/assets/images/icons/employee/services.png">
+            </div>
+            <p class="weui-grid__label">服务</p>
+          </div>
+          <div routerLink="/admin/employee/school/index" class="weui-grid">
+            <div class="weui-grid__icon">
+              <img src="/assets/images/icons/employee/school.png">
+            </div>
+            <p class="weui-grid__label">大牛课堂</p>
+          </div>
+          <div routerLink="/admin/employee/school/exam/index" class="nrb weui-grid">
+            <div class="weui-grid__icon">
+              <img src="/assets/images/icons/employee/exam.png">
+            </div>
+            <p class="weui-grid__label">在线考试</p>
+          </div>
+          <div routerLink="/admin/employee/ADM" class="nbb weui-grid">
+            <div class="weui-grid__icon">
+              <img src="/assets/images/icons/employee/manage.png">
+            </div>
+            <p class="weui-grid__label">行政</p>
+          </div>
+          <div routerLink="/admin/article/list" class="nbb weui-grid">
+            <div class="weui-grid__icon">
+              <img src="/assets/images/icons/employee/library.png">
+            </div>
+            <p class="weui-grid__label">资料库</p>
+          </div>
+          <div (click)="logout()" class="nrb nbb weui-grid">
+            <div class="weui-grid__icon">
+              <img src="/assets/images/icons/employee/logout.png">
+            </div>
+            <p class="weui-grid__label">退出登录</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="weui-footer">
+    <p class="weui-footer__text">客服电话：<a href="tel:020-85598666">020-85598666</a></p>
+    <!--<p class="weui-footer__text">Copyright © 2008-2018 <em>{{config.webHost.replace("http://","")}}</em></p>-->
+    <!--<p class="weui-footer__links">
+      <a (click)="logout()" class="weui-footer__link">退出登录</a>
+    </p>-->
+  </div>
+</div>
+
+<!--<div *ngIf="user" class="content-scrollable has-footer">
 
   <div class="user-info weui-panel weui-panel_access" *ngIf="userInfo">
     <div class="weui-panel__bd">
@@ -145,4 +232,4 @@
 <div class="btns-group">
   <div routerLink="/admin/employee/feedback" class="btn-secondary no-state">意见反馈</div>
   <div (click)="contact()" class="btn-secondary">联系客服</div>
-</div>
+</div>-->
