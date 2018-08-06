@@ -8,14 +8,22 @@
         <img src="/assets/images/icons/form.png">
       </div>
     </div>
-    <div class="weui-msg__text-area">
-      <h2 class="weui-msg__title">您还没有雇佣管家</h2>
-      <!--<p class="weui-msg__desc">您可以先“<a routerLink="/guide/n4">预订管家</a>”，当有管家可供挑选时，您可以挑选并雇佣。如果您已经预订过了，请耐心等待管家出炉。
-      </p>-->
+    <div *ngIf="reserveOrder" class="weui-msg__text-area">
+      <h2 *ngIf="reserveOrder.paystatus === 1" class="weui-msg__title">您的管家预订还没完成支付哦！</h2>
+      <h2 *ngIf="reserveOrder.paystatus !== 1" class="weui-msg__title">您已完成管家预订<br>请耐心等候服务顾问与您联系！</h2>
     </div>
-    <div class="weui-msg__opr-area">
+    <div *ngIf="!reserveOrder" class="weui-msg__text-area">
+      <h2 class="weui-msg__title">您还没有雇佣管家，快去挑选管家吧！</h2>
+    </div>
+    <div *ngIf="reserveOrder" class="weui-msg__opr-area">
       <p class="weui-btn-area">
-        <a href="javascript:history.back();" class="weui-btn weui-btn_default">返回</a>
+        <a *ngIf="reserveOrder.paystatus === 1" (click)="reservePay(reserveOrder.orderno)" class="weui-btn weui-btn_default">前往支付</a>
+        <a *ngIf="reserveOrder.paystatus !== 1" (click)="back()" class="weui-btn weui-btn_default">返回</a>
+      </p>
+    </div>
+    <div *ngIf="!reserveOrder" class="weui-msg__opr-area">
+      <p class="weui-btn-area">
+        <a routerLink="/guide/w4" class="weui-btn weui-btn_default">前往挑选管家</a>
       </p>
     </div>
     <div class="weui-msg__extra-area">

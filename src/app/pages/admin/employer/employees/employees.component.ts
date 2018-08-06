@@ -35,6 +35,9 @@ export class AdminEmployerEmployeesComponent implements OnInit {
 
   user: any;
 
+  reserveOrderList;
+  reserveOrder;
+
   filter: number | string [] = ['', '', ''];
   employees;
   listType = 'list';
@@ -56,6 +59,14 @@ export class AdminEmployerEmployeesComponent implements OnInit {
       this.employees = res.list;
     });
 
+    this.employerSvc.getReserveOrders(this.user.id).then(res => {
+      this.reserveOrderList = res.list;
+      if (this.reserveOrderList.length > 0) {
+        this.reserveOrder = res.list[0];
+        console.log(this.reserveOrder);
+      }
+    });
+
   }
 
   onLoadMore(comp: InfiniteLoaderComponent) {
@@ -71,6 +82,14 @@ export class AdminEmployerEmployeesComponent implements OnInit {
 
       comp.resolveLoading();
     });
+  }
+
+  reservePay(no) {
+    window.location.href = 'http://pay.danius.cn/interface/payment/gotoPay.ht?orderNo=' + no;
+  }
+
+  back() {
+    window.history.back();
   }
 
 }

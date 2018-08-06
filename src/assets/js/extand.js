@@ -1,5 +1,6 @@
 $.ajax({
-  url: 'http://wap.danius.cn/api/wx/config?url=' + encodeURIComponent(window.location.href), success: function (config) {
+  url: 'http://wap.danius.cn/wApi/interface/comm/getWxParameter.ht?shareUrl=' + encodeURIComponent(window.location.href),
+  success: function (config) {
     var _config = config;
     _config.jsApiList = [
       "onMenuShareTimeline",//分享朋友圈接口
@@ -37,4 +38,42 @@ function getMeiqia() {
   _MEIQIA('entId', 27864);
   _MEIQIA('fallback', 1);
   _MEIQIA('withoutBtn');
+}
+
+function getToutiao() {
+  (function (root) {
+    root._tt_config = true;
+    var ta = document.createElement('script');
+    ta.type = 'text/javascript';
+    ta.async = true;
+    ta.src = document.location.protocol + '//' + 's1.pstatp.com/bytecom/resource/track_log/src/toutiao-track-log.js';
+    ta.onerror = function () {
+      var request = new XMLHttpRequest();
+      var web_url = window.encodeURIComponent(window.location.href);
+      var js_url = ta.src;
+      var url = '//ad.toutiao.com/link_monitor/cdn_failed?web_url=' + web_url + '&js_url=' + js_url + '&convert_id=1608010185864196';
+      request.open('GET', url, true);
+      request.send(null);
+    };
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(ta, s);
+  })(window);
+
+  (function (root) {
+    root._tt_config = true;
+    var ta = document.createElement('script');
+    ta.type = 'text/javascript';
+    ta.async = true;
+    ta.src = document.location.protocol + '//' + 's1.pstatp.com/bytecom/resource/track_log/src/toutiao-track-log.js';
+    ta.onerror = function () {
+      var request = new XMLHttpRequest();
+      var web_url = window.encodeURIComponent(window.location.href);
+      var js_url = ta.src;
+      var url = '//ad.toutiao.com/link_monitor/cdn_failed?web_url=' + web_url + '&js_url=' + js_url + '&convert_id=1608011262150692';
+      request.open('GET', url, true);
+      request.send(null);
+    };
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(ta, s);
+  })(window);
 }

@@ -16,7 +16,7 @@ export class WxService extends BaseService {
   private static DEFAULTSHARE: any = {
     title: '大牛管家, 只为牛人服务',
     desc: '我们禀承“忠诚、安全、健康、舒心”的服务理念，旨在为全国高端商务人士及其家庭提供“安全防护、驾驶出行、科学运动”三大类日常综合管家服务。',
-    link: Config.webHost + '/assets/html/w/start.html',
+    link: Config.webHost + '/guide/w4',
     imgUrl: Config.webHost + '/assets/images/guide/share.jpg'
   };
 
@@ -87,7 +87,7 @@ export class WxService extends BaseService {
       });
 
       this.http
-        .get(Config.prefix.api + '/wx/config?url=' + encodeURIComponent(window.location.href))
+        .get(Config.prefix.wApi + '/interface/comm/getWxParameter.ht?shareUrl=' + encodeURIComponent(window.location.href))
         .catch((error: Response | any) => {
           reject('无法获取签名数据');
           return Observable.throw('error');
@@ -98,6 +98,7 @@ export class WxService extends BaseService {
             reject('jsapi 获取失败');
             return;
           }
+          console.log(ret);
           wx.config(ret);
         });
     });

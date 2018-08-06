@@ -9,6 +9,8 @@ import {LogService} from '../../../services/log.service';
 import {UserService} from '../../../services/user.service';
 import {Config} from '../../../config';
 
+declare var _taq: any;
+
 @Component({
   selector: 'app-guide-w-n-step9',
   templateUrl: './step-9.component.html',
@@ -52,6 +54,9 @@ export class GuideWNStep9Component implements OnInit {
     }).catch((err: string) => {
       console.log(`注册失败，原因：${err}`);
     });
+
+    /*_taq.push({convert_id: '1608010185864196', event_type: 'form'});
+    _taq.push({convert_id: '1608011262150692', event_type: 'form'});*/
 
     this.subscribeForm = new FormGroup({
       intentionType: new FormControl('', [Validators.required]),

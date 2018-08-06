@@ -56,6 +56,45 @@ export function getMeiqia() {
   _MEIQIA('withoutBtn');
 }
 
+// 美恰在线客服
+export function getToutiao() {
+  (function (root) {
+    root['_tt_config'] = true;
+    const ta = document.createElement('script');
+    ta.type = 'text/javascript';
+    ta.async = true;
+    ta.src = document.location.protocol + '//' + 's1.pstatp.com/bytecom/resource/track_log/src/toutiao-track-log.js';
+    ta.onerror = function () {
+      const request = new XMLHttpRequest();
+      const web_url = encodeURIComponent(window.location.href);
+      const js_url = ta.src;
+      const url = '//ad.toutiao.com/link_monitor/cdn_failed?web_url=' + web_url + '&js_url=' + js_url + '&convert_id=1608010185864196';
+      request.open('GET', url, true);
+      request.send(null);
+    };
+    const s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(ta, s);
+  })(window);
+
+  (function (root) {
+    root['_tt_config'] = true;
+    const ta = document.createElement('script');
+    ta.type = 'text/javascript';
+    ta.async = true;
+    ta.src = document.location.protocol + '//' + 's1.pstatp.com/bytecom/resource/track_log/src/toutiao-track-log.js';
+    ta.onerror = function () {
+      const request = new XMLHttpRequest();
+      const web_url = encodeURIComponent(window.location.href);
+      const js_url = ta.src;
+      const url = '//ad.toutiao.com/link_monitor/cdn_failed?web_url=' + web_url + '&js_url=' + js_url + '&convert_id=1608011262150692';
+      request.open('GET', url, true);
+      request.send(null);
+    };
+    const s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(ta, s);
+  })(window);
+}
+
 export function formData(body: object): FormData {
   const _formData: FormData = new FormData();
   for (const kn in body) {

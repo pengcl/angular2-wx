@@ -6,6 +6,7 @@ import {WxService} from '../../../modules/wx';
 import {DialogService, PickerService} from 'ngx-weui';
 import {UserService} from '../../../services/user.service';
 import {EmployeeService} from '../../../services/employee.service';
+import {OrderService} from '../../../services/order.service';
 import {LogService} from '../../../services/log.service';
 import {getRate, validScroll} from '../../../utils/utils';
 import {Config} from '../../../config';
@@ -20,9 +21,14 @@ export class GuideWNStep6Component implements OnInit {
   navBarConfig = PageConfig.navBar;
 
   type = '1';
+  orderNo;
+  isPaid: boolean = false;
+  payUrl;
 
   housekeeper;
+  housekeeperId;
 
+  contentForm: FormGroup;
   subscribeForm: FormGroup;
   isSubmit = false;
   loading = false;
@@ -41,6 +47,7 @@ export class GuideWNStep6Component implements OnInit {
               private wx: WxService,
               private picker: PickerService,
               private userSvc: UserService,
+              private orderSvc: OrderService,
               private employeeSvc: EmployeeService) {
     this.navBarConfig.navigationBarTitleText = '大牛管家';
     logSvc.pageLoad('B');
@@ -61,6 +68,15 @@ export class GuideWNStep6Component implements OnInit {
     });
 
     this.type = this.route.snapshot.queryParams['type'];
+    this.orderNo = this.route.snapshot.queryParams['orderNo'];
+    this.housekeeperId = this.route.snapshot.params['id'];
+
+    this.contentForm = new FormGroup({
+      intentServiceOrderId: new FormControl('', [Validators.required]),
+      housekeeperId: new FormControl('', [Validators.required])
+    });
+
+    this.contentForm.get('housekeeperId').setValue(this.housekeeperId);
 
     this.subscribeForm = new FormGroup({
       intentionType: new FormControl('', [Validators.required]),
@@ -75,14 +91,25 @@ export class GuideWNStep6Component implements OnInit {
 
     this.subscribeForm.get('intentionType').setValue(this.type);
 
-    this.subscribeForm.get('housekeeperId').setValue(this.route.snapshot.params['id']);
+    this.subscribeForm.get('housekeeperId').setValue(this.housekeeperId);
     this.subscribeForm.get('gh').setValue(this.route.snapshot.queryParams['gh']);
     this.subscribeForm.get('callbackUrl').setValue(Config.webHost + '/guide/w7');
     this.subscribeForm.get('returnUrl').setValue(window.location.href);
 
+    if (this.orderNo) {
+      this.orderSvc.getIntentServiceOrder(this.orderNo).then(res => {
+        console.log(res.intentServiceOrder);
+        this.subscribeForm.get('customerName').setValue(res.intentServiceOrder.customername);
+        this.subscribeForm.get('customerMobile').setValue(res.intentServiceOrder.customermobile);
+
+        this.contentForm.get('intentServiceOrderId').setValue(res.intentServiceOrder.serviceorderid);
+        this.isPaid = !!res.intentServiceOrder.paidamount;
+        this.payUrl = res.payUrl;
+      });
+    }
+
     this.route.paramMap.switchMap((params: ParamMap) => this.employeeSvc.getHousekeeper(params.get('id'))).subscribe(res => {
       this.housekeeper = res.housekeeper;
-      console.log(this.housekeeper.levelname);
     });
 
   }
@@ -123,9 +150,7 @@ export class GuideWNStep6Component implements OnInit {
   submit() {
     this.isSubmit = true;
 
-    console.log(this.subscribeForm.get('intentionType').value);
-
-    const valid = validScroll(this.subscribeForm.controls);
+    /*const valid = validScroll(this.subscribeForm.controls);
 
     if (!valid.valid) {// page_scroll_to_target
       const target = this.container.nativeElement.querySelector('.check-' + valid.control).offsetTop;
@@ -142,7 +167,7 @@ export class GuideWNStep6Component implements OnInit {
         console.log(err);
       }
       return false;
-    }
+    }*/
 
     if (this.subscribeForm.invalid || this.loading) {
       return false;

@@ -23,7 +23,6 @@ export class AdminHomeComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.storageSvc.clear();
     this.user = this.userSvc.isLogin();
     this.employerSvc.getEmployer(this.user.id).then(res => {
       if (res.cust.custType === 0) {

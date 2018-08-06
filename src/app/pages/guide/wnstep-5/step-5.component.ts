@@ -174,7 +174,7 @@ export class GuideWNStep5Component implements OnInit {
     if (this.housekeeper.issubscribe !== 2 || this.housekeeper.termid === 'c6a14c76-8a67-4c2a-87ef-f7e6e2d0b6e9') {
       return false;
     }
-    this.router.navigate(['/guide/w6', this.housekeeperId], {queryParams: {type: type, gh: this.gh}});
+    this.router.navigate(['/guide/w6', this.housekeeperId], {queryParams: {type: type, gh: this.gh, orderNo: this.orderNo}});
   }
 
   reserve() {

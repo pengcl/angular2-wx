@@ -7,6 +7,7 @@ import {WxService} from '../../../../../modules/wx';
 import {UserService} from '../../../../../services/user.service';
 
 import {EmployerService} from '../../../../../services/employer.service';
+import {EmployeeService} from '../../../../../services/employee.service';
 import {formatOrder} from '../../../../../utils/utils';
 
 @Component({
@@ -40,7 +41,8 @@ export class AdminEmployerOrderListComponent implements OnInit {
   constructor(private router: Router,
               private wx: WxService,
               private userSvc: UserService,
-              private employer: EmployerService) {
+              private employer: EmployerService,
+              private employee: EmployeeService) {
   }
 
   ngOnInit() {
@@ -57,12 +59,16 @@ export class AdminEmployerOrderListComponent implements OnInit {
       } else {
         this.orderList = [];
       }
-      console.log(this.orderList);
     });
 
     this.employer.getReserveOrders(this.user.id).then(res => {
       this.reserveOrderList = res.list;
-      console.log(this.reserveOrderList);
+      this.reserveOrderList.forEach((item, index) => {
+        this.employee.getHousekeeper(item.housekeeperid).then(_res => {
+          this.reserveOrderList[index].housekeeper = _res.housekeeper;
+          console.log(this.reserveOrderList);
+        });
+      });
     });
   }
 

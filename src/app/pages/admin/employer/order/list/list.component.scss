@@ -32,16 +32,20 @@
   width: 100%;
 }
 
+.weui-msg__title {
+  font-size: 0.16rem;
+}
+
 .weui-cells_radio {
   overflow: hidden;
 }
 
-.order-item {
+/*.order-item {
   .ui-label {
     margin: 0.05rem 0 0;
     padding: 0;
   }
-}
+}*/
 
 .periods {
   max-height: 0;
@@ -125,5 +129,11 @@
   background: #CA9F4D;
   color: #fff;
   font-weight: normal;
+}
+
+.weui-cell__ft {
+  .ui-label {
+    display: block;
+  }
 }
 

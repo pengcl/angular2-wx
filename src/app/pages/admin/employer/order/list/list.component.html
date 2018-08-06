@@ -9,12 +9,12 @@
       </div>
     </div>
     <div class="weui-msg__text-area">
-      <h2 class="weui-msg__title">暂无"订单"信息</h2>
+      <h2 class="weui-msg__title">您还没有下订预约管家，去挑选管家吧！</h2>
       <!--<p class="weui-msg__desc">前往“<a href="/assets/html/start.html">预订管家</a>”，成功后，可以看到相关的订单信息。</p>-->
     </div>
     <div class="weui-msg__opr-area">
       <p class="weui-btn-area">
-        <a href="javascript:history.back();" class="weui-btn weui-btn_default">返回</a>
+        <a routerLink="/guide/w4" class="weui-btn weui-btn_default">前往挑选管家</a>
       </p>
     </div>
     <div class="weui-msg__extra-area">
@@ -88,31 +88,47 @@
 
   <div *ngFor="let item of reserveOrderList" class="order-item weui-panel weui-panel_access">
     <div class="weui-panel__hd">大牛管家订金
-      <span class="right">状态：
-        <span *ngIf="item.paystatus === 1">未支付</span>
-        <span *ngIf="item.paystatus === 2">已支付</span>
-        <span *ngIf="item.paystatus === 3">部分支付</span>
+      <span class="right">
+        <span class="unpaid" *ngIf="item.paystatus === 1">未支付</span>
+        <span class="paid" *ngIf="item.paystatus === 2">已支付</span>
+        <span class="unpaid" *ngIf="item.paystatus === 3">部分支付</span>
       </span>
     </div>
     <div class="weui-panel__bd">
       <div class="weui-media-box weui-media-box_appmsg">
         <div class="weui-media-box__hd">
           <img src="{{item.headimageurl ? config.prefix.wApi + item.headimageurl : '/assets/images/logo.png'}}">
+          <!--<a class="ui-label colors gold" *ngIf="!item.istrunorder && !item.housekeeperid" routerLink="/guide/w4" [queryParams]="{orderNo:item.orderno}">选择管家</a>
+          <a class="ui-label colors gold" *ngIf="!item.istrunorder && item.housekeeperid" routerLink="/guide/w4" [queryParams]="{orderNo:item.orderno}">更换管家</a>-->
+        </div>
+        <div *ngIf="!item.housekeeperid" class="weui-media-box__bd">
+          <h3 class="weui-media-box__title" style="font-size: 0.15rem">您未挑选管家</h3>
+          <p class="weui-media-box__desc" style="font-size: 0.12rem">下单时间：{{item.createtime}}</p>
+        </div>
+        <div *ngIf="item.housekeeperid" class="weui-media-box__bd">
+          <!--<p class="weui-media-box__desc">订单编号：{{item.orderno}}</p>-->
+          <p *ngIf="item.housekeeperid" class="weui-media-box__desc">预订管家：{{item.housekeepername}} <!--<span>(工号：{{item.housekeeperno}})</span>--></p>
+          <p *ngIf="item.housekeeperid" class="weui-media-box__desc">
+            <span class="label">{{item.housekeeper?.age}}岁</span> ·
+            <span class="label">{{item.housekeeper?.height}}<sub>CM</sub></span> ·
+            <span class="label">{{item.housekeeper?.weight}}<sub>KG</sub></span>
+          </p>
+          <p class="weui-media-box__desc">
+            <span class="label">{{item.housekeeper?.servicetime}}年工作经验</span> ·
+            <span class="label">军龄{{item.housekeeper?.soldierAge}}年</span>
+          </p>
+          <p class="weui-media-box__desc" style="font-size: 0.12rem">下单时间：{{item.createtime}}</p>
+        </div>
+        <div class="weui-media-box__ft">
           <a class="ui-label colors gold" *ngIf="!item.istrunorder && !item.housekeeperid" routerLink="/guide/w4" [queryParams]="{orderNo:item.orderno}">选择管家</a>
           <a class="ui-label colors gold" *ngIf="!item.istrunorder && item.housekeeperid" routerLink="/guide/w4" [queryParams]="{orderNo:item.orderno}">更换管家</a>
-        </div>
-        <div class="weui-media-box__bd">
-          <p class="weui-media-box__desc">订单编号：{{item.orderno}}</p>
-          <p *ngIf="item.housekeeperid" class="weui-media-box__desc">预订人员：{{item.housekeepername}} <span>(工号：{{item.housekeeperno}})</span></p>
-          <p *ngIf="item.housekeeperid" class="weui-media-box__desc">级别：{{item.levelname}}</p>
-          <p class="weui-media-box__desc">下单时间：{{item.createtime}}</p>
         </div>
       </div>
     </div>
     <div class="weui-panel__ft">
       <div class="weui-cell weui-cell_link">
         <div class="weui-cell__bd">预定金额：<sub>￥</sub><em>{{item.orderamount}}</em></div>
-        <div class="weui-cell__ft"><span (click)="reservePay(item.orderno)" class="ui-label radius colors gold" *ngIf="item.paystatus === 1">去支付</span><!--<span class="ui-label radius colors gold" [routerLink]="['/guide/step4']" [queryParams]="{orderNo:item.orderno}" *ngIf="item.ispass !== 2 && item.paystatus === 2">去选管家</span>--></div>
+        <div class="weui-cell__ft"><span (click)="reservePay(item.orderno)" class="ui-label radius colors gold" *ngIf="item.paystatus === 1">马上支付</span><!--<span class="ui-label radius colors gold" [routerLink]="['/guide/step4']" [queryParams]="{orderNo:item.orderno}" *ngIf="item.ispass !== 2 && item.paystatus === 2">去选管家</span>--></div>
       </div>
     </div>
   </div>

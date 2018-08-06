@@ -21,6 +21,7 @@ import {TraineeService} from './backend/trainee.service';
 import {TermService} from './backend/term.service';
 import {HousekeeperService} from './backend/housekeeper.service';
 import {MeiqiaService} from './meiqia.service';
+import {ToutiaoService} from './toutiao.service';
 import {WorkService} from './work.service';
 import {BackendOrderService} from './backend/order.service';
 import {BackendLeaveService} from './backend/leave.service';
@@ -52,6 +53,7 @@ export const SERVICES_DECLARATIONS = [
   TermService,
   HousekeeperService,
   MeiqiaService,
+  ToutiaoService,
   WorkService,
   BackendOrderService,
   BackendLeaveService,
