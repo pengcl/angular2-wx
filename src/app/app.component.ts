@@ -2,6 +2,9 @@ import {Component, ViewEncapsulation, ErrorHandler} from '@angular/core';
 import {Location} from '@angular/common';
 import {LogService} from './services/log.service';
 import {UaService} from './services/ua.service';
+import {StorageService} from './services/storage.service';
+
+import {rnd} from './utils/utils';
 
 declare var wx: any;
 
@@ -14,6 +17,7 @@ declare var wx: any;
 export class AppComponent implements ErrorHandler {
 
   constructor(private locationSvc: Location,
+              private storageSvc: StorageService,
               private ua: UaService,
               private logSvc: LogService) {
     locationSvc.subscribe(res => {
@@ -21,6 +25,7 @@ export class AppComponent implements ErrorHandler {
         wx.closeWindow();
       }
     });
+    this.storageSvc.set('wType', rnd() >= 0 ? 1 : 0);
   }
 
   handleError(error: any): void {
@@ -33,8 +38,9 @@ export class AppComponent implements ErrorHandler {
       url: window.location.href,
       error: error.toString()
     };
-    /*this.logSvc._log('error', _error).then(res => {
-    });*/
+    this.logSvc._log('error', _error).then(res => {
+      console.log(res);
+    });
   }
 
   getState(outlet) {

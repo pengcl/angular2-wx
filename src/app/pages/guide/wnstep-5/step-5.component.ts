@@ -5,6 +5,7 @@ import {DomSanitizer} from '@angular/platform-browser';
 import 'rxjs/add/operator/switchMap';
 import {PageConfig} from '../../page.config';
 import {WxService} from '../../../modules/wx';
+import {LogService} from '../../../services/log.service';
 import {UserService} from '../../../services/user.service';
 import {EmployeeService} from '../../../services/employee.service';
 import {OrderService} from '../../../services/order.service';
@@ -70,6 +71,7 @@ export class GuideWNStep5Component implements OnInit {
               private detailsPipe: DetailsPipe,
               private dialogSvc: DialogService,
               private wx: WxService,
+              private logSvc: LogService,
               private userSvc: UserService,
               private employeeSvc: EmployeeService,
               private orderSvc: OrderService) {
@@ -113,8 +115,6 @@ export class GuideWNStep5Component implements OnInit {
           htmlItems.push({h: hItems[i].innerHTML, section: sectionItems[i].innerHTML});
         }
         this.htmlItems = htmlItems;
-
-        console.log(this.htmlItems);
       });
       this.avatar = this.housekeeper.headimageurl ? this.config.prefix.wApi + this.housekeeper.headimageurl : '/assets/images/avatar.jpg';
       this.wx.config({
@@ -160,6 +160,8 @@ export class GuideWNStep5Component implements OnInit {
         this.rate = getRate(this.score.count / scores.length);
       });
     });
+
+    this.logSvc.pageLoad('WDetail', this.gh);
   }
 
   showMore() {
@@ -171,9 +173,10 @@ export class GuideWNStep5Component implements OnInit {
   }
 
   go(type) {
-    if (this.housekeeper.issubscribe !== 2 || this.housekeeper.termid === 'c6a14c76-8a67-4c2a-87ef-f7e6e2d0b6e9') {
+    if (this.housekeeper.issubscribe !== 2) {
       return false;
     }
+    this.logSvc.__log(type === 1 ? 'rent' : 'engage', 'WDetail', this.gh);
     this.router.navigate(['/guide/w6', this.housekeeperId], {queryParams: {type: type, gh: this.gh, orderNo: this.orderNo}});
   }
 

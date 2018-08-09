@@ -3,19 +3,19 @@
 <weui-navbar class="work main">
   <weui-tab heading="写周报">
     <form [formGroup]="workForm" (change)="onChange()">
-      <div class="weui-cells__title">工作周期 <em>({{theWeek.first | date : 'yyyy'}}年第{{theWeek.week}}周)</em></div>
+      <div class="weui-cells__title">工作周期 <em>({{theWeek.first.split('-')[0]}}年第{{theWeek.week}}周)</em></div>
       <div class="weui-cells">
         <div class="weui-cell" href="javascript:;">
           <div class="weui-cell__bd">
             <p>开始时间</p>
           </div>
-          <div style="color: #999" class="weui-cell__ft">{{theWeek.first | date : 'yyyy-MM-dd'}}</div>
+          <div style="color: #999" class="weui-cell__ft">{{theWeek.first}}</div>
         </div>
         <div class="weui-cell" href="javascript:;">
           <div class="weui-cell__bd">
             <p>结束时间</p>
           </div>
-          <div style="color: #999" class="weui-cell__ft">{{theWeek.last | date : 'yyyy-MM-dd'}}</div>
+          <div style="color: #999" class="weui-cell__ft">{{theWeek.last}}</div>
         </div>
       </div>
       <div class="weui-cells__tips">请记录本周工作情况，可随时保存，每周日24点自动提交，请注意及时填写！</div>

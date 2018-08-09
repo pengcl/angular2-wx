@@ -4,7 +4,6 @@ import 'rxjs/add/operator/toPromise';
 
 import {Config} from '../config';
 import {StorageService} from './storage.service';
-import {formData} from '../utils/utils';
 
 @Injectable()
 export class LogService {
@@ -14,15 +13,6 @@ export class LogService {
               private storageSvc: StorageService) {
   }
 
-  gh = '';
-
-  getGh() {
-    if (!this.gh && this.storageSvc.get('user')) {
-      this.gh = JSON.parse(this.storageSvc.get('user')).gh || '';
-    }
-    return this.gh;
-  }
-
   _log(path, body): Promise<any> {
     return this.http.post(Config.prefix.api + '/log/post?path=' + path, body, {})
       .toPromise()
@@ -30,12 +20,12 @@ export class LogService {
       .catch(this.handleError);
   }
 
-  __log(operation) {
-    this.http.jsonp('http://m.yfq.cn/record/writeLog.html?loc=' + window.location.href + '&operation=' + operation + '&gh=' + this.getGh(), 'jsonpCallback').toPromise().then();
+  __log(operation, page?, gh?) {
+    this.http.jsonp('http://mk.danius.cn/record/writeRequestLog.html?loc=' + encodeURIComponent(window.location.href) + '&operation=danius_1_' + (page ? page : '') + '_' + operation + '&gh=' + gh, 'callback').toPromise().then();
   }
 
-  pageLoad(page) {
-    this.http.jsonp('http://m.yfq.cn/record/writeLog.html?loc=' + window.location.href + '&operation=' + 'load' + page + '&gh=' + this.getGh(), 'jsonpCallback').toPromise().then();
+  pageLoad(page?, gh?) {
+    this.http.jsonp('http://mk.danius.cn/record/writeRequestLog.html?loc=' + encodeURIComponent(window.location.href) + '&operation=danius_1_' + (page ? page : '') + '_' + 'Load' + '&gh=' + gh, 'callback').toPromise().then();
   }
 
   private handleError(error: any): Promise<any> {

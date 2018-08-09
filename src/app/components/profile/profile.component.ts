@@ -40,7 +40,6 @@ export class ProfileComponent implements OnInit, OnChanges {
   }
 
   ngOnInit() {
-    console.log(this.profile);
     // this.dateDifference = Math.ceil(getDateDifference(new Date(), this.profile.createtime) / 30);
     this.avatar = this.profile.headimageurl ? this.config.prefix.wApi + this.profile.headimageurl : '/assets/images/avatar.jpg';
   }

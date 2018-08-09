@@ -4,7 +4,9 @@
   <div class="userinfo">
     <img class="userinfo-avatar" src="{{config.prefix.wApi + userInfo.headimageurl}}"/>
     <div class="userinfo-nickname">{{userInfo.name}}</div>
-    <div class="userinfo-service"><span class="name">{{userInfo.mobile}}</span><span class="level">{{userInfo.levelname}}管家</span></div>
+    <div class="userinfo-service"><span class="name">{{userInfo.mobile}}</span>
+      <span class="level">{{userInfo.levelname}}管家</span>
+    </div>
     <!--<span (click)="sign()" class="sign"><i class="icon-edit"></i> {{userInfo.signDays ? '累计签到' + userInfo.signDays + '天' : '每日签到'}}</span>-->
     <span routerLink="/admin/employee/setting" class="edit">更换头像 ></span>
     <span class="left-circle"></span>

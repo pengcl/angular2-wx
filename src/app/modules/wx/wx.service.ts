@@ -98,7 +98,6 @@ export class WxService extends BaseService {
             reject('jsapi 获取失败');
             return;
           }
-          console.log(ret);
           wx.config(ret);
         });
     });

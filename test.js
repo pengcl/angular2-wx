@@ -1,28 +1,28 @@
-getCurrentWeek = function () {
-  //起止日期数组
-  var startStop = new Array();
-  //获取当前时间
-  var currentDate = new Date();
-  //返回date是一周中的某一天
-  var week = currentDate.getDay();
-  //返回date是一个月中的某一天
-  var month = currentDate.getDate();
+function rnd() {//Random Normal Distribution
+  var u = 0.0, v = 0.0, w = 0.0, c = 0.0;
+  do {
+    //获得两个（-1,1）的独立随机变量
+    u = Math.random() * 2 - 1.0;
+    v = Math.random() * 2 - 1.0;
+    w = u * u + v * v;
+  } while (w == 0.0 || w >= 1.0);
+  //这里就是 Box-Muller转换
+  c = Math.sqrt((-2 * Math.log(w)) / w);
+  //返回2个标准正态分布的随机数，封装进一个数组返回
+  //当然，因为这个函数运行较快，也可以扔掉一个
+  //return [u*c,v*c];
+  return u * c;
+}
+var jia = 0;
+var jian = 0;
+for (var i = 0; i < 20; i++) {
+  var num = rnd();
+  if(num >= 0){
+    jia = jia + 1;
+  }else {
+    jian = jian + 1;
+  }
+  console.log(num);
+}
 
-  //一天的毫秒数
-  var millisecond = 1000 * 60 * 60 * 24;
-  //减去的天数
-  var minusDay = week != 0 ? week - 1 : 6;
-  //alert(minusDay);
-  //本周 周一
-  var monday = new Date(currentDate.getTime() - (minusDay * millisecond));
-  //本周 周日
-  var sunday = new Date(monday.getTime() + (6 * millisecond));
-  //添加本周时间
-  startStop.push(monday.toLocaleDateString()); //本周起始时间
-  //添加本周最后一天时间
-  startStop.push(sunday.toLocaleDateString()); //本周终止时间
-  //返回
-  return startStop;
-};
-
-console.log(getCurrentWeek());
+console.log(jia,jian);

@@ -11,6 +11,7 @@ import {Observable} from 'rxjs/Observable';
 import {PickerService} from 'ngx-weui';
 import {OrderService} from '../../../services/order.service';
 import {MeiqiaService} from '../../../services/meiqia.service';
+import {LogService} from '../../../services/log.service';
 import {Config} from '../../../config';
 import {getIndex} from '../../../utils/utils';
 
@@ -97,6 +98,7 @@ export class GuideWNStep4Component implements OnInit {
               private route: ActivatedRoute,
               private storageSvc: StorageService,
               private wx: WxService,
+              private logSvc: LogService,
               private pickerSvc: PickerService,
               private employeeSvc: EmployeeService,
               private orderSvc: OrderService,
@@ -147,6 +149,8 @@ export class GuideWNStep4Component implements OnInit {
         this.lists = res.list;
       });
     }*/
+
+    this.logSvc.pageLoad('WList', this.gh);
   }
 
   morePage() {

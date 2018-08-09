@@ -64,8 +64,7 @@
     <span *ngFor="let item of profile.expertisenames.split(',')" class="ui-label colors horizontal">{{item}}</span>
   </div>-->
   <div class="price">
-    <span *ngIf="profile.termid === 'c6a14c76-8a67-4c2a-87ef-f7e6e2d0b6e9'">薪资待定</span>
-    <span *ngIf="profile.termid !== 'c6a14c76-8a67-4c2a-87ef-f7e6e2d0b6e9'"><sub>￥</sub><em>{{profile.employAmount}}/月</em></span>
+    <span><sub>￥</sub><em>{{profile.employAmount}}/月</em></span>
   </div>
 </div>
 

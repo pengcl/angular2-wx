@@ -2,6 +2,7 @@ import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 
 import {DatePipe} from '@angular/common';
+import {RepairDatePipe} from '../../../../pipes/pipes.pipe';
 
 import {PageConfig} from './page.config';
 import {DialogService, PickerService} from 'ngx-weui';
@@ -44,6 +45,7 @@ export class AdminEmployeeWorkComponent implements OnInit {
   weeks;
 
   constructor(private datePipe: DatePipe,
+              private repairDatePipe: RepairDatePipe,
               private dialogSvc: DialogService,
               private pickerSvc: PickerService,
               private userSvc: UserService,
@@ -74,10 +76,10 @@ export class AdminEmployeeWorkComponent implements OnInit {
 
     this.workForm.get('housekeeperId').setValue(this.user.housekeeperId);
 
-    this.workForm.get('theYear').setValue(this.datePipe.transform(this.theWeek.first, 'yyyy'));
+    this.workForm.get('theYear').setValue(this.theWeek.first.split('-')[0]);
     this.workForm.get('theWeek').setValue(this.theWeek.week);
 
-    this.workForm.get('title').setValue(this.datePipe.transform(this.theWeek.first, 'yyyy') + '年第' + this.theWeek.week + '周周报');
+    this.workForm.get('title').setValue(this.theWeek.first.split('-')[0] + '年第' + this.theWeek.week + '周周报');
 
     this.workSvc.getThisWeek(this.workForm.value).then(res => {
       if (res.code === 0) {
@@ -92,8 +94,8 @@ export class AdminEmployeeWorkComponent implements OnInit {
       }
     });
 
-    this.workForm.get('beginTime').setValue(this.datePipe.transform(this.theWeek.first, 'yyyy-MM-dd'));
-    this.workForm.get('endTime').setValue(this.datePipe.transform(this.theWeek.last, 'yyyy-MM-dd'));
+    this.workForm.get('beginTime').setValue(this.datePipe.transform(this.repairDatePipe.transform(this.theWeek.first), 'yyyy-MM-dd'));
+    this.workForm.get('endTime').setValue(this.datePipe.transform(this.repairDatePipe.transform(this.theWeek.last), 'yyyy-MM-dd'));
 
 
     // 看周报

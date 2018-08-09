@@ -1,15 +1,17 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild, ElementRef} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Router, ActivatedRoute} from '@angular/router';
 import {PageConfig} from '../../page.config';
 import {WxService} from '../../../modules/wx';
 import {DialogService, PickerService} from 'ngx-weui';
+import {StorageService} from '../../../services/storage.service';
 import {EmployeeService} from '../../../services/employee.service';
 import {LogService} from '../../../services/log.service';
 import {UserService} from '../../../services/user.service';
 import {Config} from '../../../config';
 
-declare var _taq: any;
+/*declare var _taq: any;*/
+declare const _taq: any;
 
 @Component({
   selector: 'app-guide-w-n-step9',
@@ -20,6 +22,8 @@ export class GuideWNStep9Component implements OnInit {
   tabBarConfig = PageConfig.tabBar;
   navBarConfig = PageConfig.navBar;
 
+  @ViewChild('container') private container: ElementRef;
+
   subscribeForm: FormGroup;
   isSubmit = false;
   loading = false;
@@ -29,8 +33,11 @@ export class GuideWNStep9Component implements OnInit {
   second = 59;
   timePromise = undefined;
 
+  wType;
+
   constructor(private router: Router,
               private route: ActivatedRoute,
+              private storageSvc: StorageService,
               private logSvc: LogService,
               private dialogSvc: DialogService,
               private wx: WxService,
@@ -38,11 +45,16 @@ export class GuideWNStep9Component implements OnInit {
               private userSvc: UserService,
               private employeeSvc: EmployeeService) {
     this.navBarConfig.navigationBarTitleText = '大牛管家';
-    logSvc.pageLoad('B');
+    if (route.snapshot.queryParams['gh'] === 'ylh') {
+      storageSvc.set('wType', 0);
+    }
+    this.wType = parseInt(storageSvc.get('wType'), 10);
   }
 
 
   ngOnInit() {
+
+    console.log(this.wType);
     this.wx.config({
       title: '大牛管家, 只为牛人服务',
       desc: '我们禀承“忠诚、安全、健康、舒心”的服务理念，旨在为全国高端商务人士及其家庭提供“安全防护、驾驶出行、科学运动”三大类日常综合管家服务。',
@@ -71,6 +83,54 @@ export class GuideWNStep9Component implements OnInit {
     this.subscribeForm.get('gh').setValue(this.route.snapshot.queryParams['gh']);
     this.subscribeForm.get('callbackUrl').setValue(Config.webHost + '/guide/w7');
 
+    /*if (_taq) {
+      _taq.push({convert_id: '1608010185864196', event_type: 'form'});
+      _taq.push({convert_id: '1608011262150692', event_type: 'form'});
+    }*/
+
+    setTimeout(() => {
+      if (_taq) {
+        _taq.push({convert_id: '1608010185864196', event_type: 'form'});
+        _taq.push({convert_id: '1608011262150692', event_type: 'form'});
+      }
+    }, 1000);
+
+    /*this.subscribeForm.get('customerMobile').valueChanges.subscribe(res => {
+      if (this.subscribeForm.get('customerMobile').valid) {
+        console.log(res);
+      }
+    });
+
+    this.subscribeForm.get('customerName').valueChanges.subscribe(res => {
+      if (this.subscribeForm.get('customerMobile').valid) {
+        console.log(res);
+      }
+    });*/
+
+    this.logSvc.pageLoad('W' + this.wType, this.subscribeForm.get('gh').value);
+  }
+
+  nameBlur() {
+    if (this.subscribeForm.get('customerName').valid) {
+      this.logSvc.__log('inputName', 'W' + this.wType, this.subscribeForm.get('gh').value);
+    }
+  }
+
+  mobileBlur() {
+    if (this.subscribeForm.get('customerMobile').valid) {
+      this.logSvc.__log('inputMobile', 'W' + this.wType, this.subscribeForm.get('gh').value);
+    }
+  }
+
+  codeBlur() {
+    if (this.subscribeForm.get('code').valid) {
+      this.logSvc.__log('inputCode', 'W' + this.wType, this.subscribeForm.get('gh').value);
+    }
+  }
+
+  pick() {
+    this.router.navigate(['/guide/w4'], {queryParamsHandling: 'merge'});
+    this.logSvc.__log('pick', 'W' + this.wType, this.subscribeForm.get('gh').value);
   }
 
   getCode(mobile) {
@@ -78,6 +138,7 @@ export class GuideWNStep9Component implements OnInit {
       return false;
     }
     this.userSvc.getCode(mobile).then(res => {
+      this.logSvc.__log('getCode', 'W' + this.wType, this.subscribeForm.get('gh').value);
       if (res.code === 0) {
         this.activeClass = false;
         this.timePromise = setInterval(() => {
@@ -108,8 +169,23 @@ export class GuideWNStep9Component implements OnInit {
 
   submit() {
     this.isSubmit = true;
+    this.logSvc.__log('reserve', 'W' + this.wType, this.subscribeForm.get('gh').value);
 
     if (this.subscribeForm.invalid || this.loading) {
+      if (this.subscribeForm.invalid) {
+        let times = 1;
+        try {
+          const interval = setInterval(() => {
+            this.container.nativeElement.scrollTop = (((this.container.nativeElement.scrollHeight) / 320) * 16 * times);
+            times = times + 1;
+          }, 16);
+          setTimeout(function () {
+            clearInterval(interval);
+          }, 320);
+        } catch (err) {
+          console.log(err);
+        }
+      }
       return false;
     }
     this.loading = true;

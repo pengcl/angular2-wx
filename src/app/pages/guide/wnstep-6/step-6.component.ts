@@ -50,7 +50,6 @@ export class GuideWNStep6Component implements OnInit {
               private orderSvc: OrderService,
               private employeeSvc: EmployeeService) {
     this.navBarConfig.navigationBarTitleText = '大牛管家';
-    logSvc.pageLoad('B');
   }
 
 
@@ -112,6 +111,25 @@ export class GuideWNStep6Component implements OnInit {
       this.housekeeper = res.housekeeper;
     });
 
+    this.logSvc.pageLoad('WPrepay', this.subscribeForm.get('gh').value);
+  }
+
+  nameBlur() {
+    if (this.subscribeForm.get('customerName').valid) {
+      this.logSvc.__log('inputName', 'WPrepay', this.subscribeForm.get('gh').value);
+    }
+  }
+
+  mobileBlur() {
+    if (this.subscribeForm.get('customerMobile').valid) {
+      this.logSvc.__log('inputMobile', 'WPrepay', this.subscribeForm.get('gh').value);
+    }
+  }
+
+  codeBlur() {
+    if (this.subscribeForm.get('code').valid) {
+      this.logSvc.__log('inputCode', 'WPrepay', this.subscribeForm.get('gh').value);
+    }
   }
 
   getCode(mobile) {
@@ -119,6 +137,7 @@ export class GuideWNStep6Component implements OnInit {
       return false;
     }
     this.userSvc.getCode(mobile).then(res => {
+      this.logSvc.__log('getCode', 'WPrepay', this.subscribeForm.get('gh').value);
       if (res.code === 0) {
         this.activeClass = false;
         this.timePromise = setInterval(() => {

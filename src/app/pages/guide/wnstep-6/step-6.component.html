@@ -87,21 +87,21 @@
     <div class="weui-cell" [ngClass]="{'weui-cell_warn':subscribeForm.get('customerName').invalid && isSubmit}">
       <div class="weui-cell__hd"><span class="weui-label">您的称呼</span></div>
       <div class="weui-cell__bd">
-        <input formControlName="customerName" class="weui-input" placeholder="如：李先生/李女士">
+        <input formControlName="customerName" (blur)="nameBlur()" class="weui-input" placeholder="如：李先生/李女士">
       </div>
       <div class="weui-cell__ft"><i class="weui-icon-warn"></i></div>
     </div>
     <div class="weui-cell" [ngClass]="{'weui-cell_warn':subscribeForm.get('customerMobile').invalid && isSubmit}">
       <div class="weui-cell__hd"><span class="weui-label">联系电话</span></div>
       <div class="weui-cell__bd">
-        <input formControlName="customerMobile" maxlength="11" class="weui-input" placeholder="请输入手机号码">
+        <input formControlName="customerMobile" (blur)="mobileBlur()" maxlength="11" class="weui-input" placeholder="请输入手机号码">
       </div>
       <div class="weui-cell__ft"><span class="active-code" (click)="getCode(subscribeForm.get('customerMobile').value)" *ngIf="subscribeForm.get('customerMobile').valid">{{activeText}}</span><i class="weui-icon-warn"></i></div>
     </div>
     <div class="weui-cell" [ngClass]="{'weui-cell_warn':subscribeForm.get('code').invalid && isSubmit}">
       <div class="weui-cell__hd"><span class="weui-label">验证码</span></div>
       <div class="weui-cell__bd">
-        <input type="tel" formControlName="code" maxlength="4" minlength="4" class="weui-input" placeholder="请输入手机验证码">
+        <input type="tel" formControlName="code" (blur)="codeBlur()" maxlength="4" minlength="4" class="weui-input" placeholder="请输入手机验证码">
       </div>
       <div class="weui-cell__ft"><i class="weui-icon-warn"></i></div>
     </div>
@@ -120,7 +120,7 @@
   </div>-->
 
   <div class="weui-btn-area">
-    <weui-button [userTrack]="'reserve'" (click)="submit()" [weui-loading]="loading" class="weui-btn weui-btn_primary">
+    <weui-button (click)="submit()" [weui-loading]="loading" class="weui-btn weui-btn_primary">
       支付预定金（￥1）
     </weui-button>
   </div>
