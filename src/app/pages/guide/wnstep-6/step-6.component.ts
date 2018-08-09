@@ -188,6 +188,8 @@ export class GuideWNStep6Component implements OnInit {
       return false;
     }*/
 
+    this.logSvc.__log('pay', 'WPrepay', this.subscribeForm.get('gh').value);
+
     if (this.subscribeForm.invalid || this.loading) {
       return false;
     }

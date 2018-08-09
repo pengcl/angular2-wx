@@ -154,22 +154,16 @@ h1 {
   }
 }
 
-.weui-btn-area-container {
-  position: fixed;
-  width: 100%;
-  box-sizing: border-box;
-  bottom: 0;
-  left: 0;
-  background: rgba(255, 255, 255, 0.8);
-  z-index: 1002;
-}
-
 .weui-btn-area {
-  margin: 0.1rem 0.15rem 0.15rem;
+  margin: 0.15rem 0.15rem 0.3rem;
 }
 
 .space-bt {
   height: 1rem;
+}
+
+.n-type {
+  padding: 0 0.15rem;
 }
 
 .weui-btn-area {

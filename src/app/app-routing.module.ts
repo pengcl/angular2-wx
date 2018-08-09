@@ -2,7 +2,6 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {RouterModule, Routes} from '@angular/router';
 
-import {appWxRoutes} from './pages/wx/wx-routing.module';
 import {appAdminBackendRoutes} from './pages/admin/backend/backend-routing.module';
 import {appAdminArticleRoutes} from './pages/admin/article/article-routing.module';
 import {appAdminSalesmenRoutes} from './pages/admin/salesmen/salesmen-routing.module';
@@ -16,8 +15,6 @@ import {FrontEmployeesEmployeeComponent} from './pages/front/employees/employee/
 import {FrontEmployeesEmployeeRatesComponent} from './pages/front/employees/employee/rates/rates.component';
 import {FrontEmployeesEmployeeReserveComponent} from './pages/front/employees/employee/reserve/reserve.component';
 
-import {FrontRedComponent} from './pages/front/red/red.component';
-import {FrontRedGetComponent} from './pages/front/red/get/get.component';
 import {FrontResumePostComponent} from './pages/front/resume/post/post.component';
 import {FrontResumeJobComponent} from './pages/front/resume/job/job.component';
 import {FrontGuideComponent} from './pages/front/guide/guide.component';
@@ -123,18 +120,8 @@ import {RecruitmentArticleIncomeRulesComponent} from './pages/recruitment/articl
 import {RecruitmentArticleRequirementsComponent} from './pages/recruitment/article/requirements/requirements.component';
 import {RecruitmentRecruitersComponent} from './pages/recruitment/recruiters/recruiters.component';*/
 
-import {AppPayComponent} from './pages/pay/pay.component';
-import {WxComponent} from './pages/wx/wx.component';
-
 import {GuideComponent} from './pages/guide/guide.component';
 import {AdminSalesmenComponent} from './pages/admin/salesmen/salesmen.component';
-
-const appFrontRedRoutes: Routes = [
-  {path: 'get', component: FrontRedGetComponent},
-  {
-    path: '**', redirectTo: 'get'
-  }
-];
 
 const appAdminRoutes: Routes = [
   {path: 'index', component: AdminIndexComponent},
@@ -247,11 +234,6 @@ const appFrontRoutes: Routes = [
 
   {path: 'invite/become', component: FrontInviteBecomeComponent},
   {
-    path: 'red',
-    component: FrontRedComponent,
-    children: appFrontRedRoutes
-  },
-  {
     path: '**', redirectTo: 'index'
   }
 ];
@@ -277,7 +259,6 @@ const appFrontRoutes: Routes = [
 export const routes: Routes = [
 
   {path: '', redirectTo: '/front/employees', pathMatch: 'full'},
-  {path: 'pay', component: AppPayComponent, data: {state: 'pay'}},
   {
     path: 'front',
     component: FrontComponent,
@@ -292,17 +273,12 @@ export const routes: Routes = [
     path: 'guide',
     component: GuideComponent,
     children: appGuideRoutes
-  },
+  }
   /*{
     path: 'recruitment',
     component: RecruitmentComponent,
     children: appRecruitmentRoutes
   },*/
-  {
-    path: 'wx',
-    component: WxComponent,
-    children: appWxRoutes
-  }
 ];
 
 @NgModule({

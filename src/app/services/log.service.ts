@@ -22,10 +22,12 @@ export class LogService {
 
   __log(operation, page?, gh?) {
     this.http.jsonp('http://mk.danius.cn/record/writeRequestLog.html?loc=' + encodeURIComponent(window.location.href) + '&operation=danius_1_' + (page ? page : '') + '_' + operation + '&gh=' + gh, 'callback').toPromise().then();
+    // this.http.get(Config.prefix.api + '/log/track?path=track&loc=' + encodeURIComponent(window.location.href) + '&operation=danius_1_' + (page ? page : '') + '_' + operation + '&gh=' + gh).toPromise().then();
   }
 
   pageLoad(page?, gh?) {
     this.http.jsonp('http://mk.danius.cn/record/writeRequestLog.html?loc=' + encodeURIComponent(window.location.href) + '&operation=danius_1_' + (page ? page : '') + '_' + 'Load' + '&gh=' + gh, 'callback').toPromise().then();
+    // this.http.get(Config.prefix.api + '/log/track?path=track&loc=' + encodeURIComponent(window.location.href) + '&operation=danius_1_' + (page ? page : '') + '_' + 'Load' + '&gh=' + gh).toPromise().then();
   }
 
   private handleError(error: any): Promise<any> {

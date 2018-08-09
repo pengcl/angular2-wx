@@ -44,12 +44,10 @@ import {SERVICES_DECLARATIONS} from './services';
 
 // components
 import {AppComponent} from './app.component';
-import {AppPayComponent} from './pages/pay/pay.component';
 import {COMPONENTS_DECLARATIONS} from './components';
 import {FRONT_PAGES_DECLARATIONS} from './pages/front';
 import {ADMIN_PAGES_DECLARATIONS} from './pages/admin';
 import {GUIDE_PAGES_DECLARATIONS} from './pages/guide';
-import {WX_PAGES_DECLARATIONS} from './pages/wx';
 
 // directives
 import {DIRECTIVES_DECLARATIONS} from './directives';
@@ -80,12 +78,10 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     DetailsPipe,
     NewLinePipe,
     AppComponent,
-    AppPayComponent,
     ...COMPONENTS_DECLARATIONS,
     ...FRONT_PAGES_DECLARATIONS,
     ...ADMIN_PAGES_DECLARATIONS,
     ...GUIDE_PAGES_DECLARATIONS,
-    ...WX_PAGES_DECLARATIONS,
     ...DIRECTIVES_DECLARATIONS
   ],
   imports: [

@@ -1,8 +1,8 @@
 import {FrontComponent} from './front.component';
 import {FrontIndexComponent} from './index/index.component';
 import {FrontNewsComponent} from './news/news.component';
-import {FrontRedComponent} from './red/red.component';
-import {FrontRedGetComponent} from './red/get/get.component';
+/*import {FrontRedComponent} from './red/red.component';
+import {FrontRedGetComponent} from './red/get/get.component';*/
 import {FrontResumePostComponent} from './resume/post/post.component';
 import {FrontResumeJobComponent} from './resume/job/job.component';
 
@@ -35,8 +35,8 @@ export const FRONT_PAGES_DECLARATIONS = [
   FrontEmployeesEmployeeComponent,
   FrontEmployeesEmployeeRatesComponent,
   FrontEmployeesEmployeeReserveComponent,
-  FrontRedComponent,
-  FrontRedGetComponent,
+  /*FrontRedComponent,
+  FrontRedGetComponent,*/
   FrontResumePostComponent,
   FrontResumeJobComponent,
   FrontGuideComponent,

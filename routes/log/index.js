@@ -80,4 +80,36 @@ router.route('/post').post(function (req, res, next) {
   return deferred.promise;
 });
 
+router.get('/track', function (req, res, next) {
+  var deferred = Q.defer();
+
+  var _date = new Date();
+  var dir = numToStr(_date.getFullYear()) + numToStr(_date.getMonth() + 1) + numToStr(_date.getDate());
+  var filename = req.query.operation;
+  var path = '../data/log/' + req.query.path + '/' + dir;
+
+  if (!fs.existsSync(path)) {
+    fs.mkdirSync(path);
+  }
+  fs.readFile(path + '/' + filename + '.json', function (err, content) {
+    console.log(err);
+    console.log(content);
+    if (err) {
+      fs.appendFile(path + '/' + filename + '.json', JSON.stringify(req.body), {
+        flag: 'w',
+        encoding: 'utf-8',
+        mode: '0666'
+      }, function (err) {
+        if (!err) {
+          res.send({code: 0, msg: '文件写入成功'});
+        } else {
+          console.log(err);
+          res.send(err);
+        }
+      });
+    }
+  });
+  return deferred.promise;
+});
+
 module.exports = router;

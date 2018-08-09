@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {PageConfig} from '../../page.config';
+import {ActivatedRoute} from '@angular/router';
 
 import {WxService} from '../../../modules/wx';
 import {UaService} from '../../../services/ua.service';
@@ -15,9 +16,11 @@ export class GuideWNStep7Component implements OnInit {
   navBarConfig = PageConfig.navBar;
 
   isWx = false;
+  gh;
 
   constructor(private wxSvc: WxService,
-              private uaSvc: UaService) {
+              private uaSvc: UaService,
+              private route: ActivatedRoute) {
     this.navBarConfig.navigationBarTitleText = '大牛管家';
   }
 
@@ -25,6 +28,8 @@ export class GuideWNStep7Component implements OnInit {
   ngOnInit() {
     this.isWx = this.uaSvc.isWx();
 
+    this.gh = this.route.snapshot.queryParams['gh'];
+    
     this.wxSvc.config({
       title: '大牛管家, 只为牛人服务',
       desc: '我们禀承“忠诚、安全、健康、舒心”的服务理念，旨在为全国高端商务人士及其家庭提供“安全防护、驾驶出行、科学运动”三大类日常综合管家服务。',

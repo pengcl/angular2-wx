@@ -76,12 +76,14 @@ export class GuideWNStep9Component implements OnInit {
       customerMobile: new FormControl('', [Validators.required, Validators.minLength(11), Validators.maxLength(11), Validators.pattern(/^[0-9]*$/)]),
       code: new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(4)]),
       callbackUrl: new FormControl('', [Validators.required]),
+      returnUrl: new FormControl('', [Validators.required]), // 支付页回退地址
       gh: new FormControl('', [])
     });
 
     this.subscribeForm.get('intentionType').setValue(0);
     this.subscribeForm.get('gh').setValue(this.route.snapshot.queryParams['gh']);
-    this.subscribeForm.get('callbackUrl').setValue(Config.webHost + '/guide/w7');
+    this.subscribeForm.get('callbackUrl').setValue(Config.webHost + '/guide/w7?gh=' + this.route.snapshot.queryParams['gh']);
+    this.subscribeForm.get('returnUrl').setValue(window.location.href);
 
     /*if (_taq) {
       _taq.push({convert_id: '1608010185864196', event_type: 'form'});
@@ -172,7 +174,7 @@ export class GuideWNStep9Component implements OnInit {
     this.logSvc.__log('reserve', 'W' + this.wType, this.subscribeForm.get('gh').value);
 
     if (this.subscribeForm.invalid || this.loading) {
-      if (this.subscribeForm.invalid) {
+      /*if (this.subscribeForm.invalid) {
         let times = 1;
         try {
           const interval = setInterval(() => {
@@ -185,15 +187,17 @@ export class GuideWNStep9Component implements OnInit {
         } catch (err) {
           console.log(err);
         }
-      }
+      }*/
       return false;
     }
     this.loading = true;
     this.employeeSvc.reserveButler(this.subscribeForm.value).then(res => {
       if (res.code === 0) {
-        const locUrl = encodeURIComponent(window.location.href);
+        /*const locUrl = encodeURIComponent(window.location.href);
         const _url = res.msg.indexOf('?') === -1 ? res.msg + '?returnUrl=' + locUrl : res.msg + '&returnUrl=' + locUrl;
-        window.location.href = _url;
+        window.location.href = _url;*/
+
+        this.router.navigate(['/guide/w7'], {queryParams: {gh: this.subscribeForm.get('gh').value}});
       } else {
         this.dialogSvc.show({content: res.msg, cancel: '', confirm: '我知道了'}).subscribe();
       }
