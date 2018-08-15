@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Location} from '@angular/common';
-import 'rxjs/add/operator/toPromise';
+
 
 import {Config} from '../config';
 import {WxService} from '../modules/wx';

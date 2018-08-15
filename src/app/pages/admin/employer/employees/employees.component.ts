@@ -1,3 +1,5 @@
+
+import {timer as observableTimer, Observable} from 'rxjs';
 import {Component, OnInit} from '@angular/core';
 import {PageConfig} from './page.config';
 import {WxService} from '../../../../modules/wx';
@@ -7,7 +9,6 @@ import {EmployerService} from '../../../../services/employer.service';
 
 import {Config} from '../../../../config';
 import {InfiniteLoaderComponent} from 'ngx-weui';
-import {Observable} from 'rxjs/Observable';
 
 declare var $: any;
 declare var mojs: any;
@@ -70,7 +71,7 @@ export class AdminEmployerEmployeesComponent implements OnInit {
   }
 
   onLoadMore(comp: InfiniteLoaderComponent) {
-    Observable.timer(500).subscribe(() => {
+    observableTimer(500).subscribe(() => {
 
       this.currPage = this.currPage + 1;
       this.currEmployees = this.employees.slice(0, this.pageSize * this.currPage); // 获取当前页数据

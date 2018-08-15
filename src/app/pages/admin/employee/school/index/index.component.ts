@@ -1,3 +1,5 @@
+
+import {timer as observableTimer, Observable} from 'rxjs';
 import {Component, OnInit} from '@angular/core';
 
 import {PageConfig} from './page.config';
@@ -8,7 +10,6 @@ import {StorageService} from '../../../../../services/storage.service';
 import {DialogService, InfiniteLoaderComponent} from 'ngx-weui';
 
 import {Config} from '../../../../../config';
-import {Observable} from 'rxjs/Observable';
 
 @Component({
   selector: 'app-admin-employee-school-index',
@@ -120,7 +121,7 @@ export class AdminEmployeeSchoolIndexComponent implements OnInit {
   }
 
   onLoadMarkMore(comp: InfiniteLoaderComponent) {
-    Observable.timer(500).subscribe(() => {
+    observableTimer(500).subscribe(() => {
 
       this.currPage = this.currPage + 1;
       this.currMarkList = this.markList.slice(0, this.pageSize * this.currPage); // 获取当前页数据
@@ -135,7 +136,7 @@ export class AdminEmployeeSchoolIndexComponent implements OnInit {
   }
 
   onLoadLearnMore(comp: InfiniteLoaderComponent) {
-    Observable.timer(500).subscribe(() => {
+    observableTimer(500).subscribe(() => {
 
       this.currPage = this.currPage + 1;
       this.currLearnList = this.learnList.slice(0, this.pageSize * this.currPage); // 获取当前页数据

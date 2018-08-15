@@ -85,18 +85,6 @@ export class GuideWNStep9Component implements OnInit {
     this.subscribeForm.get('callbackUrl').setValue(Config.webHost + '/guide/w7?gh=' + this.route.snapshot.queryParams['gh']);
     this.subscribeForm.get('returnUrl').setValue(window.location.href);
 
-    /*if (_taq) {
-      _taq.push({convert_id: '1608010185864196', event_type: 'form'});
-      _taq.push({convert_id: '1608011262150692', event_type: 'form'});
-    }*/
-
-    setTimeout(() => {
-      if (_taq) {
-        _taq.push({convert_id: '1608010185864196', event_type: 'form'});
-        _taq.push({convert_id: '1608011262150692', event_type: 'form'});
-      }
-    }, 1000);
-
     /*this.subscribeForm.get('customerMobile').valueChanges.subscribe(res => {
       if (this.subscribeForm.get('customerMobile').valid) {
         console.log(res);

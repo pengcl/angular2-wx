@@ -1,4 +1,5 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
+import {map} from 'rxjs/internal/operators';
 
 import {PageConfig} from './page.config';
 import {UserService} from '../../../../../../../services/user.service';
@@ -86,48 +87,50 @@ export class AdminEmployeeSchoolCurriculumCourseItemComponent implements OnInit 
       catalogId: new FormControl('', [Validators.required])
     });
 
-    this.activatedRoute.paramMap.switchMap((params: ParamMap) => this.schoolSvc.getCourseItem(params.get('id'), this.user.id)).subscribe(res => {
-      this.course = res.course;
-      // this.course.pdfurl = '//cdn.mozilla.net/pdfjs/tracemonkey.pdf';
-      if (!this.course.videourl && this.course.pdfurl) {
-        // If absolute URL from the remote server is provided, configure the CORS
-        // header on that server.
-        this.pageNum = 1;
-        const url = Config.prefix.wApi + this.course.pdfurl;
+    this.activatedRoute.paramMap.pipe(map((params) => params.get('id'))).subscribe(id => {
+      this.schoolSvc.getCourseItem(id, this.user.id).then(res => {
+        this.course = res.course;
+        // this.course.pdfurl = '//cdn.mozilla.net/pdfjs/tracemonkey.pdf';
+        if (!this.course.videourl && this.course.pdfurl) {
+          // If absolute URL from the remote server is provided, configure the CORS
+          // header on that server.
+          this.pageNum = 1;
+          const url = Config.prefix.wApi + this.course.pdfurl;
 
-        // Loaded via <script> tag, create shortcut to access PDF.js exports.
-        const pdfjsLib = window['pdfjs-dist/build/pdf'];
+          // Loaded via <script> tag, create shortcut to access PDF.js exports.
+          const pdfjsLib = window['pdfjs-dist/build/pdf'];
 
-        // The workerSrc property shall be specified.
-        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdn.bootcss.com/pdf.js/2.0.466/pdf.worker.min.js';
+          // The workerSrc property shall be specified.
+          pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdn.bootcss.com/pdf.js/2.0.466/pdf.worker.min.js';
 
-        // Asynchronous download of PDF
-        const loadingTask = pdfjsLib.getDocument(url);
-        loadingTask.promise.then((pdf) => {
-          this.pdfDoc = pdf;
-          // Fetch the first page
-          this.canvas = document.getElementById('the-canvas');
-          this.ctx = this.canvas.getContext('2d');
-          this.renderPage(this.pageNum);
-        });
-      }
-      this.favorId = res.course.favoriteId;
-      this.courseForm.get('custId').setValue(this.user.id);
-      this.courseForm.get('courseId').setValue(this.course.courseid);
-      this.courseForm.get('catalogId').setValue(this.course.coursecatalogid);
-
-      this.schoolSvc.setLearned(this.courseForm.value).then(res);
-
-      this.schoolSvc.getCourseCatalog(this.course.coursecatalogid, this.user.id).then(data => {
-        if (res.code === 0) {
-          this.courseCatalog = data.list;
-          console.log(data);
-          const currIndex = getIndex(this.courseCatalog, 'serno', this.course.serno);
-          const _prev = getPrevOfArray(this.courseCatalog, currIndex);
-          const _next = getNextOfArray(this.courseCatalog, currIndex);
-          this.prev = _prev || _prev === 0 ? this.courseCatalog[_prev].courseid : '';
-          this.next = _next ? this.courseCatalog[_next].courseid : '';
+          // Asynchronous download of PDF
+          const loadingTask = pdfjsLib.getDocument(url);
+          loadingTask.promise.then((pdf) => {
+            this.pdfDoc = pdf;
+            // Fetch the first page
+            this.canvas = document.getElementById('the-canvas');
+            this.ctx = this.canvas.getContext('2d');
+            this.renderPage(this.pageNum);
+          });
         }
+        this.favorId = res.course.favoriteId;
+        this.courseForm.get('custId').setValue(this.user.id);
+        this.courseForm.get('courseId').setValue(this.course.courseid);
+        this.courseForm.get('catalogId').setValue(this.course.coursecatalogid);
+
+        this.schoolSvc.setLearned(this.courseForm.value).then(res);
+
+        this.schoolSvc.getCourseCatalog(this.course.coursecatalogid, this.user.id).then(data => {
+          if (res.code === 0) {
+            this.courseCatalog = data.list;
+            console.log(data);
+            const currIndex = getIndex(this.courseCatalog, 'serno', this.course.serno);
+            const _prev = getPrevOfArray(this.courseCatalog, currIndex);
+            const _next = getNextOfArray(this.courseCatalog, currIndex);
+            this.prev = _prev || _prev === 0 ? this.courseCatalog[_prev].courseid : '';
+            this.next = _next ? this.courseCatalog[_next].courseid : '';
+          }
+        });
       });
     });
 

@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 
-import 'rxjs/add/operator/switchMap';
+
 
 import {PageConfig} from './page.config';
 import {Config} from '../../../../config';

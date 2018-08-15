@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Router, ActivatedRoute} from '@angular/router';
 
-import 'rxjs/add/operator/switchMap';
+
 
 import {PageConfig} from './page.config';
 import {WxService} from '../../../../modules/wx';

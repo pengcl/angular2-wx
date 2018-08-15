@@ -1,5 +1,7 @@
+
+import {throwError as observableThrowError, Observable} from 'rxjs';
+import {catchError} from 'rxjs/internal/operators';
 import {Injectable, ComponentFactoryResolver, ApplicationRef, Injector} from '@angular/core';
-import {Observable} from 'rxjs/Observable';
 import {BaseService} from '../../services/base.service';
 import {WxComponent} from './wx.component';
 import {JWeiXinService} from '../../services/jweixin.service';
@@ -88,10 +90,12 @@ export class WxService extends BaseService {
 
       this.http
         .get(Config.prefix.wApi + '/interface/comm/getWxParameter.ht?shareUrl=' + encodeURIComponent(window.location.href))
-        .catch((error: Response | any) => {
-          reject('无法获取签名数据');
-          return Observable.throw('error');
-        })
+        .pipe(
+          catchError((error: Response | any) => {
+            reject('无法获取签名数据');
+            return observableThrowError('error');
+          }),
+        )
         .subscribe((ret: any) => {
           ret.jsApiList = this.jsApiList;
           if (!ret) {

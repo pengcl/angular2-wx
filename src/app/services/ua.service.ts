@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import 'rxjs/add/operator/toPromise';
+
 
 const av = navigator.appVersion; // window.navigator 对象包含有关访问者浏览器的信息。
 const ua = navigator.userAgent;

@@ -9,24 +9,8 @@ import {ChartF2Module} from './modules/chart-f2';
 import {CountdownModule} from 'ngx-countdown';
 import {MenuModule} from './modules/menu/menu.module';
 
-import {
-  CellModule,
-  DialogModule,
-  InfiniteLoaderModule,
-  PickerModule,
-  ActionSheetModule,
-  ButtonModule,
-  RatingModule,
-  UploaderModule,
-  TabModule,
-  ToastModule,
-  ProgressModule,
-  ChartG2Module,
-  AccordionModule,
-  GalleryModule,
-  SearchBarModule,
-  FormModule
-} from 'ngx-weui';
+import {WeUiModule} from 'ngx-weui';
+
 import {WxModule} from './modules/wx';
 
 import {VgCoreModule} from 'videogular2/core';
@@ -92,31 +76,16 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     HttpClientModule,
     HttpClientJsonpModule,
     BrowserAnimationsModule,
-    CellModule.forRoot(),
     SwiperModule,
-    ActionSheetModule.forRoot(),
-    PickerModule.forRoot(),
     ChartF2Module,
-    RatingModule.forRoot(),
     WxModule.forRoot(),
     CountdownModule,
-    InfiniteLoaderModule.forRoot(),
-    DialogModule.forRoot(),
-    ButtonModule.forRoot(),
-    UploaderModule.forRoot(),
-    TabModule.forRoot(),
-    ToastModule.forRoot(),
-    ProgressModule.forRoot(),
     VgCoreModule,
     VgControlsModule,
     VgOverlayPlayModule,
     VgBufferingModule,
     MenuModule.forRoot(),
-    ChartG2Module.forRoot(),
-    AccordionModule.forRoot(),
-    GalleryModule.forRoot(),
-    SearchBarModule.forRoot(),
-    FormModule.forRoot()
+    WeUiModule.forRoot()
   ],
   providers: [
     ...SERVICES_DECLARATIONS,

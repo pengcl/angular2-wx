@@ -1,3 +1,5 @@
+
+import {switchMap} from 'rxjs/operators';
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 
@@ -39,7 +41,7 @@ export class AdminEmployerOrderProtocolsComponent implements OnInit {
       agree: new FormControl('', [Validators.required, Validators.requiredTrue]),
     });
 
-    this.activatedRoute.paramMap.switchMap((params: ParamMap) => this.employer.getProtocol(params.get('id'))).subscribe(res => {
+    this.activatedRoute.paramMap.pipe(switchMap((params: ParamMap) => this.employer.getProtocol(params.get('id')))).subscribe(res => {
       if (res.code === 0) {
         this.protocol = res.protocolContent;
       }

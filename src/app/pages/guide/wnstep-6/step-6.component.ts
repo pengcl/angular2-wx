@@ -1,3 +1,5 @@
+
+import {switchMap} from 'rxjs/operators';
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Router, ActivatedRoute, ParamMap} from '@angular/router';
@@ -107,7 +109,7 @@ export class GuideWNStep6Component implements OnInit {
       });
     }
 
-    this.route.paramMap.switchMap((params: ParamMap) => this.employeeSvc.getHousekeeper(params.get('id'))).subscribe(res => {
+    this.route.paramMap.pipe(switchMap((params: ParamMap) => this.employeeSvc.getHousekeeper(params.get('id')))).subscribe(res => {
       this.housekeeper = res.housekeeper;
     });
 

@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, JsonpClientBackend} from '@angular/common/http';
-import 'rxjs/add/operator/toPromise';
+
 
 import {Config} from '../config';
 import {StorageService} from './storage.service';

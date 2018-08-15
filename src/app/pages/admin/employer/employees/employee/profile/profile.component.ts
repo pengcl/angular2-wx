@@ -1,7 +1,9 @@
+
+import {switchMap} from 'rxjs/operators';
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 
-import 'rxjs/add/operator/switchMap';
+
 
 import {PageConfig} from './page.config';
 import {UserService} from '../../../../../../services/user.service';
@@ -58,7 +60,7 @@ export class AdminEmployerEmployeesEmployeeProfileComponent implements OnInit {
 
   ngOnInit() {
 
-    this.route.paramMap.switchMap((params: ParamMap) => this.employeeSvc.getHousekeeper(params.get('id'))).subscribe(res => {
+    this.route.paramMap.pipe(switchMap((params: ParamMap) => this.employeeSvc.getHousekeeper(params.get('id')))).subscribe(res => {
       this.housekeeper = res.housekeeper;
       const images = [];
       $.each(this.housekeeper.imageList, function (i, k) {

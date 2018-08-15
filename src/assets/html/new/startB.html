@@ -1,0 +1,400 @@
+<!doctype html>
+<html lang="en" style="font-size: 100px">
+<head>
+  <meta charset="utf-8">
+  <title>大牛管家</title>
+  <base href="/">
+
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1"/>
+  <meta name="format-detection" content="telephone=no"/>
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link href="https://cdn.bootcss.com/weui/1.1.2/style/weui.min.css" rel="stylesheet">
+  <link href="https://cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet">
+  <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <style>
+
+    body {
+      font-size: 0.14rem;
+    }
+
+    .img-box img {
+      display: block;
+      width: 100%;
+    }
+
+    h1 {
+      font-size: 0.18rem;
+      margin: 0 0.15rem;
+    }
+
+    em {
+      color: #b1281d;
+      font-style: normal;
+    }
+
+    .weui-cells__title {
+      font-size: 0.15rem;
+      font-weight: bold;
+      color: #0F0F0F;
+    }
+
+    .weui-cells__tips {
+      font-size: 0.12rem;
+      color: #999;
+    }
+
+    .weui-cells__title .right {
+      color: #4AA1DB;
+      font-size: 0.13rem;
+    }
+
+    .weui-cells__title p {
+      font-size: 0.12rem;
+      color: #CA9F4D;
+    }
+
+    .weui-cells__title.warn {
+      color: #EA5A2B;
+    }
+
+    .input-area {
+      margin-top: 0;
+    }
+
+    .weui-cells.input-area:before, .weui-cells.input-area:after {
+      display: none;
+    }
+
+    .weui-cells.input-area .weui-cell {
+      font-size: 0.13rem;
+      margin: 0.15rem;
+      margin-left: 0;
+    }
+
+    .weui-cells.input-area .weui-cell:before {
+      display: none;
+    }
+
+    .weui-cells.input-area .weui-cell:after {
+      content: " ";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      height: 1px;
+      border-top: 1px solid #e5e5e5;
+      color: #e5e5e5;
+      -webkit-transform-origin: 0 0;
+      transform-origin: 0 0;
+      -webkit-transform: scaleY(0.5);
+      transform: scaleY(0.5);
+      left: 15px;
+      z-index: 2;
+    }
+
+    .weui-cells.input-area .weui-cell input, .weui-cells.input-area .weui-cell .weui-label {
+      height: 0.25rem;
+      line-height: 0.25rem;
+    }
+
+    .weui-btn-area .weui-btn_primary {
+      font-size: 0.17rem;
+      background-image: linear-gradient(0deg, #99170d 0%, #99170d 50%, #c03227 100%);
+      border-radius: 100px;
+    }
+
+    .active-code {
+      font-size: 0.11rem;
+      width: 7em;
+      color: #000;
+      text-align: center;
+      line-height: 0.21rem;
+      display: inline-block;
+      border-radius: 0.3rem;
+      background: #ccaa66;
+    }
+
+    .weui-btn {
+      font-size: 0.18rem;
+    }
+
+    .weui-btn {
+      color: #fff;
+    }
+
+    .weui-btn {
+      position: relative;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: 14px;
+      padding-right: 14px;
+      box-sizing: border-box;
+      font-size: 18px;
+      text-align: center;
+      text-decoration: none;
+      color: #fff;
+      line-height: 2.55555556;
+      border-radius: 5px;
+      -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+      overflow: hidden;
+    }
+
+    .call {
+      width: 0.6rem;
+      position: fixed;
+      top: 33%;
+      right: 0.15rem;
+    }
+
+    .call img {
+      display: block;
+      width: 100%;
+    }
+
+    .weui-btn-area {
+      margin: 0.15rem 0.15rem 0.3rem;
+    }
+  </style>
+</head>
+<body>
+<div class="img-box">
+  <img src="/assets/images/guide/w/3/banner.jpg?v=1">
+</div>
+<div class="img-box">
+  <img src="/assets/images/guide/w/3/1.jpg?v=1">
+</div>
+<div class="img-box">
+  <img src="/assets/images/guide/w/3/2.jpg?v=1">
+</div>
+<div class="img-box">
+  <img src="/assets/images/guide/w/3/3.jpg?v=1">
+</div>
+<div class="img-box">
+  <img src="/assets/images/guide/w/3/4.jpg?v=1">
+</div>
+<div class="img-box">
+  <img src="/assets/images/guide/w/3/5.jpg?v=1">
+</div>
+<h1>请留下您的联系方式</h1>
+<p class="weui-cells__tips">我们的服务顾问会马上电话联系您，请注意接听。</p>
+
+<div class="input-area weui-cells weui-cells_form">
+  <div id="iCustomerName" class="weui-cell">
+    <div class="weui-cell__hd"><span class="weui-label">您的称呼</span></div>
+    <div class="weui-cell__bd">
+      <input id="customerName" onblur="nameBlur()" autocomplete="off" maxlength="5" minlength="1" class="weui-input"
+             placeholder="如：李先生/李女士">
+    </div>
+    <div class="weui-cell__ft"><i class="weui-icon-warn"></i></div>
+  </div>
+  <div id="iCustomerMobile" class="weui-cell">
+    <div class="weui-cell__hd"><span class="weui-label">联系电话</span></div>
+    <div class="weui-cell__bd">
+      <input type="number" id="customerMobile" autocomplete="off" maxlength="11" minlength="11" class="weui-input"
+             placeholder="请输入手机号码">
+    </div>
+    <div class="weui-cell__ft">
+      <span style="display: none" class="active-code" onclick="getCode()">获取验证码</span>
+      <i class="weui-icon-warn"></i>
+    </div>
+  </div>
+  <div id="iCustomerCode" class="weui-cell">
+    <div class="weui-cell__hd"><span class="weui-label">验证码</span></div>
+    <div class="weui-cell__bd">
+      <input type="tel" id="customerCode" maxlength="4" minlength="4" class="weui-input"
+             placeholder="请输入手机验证码">
+    </div>
+    <div class="weui-cell__ft"><i class="weui-icon-warn"></i></div>
+  </div>
+</div>
+<div class="weui-cells__title">
+  <p>大牛管家向您承诺，您所有资料均会严格保密，请放心填写。</p>
+</div>
+<a href="tel:02085598666" class="call">
+  <img src="/assets/images/icons/call.png">
+</a>
+<div class="weui-btn-area">
+  <a onclick="submit()" class="weui-btn weui-btn_primary">
+    立即预订
+  </a>
+</div>
+<script src="https://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<script src="/assets/js/extand.js"></script>
+<script>
+  var $html = document.getElementsByTagName('html');
+  var $body = document.getElementsByTagName('body');
+  $html[0].style.fontSize = $body[0].clientWidth / 375 * 100 + 'px';
+
+  var pageType = 'W1';
+  var gh = getUrlParam('gh');
+  var customerName = '', customerMobile = '', customerCode = '';
+
+  var $activeCode = $('.active-code');
+  var activeClass = true;
+  var timePromise = null;
+  var second = 59;
+
+  (function (root) {
+    root._tt_config = true;
+    var ta = document.createElement('script');
+    ta.type = 'text/javascript';
+    ta.async = true;
+    ta.src = document.location.protocol + '//' + 's1.pstatp.com/bytecom/resource/track_log/src/toutiao-track-log.js';
+    ta.onerror = function () {
+      var request = new XMLHttpRequest();
+      var web_url = window.encodeURIComponent(window.location.href);
+      var js_url = ta.src;
+      var url = '//ad.toutiao.com/link_monitor/cdn_failed?web_url=' + web_url + '&js_url=' + js_url + '&convert_id=1608011262150692';
+      request.open('GET', url, true);
+      request.send(null);
+    };
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(ta, s);
+  })(window);
+
+  _log('Load', pageType, gh);
+
+  $('#customerName').bind('input propertychange', function () {
+    customerName = $(this).val();
+    if (!customerName || customerName.length < 2) {
+      $("#iCustomerName").addClass('weui-cell_warn');
+    } else {
+      $("#iCustomerName").removeClass('weui-cell_warn');
+    }
+  });
+
+  function nameBlur() {
+    _log('inputName', pageType, gh);
+  }
+
+
+  $('#customerMobile').bind('input propertychange', function () {
+    customerMobile = $(this).val();
+    if (!customerMobile || customerMobile.length !== 11) {
+      $("#iCustomerMobile").addClass('weui-cell_warn');
+    } else {
+      $("#iCustomerMobile").removeClass('weui-cell_warn');
+      _log('inputMobile', pageType, gh);
+      $activeCode.show();
+    }
+  });
+
+  $('#customerCode').bind('input propertychange', function () {
+    customerCode = $(this).val();
+    if (!customerCode || customerCode.length !== 4) {
+      $("#iCustomerCode").addClass('weui-cell_warn');
+    } else {
+      $("#iCustomerCode").removeClass('weui-cell_warn');
+      _log('inputCode', pageType, gh);
+    }
+  });
+
+  function getCode() {
+    if (!activeClass) {
+      return false;
+    }
+    $.ajax({
+      type: "get",
+      url: '/wApi/interface/user/getCode.ht?custMoblie=' + customerMobile,
+      success: function (res) {
+        if (res.code === 0) {
+          timePromise = setInterval(function () {
+            if (second <= 0) {
+              clearInterval(timePromise);
+              timePromise = null;
+
+              second = 59;
+              $activeCode.html('重发验证码');
+              activeClass = true;
+            } else {
+              $activeCode.html('' + this.second + 's');
+              activeClass = false;
+              second = second - 1;
+            }
+          }, 1000)
+        } else {
+          alert(res.msg);
+        }
+      },
+      error: function () {
+
+      }
+    });
+
+    _log('getCode', pageType, gh);
+  }
+
+  function submit() {
+
+    _log('reserve', pageType, gh);
+
+    if (!customerName || customerName.length < 1) {
+      $("#iCustomerName").addClass('weui-cell_warn');
+      return false;
+    }
+    if (!customerMobile || customerMobile.length !== 11) {
+      $("#iCustomerMobile").addClass('weui-cell_warn');
+      return false
+    }
+    if (!customerCode || customerCode.length !== 4) {
+      $("#iCustomerCode").addClass('weui-cell_warn');
+      return false
+    }
+
+    $.ajax({
+      type: "get",
+      url: '/wApi/interface/order/intentSubmitOrder.ht?customerName=' + encodeURI(encodeURI(customerName)) + '&customerMobile=' + customerMobile + '&code=' + customerCode + '&gh=' + gh + '&intentionType=0',
+      success: function (res) {
+        console.log(res);
+        if (res.code === 0) {
+          window.location.href = '/guide/w7?orderNo=' + res.orderNo + '&gh=' + gh;
+        } else {
+          alert(res.msg);
+        }
+      },
+      error: function () {
+
+      }
+    });
+  }
+
+  $(document).ready(function () {
+    _taq.push({convert_id: '1608011262150692', event_type: 'form'});
+  });
+
+  wx.ready(function (res) {
+    wx.onMenuShareAppMessage({
+      title: '大牛管家, 只为牛人服务',
+      desc: '我们禀承“忠诚、安全、健康、舒心”的服务理念，旨在为全国高端商务人士及其家庭提供“安全防护、驾驶出行、科学运动”三大类日常综合管家服务。',
+      link: 'http://wap.danius.cn/assets/html/new/start.html',
+      imgUrl: 'http://wap.danius.cn/assets/images/guide/share.jpg',
+      trigger: function (res) {
+      },
+      success: function (res) {
+      },
+      cancel: function (res) {
+      },
+      fail: function (res) {
+      }
+    });
+    wx.onMenuShareTimeline({
+      title: '大牛管家, 只为牛人服务',
+      desc: '我们禀承“忠诚、安全、健康、舒心”的服务理念，旨在为全国高端商务人士及其家庭提供“安全防护、驾驶出行、科学运动”三大类日常综合管家服务。',
+      link: 'http://wap.danius.cn/assets/html/new/start.html',
+      imgUrl: 'http://wap.danius.cn/assets/images/guide/share.jpg',
+      trigger: function (res) {
+      },
+      success: function (res) {
+      },
+      cancel: function (res) {
+      },
+      fail: function (res) {
+      }
+    });
+  });
+</script>
+</body>
+</html>

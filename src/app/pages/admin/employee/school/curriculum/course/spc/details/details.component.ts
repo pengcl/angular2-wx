@@ -7,6 +7,7 @@ import {SchoolService} from '../../../../../../../../services/school.service';
 import {Config} from '../../../../../../../../config';
 import {ActivatedRoute, ParamMap} from '@angular/router';
 import {DialogService} from 'ngx-weui';
+import {map} from 'rxjs/internal/operators';
 
 @Component({
   selector: 'app-admin-employee-school-curriculum-course-spc-details',
@@ -31,10 +32,11 @@ export class AdminEmployeeSchoolCurriculumCourseSpcDetailsComponent implements O
 
   ngOnInit() {
     this.user = this.userSvc.isLogin();
-
-    this.activatedRoute.paramMap.switchMap((params: ParamMap) => this.schoolSvc.getSpecial(params.get('id'), this.user.id)).subscribe(res => {
-      this.special = res.special;
-      this.courses = res.list;
+    this.activatedRoute.paramMap.pipe(map((params) => params.get('id'))).subscribe(id => {
+      this.schoolSvc.getSpecial(id, this.user.id).then(res => {
+        this.special = res.special;
+        this.courses = res.list;
+      });
     });
 
     /*this.schoolSvc.getCourse('', this.user.id).then(res => {

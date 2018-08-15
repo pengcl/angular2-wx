@@ -1,8 +1,10 @@
+
+import {switchMap} from 'rxjs/operators';
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 import {DomSanitizer} from '@angular/platform-browser';
 
-import 'rxjs/add/operator/switchMap';
+
 import {PageConfig} from '../../page.config';
 import {WxService} from '../../../modules/wx';
 import {LogService} from '../../../services/log.service';
@@ -104,7 +106,7 @@ export class GuideWNStep5Component implements OnInit {
 
     /*this.datePipe.transform(myDate, 'yyyy-MM-dd');*/
 
-    this.route.paramMap.switchMap((params: ParamMap) => this.employeeSvc.getHousekeeper(params.get('id'))).subscribe(res => {
+    this.route.paramMap.pipe(switchMap((params: ParamMap) => this.employeeSvc.getHousekeeper(params.get('id')))).subscribe(res => {
       this.housekeeper = res.housekeeper;
 
       setTimeout(() => {

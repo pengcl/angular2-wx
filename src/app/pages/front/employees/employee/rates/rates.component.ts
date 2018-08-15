@@ -1,3 +1,7 @@
+
+import {switchMap} from 'rxjs/operators';
+
+import {timer as observableTimer, Observable} from 'rxjs';
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute, ParamMap} from '@angular/router';
 import {InfiniteLoaderComponent} from 'ngx-weui';
@@ -6,7 +10,6 @@ import {WxService} from '../../../../../modules/wx';
 import {EmployeeService} from '../../../../../services/employee.service';
 
 import {RATES} from '../../../../../../mockData/rates';
-import {Observable} from 'rxjs/Observable';
 
 @Component({
   selector: 'app-front-employees-employee-rates',
@@ -33,16 +36,16 @@ export class FrontEmployeesEmployeeRatesComponent implements OnInit {
 
   ngOnInit() {
 
-    this.route.paramMap.switchMap((params: ParamMap) => {
+    this.route.paramMap.pipe(switchMap((params: ParamMap) => {
       return this.employeeSvc.getHousekeeper(params.get('id'));
-    }).subscribe(res => {
+    })).subscribe(res => {
       this.housekeeper = res.housekeeper;
       this.rates = RATES.slice(0, this.pageSize * this.currPage); // 初始化当前页数据
     });
   }
 
   onLoadMore(comp: InfiniteLoaderComponent) {
-    Observable.timer(500).subscribe(() => {
+    observableTimer(500).subscribe(() => {
 
       this.currPage = this.currPage + 1;
       this.currList = RATES.slice(0, this.pageSize * this.currPage); // 获取当前页数据

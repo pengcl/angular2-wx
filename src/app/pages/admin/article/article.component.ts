@@ -1,6 +1,8 @@
+
+import {filter} from 'rxjs/operators';
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {Router, NavigationStart} from '@angular/router';
-import 'rxjs/add/operator/filter';
+
 import {MenuService} from '../../../modules/menu/menu.service';
 
 @Component({
@@ -18,7 +20,7 @@ export class AdminArticleComponent implements OnInit {
       this.menuShow = res;
     });
 
-    router.events.filter((event) => event instanceof NavigationStart)
+    router.events.pipe(filter((event) => event instanceof NavigationStart))
       .subscribe((event: NavigationStart) => {
         this.menuShow = false;
       });

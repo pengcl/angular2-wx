@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en" style="font-size: 100px">
+<head>
+  <meta charset="utf-8">
+  <title>大牛管家</title>
+  <base href="/">
+
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1"/>
+  <meta name="format-detection" content="telephone=no"/>
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link href="https://cdn.bootcss.com/weui/1.1.2/style/weui.min.css" rel="stylesheet">
+  <link href="https://cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet">
+  <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <style>
+
+    body {
+      font-size: 0.14rem;
+    }
+
+    .img-box img {
+      display: block;
+      width: 100%;
+    }
+
+    h1 {
+      font-size: 0.18rem;
+      margin: 0 0.15rem;
+    }
+
+    em {
+      color: #b1281d;
+      font-style: normal;
+    }
+
+    .weui-btn-area .weui-btn_primary {
+      font-size: 0.17rem;
+      background-image: linear-gradient(0deg, #99170d 0%, #99170d 50%, #c03227 100%);
+      border-radius: 100px;
+    }
+
+    .weui-btn {
+      font-size: 0.18rem;
+    }
+
+    .weui-btn {
+      color: #fff;
+    }
+
+    .weui-btn {
+      position: relative;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: 14px;
+      padding-right: 14px;
+      box-sizing: border-box;
+      font-size: 18px;
+      text-align: center;
+      text-decoration: none;
+      color: #fff;
+      line-height: 2.55555556;
+      border-radius: 5px;
+      -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+      overflow: hidden;
+    }
+
+    .call {
+      width: 0.6rem;
+      position: fixed;
+      top: 33%;
+      right: 0.15rem;
+    }
+
+    .call img {
+      display: block;
+      width: 100%;
+    }
+
+    .weui-btn-area {
+      margin: 0.15rem 0.15rem 0.3rem;
+    }
+  </style>
+</head>
+<body>
+<div class="img-box">
+  <img src="/assets/images/guide/w/3/banner.jpg?v=1">
+</div>
+<div class="img-box">
+  <img src="/assets/images/guide/w/3/1.jpg?v=1">
+</div>
+<div class="img-box">
+  <img src="/assets/images/guide/w/3/2.jpg?v=1">
+</div>
+<div class="img-box">
+  <img src="/assets/images/guide/w/3/3.jpg?v=1">
+</div>
+<div class="img-box">
+  <img src="/assets/images/guide/w/3/4.jpg?v=1">
+</div>
+<div class="img-box">
+  <img src="/assets/images/guide/w/3/5.jpg?v=1">
+</div>
+<h1><em>一元抢订</em>精英管家</h1>
+<p class="weui-cells__tips">我们的承诺：预订名额仅限150名，预订成功后，前50名立即到岗，后100名90天内到岗，90天内无管家可选，承诺三倍退款。</p>
+<a href="tel:02085598666" class="call">
+  <img src="/assets/images/icons/call.png">
+</a>
+<div class="weui-btn-area">
+  <a onclick="go()" class="weui-btn weui-btn_primary">
+    挑选管家
+  </a>
+</div>
+<script src="https://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<script src="/assets/js/extand.js"></script>
+<script>
+  var $html = document.getElementsByTagName('html');
+  var $body = document.getElementsByTagName('body');
+  $html[0].style.fontSize = $body[0].clientWidth / 375 * 100 + 'px';
+
+  var pageType = 'W0';
+  var gh = getUrlParam('gh');
+
+  (function (root) {
+    root._tt_config = true;
+    var ta = document.createElement('script');
+    ta.type = 'text/javascript';
+    ta.async = true;
+    ta.src = document.location.protocol + '//' + 's1.pstatp.com/bytecom/resource/track_log/src/toutiao-track-log.js';
+    ta.onerror = function () {
+      var request = new XMLHttpRequest();
+      var web_url = window.encodeURIComponent(window.location.href);
+      var js_url = ta.src;
+      var url = '//ad.toutiao.com/link_monitor/cdn_failed?web_url=' + web_url + '&js_url=' + js_url + '&convert_id=1608010185864196';
+      request.open('GET', url, true);
+      request.send(null);
+    };
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(ta, s);
+  })(window);
+
+  _log('Load', pageType, gh);
+
+  if (_taq) {
+    _taq.push({convert_id: '1608010185864196', event_type: 'form'});
+  }
+
+  function go() {
+    window.location.href = '/guide/w4?gh=' + gh;
+  }
+
+  wx.ready(function (res) {
+    wx.onMenuShareAppMessage({
+      title: '大牛管家, 只为牛人服务',
+      desc: '我们禀承“忠诚、安全、健康、舒心”的服务理念，旨在为全国高端商务人士及其家庭提供“安全防护、驾驶出行、科学运动”三大类日常综合管家服务。',
+      link: 'http://wap.danius.cn/assets/html/new/start.html',
+      imgUrl: 'http://wap.danius.cn/assets/images/guide/share.jpg',
+      trigger: function (res) {
+      },
+      success: function (res) {
+      },
+      cancel: function (res) {
+      },
+      fail: function (res) {
+      }
+    });
+    wx.onMenuShareTimeline({
+      title: '大牛管家, 只为牛人服务',
+      desc: '我们禀承“忠诚、安全、健康、舒心”的服务理念，旨在为全国高端商务人士及其家庭提供“安全防护、驾驶出行、科学运动”三大类日常综合管家服务。',
+      link: 'http://wap.danius.cn/assets/html/new/start.html',
+      imgUrl: 'http://wap.danius.cn/assets/images/guide/share.jpg',
+      trigger: function (res) {
+      },
+      success: function (res) {
+      },
+      cancel: function (res) {
+      },
+      fail: function (res) {
+      }
+    });
+  });
+</script>
+</body>
+</html>

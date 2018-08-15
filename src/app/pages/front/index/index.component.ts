@@ -2,7 +2,7 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {PageConfig} from './page.config';
 import {DialogService} from 'ngx-weui';
 import {WxService} from '../../../modules/wx';
-import 'rxjs/add/observable/timer';
+
 
 import {InfiniteLoaderComponent} from 'ngx-weui';
 import {EmployeeService} from '../../../services/employee.service';

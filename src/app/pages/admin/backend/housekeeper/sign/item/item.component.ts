@@ -4,7 +4,7 @@ import {PageConfig} from './page.config';
 
 import {UserService} from '../../../../../../services/user.service';
 import {EmployeeService} from '../../../../../../services/employee.service';
-import {Observable} from 'rxjs/Observable';
+import {Observable} from 'rxjs';
 import {InfiniteLoaderComponent, PickerService} from 'ngx-weui';
 
 import {getDays} from '../../../../../../utils/utils';

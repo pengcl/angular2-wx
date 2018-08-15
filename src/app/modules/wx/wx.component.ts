@@ -1,7 +1,5 @@
 import {Component, OnDestroy, Input, Output, EventEmitter} from '@angular/core';
-import {Observer} from 'rxjs/Observer';
-import {Observable} from 'rxjs/Observable';
-import {Subscription} from 'rxjs/Subscription';
+import {Observer, Observable, Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-wx',

@@ -1,10 +1,11 @@
+
+import {timer as observableTimer, Observable} from 'rxjs';
 import {Component, OnInit} from '@angular/core';
 import {PageConfig} from './page.config';
 import {DATA} from '../../../../../../../utils/cn';
 
 import {UserService} from '../../../../../../../services/user.service';
 import {RegionService} from '../../../../../../../services/backend/region.service';
-import {Observable} from 'rxjs/Observable';
 import {InfiniteLoaderComponent, PickerService} from 'ngx-weui';
 
 import {getIndex} from '../../../../../../../utils/utils';
@@ -136,7 +137,7 @@ export class AdminBackendHousekeeperRegionManagerListComponent implements OnInit
   }*/
 
   onLoadMore(comp: InfiniteLoaderComponent) {
-    Observable.timer(500).subscribe(() => {
+    observableTimer(500).subscribe(() => {
 
       /*this.params.page = this.params.page + 1;
 

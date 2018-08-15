@@ -1,3 +1,5 @@
+
+import {timer as observableTimer, Observable} from 'rxjs';
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {PageConfig} from './../../../page.config';
 import {WxService} from '../../../../modules/wx';
@@ -8,7 +10,6 @@ import {EmployeeService} from '../../../../services/employee.service';
 import {simAnim, slide} from '../../../../utils/animate';
 
 import {InfiniteLoaderComponent, PickerService} from 'ngx-weui';
-import {Observable} from 'rxjs/Observable';
 import {ActivatedRoute} from '@angular/router';
 import {getIndex} from '../../../../utils/utils';
 
@@ -157,7 +158,7 @@ export class FrontGuideStep3Component implements OnInit {
   }
 
   onLoadMore(comp: InfiniteLoaderComponent) {
-    Observable.timer(500).subscribe(() => {
+    observableTimer(500).subscribe(() => {
 
       this.currPage = this.currPage + 1;
       this.currLists = this.lists.slice(0, this.pageSize * this.currPage); // 获取当前页数据

@@ -3,7 +3,7 @@ import {PageConfig} from './page.config';
 import {UserService} from '../../../../../services/user.service';
 import {RatingConfig} from 'ngx-weui';
 
-import 'rxjs/add/operator/switchMap';
+
 import {ActivatedRoute} from '@angular/router';
 import {EmployerService} from '../../../../../services/employer.service';
 

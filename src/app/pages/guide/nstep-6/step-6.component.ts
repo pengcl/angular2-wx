@@ -1,3 +1,5 @@
+
+import {switchMap} from 'rxjs/operators';
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Router, ActivatedRoute, ParamMap} from '@angular/router';
@@ -70,7 +72,7 @@ export class GuideNStep6Component implements OnInit {
     this.subscribeForm.get('gh').setValue(this.route.snapshot.queryParams['gh']);
     this.subscribeForm.get('callbackUrl').setValue(Config.webHost + '/guide/n7');
 
-    this.route.paramMap.switchMap((params: ParamMap) => this.employeeSvc.getHousekeeper(params.get('id'))).subscribe(res => {
+    this.route.paramMap.pipe(switchMap((params: ParamMap) => this.employeeSvc.getHousekeeper(params.get('id')))).subscribe(res => {
       this.housekeeper = res.housekeeper;
     });
 

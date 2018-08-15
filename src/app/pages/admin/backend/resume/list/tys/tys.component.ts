@@ -1,9 +1,10 @@
+
+import {timer as observableTimer, Observable} from 'rxjs';
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {PageConfig} from './page.config';
 
 import {UserService} from '../../../../../../services/user.service';
 import {TraineeService} from '../../../../../../services/backend/trainee.service';
-import {Observable} from 'rxjs/Observable';
 import {InfiniteLoaderComponent, PickerService} from 'ngx-weui';
 
 @Component({
@@ -70,7 +71,7 @@ export class AdminBackendResumeListTysComponent implements OnInit {
   }
 
   onLoadMore(comp: InfiniteLoaderComponent) {
-    Observable.timer(500).subscribe(() => {
+    observableTimer(500).subscribe(() => {
 
       this.params.page = this.params.page + 1;
       this.traineeSvc.getCommons(this.params).then(res => {

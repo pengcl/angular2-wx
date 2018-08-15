@@ -1,6 +1,7 @@
+
+import {timer as observableTimer, Observable} from 'rxjs';
 import {Component, OnInit} from '@angular/core';
 import {PageConfig} from './page.config';
-import {Observable} from 'rxjs/Observable';
 import {InfiniteLoaderComponent} from 'ngx-weui';
 
 import {UserService} from '../../../../services/user.service';
@@ -37,7 +38,7 @@ export class AdminArticleListComponent implements OnInit {
   }
 
   onLoadMore(comp: InfiniteLoaderComponent) {
-    Observable.timer(500).subscribe(() => {
+    observableTimer(500).subscribe(() => {
 
     });
   }

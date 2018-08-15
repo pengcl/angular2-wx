@@ -1,3 +1,5 @@
+
+import {timer as observableTimer, Observable} from 'rxjs';
 import {Component, OnInit} from '@angular/core';
 import {PageConfig} from './page.config';
 import {WxService} from '../../../../../modules/wx';
@@ -6,7 +8,6 @@ import {EmployerService} from '../../../../../services/employer.service';
 import {SalesService} from '../../../../../services/sales.service';
 import {InfiniteLoaderComponent, InfiniteLoaderConfig} from 'ngx-weui';
 import {Config} from '../../../../../config';
-import {Observable} from 'rxjs/Observable';
 
 @Component({
   selector: 'app-admin-salesmen-account-income',
@@ -52,7 +53,7 @@ export class AdminSalesmenAccountIncomeComponent implements OnInit {
 
 
   onLoadMore(comp: InfiniteLoaderComponent) {
-    Observable.timer(1500).subscribe(() => {
+    observableTimer(1500).subscribe(() => {
 
       this.page = this.page + 1;
       this.salesSvc.getIncomeList(this.user.id, this.page).then(res => {

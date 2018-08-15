@@ -1,13 +1,14 @@
+
+import {timer as observableTimer, Observable} from 'rxjs';
 import {Component, OnInit, ViewChild, ElementRef} from '@angular/core';
 import {Router, ActivatedRoute} from '@angular/router';
 import {PageConfig} from '../../page.config';
 import {WxService} from '../../../modules/wx';
 
-import {timeout} from 'rxjs/operator/timeout';
+
 
 import {StorageService} from '../../../services/storage.service';
 import {EmployeeService} from '../../../services/employee.service';
-import {Observable} from 'rxjs/Observable';
 import {PickerService} from 'ngx-weui';
 import {OrderService} from '../../../services/order.service';
 import {MeiqiaService} from '../../../services/meiqia.service';
@@ -212,7 +213,7 @@ export class GuideWNStep4Component implements OnInit {
         return false;
       }
       this.resolveLoading();
-      Observable.timer(1500).subscribe(() => {
+      observableTimer(1500).subscribe(() => {
         this.params.page = this.params.page + 1;
         this.employeeSvc.getIntentList(this.params).then(res => {
           this.isLoading = false;

@@ -1,5 +1,5 @@
 $.ajax({
-  url: 'http://wap.danius.cn/wApi/interface/comm/getWxParameter.ht?shareUrl=' + encodeURIComponent(window.location.href),
+  url: '/wApi/interface/comm/getWxParameter.ht?shareUrl=' + encodeURIComponent(window.location.href),
   success: function (config) {
     var _config = config;
     _config.jsApiList = [
@@ -40,40 +40,18 @@ function getMeiqia() {
   _MEIQIA('withoutBtn');
 }
 
-function getToutiao() {
-  (function (root) {
-    root._tt_config = true;
-    var ta = document.createElement('script');
-    ta.type = 'text/javascript';
-    ta.async = true;
-    ta.src = document.location.protocol + '//' + 's1.pstatp.com/bytecom/resource/track_log/src/toutiao-track-log.js';
-    ta.onerror = function () {
-      var request = new XMLHttpRequest();
-      var web_url = window.encodeURIComponent(window.location.href);
-      var js_url = ta.src;
-      var url = '//ad.toutiao.com/link_monitor/cdn_failed?web_url=' + web_url + '&js_url=' + js_url + '&convert_id=1608010185864196';
-      request.open('GET', url, true);
-      request.send(null);
-    };
-    var s = document.getElementsByTagName('script')[0];
-    s.parentNode.insertBefore(ta, s);
-  })(window);
+function _log(operation, page, gh) {
+  $.ajax({
+    type: "get",
+    url: 'http://mk.danius.cn/record/writeRequestLog.html?loc=' + encodeURIComponent(window.location.href) + '&operation=danius_1_' + (page ? page : '') + '_' + operation + '&gh=' + gh,
+    dataType: "jsonp",
+    jsonp: "callback",
+    jsonpCallback: "callback",
+    success: function (json) {
 
-  (function (root) {
-    root._tt_config = true;
-    var ta = document.createElement('script');
-    ta.type = 'text/javascript';
-    ta.async = true;
-    ta.src = document.location.protocol + '//' + 's1.pstatp.com/bytecom/resource/track_log/src/toutiao-track-log.js';
-    ta.onerror = function () {
-      var request = new XMLHttpRequest();
-      var web_url = window.encodeURIComponent(window.location.href);
-      var js_url = ta.src;
-      var url = '//ad.toutiao.com/link_monitor/cdn_failed?web_url=' + web_url + '&js_url=' + js_url + '&convert_id=1608011262150692';
-      request.open('GET', url, true);
-      request.send(null);
-    };
-    var s = document.getElementsByTagName('script')[0];
-    s.parentNode.insertBefore(ta, s);
-  })(window);
+    },
+    error: function () {
+
+    }
+  });
 }

@@ -1,3 +1,5 @@
+
+import {timer as observableTimer, Observable} from 'rxjs';
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {PageConfig} from './page.config';
 import {WxService} from '../../../modules/wx';
@@ -9,7 +11,6 @@ import {InfiniteLoaderComponent} from 'ngx-weui';
 import {EmployeesPipe} from '../../../pipes/employees.pipe';
 
 import {simAnim, slide} from '../../../utils/animate';
-import {Observable} from 'rxjs/Observable';
 
 const OPTS = {
   fill: 'none',
@@ -216,7 +217,7 @@ export class FrontEmployeesComponent implements OnInit {
   }
 
   onLoadMore(comp: InfiniteLoaderComponent) {
-    Observable.timer(500).subscribe(() => {
+    observableTimer(500).subscribe(() => {
 
       this.currPage = this.currPage + 1;
       this.currEmployees = this.filterOfEmployees.slice(0, this.pageSize * this.currPage); // 获取当前页数据

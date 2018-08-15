@@ -3,10 +3,10 @@ import {RouterModule} from '@angular/router';
 import {CommonModule} from '@angular/common';
 import {MenuComponent} from './menu.component';
 import {MenuService} from './menu.service';
-import {AccordionModule} from 'ngx-weui';
+import {WeUiModule} from 'ngx-weui';
 
 @NgModule({
-  imports: [CommonModule, RouterModule, AccordionModule],
+  imports: [CommonModule, RouterModule, WeUiModule],
   declarations: [MenuComponent],
   exports: [MenuComponent],
   entryComponents: [MenuComponent],

@@ -1,8 +1,10 @@
+
+import {switchMap} from 'rxjs/operators';
 import {Component, OnInit, OnDestroy, ViewChild} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {DatePipe} from '@angular/common';
 import {ActivatedRoute, ParamMap} from '@angular/router';
-import 'rxjs/add/operator/switchMap';
+
 
 import {PageConfig} from './page.config';
 import {WxService} from '../../../../../modules/wx';
@@ -66,10 +68,10 @@ export class FrontEmployeesEmployeeReserveComponent implements OnInit, OnDestroy
     this.reserveForm.get('serviceAreaId').setValue(this.route.snapshot.queryParams['city']);
     this.reserveForm.get('successUrl').setValue(Config.webHost + '/front/msg/reserve');
 
-    this.route.paramMap.switchMap((params: ParamMap) => {
+    this.route.paramMap.pipe(switchMap((params: ParamMap) => {
       this.reserveForm.get('housekeeperId').setValue(params.get('id'));
       return this.employeeSvc.getHousekeeper(params.get('id'));
-    }).subscribe(res => {
+    })).subscribe(res => {
       this.housekeeper = res.housekeeper;
     });
   }

@@ -1,10 +1,11 @@
+
+import {timer as observableTimer, Observable} from 'rxjs';
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {Router, ActivatedRoute} from '@angular/router';
 import {PageConfig} from '../../page.config';
 import {WxService} from '../../../modules/wx';
 
 import {EmployeeService} from '../../../services/employee.service';
-import {Observable} from 'rxjs/Observable';
 import {PickerService, InfiniteLoaderComponent, InfiniteLoaderConfig} from 'ngx-weui';
 import {OrderService} from '../../../services/order.service';
 import {Config} from '../../../config';
@@ -142,7 +143,7 @@ export class GuideNStep4Component implements OnInit {
   }
 
   onLoadMore(comp: InfiniteLoaderComponent) {
-    Observable.timer(1500).subscribe(() => {
+    observableTimer(1500).subscribe(() => {
 
       this.params.page = this.params.page + 1;
       this.employeeSvc.getIntentList(this.params).then(res => {

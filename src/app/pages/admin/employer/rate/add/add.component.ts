@@ -4,7 +4,7 @@ import {UserService} from '../../../../../services/user.service';
 import {RatingConfig} from 'ngx-weui';
 
 import {ActivatedRoute} from '@angular/router';
-import 'rxjs/add/operator/switchMap';
+
 
 import {Config} from '../../../../../config';
 import {DialogService} from 'ngx-weui';

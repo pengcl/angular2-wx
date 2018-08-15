@@ -1,3 +1,5 @@
+
+import {timer as observableTimer, Observable} from 'rxjs';
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {PageConfig} from './page.config';
@@ -7,7 +9,6 @@ import {TraineeService} from '../../../../../../services/backend/trainee.service
 import {EmployerService} from '../../../../../../services/employer.service';
 import {StorageService} from '../../../../../../services/storage.service';
 import {InfiniteLoaderComponent, PickerService} from 'ngx-weui';
-import {Observable} from 'rxjs/Observable';
 
 @Component({
   selector: 'app-admin-backend-resume-list-twb',
@@ -85,7 +86,7 @@ export class AdminBackendResumeListTwbComponent implements OnInit {
   }
 
   onLoadMore(comp: InfiniteLoaderComponent) {
-    Observable.timer(1500).subscribe(() => {
+    observableTimer(1500).subscribe(() => {
       this.params.page = this.params.page + 1;
       this.traineeSvc.getSoldiers(this.params).then(res => {
         if (res.code === 0) {

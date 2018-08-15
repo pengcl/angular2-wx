@@ -1,7 +1,9 @@
+
+import {switchMap} from 'rxjs/operators';
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 
-import 'rxjs/add/operator/switchMap';
+
 import {PageConfig} from '../../page.config';
 import {WxService} from '../../../modules/wx';
 import {UserService} from '../../../services/user.service';
@@ -88,7 +90,7 @@ export class GuideNStep5Component implements OnInit {
       });
     }
 
-    this.route.paramMap.switchMap((params: ParamMap) => this.employeeSvc.getHousekeeper(params.get('id'))).subscribe(res => {
+    this.route.paramMap.pipe(switchMap((params: ParamMap) => this.employeeSvc.getHousekeeper(params.get('id')))).subscribe(res => {
       this.housekeeper = res.housekeeper;
       const images = [];
 

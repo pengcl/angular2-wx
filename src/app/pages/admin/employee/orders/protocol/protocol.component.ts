@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 
 import {PageConfig} from './page.config';
 import {ActivatedRoute, ParamMap} from '@angular/router';
+import {map} from 'rxjs/operators';
 import {WxService} from '../../../../../modules/wx';
 import {UserService} from '../../../../../services/user.service';
 import {EmployerService} from '../../../../../services/employer.service';
@@ -20,7 +21,7 @@ export class AdminEmployeeOrdersProtocolComponent implements OnInit {
   user: any;
   protocol;
 
-  constructor(private activatedRoute: ActivatedRoute,
+  constructor(private route: ActivatedRoute,
               private wx: WxService,
               private userSvc: UserService,
               private employer: EmployerService) {
@@ -28,10 +29,12 @@ export class AdminEmployeeOrdersProtocolComponent implements OnInit {
 
   ngOnInit() {
     this.user = this.userSvc.isLogin();
-    this.activatedRoute.paramMap.switchMap((params: ParamMap) => this.employer.getProtocol(params.get('id'))).subscribe(res => {
-      if (res.code === 0) {
-        this.protocol = res.protocolContent;
-      }
+    this.route.paramMap.pipe(map((params) => params.get('id'))).subscribe(id => {
+      this.employer.getProtocol(id).then(res => {
+        if (res.code === 0) {
+          this.protocol = res.protocolContent;
+        }
+      });
     });
   }
 }
